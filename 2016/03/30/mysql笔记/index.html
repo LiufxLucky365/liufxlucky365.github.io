@@ -3,17 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Liufxlucky365</title>
+  <title>mysql笔记 | Liufxlucky365</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="程序猿 IT php mysql 生活 秀恩爱">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Liufxlucky365">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="1 架构特点mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理，及其他系统任务和数据的存储/提取相分离
+这种处理和存储分离的设计可以在使用时根据性能、特性，以及其他需求来选择数据存储方式
+2 连接每个客户端连接都会在服务器进程中拥有一个线程，这个连接的查询只会在这个单独的线程中执行，该线程只能轮流在某个CPU核心或者CPU中运行。服务器会负责缓存线程，因此不需要为每一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql笔记">
+<meta property="og:url" content="http://yoursite.com/2016/03/30/mysql笔记/index.html">
 <meta property="og:site_name" content="Liufxlucky365">
-<meta property="og:description" content="程序猿 IT php mysql 生活 秀恩爱">
+<meta property="og:description" content="1 架构特点mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理，及其他系统任务和数据的存储/提取相分离
+这种处理和存储分离的设计可以在使用时根据性能、特性，以及其他需求来选择数据存储方式
+2 连接每个客户端连接都会在服务器进程中拥有一个线程，这个连接的查询只会在这个单独的线程中执行，该线程只能轮流在某个CPU核心或者CPU中运行。服务器会负责缓存线程，因此不需要为每一个">
+<meta property="og:image" content="https://raw.githubusercontent.com/LiufxLucky365/liufxlucky365.github.io/master/img/clustered_index_innodb_myisam.png">
+<meta property="og:updated_time" content="2016-03-30T04:41:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Liufxlucky365">
-<meta name="twitter:description" content="程序猿 IT php mysql 生活 秀恩爱">
+<meta name="twitter:title" content="mysql笔记">
+<meta name="twitter:description" content="1 架构特点mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理，及其他系统任务和数据的存储/提取相分离
+这种处理和存储分离的设计可以在使用时根据性能、特性，以及其他需求来选择数据存储方式
+2 连接每个客户端连接都会在服务器进程中拥有一个线程，这个连接的查询只会在这个单独的线程中执行，该线程只能轮流在某个CPU核心或者CPU中运行。服务器会负责缓存线程，因此不需要为每一个">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/LiufxLucky365/liufxlucky365.github.io/master/img/clustered_index_innodb_myisam.png">
   
     <link rel="alternate" href="/atom.xml" title="Liufxlucky365" type="application/atom+xml">
   
@@ -66,9 +75,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-mysql笔记" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-mysql笔记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/30/mysql笔记/" class="article-date">
   <time datetime="2016-03-30T04:40:27.000Z" itemprop="datePublished">2016-03-30</time>
@@ -81,8 +88,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/30/mysql笔记/">mysql笔记</a>
+    <h1 class="article-title" itemprop="name">
+      mysql笔记
     </h1>
   
 
@@ -758,55 +765,19 @@ drop table test.tar;
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/30/hello-world/" class="article-date">
-  <time datetime="2016-03-30T04:24:22.000Z" itemprop="datePublished">2016-03-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/30/hello-world/">Hello World</a>
-    </h1>
+    <a href="/2016/03/30/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/30/hello-world/" data-id="cimeeerq10000z63zctb8utl7" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
 
 </section>
         
