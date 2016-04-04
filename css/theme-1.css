@@ -1,0 +1,19 @@
+h2 {
+	color: #F78F58;
+}
+h3 {
+	color: #278BD2;
+}
+strong {
+    display: inline-block;
+    pading: 0 5px;
+    color: #E02856;
+    font-weight: normal;
+    margin-right: 5px;
+}
+pre {
+    margin: 0 !important;
+}
+img {
+    width: 600px;
+}

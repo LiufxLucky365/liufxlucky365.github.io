@@ -1,171 +1,278 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+<!doctype html>
+
+
+
   
-  <title>MySQL不权威指南 | Liufxlucky365</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="h2 {
-        color: #F78F58;
-    }
-    h4 {
-        color: #278BD2;
-    }
-    strong {
-        display: inline-block;
-        pading: 0 5px;
-        /*background-color: #FCF8E3;*/
-        color:">
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="架构mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理，及其他系统任务和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性，以及其他需求来选择数据存储方式
+
+架构分成了服务器层和存储引擎两层，两层的执行效率是存在量级的差别的，比如索引相关的操作都是在存储引擎执行，而where、filesort等均在服务器层
+连接首先mysql的架构是单进程多">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL不权威指南">
 <meta property="og:url" content="http://yoursite.com/2016/04/04/MySQL不权威指南/index.html">
 <meta property="og:site_name" content="Liufxlucky365">
-<meta property="og:description" content="h2 {
-        color: #F78F58;
-    }
-    h4 {
-        color: #278BD2;
-    }
-    strong {
-        display: inline-block;
-        pading: 0 5px;
-        /*background-color: #FCF8E3;*/
-        color:">
+<meta property="og:description" content="架构mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理，及其他系统任务和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性，以及其他需求来选择数据存储方式
+
+架构分成了服务器层和存储引擎两层，两层的执行效率是存在量级的差别的，比如索引相关的操作都是在存储引擎执行，而where、filesort等均在服务器层
+连接首先mysql的架构是单进程多">
 <meta property="og:image" content="http://yoursite.com/images/mysql_structure.png">
 <meta property="og:image" content="http://yoursite.com/images/cluster_index.png">
-<meta property="og:updated_time" content="2016-04-04T16:25:57.000Z">
+<meta property="og:updated_time" content="2016-04-04T17:35:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL不权威指南">
-<meta name="twitter:description" content="h2 {
-        color: #F78F58;
-    }
-    h4 {
-        color: #278BD2;
-    }
-    strong {
-        display: inline-block;
-        pading: 0 5px;
-        /*background-color: #FCF8E3;*/
-        color:">
-<meta name="twitter:image" content="http://yoursite.com/images/mysql_structure.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Liufxlucky365" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
+<meta name="twitter:description" content="架构mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理，及其他系统任务和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性，以及其他需求来选择数据存储方式
 
+架构分成了服务器层和存储引擎两层，两层的执行效率是存在量级的差别的，比如索引相关的操作都是在存储引擎执行，而where、filesort等均在服务器层
+连接首先mysql的架构是单进程多">
+<meta name="twitter:image" content="http://yoursite.com/images/mysql_structure.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> MySQL不权威指南 | Liufxlucky365 </title>
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Liufxlucky365</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">211&amp;835</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-MySQL不权威指南" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/04/MySQL不权威指南/" class="article-date">
-  <time datetime="2016-04-04T03:24:49.000Z" itemprop="datePublished">2016-04-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      MySQL不权威指南
-    </h1>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
   
 
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Liufxlucky365</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">211&835</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                MySQL不权威指南
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-04T11:24:49+08:00" content="2016-04-04">
+              2016-04-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <style type="text/css">
-    h2 {
-        color: #F78F58;
-    }
-    h4 {
-        color: #278BD2;
-    }
-    strong {
-        display: inline-block;
-        pading: 0 5px;
-        /*background-color: #FCF8E3;*/
-        color: #3C763D;
-        margin-right: 5px;
-    }
-    pre {
-        margin: 0 !important;
-    }
-    img {
-        width: 600px;
-    }
-</style>
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
 
 <h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>mysql最重要、最与众不同的特性是它的<strong>存储引擎架构</strong>，这种架构的设计将查询处理，及其他系统任务和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性，以及其他需求来选择数据存储方式</p>
 <p><img src="/images/mysql_structure.png"></p>
 <p>架构分成了服务器层和存储引擎两层，两层的执行效率是存在量级的差别的，比如索引相关的操作都是在存储引擎执行，而where、filesort等均在服务器层</p>
-<hr>
-
 <h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p>首先mysql的架构是单进程多线程</p>
 <p>每个客户端连接都会在服务器进程中拥有一个线程，这个连接的查询只会在这个单独的线程中执行，该线程只能轮流在某个CPU核心或者CPU中运行。服务器会负责缓存线程，即维护一个线程池，因此不需要为每一个新建的连接创建或者销毁线程</p>
-<hr>
-
-<h2 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h2><h4 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h4><p>只要有多个查询需要在同一时刻修改数据，都会产生并发控制的问题，解决并发常见的解决方案是实现读写锁系统：</p>
+<h2 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h2><h3 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h3><p>只要有多个查询需要在同一时刻修改数据，都会产生并发控制的问题，解决并发常见的解决方案是实现读写锁系统：</p>
 <ul>
 <li><strong>读锁（read lock也叫 共享锁（share lock）</strong> 相互不阻塞，可以为一个已存在读锁的资源添加读锁</li>
 <li><strong>写锁（write lock也叫 排他锁（exclusive lock）</strong> 会阻塞其他锁，被添加写锁的资源无法再被添加其他锁</li>
 </ul>
 <a id="more"></a>
-<h4 id="锁粒度"><a href="#锁粒度" class="headerlink" title="锁粒度"></a>锁粒度</h4><p>锁冲突是影响并发的原因之一，所以更加精细地对资源进行加锁，会提供并发性。但这也意味着更多计算资源的消耗</p>
+<h3 id="锁粒度"><a href="#锁粒度" class="headerlink" title="锁粒度"></a>锁粒度</h3><p>锁冲突是影响并发的原因之一，所以更加精细地对资源进行加锁，会提供并发性。但这也意味着更多计算资源的消耗</p>
 <ul>
 <li><strong>表锁（table lock）</strong> mysql最基本的锁，开销最小，会阻塞对表的所有写操作，是在服务器层实现</li>
 <li><strong>行级锁（row lock）</strong> 行级锁可以最大程度地支持并发处理（同时也带来了最大的锁开销）。行级锁只在存储引擎层实现，而mysql服务器层没有实现。服务器层完全不了解存储引擎中的锁实现</li>
 </ul>
-<hr>
-
 <h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>事务简单来说就是一组查询要么全部执行，要么全部不执行。事务系统必须满足ACID原则：</p>
 <ul>
 <li>原子性 (atomicity)</li>
@@ -174,7 +281,7 @@
 <li>持久性 (durability)</li>
 </ul>
 <p><strong>我的人体蹦跳比喻</strong></p>
-<h4 id="mysql中的事务"><a href="#mysql中的事务" class="headerlink" title="mysql中的事务"></a>mysql中的事务</h4><p>mysql提供两种事务型存储引擎：InnoDB、NDB Cluster</p>
+<h3 id="mysql中的事务"><a href="#mysql中的事务" class="headerlink" title="mysql中的事务"></a>mysql中的事务</h3><p>mysql提供两种事务型存储引擎：InnoDB、NDB Cluster</p>
 <p>mysql默认采用自动提交模式。也就是说，如果不是显示的开始一个事务，则每个查询都被当作一个事务执行提交</p>
 <p>在当前连接中可以通过设置AUTOCOMMIT变量来启用或者禁止自动提交模式；当AUTOCOMMIT=0时，所有查询都在一个事务中，直到显示的执行commit或者rollback；或者使用<code>start transaction</code> <code>begin</code>开启事务</p>
 <pre><code># 关闭自动提交
@@ -186,9 +293,7 @@ rollback \ commit;
 start transaction \ begin;
 ...
 rollback \ commit;
-</code></pre><hr>
-
-<h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><h4 id="myisam"><a href="#myisam" class="headerlink" title="myisam"></a>myisam</h4><p>mysql最早的默认存储引擎，现在默认为innodb</p>
+</code></pre><h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><h3 id="myisam"><a href="#myisam" class="headerlink" title="myisam"></a>myisam</h3><p>mysql最早的默认存储引擎，现在默认为innodb</p>
 <p><strong>优点</strong></p>
 <ul>
 <li>数据存储设计简单、紧凑占用空间小，append插入速度快</li>
@@ -205,7 +310,7 @@ rollback \ commit;
 <li>崩溃后不能自动修复，维护成本高</li>
 <li>索引中的叶子节点保存的是数据位置，所以会产生大量的随机i/o</li>
 </ul>
-<h4 id="innodb"><a href="#innodb" class="headerlink" title="innodb"></a>innodb</h4><p>目前mysql的默认存储引擎（自5.5.8），其设计目标主要是面向在线事务处理（OLTP）的应用</p>
+<h3 id="innodb"><a href="#innodb" class="headerlink" title="innodb"></a>innodb</h3><p>目前mysql的默认存储引擎（自5.5.8），其设计目标主要是面向在线事务处理（OLTP）的应用</p>
 <p><strong>innodb的主键</strong><br>innodb是基于聚簇索引建立的。聚簇索引对主键查询有很高的性能。但它的二级索引（非主键索引）中必须包含主键列，所以如果主键列很大的话，其他的所有索引都会很大。因此，innodb的主键应该尽可能小</p>
 <p><em>这也是为什么InnoDB为什么最好选择自增int型作为主键的原因之一；另一个原因是使用递增型作为主键，存储引擎在插入数据时，不会出现裂页插入的现象，因为是append添加数据</em></p>
 <p>当未显性建立主键时，会隐性建立一个6字节的ROWID作为主键</p>
@@ -220,9 +325,9 @@ rollback \ commit;
 <ul>
 <li>由于使用聚簇索引，所以插入数据时可能导致裂页而造成性能下降</li>
 </ul>
-<h4 id="memory引擎"><a href="#memory引擎" class="headerlink" title="memory引擎"></a>memory引擎</h4><p>支持hash索引</p>
-<h4 id="BlackHole引擎"><a href="#BlackHole引擎" class="headerlink" title="BlackHole引擎"></a>BlackHole引擎</h4><p>不进行任何存储，只产生日志，用于复制</p>
-<h4 id="存储引擎选择"><a href="#存储引擎选择" class="headerlink" title="存储引擎选择"></a>存储引擎选择</h4><p>大部分情况下，InnoDB都是正确的选择，除非需要某些InnoDB不具备的特性，并且没有其他办法可以代替，否则都应该使用InnoDB引擎</p>
+<h3 id="memory引擎"><a href="#memory引擎" class="headerlink" title="memory引擎"></a>memory引擎</h3><p>支持hash索引</p>
+<h3 id="BlackHole引擎"><a href="#BlackHole引擎" class="headerlink" title="BlackHole引擎"></a>BlackHole引擎</h3><p>不进行任何存储，只产生日志，用于复制</p>
+<h3 id="存储引擎选择"><a href="#存储引擎选择" class="headerlink" title="存储引擎选择"></a>存储引擎选择</h3><p>大部分情况下，InnoDB都是正确的选择，除非需要某些InnoDB不具备的特性，并且没有其他办法可以代替，否则都应该使用InnoDB引擎</p>
 <p><strong>几个方面考虑</strong></p>
 <ul>
 <li>事务，需要事务直接InnoDB</li>
@@ -235,7 +340,7 @@ rollback \ commit;
 <li><strong>日志应用</strong> 写（add多 update少）多读少，同时决不能成为瓶颈，耗费存储，基本不更新数据，适合采用MyISAM</li>
 <li><strong>订单应用</strong> 需要事务支持，InnoDB</li>
 </ul>
-<h4 id="修改存储引擎"><a href="#修改存储引擎" class="headerlink" title="修改存储引擎"></a>修改存储引擎</h4><ul>
+<h3 id="修改存储引擎"><a href="#修改存储引擎" class="headerlink" title="修改存储引擎"></a>修改存储引擎</h3><ul>
 <li><strong>Alter table</strong> 最简单的办法，适用任何存储引擎，但是需要很长时间，因为mysql会按行将数据从原表复制到一张新的表中，在复制期间可能会消耗系统所有的I/O能力<pre><code>mysql&gt; ALTER TABLE mytable EGINE = InnoDB;
 </code></pre></li>
 <li><strong>导入与导出</strong> 适用mysqldump工具导出数据到sql文件，然后对该文件进行一定修改进行导入。注意create前默认加入的drop table</li>
@@ -249,14 +354,12 @@ mysql&gt; COMMIT;
 </code></pre></li>
 </ul>
 <p><strong>混合使用存储引擎</strong><br>在mysql事务中混合使用存储引擎会使问题非常复杂，比如同时使用了支持和不支持事务的存储引擎，又需要rollback</p>
-<hr>
-
-<h2 id="数据库schema"><a href="#数据库schema" class="headerlink" title="数据库schema"></a>数据库schema</h2><h4 id="类型选取原则"><a href="#类型选取原则" class="headerlink" title="类型选取原则"></a>类型选取原则</h4><ul>
+<h2 id="数据库schema"><a href="#数据库schema" class="headerlink" title="数据库schema"></a>数据库schema</h2><h3 id="类型选取原则"><a href="#类型选取原则" class="headerlink" title="类型选取原则"></a>类型选取原则</h3><ul>
 <li><strong>更小的通常更好</strong> 尽量使用可以正确存储数据的最小数据类型（同时也要兼顾以后的维护和扩展）。更小的数据意味着更少的磁盘、内存、CPU缓存和CPU处理周期</li>
 <li><strong>简单就好</strong> 优先使用mysql内建类型。如使用date类型存储日期就比varchar类型效率要高，又如使用整型存储IP地址</li>
 <li><strong>尽量避免NULL</strong> 注意NULL是默认属性，不需要NULL时要显示指定 not null。包含null的列会更加难以处理，耗费更多空间。但是也不要矫枉过正，确实需要null时也不要吝啬</li>
 </ul>
-<h4 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h4><table>
+<h3 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h3><table>
 <thead>
 <tr>
 <th>类型</th>
@@ -294,54 +397,52 @@ mysql&gt; COMMIT;
 </table>
 <p><strong>表示的范围</strong><br>-2^(N-1) ~ 2^(N-1)-1<br>0 ~ 2^(N)-1 unsigned</p>
 <p><em>注意：mysql可以为整数类型指定宽度，如int(11)，但这基本无意义，不会影响存储空间和存储范围，只是规定了mysql的一些交互工具用来显示字符的个数</em></p>
-<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><ul>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><ul>
 <li><strong>varchar</strong> 指定长度时最好采用2、4、8等2的次幂，因为这些数是varchar用于记录字符串长度的允许的最大值，不至于造成空间浪费。如varchar(6)与varchar(8)存储一个长度小于6的字符串时消耗的空间一样常用于保存数据的最大值远大于平均值的场景</li>
 <li><strong>char</strong> 存储定长</li>
 </ul>
 <p><strong>慷慨是不明智的</strong><br>varchar(6) varchar(200)用于存储 hello 时的耗费是一致的，那么使用短列有优势吗？<br>事实证明是有很大优势的。更长的列消耗更多内存，尤其使用内存临时表排序。最好的策略是只分配真正需要的空间</p>
 <p><strong>使用枚举类型（enum）代替字符串</strong><br>当字符串是固定类型的情况时，可以使用enum类型代替char/varchar，存储空间小，因enum内部使用整型，计算速度快</p>
 <p>但需要添加新的元素时，除非是append，否则将更新整个表（由于映射关系变化）；其次排序时时按照enum的顺序，而非字符串本身，容易造成误解</p>
-<h4 id="日期"><a href="#日期" class="headerlink" title="日期"></a>日期</h4><p>mysql中提供了多种时间类型，year date datetime time timestamp等</p>
+<h3 id="日期"><a href="#日期" class="headerlink" title="日期"></a>日期</h3><p>mysql中提供了多种时间类型，year date datetime time timestamp等</p>
 <p><strong>datetime</strong><br>表示范围1001年到9999年</p>
 <p><strong>timestamp</strong><br>表示范围 1970年1月1日（格林尼治标准时间）至 2038年<br>mysql提供了<code>from_unixtime()</code>把时间戳转换日期，和<code>unix_timestamp()</code>转换日期为时间戳<br>可以设置插入或更新数据时的行为<br>默认情况下尽量使用timestamp，如果需要处理毫秒级数据可以使用bigint进行hack，详见4.1.4</p>
-<h4 id="主键类型选择"><a href="#主键类型选择" class="headerlink" title="主键类型选择"></a>主键类型选择</h4><p>优先使用合适大小的自增整数类型</p>
+<h3 id="主键类型选择"><a href="#主键类型选择" class="headerlink" title="主键类型选择"></a>主键类型选择</h3><p>优先使用合适大小的自增整数类型</p>
 <p>合适大小可以减小空间，加快计算速度；自增可以使插入更加高效；（当使用随机值作为主键时比如md5，会导致索引平均分布，各种裂页）</p>
 <p>enum、set、字符串尽量避免</p>
-<h4 id="IP存储"><a href="#IP存储" class="headerlink" title="IP存储"></a>IP存储</h4><p>不要使用varchar(15)来存储ip地址，最好使用unsinged int，结合<code>inet_aton()</code> <code>inet_ntoa()</code></p>
-<h4 id="物化视图"><a href="#物化视图" class="headerlink" title="物化视图"></a>物化视图</h4><p>详见4.4.1</p>
-<h4 id="计数表"><a href="#计数表" class="headerlink" title="计数表"></a>计数表</h4><p>在统计高频访问的场景时，假如只使用一行进行记录，由于更新时的行锁，会导致性能瓶颈</p>
+<h3 id="IP存储"><a href="#IP存储" class="headerlink" title="IP存储"></a>IP存储</h3><p>不要使用varchar(15)来存储ip地址，最好使用unsinged int，结合<code>inet_aton()</code> <code>inet_ntoa()</code></p>
+<h3 id="物化视图"><a href="#物化视图" class="headerlink" title="物化视图"></a>物化视图</h3><p>详见4.4.1</p>
+<h3 id="计数表"><a href="#计数表" class="headerlink" title="计数表"></a>计数表</h3><p>在统计高频访问的场景时，假如只使用一行进行记录，由于更新时的行锁，会导致性能瓶颈</p>
 <p>此时的一个解决方案是使用计数表。表中开辟多行用于散列计算，这样更新数据时会更少的冲突，获取结果时使用sum即可</p>
-<h4 id="加快alter-table操作"><a href="#加快alter-table操作" class="headerlink" title="加快alter table操作"></a>加快alter table操作</h4><p>mysql的alter table操作对于大表来说是很是个问题，因为mysql的做法是用新的结构创建一个空表，然后将数据插入新表，然后删除旧表。这将耗费大量时间，同时阻塞服务</p>
+<h3 id="加快alter-table操作"><a href="#加快alter-table操作" class="headerlink" title="加快alter table操作"></a>加快alter table操作</h3><p>mysql的alter table操作对于大表来说是很是个问题，因为mysql的做法是用新的结构创建一个空表，然后将数据插入新表，然后删除旧表。这将耗费大量时间，同时阻塞服务</p>
 <p>并非所有alter table操作都会导致重建表，部分会导致只修改.frm文件（很快）</p>
 <p>其他奇技淫巧详见4.5</p>
-<hr>
-
-<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h4 id="索引的类型"><a href="#索引的类型" class="headerlink" title="索引的类型"></a>索引的类型</h4><p>索引是由存储引擎实现，具有很多类型，而且相同类型的索引不同存储引擎可能实现不同</p>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h3 id="索引的类型"><a href="#索引的类型" class="headerlink" title="索引的类型"></a>索引的类型</h3><p>索引是由存储引擎实现，具有很多类型，而且相同类型的索引不同存储引擎可能实现不同</p>
 <ul>
 <li><strong>B-Tree索引</strong> 最常见的索引，大部分存储引擎都支持。使用B-Tree数据结构，数据有序存储，叶子节点距离顶部的距离都一样</li>
 <li><strong>哈希索引</strong> 只有Memory引擎显式支持哈希索引。不能实现覆盖索引，不能利用索引排序，不支持范围查询，hash冲突多的话维护成本高。但hash索引访问速度快</li>
 <li><strong>空间数据索引</strong> （R-Tree）MyISAM支持，适用于match against操作，而不是普通的where</li>
 </ul>
-<h4 id="MyISAM与InnoDB实现BTree索引"><a href="#MyISAM与InnoDB实现BTree索引" class="headerlink" title="MyISAM与InnoDB实现BTree索引"></a>MyISAM与InnoDB实现BTree索引</h4><p>MyISAM使用了前缀压缩索引实现BTree索引，索引更小，同时索引存储的是数据的物理位置</p>
+<h3 id="MyISAM与InnoDB实现BTree索引"><a href="#MyISAM与InnoDB实现BTree索引" class="headerlink" title="MyISAM与InnoDB实现BTree索引"></a>MyISAM与InnoDB实现BTree索引</h3><p>MyISAM使用了前缀压缩索引实现BTree索引，索引更小，同时索引存储的是数据的物理位置</p>
 <p>InnoDB保存了完整索引，同时使用主键索引数据位置（<em>这就解释了为什么InnoDB始终会创建一个整型的主键索引树；以及为什么InnoDB的主键要小一点；</em>）</p>
-<h4 id="不能使用索引的情况"><a href="#不能使用索引的情况" class="headerlink" title="不能使用索引的情况"></a>不能使用索引的情况</h4><ul>
+<h3 id="不能使用索引的情况"><a href="#不能使用索引的情况" class="headerlink" title="不能使用索引的情况"></a>不能使用索引的情况</h3><ul>
 <li>不是按照索引的最左列开始查找；</li>
 <li>不能跳过索引中的列；</li>
 <li>如果查询中的某个列是范围查询，则其右边的所有列都无法使用索引；比如like</li>
 <li>索引列上使用函数，或者算数运算</li>
 </ul>
-<h4 id="索引的优点"><a href="#索引的优点" class="headerlink" title="索引的优点"></a>索引的优点</h4><p>索引可以让服务器快速定位数据位置，但这并非索引唯一作用。根据索引的数据结构，还有其他优点：</p>
+<h3 id="索引的优点"><a href="#索引的优点" class="headerlink" title="索引的优点"></a>索引的优点</h3><p>索引可以让服务器快速定位数据位置，但这并非索引唯一作用。根据索引的数据结构，还有其他优点：</p>
 <ul>
 <li>索引大大减少服务器需要扫描的数据量</li>
 <li>索引可以帮助服务器避免排序和临时表</li>
 <li>索引可以将随机I/O变为顺序I/O</li>
 </ul>
-<h4 id="三星索引"><a href="#三星索引" class="headerlink" title="三星索引"></a>三星索引</h4><ol>
+<h3 id="三星索引"><a href="#三星索引" class="headerlink" title="三星索引"></a>三星索引</h3><ol>
 <li>索引将相关的记录放到一起则获得一星</li>
 <li>索引中的数据顺序和查找中的排序顺序一致则获得二星</li>
 <li>索引中列包含了查询中需要的全部列则获得三星</li>
 </ol>
-<h4 id="前缀索引和索引选择性"><a href="#前缀索引和索引选择性" class="headerlink" title="前缀索引和索引选择性"></a>前缀索引和索引选择性</h4><p>前缀索引，是为了减少索引的长度，而指定了索引列的索引长度</p>
+<h3 id="前缀索引和索引选择性"><a href="#前缀索引和索引选择性" class="headerlink" title="前缀索引和索引选择性"></a>前缀索引和索引选择性</h3><p>前缀索引，是为了减少索引的长度，而指定了索引列的索引长度</p>
 <pre><code>mysql&gt; ALTER TABLE table ADD KEY (city(7));
 </code></pre><ul>
 <li><strong>优点</strong> 减小索引长度，存储空间减少，可以放入更多索引至内存</li>
@@ -353,17 +454,17 @@ mysql&gt; count(distinct left(city,3))/count(*) as sel3,
 mysql&gt; count(distinct left(city,4))/count(*) as sel4,
 mysql&gt; count(distinct left(city,5))/count(*) as sel5
 mysql&gt; FROM table;
-</code></pre><h4 id="多列索引"><a href="#多列索引" class="headerlink" title="多列索引"></a>多列索引</h4><h5 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h5><p>为每个列单独创建一个索引，这样最多只能获得“一星索引”。而且这样并不能有效提高查询性能。即便是mysql使用了“索引合并”策略（using union/intersection(col1, col2)）</p>
+</code></pre><h3 id="多列索引"><a href="#多列索引" class="headerlink" title="多列索引"></a>多列索引</h3><h4 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h4><p>为每个列单独创建一个索引，这样最多只能获得“一星索引”。而且这样并不能有效提高查询性能。即便是mysql使用了“索引合并”策略（using union/intersection(col1, col2)）</p>
 <p>虽然索引合并是一种优化策略，但一般出现时也说明了表上索引建的很糟糕：<br>出现利用多个列进行相交操作时，通常意味着需要一个包含相关列的多列索引，而不是多个单列；</p>
 <p>出现利用多个列进行合并操作时，通常要耗费大量CPU；可以考虑使用UNION，或者不使用索引；</p>
 <p>详见5.3.3</p>
-<h4 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h4><p>聚簇索引的叶子节点保存的就是数据本身。所以，聚簇索引就是表本身</p>
-<h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ul>
+<h3 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h3><p>聚簇索引的叶子节点保存的就是数据本身。所以，聚簇索引就是表本身</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
 <li>可以把相关数据保存在一起</li>
 <li>数据访问更快，因为数据和索引存在一块</li>
 <li>索引扫描时无需回表，因可以直接使用主键值</li>
 </ul>
-<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
 <li>假如能够将所有数据放入内存中，则聚簇索引便无意义了，因其提供的I/O优势不存在</li>
 <li>插入速度严重依赖插入顺序。比如InnoDB中最差的，按照主键逆序插入，会导致大量的裂页</li>
 <li>更新聚簇索引代价高，因为涉及的行会全部更新位置</li>
@@ -371,21 +472,21 @@ mysql&gt; FROM table;
 <li>二级索引会比想象的大，因为其必须包含主键索引</li>
 <li>二级索引查找需要两次索引查找，因为二级索引中保存的是主键而不是数据</li>
 </ul>
-<h4 id="InnoDB与MyISAM比较"><a href="#InnoDB与MyISAM比较" class="headerlink" title="InnoDB与MyISAM比较"></a>InnoDB与MyISAM比较</h4><p>MyISAM使用的是堆存储（存疑？），InnoDB使用的是聚簇索引，所以他们的索引分布是这样的</p>
+<h3 id="InnoDB与MyISAM比较"><a href="#InnoDB与MyISAM比较" class="headerlink" title="InnoDB与MyISAM比较"></a>InnoDB与MyISAM比较</h3><p>MyISAM使用的是堆存储（存疑？），InnoDB使用的是聚簇索引，所以他们的索引分布是这样的</p>
 <p><img src="/images/cluster_index.png"></p>
 <p><em>这也就解释了，MyISAM中的二级索引为什么和主键索引差别不大，而InnoDB中主键索引和二级索引差别比较大</em></p>
-<h4 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h4><p>由于mysql的索引可以获取到索引列的值（<em>BTree决定的，叶子节点有所有索引值</em>），所以当索引列包含了查找的全部列时，我们称之为<strong>覆盖索引</strong></p>
-<h5 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h5><ul>
+<h3 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h3><p>由于mysql的索引可以获取到索引列的值（<em>BTree决定的，叶子节点有所有索引值</em>），所以当索引列包含了查找的全部列时，我们称之为<strong>覆盖索引</strong></p>
+<h4 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h4><ul>
 <li>不需要回表，也不需要二次查询</li>
 <li>当数据库只缓存索引时，也同时缓存了数据</li>
 </ul>
-<h5 id="不能使用"><a href="#不能使用" class="headerlink" title="不能使用"></a>不能使用</h5><ul>
+<h4 id="不能使用"><a href="#不能使用" class="headerlink" title="不能使用"></a>不能使用</h4><ul>
 <li>没有任何索引能够覆盖这个查询</li>
 <li>mysql不能在索引中执行like</li>
 </ul>
-<h4 id="索引扫描排序"><a href="#索引扫描排序" class="headerlink" title="索引扫描排序"></a>索引扫描排序</h4><p>因为索引是有序的，所以当order的列存在索引时，可以通过扫描索引来进行排序</p>
+<h3 id="索引扫描排序"><a href="#索引扫描排序" class="headerlink" title="索引扫描排序"></a>索引扫描排序</h3><p>因为索引是有序的，所以当order的列存在索引时，可以通过扫描索引来进行排序</p>
 <p>explain中的type列为’index’，则说明使用了索引扫描，因为索引是排序的，所以也可理解为使用了索引扫描排序</p>
-<p>type中的index，和extra中的 using index区别是，<strong>前者为利用index执行了full table scan；后者为使用了覆盖索引（即没有进行全表查询）</strong></p>
+<p>type中的index，和extra中的 using index区别是<br><strong>前者为利用index执行了full table scan；后者为使用了覆盖索引（即没有进行全表查询）</strong></p>
 <p>（此处需要验证）</p>
 <p>导致不能进行索引扫描排序</p>
 <ul>
@@ -394,28 +495,26 @@ mysql&gt; FROM table;
 <li>where和order中列不能组合为最左前缀</li>
 <li>where中存在范围查询（等值不会导致失效，因为等值的话相当于忽略该索引，但是范围的话，则导致范围索引后续索引无法区分顺序而失效）</li>
 </ul>
-<h5 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h5><p>索引为 col1_col2_col3，而查询 col1, col3，此时可以通过添加 col2的恒等式引导mysql使用该索引</p>
-<h4 id="索引维护"><a href="#索引维护" class="headerlink" title="索引维护"></a>索引维护</h4><p>InnoDB的索引一般不会出现破坏，所需要进行的维护为碎片的维护，碎片分三种</p>
+<h4 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h4><p>索引为 col1_col2_col3，而查询 col1, col3，此时可以通过添加 col2的恒等式引导mysql使用该索引</p>
+<h3 id="索引维护"><a href="#索引维护" class="headerlink" title="索引维护"></a>索引维护</h3><p>InnoDB的索引一般不会出现破坏，所需要进行的维护为碎片的维护，碎片分三种</p>
 <ul>
 <li>行碎片</li>
 <li>行间碎片</li>
 <li>剩余空间碎片</li>
 </ul>
 <p>可以通过<code>optimize table</code>或者导出再导入方式重新整理；</p>
-<hr>
-
-<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><h4 id="mysql客户端-服务器通信协议"><a href="#mysql客户端-服务器通信协议" class="headerlink" title="mysql客户端/服务器通信协议"></a>mysql客户端/服务器通信协议</h4><ol>
+<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><h3 id="mysql客户端-服务器通信协议"><a href="#mysql客户端-服务器通信协议" class="headerlink" title="mysql客户端/服务器通信协议"></a>mysql客户端/服务器通信协议</h3><ol>
 <li><strong>半双工</strong> 意即任何时刻，要么由服务器向客户端发送数据，要么由客户端向服务器发送数据</li>
 <li><strong>“从消防水管喝水”</strong> 当客户端从服务器拉取数据时就是这样的感受，不能停止，除非粗暴的断开连接，但这并不是好做法</li>
 </ol>
-<h4 id="为什么查询速度会慢"><a href="#为什么查询速度会慢" class="headerlink" title="为什么查询速度会慢"></a>为什么查询速度会慢</h4><p>查询速度指的是 <strong>响应时间</strong> 如果把查询看做一个任务，那么它是由一些列子任务组成。查询的优化，就是优化这些子任务， <strong>要么减少子任务执行次数，要么让子任务运行的更快</strong></p>
+<h3 id="为什么查询速度会慢"><a href="#为什么查询速度会慢" class="headerlink" title="为什么查询速度会慢"></a>为什么查询速度会慢</h3><p>查询速度指的是 <strong>响应时间</strong> 如果把查询看做一个任务，那么它是由一些列子任务组成。查询的优化，就是优化这些子任务， <strong>要么减少子任务执行次数，要么让子任务运行的更快</strong></p>
 <p>查询的生命周期大致可以按照顺序分为从客户端，到服务器，然后在服务器上进行解析，生成执行计划，执行，并返回结果给客户端。 <strong>执行</strong> 可以认为是整个生命周期中最重要的阶段，这其中包括了大量为了检索数据到存储引擎的调用以及调用后的数据处理，包括排序、分组等。</p>
 <p>在完成这些任务的时候，查询需要在不同的地方花费时间，包括网络，CPU计算，生成统计信息和执行计划、锁等待（互斥等待）等操作，尤其是想底层存储引擎检索数据的调用操作</p>
-<h5 id="mysql检索了不必要的数据"><a href="#mysql检索了不必要的数据" class="headerlink" title="mysql检索了不必要的数据"></a>mysql检索了不必要的数据</h5><ol>
+<h4 id="mysql检索了不必要的数据"><a href="#mysql检索了不必要的数据" class="headerlink" title="mysql检索了不必要的数据"></a>mysql检索了不必要的数据</h4><ol>
 <li>确认查询中没有多余的行、列，即select的列要精心挑选，同时where语句也要反复斟酌</li>
 <li>利用explain确保mysql没有分析大量超过需要的数据行；比如explain中扫描的数据行和返回的行数比</li>
 </ol>
-<h5 id="扫描行数和访问类型"><a href="#扫描行数和访问类型" class="headerlink" title="扫描行数和访问类型"></a>扫描行数和访问类型</h5><p>explain中type说明了mysql使用的扫描类型，性能由差到好依次</p>
+<h4 id="扫描行数和访问类型"><a href="#扫描行数和访问类型" class="headerlink" title="扫描行数和访问类型"></a>扫描行数和访问类型</h4><p>explain中type说明了mysql使用的扫描类型，性能由差到好依次</p>
 <ol>
 <li><strong>All</strong> 全表扫描</li>
 <li><strong>Index</strong> 全索引扫描</li>
@@ -425,18 +524,18 @@ mysql&gt; FROM table;
 <li><strong>system</strong> 查询对象表只有一条数据，是const的特殊情况</li>
 </ol>
 <p><em>(此处需要实验复现)</em></p>
-<h4 id="mysql使用where"><a href="#mysql使用where" class="headerlink" title="mysql使用where"></a>mysql使用where</h4><p>mysql过滤数据时性能由好到此依次为</p>
+<h3 id="mysql使用where"><a href="#mysql使用where" class="headerlink" title="mysql使用where"></a>mysql使用where</h3><p>mysql过滤数据时性能由好到此依次为</p>
 <ol>
 <li>直接在做索引中使用where条件来过滤</li>
 <li>使用覆盖扫描（Extra列中出现 Using index）来返回数据，直接在索引中过滤数据，不需要回表</li>
 <li>从数据表中返回数据，然后过滤不满足条件的记录（Extra列中出现 Using Where），这种情况就比较惨了，需要读出所有数据然后再在mysql服务层过滤</li>
 </ol>
-<h4 id="谨慎使用复杂查询"><a href="#谨慎使用复杂查询" class="headerlink" title="谨慎使用复杂查询"></a>谨慎使用复杂查询</h4><p>当网络环境良好，机器运算速度足够时，不必总是强调在一条查询中尽可能多或精准的返回结果，<strong>因为这意味着更长的锁表时间、更复杂的执行计划、更加困难的维护</strong></p>
+<h3 id="谨慎使用复杂查询"><a href="#谨慎使用复杂查询" class="headerlink" title="谨慎使用复杂查询"></a>谨慎使用复杂查询</h3><p>当网络环境良好，机器运算速度足够时，不必总是强调在一条查询中尽可能多或精准的返回结果，<strong>因为这意味着更长的锁表时间、更复杂的执行计划、更加困难的维护</strong></p>
 <ol>
 <li><strong>切分查询</strong> 将一个需要长时间执行的查询划分为多次，更长的时间片中执行</li>
 <li><strong>分解查询</strong> 将复杂的查询分解为多个简单的查询，这样会带来很多好处，诸如可以更加高效利用的缓存，更高的并发，这相当于在应用层进行哈希关联，有时会比mysql跟家高效</li>
 </ol>
-<h4 id="查询状态"><a href="#查询状态" class="headerlink" title="查询状态"></a>查询状态</h4><p>mysql的每个连接任何时刻都有一个状态，<code>Show full processlist</code>查看</p>
+<h3 id="查询状态"><a href="#查询状态" class="headerlink" title="查询状态"></a>查询状态</h3><p>mysql的每个连接任何时刻都有一个状态，<code>Show full processlist</code>查看</p>
 <ul>
 <li><strong>Sleep</strong> 线程正在等待客户端发送新的请求</li>
 <li><strong>Query</strong> 线程正在执行查询或者正在将结果发送给客户端</li>
@@ -446,19 +545,19 @@ mysql&gt; FROM table;
 <li><strong>Sorting result</strong> 线程正在对结果集进行排序</li>
 <li><strong>Sending data</strong> 多种情况：可能是线程在多个状态之间传送数据；或者生成结果；或者向客户端返回数据</li>
 </ul>
-<h4 id="mysql如何进行filesort"><a href="#mysql如何进行filesort" class="headerlink" title="mysql如何进行filesort"></a>mysql如何进行filesort</h4><p>应尽可能避免排序，或者尽可能使用索引排序，或者当必须在服务器层进行filesort(内存或磁盘)尽可能减少需要排序的数据量</p>
+<h3 id="mysql如何进行filesort"><a href="#mysql如何进行filesort" class="headerlink" title="mysql如何进行filesort"></a>mysql如何进行filesort</h3><p>应尽可能避免排序，或者尽可能使用索引排序，或者当必须在服务器层进行filesort(内存或磁盘)尽可能减少需要排序的数据量</p>
 <p>mysql目前有两种排序算法</p>
 <ol>
 <li><strong>两次传输排序</strong> （旧版本使用）首先排序数据引用，然后再进行数据的读取，这会产生大量随机I/O，成本非常高</li>
 <li><strong>单次传输排序</strong>（新版本使用）直接将数据进行排序，不需要回表，适合I/O密集型的应用，但会占用大量空间</li>
 </ol>
 <p>很难说哪个算法效率更高，两种算法都有各自最好和最糟的场景。当查询需要所用的列长度未超过参数<strong>max_length_for_sort_data</strong>，mysql使用单次排序</p>
-<h4 id="mysql查询优化的限制"><a href="#mysql查询优化的限制" class="headerlink" title="mysql查询优化的限制"></a>mysql查询优化的限制</h4><ol>
+<h3 id="mysql查询优化的限制"><a href="#mysql查询优化的限制" class="headerlink" title="mysql查询优化的限制"></a>mysql查询优化的限制</h3><ol>
 <li><strong>关联子查询</strong> mysql的子查询实现的非常糟糕。其中最糟糕的一类是<strong>where条件中包含in()的子查询</strong>，mysql会将相关的外层表压到子查询中，此时最好使用inner join改写查询或者exist</li>
 <li><strong>Union限制</strong> mysql不能将限制条件从外层下推到内层，比如limit语句，必须分别在子句和查询语句的最后添加，order by同理</li>
 <li>其他详见6.5.3 索引合并优化、等值传递、不能进行并行执行、不能哈希关联、松散索引扫描、最大值、最小值、同一个表同时进行查询和更新</li>
 </ol>
-<h4 id="count"><a href="#count" class="headerlink" title="count"></a>count</h4><ol>
+<h3 id="count"><a href="#count" class="headerlink" title="count"></a>count</h3><ol>
 <li><strong>count(col1)</strong> 统计某个列值的数量（不统计NULL）</li>
 <li><strong>count(express)</strong> 统计表达式有值的结果数</li>
 <li><strong>count(*)</strong> 统计结果集行数<br>*并不会像我们猜想的那样扩展成所有的列，它会忽略所有的列而直接统计所有行数<br>这里的一个常见错误就是，在括号内指定了一个列却希望统计结果集的行数，这样意义不明确，而且性能更差<br>另一个误解是myisam的count( )函数总是非常快，这是有前提条件的，<strong>只有没有任何where条件的count(*)才非常快，否则和其他引擎一样</strong></li>
@@ -469,22 +568,20 @@ mysql&gt; FROM table;
 <li>使用近似值</li>
 <li>使用统计表</li>
 </ol>
-<h4 id="group-by-amp-distinct"><a href="#group-by-amp-distinct" class="headerlink" title="group by &amp; distinct"></a>group by &amp; distinct</h4><p>很多场景下，mysql都使用同样的办法优化这两种查询，事实上，mysql优化器会在内部处理的时候相互转换这两类查询。它们都可以使用索引来优化，这也是最有效的优化办法，当无法使用索引时会使用filesort</p>
+<h3 id="group-by-amp-distinct"><a href="#group-by-amp-distinct" class="headerlink" title="group by &amp; distinct"></a>group by &amp; distinct</h3><p>很多场景下，mysql都使用同样的办法优化这两种查询，事实上，mysql优化器会在内部处理的时候相互转换这两类查询。它们都可以使用索引来优化，这也是最有效的优化办法，当无法使用索引时会使用filesort</p>
 <ol>
 <li>当分组列是其他表的是外键（比如pluto.phone.product列），可以使用inner join来排序product_id</li>
 <li>如果没有通过order by子句显式地指定排序列，当查询使用group by子句的时候，结果集会自动按照分组的字段进行排序。如果不关心结果集的顺序，而这种默认排序又导致了需要文件排序，则可以使用<code>order by null</code>让mysql不再进行文件排序。也可以在group by子句中直接使用desc asc使分组的结果集按需要的方向来排序</li>
 </ol>
-<h4 id="Limit"><a href="#Limit" class="headerlink" title="Limit"></a>Limit</h4><p>limit分页主要的问题在与当offset非常大时，mysql需要遍历大量数据，所以优化limit要从offset着手</p>
+<h3 id="Limit"><a href="#Limit" class="headerlink" title="Limit"></a>Limit</h3><p>limit分页主要的问题在与当offset非常大时，mysql需要遍历大量数据，所以优化limit要从offset着手</p>
 <ol>
 <li>直接记录上次limit时的offset</li>
 <li>改写查询为子查询，在子查询中利用索引找到offset，然后再在主查询中利用where精准定位到offset<br>尽量使用更小的索引，或者更小的列来定位offset</li>
 </ol>
 <p><em>（此处需要实验）</em></p>
-<h4 id="Union"><a href="#Union" class="headerlink" title="Union"></a>Union</h4><p>除非确实需要服务器消除重复行，否则就一定要使用<code>Union All</code>，否则会做distinct，这将导致filesort</p>
-<h4 id="静态查询分析"><a href="#静态查询分析" class="headerlink" title="静态查询分析"></a>静态查询分析</h4><p><strong>pt-query-advisor</strong>能够解析查询日志、分析查询模式，然后给出所有可能存在的潜在问题的查询，并给出足够详细的建议</p>
+<h3 id="Union"><a href="#Union" class="headerlink" title="Union"></a>Union</h3><p>除非确实需要服务器消除重复行，否则就一定要使用<code>Union All</code>，否则会做distinct，这将导致filesort</p>
+<h3 id="静态查询分析"><a href="#静态查询分析" class="headerlink" title="静态查询分析"></a>静态查询分析</h3><p><strong>pt-query-advisor</strong>能够解析查询日志、分析查询模式，然后给出所有可能存在的潜在问题的查询，并给出足够详细的建议</p>
 <p><em>（此处需要实验）</em></p>
-<hr>
-
 <h2 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h2><p>分区表的一个主要目的是将数据按照一个较粗的粒度分在不同的表中。这样做可以将相关的数据放在一起，使之更加容易维护，可以看做是索引的最初形态</p>
 <p>底层实现是很多物理子表组成（文件系统#分割命名），对用户来说是一个独立的逻辑表，与其他表无异</p>
 <pre><code>CREATE TABLE sales (
@@ -495,7 +592,7 @@ mysql&gt; FROM table;
     PARTITION p_2012 VALUES LESS THAN (2012),
     PARTITION p_catchall VALUES LESS THAN MAXVALUE,
 );
-</code></pre><h4 id="分区的限制"><a href="#分区的限制" class="headerlink" title="分区的限制"></a>分区的限制</h4><ol>
+</code></pre><h3 id="分区的限制"><a href="#分区的限制" class="headerlink" title="分区的限制"></a>分区的限制</h3><ol>
 <li>一个表最多1024个分区</li>
 <li>分区表中无法使用外键</li>
 <li>NULL值会使分区过滤无效，这是由于分区会将非法值单独存放在第一个分区，每次查询时都会扫描第一个分区，第一个分区过大时会严重影响性能，解决方案是将null值保存在自建的无用分区</li>
@@ -504,71 +601,63 @@ mysql&gt; FROM table;
 <li>所有分区必须使用相同的存储引擎</li>
 <li>分区表的结构维护成本高</li>
 </ol>
-<h4 id="分区的好处"><a href="#分区的好处" class="headerlink" title="分区的好处"></a>分区的好处</h4><ol>
+<h3 id="分区的好处"><a href="#分区的好处" class="headerlink" title="分区的好处"></a>分区的好处</h3><ol>
 <li>面对大量数据时索引的空间和时间消耗将增加很快，除非覆盖索引，否则大量的随机I/O将瘫痪程序；此时使用分区进行粗粒度的过滤，后使用简单的All查询，反而成本更低，此时分区便可看做是一种简单的索引</li>
 <li>分离出热点数据</li>
 <li>分区数据容易维护，可以在独立的分区增删改查修复</li>
 </ol>
-<h4 id="小技巧-1"><a href="#小技巧-1" class="headerlink" title="小技巧"></a>小技巧</h4><ol>
+<h3 id="小技巧-1"><a href="#小技巧-1" class="headerlink" title="小技巧"></a>小技巧</h3><ol>
 <li>查询中尽量在where中添加分区列</li>
 <li>索引和分区列尽量一致</li>
 </ol>
-<hr>
-
 <h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>虚拟表，不存放任何数据，与其他表处在同一命名空间，<strong>基本</strong>与其他表无异</p>
 <pre><code>CREATE VIEW Ocenian AS
     SELECT * FROM Country WHERE Continent = &apos;Oceania&apos;
     WITH CHECK OPTION;
 </code></pre><p><strong>with check option</strong><br>表示任何通过视图更新的行，都必须符合视图本身定义的where条件定义，即不能更新后导致视图数据“消失”</p>
-<h4 id="视图实现"><a href="#视图实现" class="headerlink" title="视图实现"></a>视图实现</h4><p>mysql使用两种两种算法实现视图，尽量使用前者</p>
+<h3 id="视图实现"><a href="#视图实现" class="headerlink" title="视图实现"></a>视图实现</h3><p>mysql使用两种两种算法实现视图，尽量使用前者</p>
 <ol>
 <li>合并算法，即整合查询语句</li>
 <li>临时表算法，即使用临时表，比如视图中包含聚合函数，此时视图不可更新</li>
 </ol>
-<h4 id="视图的用处"><a href="#视图的用处" class="headerlink" title="视图的用处"></a>视图的用处</h4><ol>
+<h3 id="视图的用处"><a href="#视图的用处" class="headerlink" title="视图的用处"></a>视图的用处</h3><ol>
 <li>便于查询监控，简化一些应用逻辑</li>
 <li>在底层数据库修改时，可以利用视图“欺骗”应用程序</li>
 <li>更加灵活的权限管理</li>
 </ol>
-<h4 id="视图的限制"><a href="#视图的限制" class="headerlink" title="视图的限制"></a>视图的限制</h4><ol>
+<h3 id="视图的限制"><a href="#视图的限制" class="headerlink" title="视图的限制"></a>视图的限制</h3><ol>
 <li>视图临时表目前不能使用任何索引</li>
 <li>mysql暂时不支持物化视图，但可以利用一些技巧实现 7.2.3</li>
 </ol>
-<hr>
-
 <h2 id="外键"><a href="#外键" class="headerlink" title="外键"></a>外键</h2><p>InnoDB是目前mysql唯一支持外键的内置存储引擎</p>
 <p>外键虽然可以保持数据的一致性，减少维护操作；但很容易成为性能瓶颈，使用外键时要充分测试</p>
-<hr>
-
 <h2 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h2><p>mysql查询缓存保存查询返回的完整结果。当查询命中该缓存，mysql会立刻返回结果，跳过了解析、优化和执行阶段</p>
 <p><strong>缓存可能成为整个服务器的资源竞争点，在多核服务器上还可能导致服务器僵死，查询缓存默认是关闭的</strong></p>
-<h4 id="判断命中"><a href="#判断命中" class="headerlink" title="判断命中"></a>判断命中</h4><ol>
+<h3 id="判断命中"><a href="#判断命中" class="headerlink" title="判断命中"></a>判断命中</h3><ol>
 <li>查询缓存系统会跟踪查询中涉及的每个表，如果这些表发生<strong>任何</strong>变化，那么和整个表相关的所有缓存数据都将失效</li>
 <li>通过查询语句hash判断命中，查询语句的<strong>任何</strong>变化都将导致未命中，包括注释</li>
 <li>查询中存在不确定函数</li>
 </ol>
-<h4 id="常用配置"><a href="#常用配置" class="headerlink" title="常用配置"></a>常用配置</h4><ul>
+<h3 id="常用配置"><a href="#常用配置" class="headerlink" title="常用配置"></a>常用配置</h3><ul>
 <li><strong>query_cache_type</strong> 是否打开查询缓存， off | on | demand</li>
 <li><strong>query_cache_size</strong> 可使用总内存字节</li>
 <li><strong>query_cache_min_res_unit</strong> 查询缓存分配内存时最小单位</li>
 <li><strong>query_cache_limit</strong> mysql能够缓存的最大查询结果</li>
 <li><strong>query_cache_wlock_invalidate</strong> 涉及的表有写锁时是否仍然使用缓存</li>
 </ul>
-<h4 id="通用优化"><a href="#通用优化" class="headerlink" title="通用优化"></a>通用优化</h4><ul>
+<h3 id="通用优化"><a href="#通用优化" class="headerlink" title="通用优化"></a>通用优化</h3><ul>
 <li>用多个小表代替一个大表</li>
 <li>批量写入可以有效降低缓存失效次数</li>
 <li>设置较小的缓存大小(query_cache_size)</li>
 <li>密集写应用，直接关闭查询缓存</li>
 <li>查询缓存最高境界<strong>不去执行</strong>，再高境界<strong>不发送查询到mysql</strong>，利用应用程序或者第三方缓存</li>
 </ul>
-<hr>
-
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p><em>(本段只记录我能看懂的或者感觉可能会涉及的，更详细完整的见 chapter 8)</em></p>
 <p>mysql有大量可以修改的参数，但不应该随便去修改；</p>
 <p>通常只需要把基本的项配置正确，避免过度配置；不要追求“完美”，建议在“足够好”时候就可以停下来，除非有理由相信停下来会导致放弃重大的性能提升机会</p>
 <p>应该把更多的精力花在schema的优化、索引以及查询的设计上</p>
 <p>不要面向懵逼 <strong>“调”</strong> 优，因为不断尝试出来的看似最优值，也许只是当前状态下起作用；应该通过监控服务状态，从整体考虑出发，进行 <strong>“配置”</strong></p>
-<h4 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h4><p><strong>一定要确认配置文件位置</strong></p>
+<h3 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h3><p><strong>一定要确认配置文件位置</strong></p>
 <p>确定mysql启动程序</p>
 <pre><code>$ which mysqld
 /usr/sbin/mysqld
@@ -585,7 +674,7 @@ Default options are read from the following files in the given order:
 <p>注意在线程中修改全局变量也许不会生效，有些变量是在mysql启动时才读取一次；所以重要的配置要写入配置文件或者使用脚本启动，避免遗漏</p>
 <p><strong>副作用</strong></p>
 <p>动态修改完配置后要及时恢复，比如为每个线程分配的内存</p>
-<h4 id="创建配置"><a href="#创建配置" class="headerlink" title="创建配置"></a>创建配置</h4><p>mysql可配置性太强也可以说是一个弱点，其实大多数配置的默认值已经是最佳配置了，所以最好不要改动太多</p>
+<h3 id="创建配置"><a href="#创建配置" class="headerlink" title="创建配置"></a>创建配置</h3><p>mysql可配置性太强也可以说是一个弱点，其实大多数配置的默认值已经是最佳配置了，所以最好不要改动太多</p>
 <p>以下创建了一个完整的最小示例配置文件，可以作为一个良好的起点，不要以自带配置文件作为起点</p>
 <p>此配置文件可能比你见过的其他配置文件太少了，但实际上已经超过了许多人的需要，请确保基本了解这些配置的意义</p>
 <pre><code>[mysqld]
@@ -625,7 +714,7 @@ open_files_limit        = 65535
 socket                  = /var/lib/mysql/mysql.sock
 port                    = 3306
 </code></pre><p>oepn_file_limit 在典型的Linux系统上我们把它设置得尽可能大。现代操作系统中打开文件句柄的开销都很小。如果这个参数不够大，将会碰到经典的24号错误，“打开的文件太多（too many open files）”</p>
-<h4 id="配置mysql内存使用"><a href="#配置mysql内存使用" class="headerlink" title="配置mysql内存使用"></a>配置mysql内存使用</h4><p>总体按照以下步骤逐步考虑</p>
+<h3 id="配置mysql内存使用"><a href="#配置mysql内存使用" class="headerlink" title="配置mysql内存使用"></a>配置mysql内存使用</h3><p>总体按照以下步骤逐步考虑</p>
 <ol>
 <li>给操作系统留够内存，5%或者2G，取最大值</li>
 <li>然后考虑mysql能够使用的最大值，注意mysql由于是单进程多线程架构，所以也受限于进程的最大内存，甚至也受限于编译器的最大内存限制</li>
@@ -652,9 +741,9 @@ port                    = 3306
 <p>设置过大也没有必要，过小也不会节省多少内存</p>
 <p><strong>表缓存</strong></p>
 <p>与线程缓存概念类似，但是缓存对象是表对象，即表结构进行解析后的数据对象</p>
-<h4 id="mysql-I-O配置-详见8-5"><a href="#mysql-I-O配置-详见8-5" class="headerlink" title="mysql I/O配置 详见8.5"></a>mysql I/O配置 详见8.5</h4><p>InnoDB的I/O配置比较重要的是 <strong>事务日志</strong> 的配置（innodb_log_file_size），一般日志文件配置为4G即可</p>
+<h3 id="mysql-I-O配置-详见8-5"><a href="#mysql-I-O配置-详见8-5" class="headerlink" title="mysql I/O配置 详见8.5"></a>mysql I/O配置 详见8.5</h3><p>InnoDB的I/O配置比较重要的是 <strong>事务日志</strong> 的配置（innodb_log_file_size），一般日志文件配置为4G即可</p>
 <p>事务日志的缓冲区不需要过大（innodb_log_buffer_size），1 ~ 8Mb即可</p>
-<h4 id="并发配置"><a href="#并发配置" class="headerlink" title="并发配置"></a>并发配置</h4><p>innodb_thread_concurrency 限制一次性可以有多少线程进入内核，0为不限制</p>
+<h3 id="并发配置"><a href="#并发配置" class="headerlink" title="并发配置"></a>并发配置</h3><p>innodb_thread_concurrency 限制一次性可以有多少线程进入内核，0为不限制</p>
 <p><strong>并发值 = CPU数量 * 磁盘数量 * 2</strong></p>
 <p>myisam可以通过 concurrent_insert</p>
 <ul>
@@ -662,7 +751,7 @@ port                    = 3306
 <li>1 默认值。只要表中没有空洞（逻辑删除的行），就允许并发插入</li>
 <li>2 强制并发，并插入表末尾，会使表更加碎片化</li>
 </ul>
-<h4 id="安全及其他基本配置"><a href="#安全及其他基本配置" class="headerlink" title="安全及其他基本配置"></a>安全及其他基本配置</h4><ul>
+<h3 id="安全及其他基本配置"><a href="#安全及其他基本配置" class="headerlink" title="安全及其他基本配置"></a>安全及其他基本配置</h3><ul>
 <li><strong>expire_logs_days</strong> 二进制文件过期时间，建议7~14天，前提是开启二进制日志（会很大）</li>
 <li><strong>max_allowed_packet</strong> 防止服务器发送太大的包</li>
 <li><strong>max_connect_errors</strong> 连接的最大出错次数</li>
@@ -673,16 +762,14 @@ port                    = 3306
 <li><strong>thread_cache_size</strong> 观察Thread_connected</li>
 <li><strong>table_cache_size</strong> 观察Opened_tables</li>
 </ul>
-<hr>
-
-<h2 id="备份与恢复"><a href="#备份与恢复" class="headerlink" title="备份与恢复"></a>备份与恢复</h2><h4 id="数据库的备份与恢复的目的"><a href="#数据库的备份与恢复的目的" class="headerlink" title="数据库的备份与恢复的目的"></a>数据库的备份与恢复的目的</h4><ul>
+<h2 id="备份与恢复"><a href="#备份与恢复" class="headerlink" title="备份与恢复"></a>备份与恢复</h2><h3 id="数据库的备份与恢复的目的"><a href="#数据库的备份与恢复的目的" class="headerlink" title="数据库的备份与恢复的目的"></a>数据库的备份与恢复的目的</h3><ul>
 <li>灾难恢复 不解释</li>
 <li>需求变更 需要恢复到之前某个时间点重新开发</li>
 <li>测试 线下环境</li>
 <li>审计 法律、复查等需求</li>
 </ul>
 <p>备份经常在无形中被设为重点，因为在备份与恢复中“备份”在前，其次备份经常发生，开发人员也经常优化备份，而恢复只是紧急情况下才会需要<br>但是不要忘了，恢复才是根本目的，如果没有经常性的演习恢复和良好的文档交接，一旦紧急情况发生，再好的备份恐怕也将失去作用</p>
-<h4 id="备份方案制定"><a href="#备份方案制定" class="headerlink" title="备份方案制定"></a>备份方案制定</h4><p><strong>1. 离线备份 or 在线备份</strong><br>这将极大的决定备份方案的难易程度<br>在线备份的话情况就相当复杂了，需要考虑数据的一致，以及在线备份/还原时对服务性能的影响</p>
+<h3 id="备份方案制定"><a href="#备份方案制定" class="headerlink" title="备份方案制定"></a>备份方案制定</h3><p><strong>1. 离线备份 or 在线备份</strong><br>这将极大的决定备份方案的难易程度<br>在线备份的话情况就相当复杂了，需要考虑数据的一致，以及在线备份/还原时对服务性能的影响</p>
 <p><strong>2. 确定RPO（备份时间点目标）and RTO（备份时间目标）</strong><br>RPO 需要你确定系统能够忍受的丢失的数据量（一天？一小时？一次事务？还是零容忍？）<br>RTO 需要你确定系统能够忍受的还原时间成本（无缝还原？停服务还原？数小时的还原时间？）</p>
 <p><strong>3. 逻辑备份 or 物理备份</strong></p>
 <p><strong>逻辑备份优点</strong></p>
@@ -725,7 +812,7 @@ port                    = 3306
 <p>二进制日志相比数据库文件要小很多，适合频繁备份</p>
 <p>二进制日志的有效期是使用<code>expire_log_days</code>来控制的，这个时间建议结合备份策略来设置，保证至少能够从最近两次备份中回放，比如备份周期是一天，那至少要保存两天的二进制日志（越多越好）</p>
 <p><em>(二进制回放实验)</em></p>
-<h4 id="执行备份"><a href="#执行备份" class="headerlink" title="执行备份"></a>执行备份</h4><p><strong>逻辑备份</strong></p>
+<h3 id="执行备份"><a href="#执行备份" class="headerlink" title="执行备份"></a>执行备份</h3><p><strong>逻辑备份</strong></p>
 <pre><code>1. __mysqldump__
     mysqldump比较常用，常用选项 -q (不进行缓存) -where --table --lock-all-tables,-x(锁表) --skip-lock-table
 2. __select into outfile__ 这样产生的CSV比mysqldump要更快更小
@@ -742,7 +829,7 @@ port                    = 3306
 
     但是outfile和infile要是mysql服务器上的文件；还要有文件写权限；不能覆盖（安全考虑，无关权限）；
 </code></pre><p><strong>物理备份</strong><br>文件系统快照 <em>(没看懂，有实践经验才来总结吧)</em></p>
-<h4 id="执行恢复"><a href="#执行恢复" class="headerlink" title="执行恢复"></a>执行恢复</h4><p><strong>逻辑备份恢复</strong></p>
+<h3 id="执行恢复"><a href="#执行恢复" class="headerlink" title="执行恢复"></a>执行恢复</h3><p><strong>逻辑备份恢复</strong></p>
 <pre><code>$ mysql &lt; backup.sql
 
 \# 最好关闭二进制记录，这样效率更高
@@ -765,7 +852,7 @@ myslq&gt; into table test;
 
 \# 然后删除命名管道
 </code></pre><p><strong>物理备份恢复 (wait…)</strong></p>
-<h4 id="基于时间点的恢复"><a href="#基于时间点的恢复" class="headerlink" title="基于时间点的恢复"></a>基于时间点的恢复</h4><p>对mysql进行基于时间点的恢复常见的方法是还原最近一次全备份，然后从哪个时间点开始重放二进制日志（有时叫做 前滚恢复）</p>
+<h3 id="基于时间点的恢复"><a href="#基于时间点的恢复" class="headerlink" title="基于时间点的恢复"></a>基于时间点的恢复</h3><p>对mysql进行基于时间点的恢复常见的方法是还原最近一次全备份，然后从哪个时间点开始重放二进制日志（有时叫做 前滚恢复）</p>
 <p>主要缺点是二进制日志重放可能是个很慢的过程</p>
 <p><strong>这里来恢复一个有害操作<code>drop table</code></strong></p>
 <ol>
@@ -789,99 +876,263 @@ drop table test.tar;
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/04/MySQL不权威指南/" data-id="cimm7m1fe0000t83z6w2b3kzi" class="article-share-link">Share</a>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/02/10分钟延长你的时间 —— 《暗时间》笔记/" rel="next" title="10分钟延长你的时间——《暗时间》笔记">
+                <i class="fa fa-chevron-left"></i> 10分钟延长你的时间——《暗时间》笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
       
       
     </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2016/04/02/10分钟延长你的时间 —— 《暗时间》笔记/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">10分钟延长你的时间 —— 《暗时间》笔记</div>
-    </a>
-  
-</nav>
+  </article>
 
-  
-</article>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
 
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    <div class="post-spread">
+      
     </div>
   </div>
 
 
-  
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
+  </div>
+
+
+        </div>
         
-          <li>
-            <a href="/2016/04/04/MySQL不权威指南/">MySQL不权威指南</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/02/10分钟延长你的时间 —— 《暗时间》笔记/">10分钟延长你的时间 —— 《暗时间》笔记</a>
-          </li>
-        
-      </ul>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
-  
-</aside>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.png"
+               alt="Liufxlucky365" />
+          <p class="site-author-name" itemprop="name">Liufxlucky365</p>
+          <p class="site-description motion-element" itemprop="description">程序猿 IT php mysql 生活 秀恩爱</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#架构"><span class="nav-number">1.</span> <span class="nav-text">架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接"><span class="nav-number">2.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发"><span class="nav-number">3.</span> <span class="nav-text">并发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#读写锁"><span class="nav-number">3.1.</span> <span class="nav-text">读写锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁粒度"><span class="nav-number">3.2.</span> <span class="nav-text">锁粒度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务"><span class="nav-number">4.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql中的事务"><span class="nav-number">4.1.</span> <span class="nav-text">mysql中的事务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储引擎"><span class="nav-number">5.</span> <span class="nav-text">存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#myisam"><span class="nav-number">5.1.</span> <span class="nav-text">myisam</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#innodb"><span class="nav-number">5.2.</span> <span class="nav-text">innodb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#memory引擎"><span class="nav-number">5.3.</span> <span class="nav-text">memory引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BlackHole引擎"><span class="nav-number">5.4.</span> <span class="nav-text">BlackHole引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储引擎选择"><span class="nav-number">5.5.</span> <span class="nav-text">存储引擎选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改存储引擎"><span class="nav-number">5.6.</span> <span class="nav-text">修改存储引擎</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库schema"><span class="nav-number">6.</span> <span class="nav-text">数据库schema</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类型选取原则"><span class="nav-number">6.1.</span> <span class="nav-text">类型选取原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整数"><span class="nav-number">6.2.</span> <span class="nav-text">整数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">6.3.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日期"><span class="nav-number">6.4.</span> <span class="nav-text">日期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主键类型选择"><span class="nav-number">6.5.</span> <span class="nav-text">主键类型选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP存储"><span class="nav-number">6.6.</span> <span class="nav-text">IP存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#物化视图"><span class="nav-number">6.7.</span> <span class="nav-text">物化视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计数表"><span class="nav-number">6.8.</span> <span class="nav-text">计数表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加快alter-table操作"><span class="nav-number">6.9.</span> <span class="nav-text">加快alter table操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">7.</span> <span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#索引的类型"><span class="nav-number">7.1.</span> <span class="nav-text">索引的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyISAM与InnoDB实现BTree索引"><span class="nav-number">7.2.</span> <span class="nav-text">MyISAM与InnoDB实现BTree索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不能使用索引的情况"><span class="nav-number">7.3.</span> <span class="nav-text">不能使用索引的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引的优点"><span class="nav-number">7.4.</span> <span class="nav-text">索引的优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三星索引"><span class="nav-number">7.5.</span> <span class="nav-text">三星索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前缀索引和索引选择性"><span class="nav-number">7.6.</span> <span class="nav-text">前缀索引和索引选择性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多列索引"><span class="nav-number">7.7.</span> <span class="nav-text">多列索引</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常见错误"><span class="nav-number">7.7.1.</span> <span class="nav-text">常见错误</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚簇索引"><span class="nav-number">7.8.</span> <span class="nav-text">聚簇索引</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点"><span class="nav-number">7.8.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点"><span class="nav-number">7.8.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InnoDB与MyISAM比较"><span class="nav-number">7.9.</span> <span class="nav-text">InnoDB与MyISAM比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#覆盖索引"><span class="nav-number">7.10.</span> <span class="nav-text">覆盖索引</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点-1"><span class="nav-number">7.10.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不能使用"><span class="nav-number">7.10.2.</span> <span class="nav-text">不能使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引扫描排序"><span class="nav-number">7.11.</span> <span class="nav-text">索引扫描排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#小技巧"><span class="nav-number">7.11.1.</span> <span class="nav-text">小技巧</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引维护"><span class="nav-number">7.12.</span> <span class="nav-text">索引维护</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询"><span class="nav-number">8.</span> <span class="nav-text">查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql客户端-服务器通信协议"><span class="nav-number">8.1.</span> <span class="nav-text">mysql客户端/服务器通信协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么查询速度会慢"><span class="nav-number">8.2.</span> <span class="nav-text">为什么查询速度会慢</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mysql检索了不必要的数据"><span class="nav-number">8.2.1.</span> <span class="nav-text">mysql检索了不必要的数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扫描行数和访问类型"><span class="nav-number">8.2.2.</span> <span class="nav-text">扫描行数和访问类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql使用where"><span class="nav-number">8.3.</span> <span class="nav-text">mysql使用where</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谨慎使用复杂查询"><span class="nav-number">8.4.</span> <span class="nav-text">谨慎使用复杂查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询状态"><span class="nav-number">8.5.</span> <span class="nav-text">查询状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql如何进行filesort"><span class="nav-number">8.6.</span> <span class="nav-text">mysql如何进行filesort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql查询优化的限制"><span class="nav-number">8.7.</span> <span class="nav-text">mysql查询优化的限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#count"><span class="nav-number">8.8.</span> <span class="nav-text">count</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#group-by-amp-distinct"><span class="nav-number">8.9.</span> <span class="nav-text">group by & distinct</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Limit"><span class="nav-number">8.10.</span> <span class="nav-text">Limit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Union"><span class="nav-number">8.11.</span> <span class="nav-text">Union</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态查询分析"><span class="nav-number">8.12.</span> <span class="nav-text">静态查询分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分区表"><span class="nav-number">9.</span> <span class="nav-text">分区表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分区的限制"><span class="nav-number">9.1.</span> <span class="nav-text">分区的限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分区的好处"><span class="nav-number">9.2.</span> <span class="nav-text">分区的好处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小技巧-1"><span class="nav-number">9.3.</span> <span class="nav-text">小技巧</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图"><span class="nav-number">10.</span> <span class="nav-text">视图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#视图实现"><span class="nav-number">10.1.</span> <span class="nav-text">视图实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视图的用处"><span class="nav-number">10.2.</span> <span class="nav-text">视图的用处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视图的限制"><span class="nav-number">10.3.</span> <span class="nav-text">视图的限制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外键"><span class="nav-number">11.</span> <span class="nav-text">外键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询缓存"><span class="nav-number">12.</span> <span class="nav-text">查询缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断命中"><span class="nav-number">12.1.</span> <span class="nav-text">判断命中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用配置"><span class="nav-number">12.2.</span> <span class="nav-text">常用配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用优化"><span class="nav-number">12.3.</span> <span class="nav-text">通用优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">13.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本"><span class="nav-number">13.1.</span> <span class="nav-text">基本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建配置"><span class="nav-number">13.2.</span> <span class="nav-text">创建配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置mysql内存使用"><span class="nav-number">13.3.</span> <span class="nav-text">配置mysql内存使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql-I-O配置-详见8-5"><span class="nav-number">13.4.</span> <span class="nav-text">mysql I/O配置 详见8.5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发配置"><span class="nav-number">13.5.</span> <span class="nav-text">并发配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全及其他基本配置"><span class="nav-number">13.6.</span> <span class="nav-text">安全及其他基本配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#备份与恢复"><span class="nav-number">14.</span> <span class="nav-text">备份与恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库的备份与恢复的目的"><span class="nav-number">14.1.</span> <span class="nav-text">数据库的备份与恢复的目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#备份方案制定"><span class="nav-number">14.2.</span> <span class="nav-text">备份方案制定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行备份"><span class="nav-number">14.3.</span> <span class="nav-text">执行备份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行恢复"><span class="nav-number">14.4.</span> <span class="nav-text">执行恢复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于时间点的恢复"><span class="nav-number">14.5.</span> <span class="nav-text">基于时间点的恢复</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
-      <footer id="footer">
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 Liufxlucky365<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liufxlucky365</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
     </div>
   </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
   
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
 
 
-<script src="/js/script.js"></script>
 
-  </div>
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
 </body>
 </html>
