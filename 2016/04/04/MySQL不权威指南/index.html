@@ -57,27 +57,39 @@
 
 
 
-<meta name="description" content="架构mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理，及其他系统任务和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性，以及其他需求来选择数据存储方式
+<meta name="description" content="$(function(){
+        $(&apos;a&apos;).click(function() {
+            $(&quot;#tar&quot;).show();
+        })
+    });
 
-架构分成了服务器层和存储引擎两层，两层的执行效率是存在量级的差别的，比如索引相关的操作都是在存储引擎执行，而where、filesort等均在服务器层
-连接首先mysql的架构是单进程多">
+
+架构mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理，及其他系统任务和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性，以及其他需">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL不权威指南">
 <meta property="og:url" content="http://yoursite.com/2016/04/04/MySQL不权威指南/index.html">
 <meta property="og:site_name" content="Liufxlucky365">
-<meta property="og:description" content="架构mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理，及其他系统任务和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性，以及其他需求来选择数据存储方式
+<meta property="og:description" content="$(function(){
+        $(&apos;a&apos;).click(function() {
+            $(&quot;#tar&quot;).show();
+        })
+    });
 
-架构分成了服务器层和存储引擎两层，两层的执行效率是存在量级的差别的，比如索引相关的操作都是在存储引擎执行，而where、filesort等均在服务器层
-连接首先mysql的架构是单进程多">
+
+架构mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理，及其他系统任务和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性，以及其他需">
 <meta property="og:image" content="http://yoursite.com/images/mysql_structure.png">
 <meta property="og:image" content="http://yoursite.com/images/cluster_index.png">
-<meta property="og:updated_time" content="2016-04-04T17:35:01.000Z">
+<meta property="og:updated_time" content="2016-04-06T05:49:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL不权威指南">
-<meta name="twitter:description" content="架构mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理，及其他系统任务和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性，以及其他需求来选择数据存储方式
+<meta name="twitter:description" content="$(function(){
+        $(&apos;a&apos;).click(function() {
+            $(&quot;#tar&quot;).show();
+        })
+    });
 
-架构分成了服务器层和存储引擎两层，两层的执行效率是存在量级的差别的，比如索引相关的操作都是在存储引擎执行，而where、filesort等均在服务器层
-连接首先mysql的架构是单进程多">
+
+架构mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理，及其他系统任务和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性，以及其他需">
 <meta name="twitter:image" content="http://yoursite.com/images/mysql_structure.png">
 
 
@@ -255,13 +267,26 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
+        <p><link rel="stylesheet" type="text/css" href="/css/theme-1.css"></p>
+<script src="//cdn.bootcss.com/jquery/3.0.0-beta1/jquery.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+        $('a').click(function() {
+            $("#tar").show();
+        })
+    });
+</script>
 
 <h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>mysql最重要、最与众不同的特性是它的<strong>存储引擎架构</strong>，这种架构的设计将查询处理，及其他系统任务和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性，以及其他需求来选择数据存储方式</p>
 <p><img src="/images/mysql_structure.png"></p>
 <p>架构分成了服务器层和存储引擎两层，两层的执行效率是存在量级的差别的，比如索引相关的操作都是在存储引擎执行，而where、filesort等均在服务器层</p>
 <h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p>首先mysql的架构是单进程多线程</p>
 <p>每个客户端连接都会在服务器进程中拥有一个线程，这个连接的查询只会在这个单独的线程中执行，该线程只能轮流在某个CPU核心或者CPU中运行。服务器会负责缓存线程，即维护一个线程池，因此不需要为每一个新建的连接创建或者销毁线程</p>
+<p><a>展开</a></p>
+<div id="tar" style="display: none;">test</div>
+
+
 <h2 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h2><h3 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h3><p>只要有多个查询需要在同一时刻修改数据，都会产生并发控制的问题，解决并发常见的解决方案是实现读写锁系统：</p>
 <ul>
 <li><strong>读锁（read lock也叫 共享锁（share lock）</strong> 相互不阻塞，可以为一个已存在读锁的资源添加读锁</li>
@@ -976,21 +1001,7 @@ drop table test.tar;
           </div>
 
           
-            <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">分类</span>
-              
-            </div>
-          
 
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
           
 
         </nav>
