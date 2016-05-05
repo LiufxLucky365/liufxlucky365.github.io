@@ -1,15 +1,20 @@
 h2 {
 	color: #F78F58;
+    border-bottom: 2px solid;
+    width: 200px;
 }
 h3 {
 	color: #278BD2;
 }
 strong {
     display: inline-block;
-    pading: 0 5px;
+    padding: 1px 5px !important;
     color: #E02856;
+    background-color: #F7F7F7;
     font-weight: normal;
-    margin-right: 5px;
+    margin: 1px 0;
+    border-radius: 5px;
+    font-family: "Input Mono", "PT Mono", Consolas, Monaco, Menlo, monospace;
 }
 pre {
     margin: 0 !important;
