@@ -248,236 +248,18 @@
 
       
         
-          
-            <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
+          <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
 
 <h2 id="这是什么"><a href="#这是什么" class="headerlink" title="这是什么"></a>这是什么</h2><p>shell的重要性不必赘言，但shell概念和命令是如此之多，而且互相还不完全一致，所以并不是那么友好。其实我们真正常用的命名、选项和概念并不多，所以我想以《Linux shell脚本攻略》一书为基础，不断总结构建shell学习过程中遇到的基础常用的知识<br>注意本文中的命令均是在zsh下进行测试，个别选项可能在bash下不能正常工作</p>
 <h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p><strong>cat file1 file2 …</strong><br>不要忘了cat是可以同时显示多个文件的</p>
 <p><strong>echo stdin | cat - file1</strong><br>合并标准输入和文件</p>
 <p><strong>cat -s file1</strong><br>压缩空白行</p>
 <p><strong>cat -n file1</strong><br>显示行号</p>
-<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><p>沿着文件层次结构向下遍历，匹配符合条件的文件，并执行相应的操作</p>
-<p><strong>find dir</strong><br>未指明搜索条件，则是列出dir目录及其子目录的所有文件</p>
-<p><strong>find dir -name “Target*”</strong><br>文件名称搜索，*为通配符，匹配任意多的字符，例子即为以Target开头的文件 -iname为忽略大小写</p>
-<p><strong>find dir -type f|d|l|s|p|b</strong><br>文件类型搜索，f为文件，d为目录，l为符号链接，s为套接字，p为管道，b为块文件</p>
-<p>__find dir -path ‘/home/user/target’<br>-name匹配的是文件名称，-path则是匹配文件的完整路径<br>-path路径不能加入 结尾的/，比如路径/vobs/gliethttp/signature，不能写成/vobs/gliethttp/signature/，这是硬性规定</p>
-<p><strong>find dir ! -name ‘Target’</strong><br>否定</p>
-<p><strong>find dir -name traget -o|a -type d</strong><br>-o为或 -a为与</p>
-<p><strong>find dir -maxdepth|mindepth 2 -name ‘Target’</strong><br>指定搜索的最大|小深度，<em>据不可消息，深度应该放在搜索条件的第一个，否则系统将搜索出来全部后再过滤层次</em></p>
-<p><strong>find dir -regex “.*.jpg”</strong><br>使用正则表达式搜索，<em>注意匹配的是find的输出结果，而不是如-name那样只匹配文件名</em></p>
-<p><strong>find dir -size [±]2[c|K|M|G]</strong><br>文件大小搜索，’+’为’大于’，’-‘为’小于’，不写为等于；c为字节，注意大小写</p>
-<p><strong>find dir -atime|-mtime|-ctime [±]2</strong><br>按照时间搜索，首先明白Linux文件系统每个文件都有三个时间戳</p>
-<ul>
-<li>访问时间(-atime): 用户最后一次访问文件时间</li>
-<li>修改时间(-mtime): 文件内容最后一次修改时间</li>
-<li>变化时间(-ctime): 文件元数据(权限或所有权)最后一次修改时间</li>
-</ul>
-<p>搜索的单位是天，+是晚于，-是早于，无是等于，另外<strong>amin|mmin|cmin</strong>类似，但单位是<strong>分钟</strong></p>
-<p><strong>find dir -newer file</strong><br>搜索比文件file新的，<em>我自己检测是这个‘新’指创建时间、修改时间，变化时间好像没影响，存疑</em></p>
-<p><strong>find dir -user UNAME</strong><br>按照文件所有者搜索</p>
-<p><strong>find dir -perm 665</strong><br>按照文件权限搜索</p>
-<p><strong>find dir [搜索条件] -delete</strong><br>删除搜索匹配项</p>
-<p><strong>find dir -name ‘.git’ -prune -o -type f</strong><br>跳过.git目录，-prune用法存疑，不是很理解</p>
-<p><strong>find dir -exec COMMOND {}</strong><br>-exec选项将会将搜索结果替换{}，执行COMMOND命令</p>
-<h2 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a>xargs</h2><p>将标准输入转化为命令行参数，比如现在有这样的一个样本</p>
-<pre><code>cat args
-1
-2 2 2
-3 3
-4
-</code></pre><p><strong>cat args | xargs</strong><br>将标准输入转化为单行参数，输出 <code>1 2 2 2 3 3 4</code></p>
-<p><strong>cat args | xargs -n 2</strong><br>-n选项指定每行的参数个数，输出</p>
-<pre><code>1 2
-2 2
-3 3
-4
-</code></pre><p><strong>cat args | xargs -n 1 echo</strong><br>基本用法，保证每行一个参数，并传递给echo</p>
-<p><strong>cat args | xargs -n 1 -I {} mv {} dir</strong><br>当需要将参数作为指定位置或者作为选项的参数时，可以使用-I选项作为占位符(<strong>多个如何替代？</strong>)</p>
-<h2 id="tr"><a href="#tr" class="headerlink" title="tr"></a>tr</h2><p>tr可以对标准输入的<strong>字符</strong>进行替换、删除和压缩，可以将一组字符串转换为另一组字符串，即转换(translate)命令</p>
-<p><strong>echo ‘12345’ | tr 12345 abcde</strong><br>tr的基本用法，集合12345映射到集合abcde，一一映射；假如前面集合长，则是后面的集合最后一个元素隐式补充到相等长度；如果是后面集合长，多出的将被忽略<br>此外集合也有类似正则的简写a-zA-Z0-9，还有\t \n，特殊字符</p>
-<ul>
-<li>[:alnum:] 字母和数字</li>
-<li>[:alpha:] 字母</li>
-<li>[:digit:] 数字</li>
-<li>[:lower:] 小写字母</li>
-<li>[:upper:] 大写字母</li>
-<li>[:space:] 空白字符</li>
-</ul>
-<p><strong>echo ‘12345’ | tr -d 0-2</strong><br>-d选项为删除</p>
-<p><strong>echo ‘12xxx3xxx45’ | tr -s x</strong><br>-s为压缩多个连续字符为单个字符，常用的为压缩空格、\n</p>
-<p><strong>echo ‘123xx45xxa21’ | tr -c [:alpha:] 0</strong><br>-c选项为求参数补集，例子的意思即为将所有非字母字符替换为0；另一个常见作用是与-d结合使用删除字符</p>
-<h2 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h2><p><strong>sort file1 file2 …</strong><br>依次排序各个文件</p>
-<p><strong>sort -n file1</strong><br>按照数字对文件内容进行排序</p>
-<p><strong>sort -r file2</strong><br>逆序</p>
-<p><strong>sort -u unsorted</strong><br>排序同时将重复行输出一行</p>
-<p><strong>sort -k 2 file1</strong><br>假如file2中数据存在多列，-k指定使用第二列进行排序</p>
-<p><strong>sort -k 2.1 file1</strong><br>以第二列中的第一个字符到末尾进行排序</p>
-<p><strong>sort -k 2.1,2.2 file1</strong><br>以第二列中的第一个字符到第二个字符进行排序</p>
-<h2 id="uniq"><a href="#uniq" class="headerlink" title="uniq"></a>uniq</h2><p>将标准输入中的连续多行只输出一行，“连续多行”就决定了uniq处理的标准输入必须是排过序的，否则无意义</p>
-<p><strong>sort unsorted | uniq</strong><br>基本用法</p>
-<p><strong>sort unsorted | uniq -u</strong><br>只显示唯一的行</p>
-<p><strong>sort unsorted | uniq -c</strong><br>同时输出行的重复次数</p>
-<p><strong>sort unsorted | uniq -s 2</strong><br>-s表示跳过的字符数，另外-f类似，但表示的是忽略的字段数</p>
-<h2 id="split"><a href="#split" class="headerlink" title="split"></a>split</h2><p><strong>split -b 10[c|k|m|g] Big_file</strong><br>以大小切分文件生成诸如<code>xaa xab xac ...</code></p>
-<p><strong>split -l 100 Big_file</strong><br>同上，但是以行数切分</p>
-<p><strong>split -a 4 -l 100 Big_file</strong><br>-a选项表示生成的切分文件名的长度，设为4则生成<code>xaaaa xaaab xaaac ...</code></p>
-<p><strong>split -d -l 100 Big_file</strong><br>-d选项表示使用数字作为生成文件的名字，如<code>x001 x002 x003 ...</code></p>
-<p><strong>split -d -l 100 Big_file mypre-</strong><br>最后一个参数定义切分文件的前缀，如<code>mypre-001 mypre-002 ...</code></p>
-<p><strong>cat mypre* &gt; merge</strong><br>合并切分文件的方法</p>
-<h2 id="、-、-、"><a href="#、-、-、" class="headerlink" title="#、%、##、%%"></a>#、%、##、%%</h2><p>几个运算符的作用是对变量进行处理</p>
-<p><strong>target=test.tar.png; echo ${target%.*}</strong><br>输出为<code>test.tar</code>，%的作用为删除变量<strong>右侧与通配符匹配(即.*，匹配.png)符合的</strong></p>
-<p><strong>target=test.tar.png; echo ${target%%.*}</strong><br>输出为<code>test</code>，%%与%作用一样，但是贪婪匹配，即匹配到了.tar.png</p>
-<p><strong>target=test.tar.png; echo ${target#*.}</strong><br>输出为<code>tar.png</code>，#的作用为删除变量<strong>左侧与通配符匹配(即*.，匹配test.)符合的</strong></p>
-<p><strong>target=test.tar.png; echo ${target##*.}</strong><br>输出为<code>png</code>，##与#作用一样，但是贪婪匹配，即匹配到了test.tar.</p>
-<h2 id="dd"><a href="#dd" class="headerlink" title="dd"></a>dd</h2><p><strong>dd if=/dev/zero of=junk.data bs=1[c|k|m|g] count=1</strong><br><code>if</code>为输入文件，/dev/zero为linux特殊设备，会不断产生\0<br><code>of</code>为输出文件<br><code>bs</code>为块大小<br><code>count</code>为块数，即文件最终大小为 bs*count</p>
-<h2 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h2><p><strong>mkdir -p /this/is/a/long/long/path</strong><br>用以创建长路径</p>
-<h2 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h2><p>‘抚摸’文件，更新文件的所有时间戳<br><strong>touch -a|m</strong><br>更改文件的访问|修改时间</p>
-<p><strong>touch -t 201501012310.50 file</strong><br>更改文件时间戳为指定时间</p>
-<h2 id="ln"><a href="#ln" class="headerlink" title="ln"></a>ln</h2><p><strong>ln -s ~ ./home</strong><br>为~目录创建一个名为home的符号链接，可以通过<code>ls -l</code>查看，也可以使用<code>readlink</code>查看</p>
-<h2 id="head-amp-tail"><a href="#head-amp-tail" class="headerlink" title="head &amp; tail"></a>head &amp; tail</h2><p><strong>head -n 5 file</strong><br>显示前5行</p>
-<p><strong>tail -n 5 file</strong><br>显示后5行</p>
-<p><strong>tail -n +(N+1) file</strong><br>显示file从N行到结尾</p>
-<p><strong>tail -f file</strong><br>动态跟踪file变化，此外<code>-F</code>选项甚至可以在文件被重命名后依然跟踪</p>
-<p><strong>tail -r file</strong><br>逆序输出</p>
-<h2 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h2><p><strong>ls -l</strong><br>列出详细信息</p>
-<p><strong>ls -a</strong><br>隐藏文件</p>
-<p><strong>ls -d Dir</strong><br>显示目录本身的信息，而不是目录里的内容</p>
-<p><strong>ls -d */</strong><br>显示本级所有目录，类似还有<code>ls -F | grep &quot;/$&quot;</code>，原理是-F选项为在目录后加/，再用grep过滤出来</p>
-<h2 id="wc"><a href="#wc" class="headerlink" title="wc"></a>wc</h2><p><strong>wc -c|w|l file</strong><br>计算file的字节数、单词数、行数</p>
-<h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2><p>正则匹配，具体此处不表，注意*作为通配符和正则中的不同意义</p>
-<p><strong>STDIN | grep MATCH_PATTERN –color=auto</strong><br>一般用法，高亮显示</p>
-<p><strong>STDIN | grep -v MATCH_PATTERN –color=auto</strong><br>反向匹配</p>
-<p><strong>STDIN | grep -c MATCH_PATTERN</strong><br>统计匹配的行数</p>
-<p><strong>STDIN | grep -n MATCH_PATTERN</strong><br>标记匹配行的行号</p>
-<p><strong>STDIN | grep -i MATCH_PATTERN</strong><br>忽略大小写</p>
-<p><strong>STDIN | grep -q MATCH_PATTERN</strong><br>静默</p>
-<p><strong>grep -l ‘test’ file1 file2 file3…</strong><br>找出’test’在哪个文件中，<code>-L</code>则恰好相反</p>
-<p><strong>grep -lnR ‘test’ .</strong><br>-R|r选项为递归搜索</p>
-<p><strong>STDIN | grep -e MATCH_PATTERN_1 -e MATCH_PATTERN_2 …</strong><br>匹配多个模式，此外还有另一种写法<code>grep -f PATTERN_FILE</code>，即将多个模式写在文件中，每行一个</p>
-<p><strong>STDIN | grep test -A|B|C 3</strong><br>输出匹配行的上下文，A为After，B为</p>
-<h2 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h2><p><strong>cut -f 1 file</strong><br>显示file的第一列，关于列的指定</p>
-<ul>
-<li>1,3,4 显示1、3、4列</li>
-<li>1-4 显示1到4列</li>
-</ul>
-<p><strong>cut -f 1 -d ‘,’ file</strong><br>-d选项指定分隔符</p>
-<p><strong>cut -f 1 -s file</strong><br>-s选项用以去掉不含分隔符的列，比如文件中的注释、说明性文字</p>
-<p><strong>cut -c 10 file</strong><br>显示file的前10个字符，类似的还有-b，显示的字节</p>
-<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p><strong>wget url1 url2 url3</strong><br>最基本的用法，从网络中下载文件</p>
-<p><strong>wget url1 -O save_file -o log_file</strong><br>-O选项指定输出结果的保存文件，-o选项指定wget执行过程中日志存储文件</p>
-<p><strong>wget -c -t 3 url1</strong><br>-c选项断点续传，-t指失败的尝试次数</p>
-<p><strong>wget –limit-rate 20[k|m|g] url1 –quota 100m</strong><br>–limit-rate 限制下载速度，–quota(-Q)控制下载文件的大小</p>
-<p><strong>wget -m url1</strong><br>-m(–mirror)镜像url1，等价于<code>wget -r -N 1 -l 3 url1</code> -r递归，-N使用时间戳，-l指定递归深度</p>
-<p><strong>wget –user username –password pass URL</strong><br>需要http或ftp认证</p>
-<h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h2><p>curl是比wget更高级的http工具</p>
-<p><strong>curl [–slient|–progress] URL</strong><br>curl的基本用法，下载url，–slient表示静默，–progress显示进度条</p>
-<p><strong>curl URL [-O|-o new_file]</strong><br>curl默认将下载的内容输出标准输出，-O则控制curl输出到文件，文件名则自动识别，比如 DOMAIN/index.html则下载至index.html；-o选项则指定文件名，此处也可以看出linux各个命令直接选项的混乱</p>
-<p><strong>curl URL -C [OFFSET|-URL]</strong><br>断点续传，可以直接指定续传位置(OFFSET，单位字节)，也可以让curl自动推断，<code>-C -URL</code></p>
-<p><strong>curl -H “Host: www.baidu.com” -H “Accept-language: en”</strong><br>指定(多个)header</p>
-<p><strong>curl -l|head URL</strong><br>只显示响应报文中的头文件</p>
-<p><strong>curl –refer <a href="http://www.baidu.com" target="_blank" rel="external">http://www.baidu.com</a> URL</strong><br>设置http中refer</p>
-<p><strong>curl URL –cookie “user=liufuxin; pass=hack”</strong><br>设置cookie，当使用cookie文件时<code>curl URL --cookie-jar cookie_file</code></p>
-<p><strong>curl URL –user-agent “Mozilla/5.0”</strong><br>指定用户代理</p>
-<p><strong>curl -u user:pass URL</strong><br>安全验证</p>
-<h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><p><strong>tar -cf demo.tar file1 dir1 dir2</strong><br>打包文件，-f参数必须为参数组的最后一项，其后必须紧跟打包文件名</p>
-<p><strong>tar -rf demo.tar file_other</strong><br>向demo.tar中添加文件，注意通路径在打包中会同时存在，但提取时会覆盖</p>
-<p><strong>tar -tvf demo.tar</strong><br>-t输出demo.tar内容至标准输出，v选项控制显示更多信息</p>
-<p><strong>tar -xvf demo.tar [file1|dir1|dir2]</strong><br>提取打包文件，也可以指定提取的文件</p>
-<p><strong>tar –exclude ‘<em>.svn’ -cvf demo.tar </em></strong><br>排除通配符文件</p>
-<p><strong>tar –delete -f demo.tar dir1</strong><br>从包中删除文件</p>
-<p><strong>tar -Af demo.tar demo2.tar</strong><br>将demo2.tar合并到demo.tar中</p>
-<p><strong>tar -cv[j|z]f demo.[gz|bz2].tar *</strong><br>打包的同时压缩</p>
-<p><strong>tar -cvjf - * | tar -xvjf - -C ./target</strong><br>将文件打包压缩到标准输入，然后从标准输出中解压文件；<code>-a</code>选项可以根据文件名自动使用何种压缩</p>
-<h2 id="gzip、bzip"><a href="#gzip、bzip" class="headerlink" title="gzip、bzip"></a>gzip、bzip</h2><p>只能对一个文件进行压缩，所以经常和打包命令配合，两者使用方法类似，bzip效率更好一些，解压缩命令为gunzip bunzip</p>
-<p><strong>gzip test -k</strong><br>生成text.gz -k选项同时保留原文件</p>
-<p><strong>gzip -l test.gz</strong><br>列出压缩信息，包括压缩前后文件大小、压缩比率</p>
-<p><strong>gzip -[1-9|–fast|–best] test</strong><br>压缩比，1最快(–fast) 9最好(–best)</p>
-<p><strong>gzcat test.gz</strong><br>列出压缩文件</p>
-<p>_cat test | gzip -c &gt; test.gz__<br>-c选项输出到标准输出</p>
-<h2 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h2><p><strong>base64 test</strong><br>编码test，输出到标准输出</p>
-<p><strong>base64 -d test</strong><br>解码</p>
-<h2 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h2><p><strong>ping www.baidu.com -c 10</strong><br>ping 10次</p>
-<h2 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h2><p><strong>scp -r user@host:/home/path/dir ./</strong><br>远程递归复制文件夹至本地，反过来即复制到远程</p>
-<h2 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h2><p>list open files，列出被打开的文件，因为Linux中‘一切皆文件’，所以该命令也可以查看打开的网络连接和端口</p>
-<p><strong>lsof file</strong><br>查看file文件被哪些进程占用</p>
-<p><strong>lsof -r file</strong><br>-r选项为一直执行losf</p>
-<p><strong>lsof -c abc</strong><br>显示abc进程打开的文件</p>
-<p><strong>lsof -c -p 123</strong><br>显示PID 123打开的文件</p>
-<p><strong>lsof -d 4</strong><br>显示文件描述符(fd)为4的文件被哪些进程打开</p>
-<p><strong>lsof -i[46] [protocol][@hostname|hostaddr][:service|port]</strong></p>
-<ul>
-<li>46        IPv4 or IPv6</li>
-<li>protocol  TCP or UDP</li>
-<li>hostname  Internet host name</li>
-<li>hostaddr  IPv4地址</li>
-<li>service   /etc/service中的 service name (可以不止一个)</li>
-<li>port      端口号 (可以不止一个)</li>
-</ul>
-<p><code>lsof -i tcp@ohaha.ks.edu.cn:ftp</code></p>
-<h2 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h2><p>用于显示各种网络相关信息</p>
-<p><strong>netstat -a</strong><br>列出所有端口</p>
-<p><strong>netstat -at</strong><br>列出所有tcp端口，-u为udp</p>
-<p><strong>netstat -l</strong><br>只显示监听端口</p>
-<p><strong>netstat -p</strong><br>在输出中显示PID和进程名</p>
-<p><strong>netstat -n</strong><br>不显示主机、端口和用户名，而用数字代替，可以加速输出</p>
-<p><strong>netstat -c</strong><br>每隔一秒输出一次</p>
-<h2 id="du"><a href="#du" class="headerlink" title="du"></a>du</h2><p>disk used，磁盘使用情况</p>
-<p><strong>du file dir1 file2 dir2</strong><br>基本用法，列出文件、目录的大小，单位字节，目录默认只显示其子目录，且显示一层</p>
-<p><strong>du -a dir</strong><br>递归显示所有</p>
-<p><strong>du -h dir</strong><br>以可读单位显示，<code>-b -k -m</code>字节、kb、mb</p>
-<p><strong>du -s dir</strong><br>只显示目录的总计，而不是子目录</p>
-<h2 id="df"><a href="#df" class="headerlink" title="df"></a>df</h2><p><strong>df -h</strong><br>列出磁盘空闲情况</p>
-<h2 id="time"><a href="#time" class="headerlink" title="time"></a>time</h2><p><strong>time COMMOND</strong><br>列出命令执行时间</p>
-<ul>
-<li>real 开始执行到结束的时间</li>
-<li>user 进程在用户模式的时间，唯一真正用于执行进程所花费的时间（不包括阻塞、挂起）</li>
-<li>sys  花费在内核模式的时间，唯一真正使用CPU的时间</li>
-</ul>
-<p><strong>time -f “Real: %e, User: %U, Sys: %S”</strong><br>格式化输出</p>
-<h2 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h2><p>固定时间间隔监控命令输出</p>
-<p><strong>watch -n 5 COMMOND</strong><br>默认2秒执行一次，-n指定为5秒</p>
-<p><strong>watch -d COMMOND</strong><br>高亮显示区别</p>
-<h2 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h2><p><strong>ps -e</strong><br>列出所有进程信息，默认值显示当前终端进程，<code>-ax</code>效果类似</p>
-<p><strong>ps -ef</strong><br>显示更多信息</p>
-<p><strong>ps -ef -o [Target_Col]</strong><br>指定要显示哪些列，常用的有</p>
-<ul>
-<li>pid</li>
-<li>ppid</li>
-<li>pcpu cpu占用率</li>
-<li>pmem 内存使用率</li>
-<li>comm 可执行文件名</li>
-<li>user 启动用户</li>
-<li>stat 进程状态</li>
-<li>time 累计cpu时间</li>
-</ul>
-<p><strong>ps -ef –sort -pcpu,+time</strong><br>排序，-降序，+升序</p>
-<p><strong>ps -efL</strong><br>-L选项列出线程信息</p>
-<h2 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h2><p><strong>kill -l</strong><br>列出所有可用信号</p>
-<p><strong>kill 13113</strong><br>终止一个进程，默认发送的是SIGTERM信号（15），常用</p>
-<ul>
-<li>SIGHUP 1 挂起</li>
-<li>SIGINT 2 中断，ctrl+c</li>
-<li>SIGKILL 9 强制杀死</li>
-<li>SIGTERM 15 默认的终止进程</li>
-<li>SIGTSTP 20 ctrl+z</li>
-</ul>
-<p><strong>kill -SIG_NO | -s SIG_NAME 4131</strong><br>使用信号编号，或者信号名终止进程</p>
-<p><strong>killall process_name</strong><br>杀死进程名的所有实例，类似有<code>pkill</code>默认使用进程名</p>
-<h2 id="which、where"><a href="#which、where" class="headerlink" title="which、where"></a>which、where</h2><p>两者类似，均输出参数命令的位置，但where会输出更多信息，如手册、源码（如果有的话）</p>
-<h2 id="file、whatis、uptime"><a href="#file、whatis、uptime" class="headerlink" title="file、whatis、uptime"></a>file、whatis、uptime</h2><p><strong>file file|dir|bin</strong><br>列出参数文件的类型描述信息</p>
-<p><strong>whatis COMMOND</strong><br>从man中解析出命令的简短描述信息</p>
-<p><strong>uptime</strong><br>系统使用时间统计，包括最近1分钟、5分钟、15分钟的系统负载</p>
-<h2 id="wall"><a href="#wall" class="headerlink" title="wall"></a>wall</h2><p><strong>echo Notice | wall</strong><br>所有终端广播</p>
-<h2 id="uname"><a href="#uname" class="headerlink" title="uname"></a>uname</h2><p><strong>uname -n</strong><br>主机名，<code>hostname</code></p>
-<p><strong>uname -a</strong><br>打印内核、硬件架构等详细信息</p>
-<p><strong>uname -r</strong><br>内核版本</p>
-<p><strong>uname -m</strong><br>主机类型</p>
-<h2 id="logger"><a href="#logger" class="headerlink" title="logger"></a>logger</h2><p>向系统日志/var/log/message中写入日志</p>
-<p><strong>logger message</strong><br>直接写入</p>
-<p><strong>logger -t tag message</strong><br>日志添加标记</p>
-<p><strong>logger -f source.log</strong><br>将文件写入日志</p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/12/shell工具持续构建/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -583,10 +365,6 @@
 <p>架构分成了服务器层和存储引擎两层，两层的执行效率是存在量级的差别的，比如索引相关的操作都是在存储引擎执行，而where、filesort等均在服务器层</p>
 <h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p>首先mysql的架构是单进程多线程</p>
 <p>每个客户端连接都会在服务器进程中拥有一个线程，这个连接的查询只会在这个单独的线程中执行，该线程只能轮流在某个CPU核心或者CPU中运行。服务器会负责缓存线程，即维护一个线程池，因此不需要为每一个新建的连接创建或者销毁线程</p>
-<p><a>展开</a></p>
-<div id="tar" style="display: none;">test</div>
-
-
 <h2 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h2><h3 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h3><p>只要有多个查询需要在同一时刻修改数据，都会产生并发控制的问题，解决并发常见的解决方案是实现读写锁系统：</p>
 <ul>
 <li><strong>读锁（read lock也叫 共享锁（share lock）</strong> 相互不阻塞，可以为一个已存在读锁的资源添加读锁</li>
