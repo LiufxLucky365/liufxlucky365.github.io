@@ -57,19 +57,28 @@
 
 
 
-<meta name="description" content="这是什么shell的重要性不必赘言，但shell概念和命令是如此之多，而且互相还不完全一致，所以并不是那么友好。其实我们真正常用的命名、选项和概念并不多，所以我想以《Linux shell脚本攻略》一书为基础，不断总结构建shell学习过程中遇到的基础常用的知识注意本文中的命令均是在zsh下进行测试，个别选项可能在bash下不能正常工作
-catcat file1 file2 …不要忘了cat是">
+<meta name="description" content="这是什么本文将持续更新在学习Linux过程中,所遇到各种实用工具的实用示例,示例将尽量简洁,且只包含常用场景.
+catcat file1 file2 …不要忘了cat是可以同时显示多个文件的
+echo stdin | cat - file1合并标准输入和文件
+cat -s file1压缩空白行
+cat -n file1显示行号">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux实用知识持续构建——工具篇">
 <meta property="og:url" content="http://yoursite.com/2016/04/12/Linux实用知识持续构建——工具篇/index.html">
 <meta property="og:site_name" content="Liufxlucky365">
-<meta property="og:description" content="这是什么shell的重要性不必赘言，但shell概念和命令是如此之多，而且互相还不完全一致，所以并不是那么友好。其实我们真正常用的命名、选项和概念并不多，所以我想以《Linux shell脚本攻略》一书为基础，不断总结构建shell学习过程中遇到的基础常用的知识注意本文中的命令均是在zsh下进行测试，个别选项可能在bash下不能正常工作
-catcat file1 file2 …不要忘了cat是">
-<meta property="og:updated_time" content="2016-07-05T09:17:32.000Z">
+<meta property="og:description" content="这是什么本文将持续更新在学习Linux过程中,所遇到各种实用工具的实用示例,示例将尽量简洁,且只包含常用场景.
+catcat file1 file2 …不要忘了cat是可以同时显示多个文件的
+echo stdin | cat - file1合并标准输入和文件
+cat -s file1压缩空白行
+cat -n file1显示行号">
+<meta property="og:updated_time" content="2016-07-05T10:22:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux实用知识持续构建——工具篇">
-<meta name="twitter:description" content="这是什么shell的重要性不必赘言，但shell概念和命令是如此之多，而且互相还不完全一致，所以并不是那么友好。其实我们真正常用的命名、选项和概念并不多，所以我想以《Linux shell脚本攻略》一书为基础，不断总结构建shell学习过程中遇到的基础常用的知识注意本文中的命令均是在zsh下进行测试，个别选项可能在bash下不能正常工作
-catcat file1 file2 …不要忘了cat是">
+<meta name="twitter:description" content="这是什么本文将持续更新在学习Linux过程中,所遇到各种实用工具的实用示例,示例将尽量简洁,且只包含常用场景.
+catcat file1 file2 …不要忘了cat是可以同时显示多个文件的
+echo stdin | cat - file1合并标准输入和文件
+cat -s file1压缩空白行
+cat -n file1显示行号">
 
 
 
@@ -248,7 +257,7 @@ catcat file1 file2 …不要忘了cat是">
       
         <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
 
-<h2 id="这是什么"><a href="#这是什么" class="headerlink" title="这是什么"></a>这是什么</h2><p>shell的重要性不必赘言，但shell概念和命令是如此之多，而且互相还不完全一致，所以并不是那么友好。其实我们真正常用的命名、选项和概念并不多，所以我想以《Linux shell脚本攻略》一书为基础，不断总结构建shell学习过程中遇到的基础常用的知识<br>注意本文中的命令均是在zsh下进行测试，个别选项可能在bash下不能正常工作</p>
+<h2 id="这是什么"><a href="#这是什么" class="headerlink" title="这是什么"></a>这是什么</h2><p>本文将持续更新在学习Linux过程中,所遇到各种实用工具的实用示例,示例将尽量简洁,且只包含常用场景.</p>
 <h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p><strong>cat file1 file2 …</strong><br>不要忘了cat是可以同时显示多个文件的</p>
 <p><strong>echo stdin | cat - file1</strong><br>合并标准输入和文件</p>
 <p><strong>cat -s file1</strong><br>压缩空白行</p>
@@ -307,7 +316,7 @@ catcat file1 file2 …不要忘了cat是">
 <h2 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h2><p><strong>sort file1 file2 …</strong><br>依次排序各个文件</p>
 <p><strong>sort -n file1</strong><br>按照数字对文件内容进行排序</p>
 <p><strong>sort -r file2</strong><br>逆序</p>
-<p><strong>sort -u unsorted</strong><br>排序同时将重复行输出一行</p>
+<p><strong>sort -u unsorted</strong><br>排序同时对重复行只保留一行</p>
 <p><strong>sort -k 2 file1</strong><br>假如file2中数据存在多列，-k指定使用第二列进行排序</p>
 <p><strong>sort -k 2.1 file1</strong><br>以第二列中的第一个字符到末尾进行排序</p>
 <p><strong>sort -k 2.1,2.2 file1</strong><br>以第二列中的第一个字符到第二个字符进行排序</p>
@@ -348,7 +357,7 @@ catcat file1 file2 …不要忘了cat是">
 <p><strong>STDIN | grep -c MATCH_PATTERN</strong><br>统计匹配的行数</p>
 <p><strong>STDIN | grep -n MATCH_PATTERN</strong><br>标记匹配行的行号</p>
 <p><strong>STDIN | grep -i MATCH_PATTERN</strong><br>忽略大小写</p>
-<p><strong>STDIN | grep -q MATCH_PATTERN</strong><br>静默</p>
+<p><strong>STDIN | grep -q MATCH_PATTERN</strong><br>静默,常用于验证</p>
 <p><strong>grep -l ‘test’ file1 file2 file3…</strong><br>找出’test’在哪个文件中，<code>-L</code>则恰好相反</p>
 <p><strong>grep -lnR ‘test’ .</strong><br>-R|r选项为递归搜索</p>
 <p><strong>STDIN | grep -e MATCH_PATTERN_1 -e MATCH_PATTERN_2 …</strong><br>匹配多个模式，此外还有另一种写法<code>grep -f PATTERN_FILE</code>，即将多个模式写在文件中，每行一个</p>
@@ -387,11 +396,11 @@ catcat file1 file2 …不要忘了cat是">
 <p><strong>tar -cv[j|z]f demo.[gz|bz2].tar *</strong><br>打包的同时压缩</p>
 <p><strong>tar -cvjf - * | tar -xvjf - -C ./target</strong><br>将文件打包压缩到标准输入，然后从标准输出中解压文件；<code>-a</code>选项可以根据文件名自动使用何种压缩</p>
 <h2 id="gzip、bzip"><a href="#gzip、bzip" class="headerlink" title="gzip、bzip"></a>gzip、bzip</h2><p>只能对一个文件进行压缩，所以经常和打包命令配合，两者使用方法类似，bzip效率更好一些，解压缩命令为gunzip bunzip</p>
-<p><strong>gzip test -k</strong><br>生成text.gz -k选项同时保留原文件</p>
+<p><strong>gzip -c test &gt; test.gz</strong><br>生成text.gz同时保留原文件.zsh中直接使用-k即可</p>
 <p><strong>gzip -l test.gz</strong><br>列出压缩信息，包括压缩前后文件大小、压缩比率</p>
 <p><strong>gzip -[1-9|–fast|–best] test</strong><br>压缩比，1最快(–fast) 9最好(–best)</p>
 <p><strong>gzcat test.gz</strong><br>列出压缩文件</p>
-<p>_cat test | gzip -c &gt; test.gz__<br>-c选项输出到标准输出</p>
+<p><strong>cat test | gzip -c &gt; test.gz</strong><br>-c选项输出到标准输出</p>
 <h2 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h2><p><strong>base64 test</strong><br>编码test，输出到标准输出</p>
 <p><strong>base64 -d test</strong><br>解码</p>
 <h2 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h2><p><strong>ping www.baidu.com -c 10</strong><br>ping 10次</p>
@@ -436,7 +445,7 @@ catcat file1 file2 …不要忘了cat是">
 <p><strong>watch -n 5 COMMOND</strong><br>默认2秒执行一次，-n指定为5秒</p>
 <p><strong>watch -d COMMOND</strong><br>高亮显示区别</p>
 <h2 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h2><p><strong>ps -e</strong><br>列出所有进程信息，默认值显示当前终端进程，<code>-ax</code>效果类似</p>
-<p><strong>ps -ef</strong><br>显示更多信息</p>
+<p><strong>ps -e[f|l]</strong><br>显示更多信息</p>
 <p><strong>ps -ef -o [Target_Col]</strong><br>指定要显示哪些列，常用的有</p>
 <ul>
 <li>pid</li>
