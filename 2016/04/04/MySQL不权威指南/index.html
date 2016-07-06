@@ -79,7 +79,7 @@
 架构mysql最重要、最与众不同的特性是它的存储引擎架构，这种架构的设计将查询处理，及其他系统任务和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性，以及其他需">
 <meta property="og:image" content="http://yoursite.com/images/mysql_structure.png">
 <meta property="og:image" content="http://yoursite.com/images/cluster_index.png">
-<meta property="og:updated_time" content="2016-05-05T17:35:03.000Z">
+<meta property="og:updated_time" content="2016-07-06T08:30:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL不权威指南">
 <meta name="twitter:description" content="$(function(){
@@ -279,6 +279,7 @@
 </script>
 
 <h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>mysql最重要、最与众不同的特性是它的<strong>存储引擎架构</strong>，这种架构的设计将查询处理，及其他系统任务和数据的存储/提取相分离。这种处理和存储分离的设计可以在使用时根据性能、特性，以及其他需求来选择数据存储方式</p>
+<a id="more"></a>
 <p><img src="/images/mysql_structure.png"></p>
 <p>架构分成了服务器层和存储引擎两层，两层的执行效率是存在量级的差别的，比如索引相关的操作都是在存储引擎执行，而where、filesort等均在服务器层</p>
 <h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p>首先mysql的架构是单进程多线程</p>
@@ -288,7 +289,6 @@
 <li><strong>读锁（read lock也叫 共享锁（share lock）</strong> 相互不阻塞，可以为一个已存在读锁的资源添加读锁</li>
 <li><strong>写锁（write lock也叫 排他锁（exclusive lock）</strong> 会阻塞其他锁，被添加写锁的资源无法再被添加其他锁</li>
 </ul>
-<a id="more"></a>
 <h3 id="锁粒度"><a href="#锁粒度" class="headerlink" title="锁粒度"></a>锁粒度</h3><p>锁冲突是影响并发的原因之一，所以更加精细地对资源进行加锁，会提供并发性。但这也意味着更多计算资源的消耗</p>
 <ul>
 <li><strong>表锁（table lock）</strong> mysql最基本的锁，开销最小，会阻塞对表的所有写操作，是在服务器层实现</li>
