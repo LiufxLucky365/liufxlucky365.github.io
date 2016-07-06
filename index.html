@@ -248,128 +248,14 @@
 
       
         
-          
-            <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
+          <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
 
 <h2 id="这是什么"><a href="#这是什么" class="headerlink" title="这是什么"></a>这是什么</h2><p>本文将持续更新在学习Linux过程中遇到的基础知识点的总结,为了简单实用,避免长篇大论令人生厌,尽量保持简洁.<br>或有不准确的地方,请注意</p>
-<h2 id="Linux简史"><a href="#Linux简史" class="headerlink" title="Linux简史"></a>Linux简史</h2><h3 id="计算机的发明"><a href="#计算机的发明" class="headerlink" title="计算机的发明"></a>计算机的发明</h3><ul>
-<li>各大厂家各自制造机器,市场充斥着各种大型机(IBM GE HP)和小型机(Intex).</li>
-<li>各个厂家从硬件到软件维护自己的产品.</li>
-</ul>
-<h3 id="Unix诞生"><a href="#Unix诞生" class="headerlink" title="Unix诞生"></a>Unix诞生</h3><ul>
-<li>最早的大型机只能服务数十人,于是Bell实验室跟GE MIT合作启动MULTICS计划,旨在开发一个能够服务上百人的多用户,多任务,多层级操作系统,卒</li>
-<li>Ken Thompson为了玩一款&lt;星际旅行&gt;的游戏,反MULTICS其道而行,力求简洁实用,诞生了Unix</li>
-<li>后续Thompson被汇编语言折腾受不了,发明了c语言,重写了Unix内核(1970)</li>
-<li>由于全新的Unix易于开发移植,同时功能强大,所以迅速发展,各大厂商也开始兼容Unix,并诞生了POSIX,规范OS提供的编程接口</li>
-<li>AT&amp;T禁止Unix传播,Unix开始内战,互不兼容,各自为战,一发不可收拾的出现各种变种(Windows开始坐大)</li>
-<li>Berkeley发布FreeBSD</li>
-</ul>
-<h3 id="GNU-GNU’s-not-Unix"><a href="#GNU-GNU’s-not-Unix" class="headerlink" title="GNU (GNU’s not Unix)"></a>GNU (GNU’s not Unix)</h3><ul>
-<li>Stallman发起自由软件计划</li>
-<li>GPL授权诞生,确定了开源软件服务化的商业空间</li>
-<li>GNU计划开发兼容Unix的操作系统,但是为了先易后难,从应用软件下手</li>
-<li>gcc emacs glibc bash…等一大批优秀的开源软件诞生</li>
-</ul>
-<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><ul>
-<li>Linus Torvalds(芬兰大学生)在一个教授开发的Unix简易教学版minix上学习,但由于教授不愿意继续开发,他便酝酿自己的操作系统</li>
-<li>Linus发布了自己写的”小玩意儿”,吸引了大量黑客的兴趣</li>
-<li>为了效率Linus主要开发内核,而将源码免费开放,所有人协同开发,统一整合</li>
-<li>开源,分布式开发,虚拟团队,快速迭代…这些令人兴奋的事件都拉开了序幕</li>
-<li>Linux正式确定,同时支持移植386小型家用机</li>
-<li>厂商开始支持Linux,由于Linux使用gcc,bash等很多GNU计划的工具,GNU也顺理成章的采用Linux,填补了开源内核这一空白</li>
-</ul>
-<h2 id="Linux主要目录"><a href="#Linux主要目录" class="headerlink" title="Linux主要目录"></a>Linux主要目录</h2><h3 id="主要目录"><a href="#主要目录" class="headerlink" title="主要目录"></a>主要目录</h3><ul>
-<li><code>/</code>           根目录,存放着系统核心程序</li>
-<li><code>/usr</code>        unix software resource,存放unix厂商(可能是改版的发行者)开发的软件资源</li>
-<li><code>/usr/local</code>  存放用户安装的软件资源</li>
-<li><code>/opt</code>        option(选装),存放第三方厂商开发的软件资源</li>
-<li><code>/lost+found</code> 标准ext2/ext3文件系统才会有该目录,主要是在文件系统异常时暂存碎片,日后恢复</li>
-<li><code>/boot</code>       系统启动所需程序</li>
-<li><code>/home</code>       系统用户主文件夹</li>
-<li><code>/mnt</code>        临时设备挂载点</li>
-<li><code>/var</code>        见下文</li>
-<li><code>/proc</code>       见下文</li>
-</ul>
-<p>此外还有一些目录经常成套出现在以上个别目录中,意义是差不多的</p>
-<ul>
-<li><code>/bin</code>      二进制可执行文件,在/中为与系统运行相关</li>
-<li><code>/sbin</code>     二进制可执行文件,主要是系统维护相关</li>
-<li><code>/include</code>  c/c++常用头文件,我们在以源码包方式编译安装软件时,会使用</li>
-<li><code>/lib</code>      应用软件的函数库,目标文件</li>
-<li><code>/etc</code>      配置文件</li>
-<li><code>/src</code>      源码</li>
-<li><code>/tmp</code>      临时文件夹</li>
-</ul>
-<h3 id="var"><a href="#var" class="headerlink" title="/var"></a>/var</h3><p>主要存放一些经常变化的文件,和系统运行过程中产生的文件</p>
-<ul>
-<li>/var/run   一般是各个进程用于存放运行时的信息,如nginx.id</li>
-<li>/var/lock  进程控制资源的锁</li>
-<li>/var/cache 进程运行中的一些缓存</li>
-</ul>
-<h3 id="proc"><a href="#proc" class="headerlink" title="/proc"></a>/proc</h3><p>这个目录比较特殊,是一个虚拟文件系统,保存着系统内核,进程,外设,网络等的状态,数据全在内存中,本身不占用<br>任何硬盘空间,比较重要的目录有/proc/cpuinfo, /proc/ioports, /proc/net/*</p>
-<p>注意linux中文件的目录结构只是逻辑结构, 真正的物理结构还要看实际挂载位置</p>
-<h2 id="文件与目录权限"><a href="#文件与目录权限" class="headerlink" title="文件与目录权限"></a>文件与目录权限</h2><h3 id="权限基础"><a href="#权限基础" class="headerlink" title="权限基础"></a>权限基础</h3><p>linux中每个文件(目录本质也是文件),都会有一组以下权限串<code>rwxrwxrwx</code></p>
-<ul>
-<li>r 读权限</li>
-<li>w 写权限</li>
-<li>x 执行权限</li>
-</ul>
-<p>另外,这三组rwx分别代表了对于文件创建者,文件用户组,其他人的权限<br>通常也会用三个八进制数来表示权限,比如<code>rwxrwxrwx</code>会用<code>777</code>表示,<code>r-x-wx---</code>用<code>530</code>表示</p>
-<h3 id="inode"><a href="#inode" class="headerlink" title="inode"></a>inode</h3><p>inode是linux的重要概念,对于理解权限如何发挥作用和软硬链接非常有用<br>inode可以理解为linux存储文件的’本体’,文件名与inode的关系类似ip于域名的关系,系统底层真正操作的是inode<br>inode保存了文件的拥有者,用户组,权限,字节数,存储位置…</p>
-<p>相关命令</p>
-<ul>
-<li><code>stat file</code> 查看文件inode信息</li>
-<li><code>ls -i</code> 查看文件inode号</li>
-</ul>
-<h3 id="rwx于文件意义"><a href="#rwx于文件意义" class="headerlink" title="rwx于文件意义"></a>rwx于文件意义</h3><ul>
-<li>r 是否可以读取文件内容</li>
-<li>w 是否可以更改文件内容</li>
-<li>x 是否可以执行文件</li>
-</ul>
-<h3 id="rwx于目录意义"><a href="#rwx于目录意义" class="headerlink" title="rwx于目录意义"></a>rwx于目录意义</h3><ul>
-<li>r 是否可以获取到目录中文件</li>
-<li>w 是否可以在目录中新建,删除,重命名</li>
-<li>x<ul>
-<li>是否可以cd进入目录;</li>
-<li>是否可以读取包含文件的inode信息,这就导致x其实是rw的前提(即便有r权限,可以知道文件名但因为无法读取inode,不能获取文件类型大小等);</li>
-<li>x权限是会影响子目录的,rw不会,即无父目录的rw,也不影响子的rw权限;</li>
-</ul>
-</li>
-</ul>
-<h3 id="权限修改"><a href="#权限修改" class="headerlink" title="权限修改"></a>权限修改</h3><p>文件权限修改有两种办法</p>
-<ul>
-<li><code>chmod 777 file</code></li>
-<li><code>chmod [a|u|g|o]+r-w file</code> u为拥有者,g为用户组,o为其他,a为全部,+为添加,-为去掉,比迁一种要容易记一些</li>
-</ul>
-<p>相关命令</p>
-<ul>
-<li><code>chgrp</code> 修改文件用户组, chgrp [-R] users file, 改变file文件的用户组为users,-R为递归修改</li>
-<li><code>chown</code> 修改文件, chown [-R] user[:group] file, 除了改变文件拥有者,还可以修改文件用户组</li>
-</ul>
-<h3 id="默认权限"><a href="#默认权限" class="headerlink" title="默认权限"></a>默认权限</h3><p>umask控制,类似子网掩码. 创建文件时,系统会去掉umask标记的权限,比如umask为111则创建的文件权限为666<br>但要注意,无论umask如何设置<strong>新建的文件都不会具有x权限</strong>,为了安全起见, 一般umask为022</p>
-<ul>
-<li><code>umask</code> 查看umask值</li>
-<li><code>umask 022</code> 设置umask</li>
-</ul>
-<h3 id="SetUID-SUID"><a href="#SetUID-SUID" class="headerlink" title="SetUID (SUID)"></a>SetUID (SUID)</h3><p>想想这样的场景, /etc/shadow文件中保存着所有用户的密码信息,只有管理员能查看. /usr/bin/passwd为修改密码程序<br>所有用户都有执行该程序的权限, 但是我们进程的权限与启动用户一致的, 那非管理员启动的passwd进程是如何修改密码呢?</p>
-<p>这是由特殊权限SetUID控制的, 当<strong>文件拥有者</strong>的权限中<strong>执行位</strong>为s时, 其他用户执行该文件期间可以具有拥有者的权限,<br>仅对二进制文件有效</p>
-<p>类似的还有SetGID(SGID), 表明执行期间拥有文件所在用户组的权限</p>
-<h3 id="Sticky-Bit-SBIT"><a href="#Sticky-Bit-SBIT" class="headerlink" title="Sticky Bit (SBIT)"></a>Sticky Bit (SBIT)</h3><p>想想这样的场景, 团队公共目录 ~/work, 所有人都拥有该目录的x权限, 所以都能够进行删减和重命名, 如何避免误操作?</p>
-<p>只需要为目录设置SBIT权限即可, SBIT只对目录有效, 设置后仅有root或拥有者可以删减对应文件</p>
-<h3 id="SUID-SGID-SBIT权限修改"><a href="#SUID-SGID-SBIT权限修改" class="headerlink" title="SUID SGID SBIT权限修改"></a>SUID SGID SBIT权限修改</h3><p>第一种是在原来三位权限前再添加一位</p>
-<ul>
-<li>4 SUID</li>
-<li>2 SGID</li>
-<li>1 SBIT<br>比如<code>chmod 4666 file</code></li>
-</ul>
-<p>或者使用符合, <code>chmod u+s|g+s|o+t file</code></p>
-<p>注意当看到S或者T时, 说明无效, 比如不具备目录w权限, t就无效</p>
-<h2 id="软硬链接"><a href="#软硬链接" class="headerlink" title="软硬链接"></a>软硬链接</h2><p>linux中有软硬链接文件, 可以方便用户管理和使用文件系统, 首先回忆一下前文中inode的概念…</p>
-<h3 id="硬链接"><a href="#硬链接" class="headerlink" title="硬链接"></a>硬链接</h3><p>并未创建新的inode节点, 只是新建了一个文件名, 并指向源inode, 通过<code>ls -i</code>可以看到文件的链接数+1<br>当删除源文件时, 不会影响链接文件. 创建硬链接<code>ln source target</code></p>
-<p>因为是公用inode所以就决定, 硬链接不能跨文件系统, 不能远程</p>
-<h3 id="软链接"><a href="#软链接" class="headerlink" title="软链接"></a>软链接</h3><p>新建了一个链接文件, 然后这个文件指向了源inode, 类似windows的快捷方式, 创建方式<code>ln -s source target</code></p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/06/Linux实用知识持续构建——基础篇/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
