@@ -63,7 +63,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/04/12/Linux实用知识持续构建——工具篇/index.html">
 <meta property="og:site_name" content="Liufxlucky365">
 <meta property="og:description" content="这是什么本文将持续更新在学习Linux过程中,所遇到各种实用工具的实用示例,示例将尽量简洁,且只包含常用场景.">
-<meta property="og:updated_time" content="2016-07-14T02:15:33.000Z">
+<meta property="og:updated_time" content="2016-09-18T18:58:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux实用知识持续构建——工具篇">
 <meta name="twitter:description" content="这是什么本文将持续更新在学习Linux过程中,所遇到各种实用工具的实用示例,示例将尽量简洁,且只包含常用场景.">
@@ -248,46 +248,47 @@
 <h2 id="这是什么"><a href="#这是什么" class="headerlink" title="这是什么"></a>这是什么</h2><p>本文将持续更新在学习Linux过程中,所遇到各种实用工具的实用示例,示例将尽量简洁,且只包含常用场景.</p>
 <a id="more"></a>
 <h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p><strong>cat file1 file2 …</strong><br>不要忘了cat是可以同时显示多个文件的</p>
-<p><strong>echo stdin | cat - file1</strong><br>合并标准输入和文件</p>
+<p><strong>echo ‘standout’ | cat - file1</strong><br>合并标准输入和文件</p>
 <p><strong>cat -s file1</strong><br>压缩空白行</p>
 <p><strong>cat -n file1</strong><br>显示行号</p>
 <h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><p>沿着文件层次结构向下遍历，匹配符合条件的文件，并执行相应的操作</p>
 <p><strong>find dir</strong><br>未指明搜索条件，则是列出dir目录及其子目录的所有文件</p>
 <p><strong>find dir -name “Target*”</strong><br>文件名称搜索，*为通配符，匹配任意多的字符，例子即为以Target开头的文件 -iname为忽略大小写</p>
-<p><strong>find dir -type f|d|l|s|p|b</strong><br>文件类型搜索，f为文件，d为目录，l为符号链接，s为套接字，p为管道，b为块文件</p>
-<p>__find dir -path ‘/home/user/target’<br>-name匹配的是文件名称，-path则是匹配文件的完整路径<br>-path路径不能加入 结尾的/，比如路径/vobs/gliethttp/signature，不能写成/vobs/gliethttp/signature/，这是硬性规定</p>
+<p><strong>find dir -type [fdlspb]</strong><br>文件类型搜索，f为文件，d为目录，l为符号链接，s为套接字，p为管道，b为块文件</p>
+<p><strong>find dir -path ‘/home/user/target’</strong><br>-name匹配的是文件名称，-path则是匹配文件的完整路径<br>-path路径不能加入结尾的/，比如路径/vobs/gliethttp/signature，不能写成/vobs/gliethttp/signature/，这是硬性规定</p>
 <p><strong>find dir ! -name ‘Target’</strong><br>否定</p>
-<p><strong>find dir -name traget -o|a -type d</strong><br>-o为或 -a为与</p>
-<p><strong>find dir -maxdepth|mindepth 2 -name ‘Target’</strong><br>指定搜索的最大|小深度，<em>据不可消息，深度应该放在搜索条件的第一个，否则系统将搜索出来全部后再过滤层次</em></p>
+<p><strong>find dir -name traget -[oa] -type d</strong><br>多个搜索条件，-o为’或’ -a为’与’</p>
+<p><strong>find dir -[maxdepth|mindepth] 2 -name ‘Target’</strong><br>指定搜索的最大|小深度，<em>据不可靠消息，深度应该放在搜索条件的第一个，否则系统将搜索出来全部后再过滤层次</em></p>
 <p><strong>find dir -regex “.*.jpg”</strong><br>使用正则表达式搜索，<em>注意匹配的是find的输出结果，而不是如-name那样只匹配文件名</em></p>
-<p><strong>find dir -size [±]2[c|K|M|G]</strong><br>文件大小搜索，’+’为’大于’，’-‘为’小于’，不写为等于；c为字节，注意大小写</p>
+<p><strong>find dir -size [±]2[bcwkMG]</strong><br>文件大小搜索，’+’为’大于’，’-‘为’小于’，不写为等于；</p>
+<ul>
+<li>‘b’    for 512-byte blocks (this is the default if no suffix is used)</li>
+<li>‘c’    for bytes</li>
+<li>‘w’    for two-byte words</li>
+<li>‘k’    for Kilobytes (units of 1024 bytes)</li>
+<li>‘M’    for Megabytes (units of 1048576 bytes)</li>
+<li>‘G’    for Gigabytes (units of 1073741824 bytes)</li>
+</ul>
 <p><strong>find dir -atime|-mtime|-ctime [±]2</strong><br>按照时间搜索，首先明白Linux文件系统每个文件都有三个时间戳</p>
 <ul>
 <li>访问时间(-atime): 用户最后一次访问文件时间</li>
 <li>修改时间(-mtime): 文件内容最后一次修改时间</li>
-<li>变化时间(-ctime): 文件元数据(权限或所有权)最后一次修改时间</li>
+<li>变化时间(-ctime): 文件元数据(权限或所有权，即inode)最后一次修改时间</li>
 </ul>
 <p>搜索的单位是天，+是晚于，-是早于，无是等于，另外<strong>amin|mmin|cmin</strong>类似，但单位是<strong>分钟</strong></p>
-<p><strong>find dir -newer file</strong><br>搜索比文件file新的，<em>我自己检测是这个‘新’指创建时间、修改时间，变化时间好像没影响，存疑</em></p>
 <p><strong>find dir -user UNAME</strong><br>按照文件所有者搜索</p>
 <p><strong>find dir -perm 665</strong><br>按照文件权限搜索</p>
 <p><strong>find dir [搜索条件] -delete</strong><br>删除搜索匹配项</p>
-<p><strong>find dir -name ‘.git’ -prune -o -type f</strong><br>跳过.git目录，-prune用法存疑，不是很理解</p>
-<p><strong>find dir -exec COMMOND {}</strong><br>-exec选项将会将搜索结果替换{}，执行COMMOND命令</p>
-<h2 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a>xargs</h2><p>将标准输入转化为命令行参数，比如现在有这样的一个样本</p>
-<pre><code>cat args
-1
-2 2 2
-3 3
-4
-</code></pre><p><strong>cat args | xargs</strong><br>将标准输入转化为单行参数，输出 <code>1 2 2 2 3 3 4</code></p>
+<p><strong>find dir -exec COMMOND {} \;</strong><br>-exec选项将会将搜索结果替换{}，执行COMMOND命令</p>
+<h2 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a>xargs</h2><p>将标准输入转化为命令行参数，比如现在有这样的一个样本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat args</span><br><span class="line">1</span><br><span class="line">2 2 2</span><br><span class="line">3 3</span><br><span class="line">4</span><br></pre></td></tr></table></figure></p>
+<p><strong>cat args | xargs</strong><br>将标准输入转化为单行参数，输出 <code>1 2 2 2 3 3 4</code></p>
 <p><strong>cat args | xargs -n 2</strong><br>-n选项指定每行的参数个数，输出</p>
 <pre><code>1 2
 2 2
 3 3
 4
 </code></pre><p><strong>cat args | xargs -n 1 echo</strong><br>基本用法，保证每行一个参数，并传递给echo</p>
-<p><strong>cat args | xargs -n 1 -I {} mv {} dir</strong><br>当需要将参数作为指定位置或者作为选项的参数时，可以使用-I选项作为占位符(<strong>多个如何替代？</strong>)</p>
+<p><strong>cat args | xargs -n 1 | xargs -i mv {} dir</strong><br>当需要将参数作为指定位置或者作为选项的参数时，可以使用-i选项作为占位符(<strong>多个如何替代？</strong>)，经测试-n与-i不能混用，否则-n失效</p>
 <h2 id="tr"><a href="#tr" class="headerlink" title="tr"></a>tr</h2><p>tr可以对标准输入的<strong>字符</strong>进行替换、删除和压缩，可以将一组字符串转换为另一组字符串，即转换(translate)命令</p>
 <p><strong>echo ‘12345’ | tr 12345 abcde</strong><br>tr的基本用法，集合12345映射到集合abcde，一一映射；假如前面集合长，则是后面的集合最后一个元素隐式补充到相等长度；如果是后面集合长，多出的将被忽略<br>此外集合也有类似正则的简写a-zA-Z0-9，还有\t \n，特殊字符</p>
 <ul>
@@ -304,11 +305,12 @@
 <h2 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h2><p><strong>sort file1 file2 …</strong><br>依次排序各个文件</p>
 <p><strong>sort -n file1</strong><br>按照数字对文件内容进行排序</p>
 <p><strong>sort -r file2</strong><br>逆序</p>
-<p><strong>sort -u unsorted</strong><br>排序同时对重复行只保留一行</p>
+<p><strong>sort -u unsorted</strong><br>排序同时对重复行只保留一行，注意sort判断重复是依据排序的key，并非完整的行，uniq则为完整的行</p>
 <p><strong>sort -k 2 file1</strong><br>假如file2中数据存在多列，-k指定使用第二列进行排序</p>
 <p><strong>sort -k 2.1 file1</strong><br>以第二列中的第一个字符到末尾进行排序</p>
 <p><strong>sort -k 2.1,2.2 file1</strong><br>以第二列中的第一个字符到第二个字符进行排序</p>
-<h2 id="uniq"><a href="#uniq" class="headerlink" title="uniq"></a>uniq</h2><p>将标准输入中的连续多行只输出一行，“连续多行”就决定了uniq处理的标准输入必须是排过序的，否则无意义</p>
+<p><strong>sort是非稳定的，即除了排序的key外，每次排序的执行结果顺序可能不同</strong></p>
+<h2 id="uniq"><a href="#uniq" class="headerlink" title="uniq"></a>uniq</h2><p>将标准输入中的连续多行只输出一行，“连续多行”就决定了uniq处理的标准输入一般是排过序的，否则无意义</p>
 <p><strong>sort unsorted | uniq</strong><br>基本用法</p>
 <p><strong>sort unsorted | uniq -u</strong><br>只显示唯一的行</p>
 <p><strong>sort unsorted | uniq -c</strong><br>同时输出行的重复次数</p>
@@ -354,6 +356,7 @@
 <ul>
 <li>1,3,4 显示1、3、4列</li>
 <li>1-4 显示1到4列</li>
+<li>2- 显示第2列，直到最后</li>
 </ul>
 <p><strong>cut -f 1 -d ‘,’ file</strong><br>-d选项指定分隔符</p>
 <p><strong>cut -f 1 -s file</strong><br>-s选项用以去掉不含分隔符的列，比如文件中的注释、说明性文字</p>
@@ -476,6 +479,24 @@
 <h2 id="sar"><a href="#sar" class="headerlink" title="sar"></a>sar</h2><p><strong>sar -[u|q|r] 1 2</strong><br>u输出cpu使用率; q输出cpu运行进程数,总进程数; r为内存; 1为采集频率,2为采集轮次</p>
 <h2 id="crontab"><a href="#crontab" class="headerlink" title="crontab"></a>crontab</h2><p><strong>crontab -u liufuxin -e</strong><br>指定用户,root使用</p>
 <p><strong><em>/5 1,2 5-9 7 </em> COMMOND</strong><br>每5分 每天的1,2点 每5-9日 每7月 执行任务<br>注意周跟日月不能同时出现,同时出现不是’与’关系,而是’或’关系<br>注意<br>Commond的输出未指定的话会发送邮件</p>
+<h2 id="展开运算符"><a href="#展开运算符" class="headerlink" title="展开运算符"></a>展开运算符</h2><p><strong>${varname:-word}</strong><br>如果varname未定义，则<em>该表达式</em>值为0</p>
+<p><strong>${varname:=word}</strong><br>如果varname未定义，则定义为word，并返回</p>
+<p><strong>${varname:?message}</strong><br>如果varname未定义，则输出message，并退出程序</p>
+<h2 id="参数读取"><a href="#参数读取" class="headerlink" title="参数读取"></a>参数读取</h2><p><strong>位置参数</strong></p>
+<ul>
+<li>$0 命令名</li>
+<li>$1 第一个参数，$2 第二个。。</li>
+<li>${10} 以此类推</li>
+</ul>
+<p><strong>特殊参数</strong></p>
+<ul>
+<li>$# 参数个数</li>
+<li>$*、$@ 所有参数的数组</li>
+<li>“$*“ 所有参数组成的单行字符串</li>
+<li>“$@” 所有参数的数组，比$@方式的优点在于，其保留了参数中任何空白</li>
+</ul>
+<h2 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h2><p><strong>/bin/sh script 1&gt;out 2&gt;err</strong><br>注意&gt;前后均无空格，否则意义1、2就变成‘参数’了</p>
+<p><strong>/bin/sh script 1&gt;out 2&gt;&amp;1</strong><br>标准输出到out，然后标准错误输出重定向到标准输出，注意顺序和无空格</p>
 
       
     </div>
@@ -611,7 +632,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#这是什么"><span class="nav-number">1.</span> <span class="nav-text">这是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cat"><span class="nav-number">2.</span> <span class="nav-text">cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find"><span class="nav-number">3.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xargs"><span class="nav-number">4.</span> <span class="nav-text">xargs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tr"><span class="nav-number">5.</span> <span class="nav-text">tr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sort"><span class="nav-number">6.</span> <span class="nav-text">sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uniq"><span class="nav-number">7.</span> <span class="nav-text">uniq</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#split"><span class="nav-number">8.</span> <span class="nav-text">split</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#、-、-、"><span class="nav-number">9.</span> <span class="nav-text">#、%、##、%%</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dd"><span class="nav-number">10.</span> <span class="nav-text">dd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mkdir"><span class="nav-number">11.</span> <span class="nav-text">mkdir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#touch"><span class="nav-number">12.</span> <span class="nav-text">touch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ln"><span class="nav-number">13.</span> <span class="nav-text">ln</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#head-amp-tail"><span class="nav-number">14.</span> <span class="nav-text">head & tail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ls"><span class="nav-number">15.</span> <span class="nav-text">ls</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wc"><span class="nav-number">16.</span> <span class="nav-text">wc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grep"><span class="nav-number">17.</span> <span class="nav-text">grep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cut"><span class="nav-number">18.</span> <span class="nav-text">cut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wget"><span class="nav-number">19.</span> <span class="nav-text">wget</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#curl"><span class="nav-number">20.</span> <span class="nav-text">curl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tar"><span class="nav-number">21.</span> <span class="nav-text">tar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gzip、bzip"><span class="nav-number">22.</span> <span class="nav-text">gzip、bzip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#base64"><span class="nav-number">23.</span> <span class="nav-text">base64</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ping"><span class="nav-number">24.</span> <span class="nav-text">ping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scp"><span class="nav-number">25.</span> <span class="nav-text">scp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lsof"><span class="nav-number">26.</span> <span class="nav-text">lsof</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#netstat"><span class="nav-number">27.</span> <span class="nav-text">netstat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#du"><span class="nav-number">28.</span> <span class="nav-text">du</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#df"><span class="nav-number">29.</span> <span class="nav-text">df</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#time"><span class="nav-number">30.</span> <span class="nav-text">time</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#watch"><span class="nav-number">31.</span> <span class="nav-text">watch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ps"><span class="nav-number">32.</span> <span class="nav-text">ps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kill"><span class="nav-number">33.</span> <span class="nav-text">kill</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#which、where"><span class="nav-number">34.</span> <span class="nav-text">which、where</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#file、whatis、uptime"><span class="nav-number">35.</span> <span class="nav-text">file、whatis、uptime</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wall"><span class="nav-number">36.</span> <span class="nav-text">wall</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uname"><span class="nav-number">37.</span> <span class="nav-text">uname</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logger"><span class="nav-number">38.</span> <span class="nav-text">logger</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sar"><span class="nav-number">39.</span> <span class="nav-text">sar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#crontab"><span class="nav-number">40.</span> <span class="nav-text">crontab</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#这是什么"><span class="nav-number">1.</span> <span class="nav-text">这是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cat"><span class="nav-number">2.</span> <span class="nav-text">cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find"><span class="nav-number">3.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xargs"><span class="nav-number">4.</span> <span class="nav-text">xargs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tr"><span class="nav-number">5.</span> <span class="nav-text">tr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sort"><span class="nav-number">6.</span> <span class="nav-text">sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uniq"><span class="nav-number">7.</span> <span class="nav-text">uniq</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#split"><span class="nav-number">8.</span> <span class="nav-text">split</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#、-、-、"><span class="nav-number">9.</span> <span class="nav-text">#、%、##、%%</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dd"><span class="nav-number">10.</span> <span class="nav-text">dd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mkdir"><span class="nav-number">11.</span> <span class="nav-text">mkdir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#touch"><span class="nav-number">12.</span> <span class="nav-text">touch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ln"><span class="nav-number">13.</span> <span class="nav-text">ln</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#head-amp-tail"><span class="nav-number">14.</span> <span class="nav-text">head & tail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ls"><span class="nav-number">15.</span> <span class="nav-text">ls</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wc"><span class="nav-number">16.</span> <span class="nav-text">wc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grep"><span class="nav-number">17.</span> <span class="nav-text">grep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cut"><span class="nav-number">18.</span> <span class="nav-text">cut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wget"><span class="nav-number">19.</span> <span class="nav-text">wget</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#curl"><span class="nav-number">20.</span> <span class="nav-text">curl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tar"><span class="nav-number">21.</span> <span class="nav-text">tar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gzip、bzip"><span class="nav-number">22.</span> <span class="nav-text">gzip、bzip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#base64"><span class="nav-number">23.</span> <span class="nav-text">base64</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ping"><span class="nav-number">24.</span> <span class="nav-text">ping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scp"><span class="nav-number">25.</span> <span class="nav-text">scp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lsof"><span class="nav-number">26.</span> <span class="nav-text">lsof</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#netstat"><span class="nav-number">27.</span> <span class="nav-text">netstat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#du"><span class="nav-number">28.</span> <span class="nav-text">du</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#df"><span class="nav-number">29.</span> <span class="nav-text">df</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#time"><span class="nav-number">30.</span> <span class="nav-text">time</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#watch"><span class="nav-number">31.</span> <span class="nav-text">watch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ps"><span class="nav-number">32.</span> <span class="nav-text">ps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kill"><span class="nav-number">33.</span> <span class="nav-text">kill</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#which、where"><span class="nav-number">34.</span> <span class="nav-text">which、where</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#file、whatis、uptime"><span class="nav-number">35.</span> <span class="nav-text">file、whatis、uptime</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wall"><span class="nav-number">36.</span> <span class="nav-text">wall</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uname"><span class="nav-number">37.</span> <span class="nav-text">uname</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logger"><span class="nav-number">38.</span> <span class="nav-text">logger</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sar"><span class="nav-number">39.</span> <span class="nav-text">sar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#crontab"><span class="nav-number">40.</span> <span class="nav-text">crontab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#展开运算符"><span class="nav-number">41.</span> <span class="nav-text">展开运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数读取"><span class="nav-number">42.</span> <span class="nav-text">参数读取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重定向"><span class="nav-number">43.</span> <span class="nav-text">重定向</span></a></li></ol></div>
             
           </div>
         </section>
