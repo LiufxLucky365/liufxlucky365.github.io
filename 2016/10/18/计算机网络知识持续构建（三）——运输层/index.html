@@ -57,25 +57,19 @@
 
 
 
-<meta name="description" content="绪运输层将网络层在两个端系统之间的交付服务，扩展到运行在两个不同端系统上的应用层进程之间的交付服务，同时提供了额外的逻辑通信服务
-简单概念一般运输层传输的数据叫做报文段，而网络层传输数据称为数据报，但由于UDP与网络层数据报很类似，个别也会将UDP传输的数据称为数据报
-多路复用、多路分解即将网络层所提供的主机到主机的交付服务扩展为两个端进程间的交付服务，其中多路复用是指发送时将不同进程的数据通">
+<meta name="description" content="绪运输层将网络层在两个端系统之间的交付服务，扩展到运行在两个不同端系统上的应用层进程之间的交付服务，同时提供了额外的逻辑通信服务">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机网络知识持续构建（三）——运输层">
 <meta property="og:url" content="http://yoursite.com/2016/10/18/计算机网络知识持续构建（三）——运输层/index.html">
 <meta property="og:site_name" content="Liufxlucky365">
-<meta property="og:description" content="绪运输层将网络层在两个端系统之间的交付服务，扩展到运行在两个不同端系统上的应用层进程之间的交付服务，同时提供了额外的逻辑通信服务
-简单概念一般运输层传输的数据叫做报文段，而网络层传输数据称为数据报，但由于UDP与网络层数据报很类似，个别也会将UDP传输的数据称为数据报
-多路复用、多路分解即将网络层所提供的主机到主机的交付服务扩展为两个端进程间的交付服务，其中多路复用是指发送时将不同进程的数据通">
+<meta property="og:description" content="绪运输层将网络层在两个端系统之间的交付服务，扩展到运行在两个不同端系统上的应用层进程之间的交付服务，同时提供了额外的逻辑通信服务">
 <meta property="og:image" content="http://yoursite.com/images/computer_net_up_to_down/tcp_three_handshake.png">
 <meta property="og:image" content="http://yoursite.com/images/computer_net_up_to_down/tcp_four_goodbye.png">
 <meta property="og:image" content="http://yoursite.com/images/computer_net_up_to_down/tcp_speed_demo.png">
-<meta property="og:updated_time" content="2016-10-07T16:06:06.000Z">
+<meta property="og:updated_time" content="2016-10-07T16:13:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络知识持续构建（三）——运输层">
-<meta name="twitter:description" content="绪运输层将网络层在两个端系统之间的交付服务，扩展到运行在两个不同端系统上的应用层进程之间的交付服务，同时提供了额外的逻辑通信服务
-简单概念一般运输层传输的数据叫做报文段，而网络层传输数据称为数据报，但由于UDP与网络层数据报很类似，个别也会将UDP传输的数据称为数据报
-多路复用、多路分解即将网络层所提供的主机到主机的交付服务扩展为两个端进程间的交付服务，其中多路复用是指发送时将不同进程的数据通">
+<meta name="twitter:description" content="绪运输层将网络层在两个端系统之间的交付服务，扩展到运行在两个不同端系统上的应用层进程之间的交付服务，同时提供了额外的逻辑通信服务">
 <meta name="twitter:image" content="http://yoursite.com/images/computer_net_up_to_down/tcp_three_handshake.png">
 
 
@@ -256,6 +250,7 @@
         <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
 
 <h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p>运输层将网络层在两个端系统之间的交付服务，扩展到运行在两个不同端系统上的应用层进程之间的交付服务，同时提供了额外的<strong>逻辑通信</strong>服务</p>
+<a id="more"></a>
 <h3 id="简单概念"><a href="#简单概念" class="headerlink" title="简单概念"></a>简单概念</h3><p>一般运输层传输的数据叫做<strong>报文段</strong>，而网络层传输数据称为<strong>数据报</strong>，但由于UDP与网络层数据报很类似，个别也会将UDP传输的数据称为<strong>数据报</strong></p>
 <p><strong>多路复用</strong>、<strong>多路分解</strong>即将网络层所提供的主机到主机的交付服务扩展为两个端进程间的交付服务，其中多路复用是指发送时将不同进程的数据通过不同的socket发送出去，多路分解为将接受到的网络层数据分解到不同的socket中</p>
 <p>端口号是一个16比特的数字，范围为0~65535，其中0~1023为<strong>周知端口号</strong>，是被系统保留并被严格控制的</p>
