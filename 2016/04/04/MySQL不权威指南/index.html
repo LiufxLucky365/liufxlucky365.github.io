@@ -57,40 +57,31 @@
 
 
 
-<meta name="description" content="$(function(){
-        $(&apos;a&apos;).click(function() {
-            $(&quot;#tar&quot;).show();
-        })
-    });
+<meta name="description" content="12345$(function()&amp;#123;    $(&apos;a&apos;).click(function() &amp;#123;        $(&quot;#tar&quot;).show();    &amp;#125;)&amp;#125;);
 
 
-架构mysql最重要、最与众不同的特性是它的存储引擎架构, 这种架构的设计将查询处理, 及其他系统任务和数据的存储/提取相分离. 这种处理和存储分离的设计可以在使用时根据性能、特性, 以">
+
+架构mysql最重要、最与众不同的特性是它的存储引擎架构, 这种架构的设计将查询处理, 及其他系统任务和数据的存储/提取相分离. 这种处理和存储分离的设计可以在使用时根据性能、特性,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL不权威指南">
 <meta property="og:url" content="http://yoursite.com/2016/04/04/MySQL不权威指南/index.html">
 <meta property="og:site_name" content="Liufxlucky365">
-<meta property="og:description" content="$(function(){
-        $(&apos;a&apos;).click(function() {
-            $(&quot;#tar&quot;).show();
-        })
-    });
+<meta property="og:description" content="12345$(function()&amp;#123;    $(&apos;a&apos;).click(function() &amp;#123;        $(&quot;#tar&quot;).show();    &amp;#125;)&amp;#125;);
 
 
-架构mysql最重要、最与众不同的特性是它的存储引擎架构, 这种架构的设计将查询处理, 及其他系统任务和数据的存储/提取相分离. 这种处理和存储分离的设计可以在使用时根据性能、特性, 以">
+
+架构mysql最重要、最与众不同的特性是它的存储引擎架构, 这种架构的设计将查询处理, 及其他系统任务和数据的存储/提取相分离. 这种处理和存储分离的设计可以在使用时根据性能、特性,">
 <meta property="og:image" content="http://yoursite.com/images/mysql_structure.png">
 <meta property="og:image" content="http://yoursite.com/images/mysql_engine_compare.png">
 <meta property="og:image" content="http://yoursite.com/images/cluster_index.png">
-<meta property="og:updated_time" content="2016-09-03T10:39:03.000Z">
+<meta property="og:updated_time" content="2016-09-29T10:17:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL不权威指南">
-<meta name="twitter:description" content="$(function(){
-        $(&apos;a&apos;).click(function() {
-            $(&quot;#tar&quot;).show();
-        })
-    });
+<meta name="twitter:description" content="12345$(function()&amp;#123;    $(&apos;a&apos;).click(function() &amp;#123;        $(&quot;#tar&quot;).show();    &amp;#125;)&amp;#125;);
 
 
-架构mysql最重要、最与众不同的特性是它的存储引擎架构, 这种架构的设计将查询处理, 及其他系统任务和数据的存储/提取相分离. 这种处理和存储分离的设计可以在使用时根据性能、特性, 以">
+
+架构mysql最重要、最与众不同的特性是它的存储引擎架构, 这种架构的设计将查询处理, 及其他系统任务和数据的存储/提取相分离. 这种处理和存储分离的设计可以在使用时根据性能、特性,">
 <meta name="twitter:image" content="http://yoursite.com/images/mysql_structure.png">
 
 
@@ -272,11 +263,8 @@
 <script src="//cdn.bootcss.com/jquery/3.0.0-beta1/jquery.js"></script>
 
 <script type="text/javascript">
-    $(function(){
-        $('a').click(function() {
-            $("#tar").show();
-        })
-    });
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'a'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        $(<span class="string">"#tar"</span>).show();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 </script>
 
 <h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>mysql最重要、最与众不同的特性是它的<strong>存储引擎架构</strong>, 这种架构的设计将查询处理, 及其他系统任务和数据的存储/提取相分离. 这种处理和存储分离的设计可以在使用时根据性能、特性, 以及其他需求来选择数据存储方式</p>
@@ -328,11 +316,8 @@
 </ol>
 <p>mysql提供两种事务型存储引擎: InnoDB、NDB Cluster</p>
 <p>mysql默认采用自动提交模式. 也就是说, 如果不是显示的开始一个事务, 则每个查询都被当作一个事务执行提交</p>
-<pre><code># 显示开启事务
-start transaction \ begin;
-...
-rollback \ commit;
-</code></pre><h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><h3 id="myisam"><a href="#myisam" class="headerlink" title="myisam"></a>myisam</h3><p>mysql最早的默认存储引擎, 现在默认为innodb</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 显示开启事务</span><br><span class="line">start transaction \ begin;</span><br><span class="line">...</span><br><span class="line">rollback \ commit;</span><br></pre></td></tr></table></figure>
+<h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><h3 id="myisam"><a href="#myisam" class="headerlink" title="myisam"></a>myisam</h3><p>mysql最早的默认存储引擎, 现在默认为innodb</p>
 <p><strong>优点</strong></p>
 <ul>
 <li>数据存储设计简单、紧凑占用空间小, 数据插入速度快(更新由于表锁的原因, 高并发时并不快)</li>
@@ -382,17 +367,17 @@ rollback \ commit;
 </ul>
 <h3 id="mysql主要存储引擎对照表"><a href="#mysql主要存储引擎对照表" class="headerlink" title="mysql主要存储引擎对照表"></a>mysql主要存储引擎对照表</h3><p><img src="/images/mysql_engine_compare.png"></p>
 <h3 id="修改存储引擎"><a href="#修改存储引擎" class="headerlink" title="修改存储引擎"></a>修改存储引擎</h3><ul>
-<li><strong>alter table</strong> 最简单的办法, 适用任何存储引擎, 但是需要很长时间, 因为mysql会按行将数据从原表复制到一张新的表中, 在复制期间可能会消耗系统所有的I/O能力<pre><code>mysql&gt; ALTER TABLE mytable ENGINE = InnoDB;
-</code></pre></li>
-<li><strong>导入与导出</strong> 适用mysqldump工具导出数据到sql文件, 然后对该文件进行一定修改进行导入. 注意create前默认加入的drop table</li>
-<li><strong>创建与查询</strong> (create和select)结合了第一种的快, 和第二种的安全. 创建一个新的索引表, 然后利用 Insert…select语法导入数据<pre><code>mysql&gt; CREATE TABLE innodb_table LIKE myisam_table;
-mysql&gt; ALTER TABLE innodb_table ENGINE=InnoDB;
-mysql&gt; INSERT INTO innodb_table SELECT * FROM myisam_table;
-</code></pre></li>
-<li>数据量不大时这样可以很好工作, 数据量大时可以使用分批处理+事务<pre><code>mysql&gt; START TRANSACTION;
-mysql&gt; INSERT INTO innodb_table SELECT * FROM myisam_table WHERE id BETWEEN x AND y;
-mysql&gt; COMMIT;
-</code></pre></li>
+<li><p><strong>alter table</strong> 最简单的办法, 适用任何存储引擎, 但是需要很长时间, 因为mysql会按行将数据从原表复制到一张新的表中, 在复制期间可能会消耗系统所有的I/O能力</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE mytable ENGINE = InnoDB;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>导入与导出</strong> 适用mysqldump工具导出数据到sql文件, 然后对该文件进行一定修改进行导入. 注意create前默认加入的drop table</p>
+</li>
+<li><p><strong>创建与查询</strong> (create和select)结合了第一种的快, 和第二种的安全. 创建一个新的索引表, 然后利用 Insert…select语法导入数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE TABLE innodb_table LIKE myisam_table;</span><br><span class="line">mysql&gt; ALTER TABLE innodb_table ENGINE=InnoDB;</span><br><span class="line">mysql&gt; INSERT INTO innodb_table SELECT * FROM myisam_table;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据量不大时这样可以很好工作, 数据量大时可以使用分批处理+事务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; START TRANSACTION;</span><br><span class="line">mysql&gt; INSERT INTO innodb_table SELECT * FROM myisam_table WHERE id BETWEEN x AND y;</span><br><span class="line">mysql&gt; COMMIT;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 <p><strong>混合使用存储引擎</strong><br>在mysql事务中混合使用存储引擎会使问题非常复杂, 比如同时使用了支持和不支持事务的存储引擎, 又需要rollback</p>
 <h2 id="数据库schema"><a href="#数据库schema" class="headerlink" title="数据库schema"></a>数据库schema</h2><h3 id="类型选取原则"><a href="#类型选取原则" class="headerlink" title="类型选取原则"></a>类型选取原则</h3><ul>
@@ -482,19 +467,14 @@ mysql&gt; COMMIT;
 <li>索引中的定义顺序和查找中的排序顺序一致则获得二星</li>
 <li>索引中列包含了查询中需要的全部列则获得三星</li>
 </ol>
-<h3 id="前缀索引和索引选择性"><a href="#前缀索引和索引选择性" class="headerlink" title="前缀索引和索引选择性"></a>前缀索引和索引选择性</h3><p>前缀索引, 是为了减少索引的长度, 而指定了索引列的索引长度</p>
-<pre><code>mysql&gt; ALTER TABLE table ADD KEY (city(7));
-</code></pre><ul>
+<h3 id="前缀索引和索引选择性"><a href="#前缀索引和索引选择性" class="headerlink" title="前缀索引和索引选择性"></a>前缀索引和索引选择性</h3><p>前缀索引, 是为了减少索引的长度, 而指定了索引列的索引长度<br>​<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE table ADD KEY (city(<span class="number">7</span>));</span><br></pre></td></tr></table></figure></p>
+<ul>
 <li><strong>优点</strong> 减小索引长度, 存储空间减少, 可以放入更多索引至内存</li>
 <li><strong>缺点</strong> 不能使用索引进行order by和group by;无法使用覆盖索引;</li>
 </ul>
 <p>另外, 前缀索引的长度的选择需要考虑索引选择性, 因为选择性很差的索引还不如不使用索引试探索引选择性: </p>
-<pre><code>mysql&gt; SELECT
-mysql&gt; count(distinct left(city,3))/count(*) as sel3,
-mysql&gt; count(distinct left(city,4))/count(*) as sel4,
-mysql&gt; count(distinct left(city,5))/count(*) as sel5
-mysql&gt; FROM table;
-</code></pre><h3 id="多列索引"><a href="#多列索引" class="headerlink" title="多列索引"></a>多列索引</h3><h4 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h4><p>为每个列单独创建一个索引, 这样最多只能获得“一星索引”. 而且这样并不能有效提高查询性能. 即便是mysql使用了“索引合并”策略(using union/intersection(col1, col2))</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT</span><br><span class="line">mysql&gt; count(distinct left(city,<span class="number">3</span>))/count(*) as sel3,</span><br><span class="line">mysql&gt; count(distinct left(city,<span class="number">4</span>))/count(*) as sel4,</span><br><span class="line">mysql&gt; count(distinct left(city,<span class="number">5</span>))/count(*) as sel5</span><br><span class="line">mysql&gt; FROM table;</span><br></pre></td></tr></table></figure>
+<h3 id="多列索引"><a href="#多列索引" class="headerlink" title="多列索引"></a>多列索引</h3><h4 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h4><p>为每个列单独创建一个索引, 这样最多只能获得“一星索引”. 而且这样并不能有效提高查询性能. 即便是mysql使用了“索引合并”策略(using union/intersection(col1, col2))</p>
 <p>虽然索引合并是一种优化策略, 但一般出现时也说明了表上索引建的很糟糕:<br>出现利用多个列进行相交操作时, 通常意味着需要一个包含相关列的多列索引, 而不是多个单列;</p>
 <p>出现利用多个列进行合并操作时, 通常要耗费大量CPU;可以考虑使用UNION, 或者不使用索引</p>
 <h3 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h3><p>聚簇索引的叶子节点保存的就是数据本身. 所以, 聚簇索引就是表本身</p>
@@ -915,8 +895,8 @@ drop table test.tar;
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/12/Linux实用知识持续构建——工具篇/" rel="prev" title="Linux实用知识持续构建——工具篇">
-                Linux实用知识持续构建——工具篇 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/04/计算机网络知识持续构建（二）——应用层/" rel="prev" title="MySQL不权威指南">
+                MySQL不权威指南 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -985,7 +965,7 @@ drop table test.tar;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

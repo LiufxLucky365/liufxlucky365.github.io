@@ -1,0 +1,549 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="绪网络层主要作用有两个，转发和路由
+
+转发是指不同的网络设备的输入链路收到数据报后将其移动到适当的输出链路，可以理解为战术层面
+路由是指网络层必须规划数据报从源端到目标端的路径（主要借助IP，网际协议），可以理解为战略层面的规划
+
+路由器和交换机是主要的网络设备，便是在网络层发挥作用，负责转发数据报和维护路由表计算路由
+网络模型网络层的服务模型主要有两个虚电路网络和数据报网络
+虚电路虚电路网络基本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Liufxlucky365">
+<meta property="og:url" content="http://yoursite.com/2016/10/07/计算机网络知识持续构建（四）——网络层/index.html">
+<meta property="og:site_name" content="Liufxlucky365">
+<meta property="og:description" content="绪网络层主要作用有两个，转发和路由
+
+转发是指不同的网络设备的输入链路收到数据报后将其移动到适当的输出链路，可以理解为战术层面
+路由是指网络层必须规划数据报从源端到目标端的路径（主要借助IP，网际协议），可以理解为战略层面的规划
+
+路由器和交换机是主要的网络设备，便是在网络层发挥作用，负责转发数据报和维护路由表计算路由
+网络模型网络层的服务模型主要有两个虚电路网络和数据报网络
+虚电路虚电路网络基本">
+<meta property="og:updated_time" content="2016-10-07T15:19:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Liufxlucky365">
+<meta name="twitter:description" content="绪网络层主要作用有两个，转发和路由
+
+转发是指不同的网络设备的输入链路收到数据报后将其移动到适当的输出链路，可以理解为战术层面
+路由是指网络层必须规划数据报从源端到目标端的路径（主要借助IP，网际协议），可以理解为战略层面的规划
+
+路由器和交换机是主要的网络设备，便是在网络层发挥作用，负责转发数据报和维护路由表计算路由
+网络模型网络层的服务模型主要有两个虚电路网络和数据报网络
+虚电路虚电路网络基本">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title>  | Liufxlucky365 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Liufxlucky365</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">211&835</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-07T18:04:18+08:00" content="2016-10-07">
+              2016-10-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p>网络层主要作用有两个，<strong>转发</strong>和<strong>路由</strong></p>
+<ul>
+<li>转发是指不同的网络设备的输入链路收到数据报后将其移动到适当的输出链路，可以理解为战术层面</li>
+<li>路由是指网络层必须规划数据报从源端到目标端的路径（主要借助IP，网际协议），可以理解为战略层面的规划</li>
+</ul>
+<p>路由器和交换机是主要的网络设备，便是在网络层发挥作用，负责转发数据报和维护路由表计算路由</p>
+<h2 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h2><p>网络层的服务模型主要有两个<strong>虚电路</strong>网络和<strong>数据报网络</strong></p>
+<h3 id="虚电路"><a href="#虚电路" class="headerlink" title="虚电路"></a>虚电路</h3><p>虚电路网络基本上模仿了现实中的网络，它的数据报中包含各个链路编号，在发送数据前，首先建立一个“真实”的连接，然后发送的数据报会根据已定好的链路编号依次将数据传送到目的地</p>
+<p>路由器也维护相关的连接状态信息</p>
+<h3 id="数据报网络"><a href="#数据报网络" class="headerlink" title="数据报网络"></a>数据报网络</h3><p>这是我们最常见的网络模型，即无需预先建立任何连接，只需要依靠网络设备不断转发。所以每个数据报到达目的地经过的路径可能不一样</p>
+<p><strong>最大传输单元（MTU）</strong>，一个链路层帧能承载的最大数据量，所以其严格限制了IP数据报的长度</p>
+<h2 id="IPv4编址"><a href="#IPv4编址" class="headerlink" title="IPv4编址"></a>IPv4编址</h2><p>即我们平时最常接触到的IP地址，由32个比特位组成，可以表示2^32个地址（大约40亿）。为了记忆方便，一般会用4个十进制数表示，并用点号分开</p>
+<h3 id="子网"><a href="#子网" class="headerlink" title="子网"></a>子网</h3><p>多个IP地址可以组成一个子网，一般会使用<strong>子网掩码</strong>来表示子网的IP前缀，用IP地址和子网掩码进行与运算则可以计算出子网号</p>
+<p>用单个网络前缀来表示多个网络的能力称为<strong>地址聚合</strong>，也称<strong>路由聚合</strong>或<strong>路由摘要</strong>，即几个子网可以用他们的公共前缀来表示，这样可以方便路由表的维护</p>
+<h3 id="分类编址（classful-addressing）"><a href="#分类编址（classful-addressing）" class="headerlink" title="分类编址（classful addressing）"></a>分类编址（classful addressing）</h3><p>即我们通常所说的A、B、C类网络，分别具有8、16、24比特的前缀，这样可以方便网络地址的分配，但由于分配口径过大，容易造成浪费</p>
+<h2 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h2><p>接入网络要具有一个IP地址，但我们经常在各个时候、各个地点都需要接入网络，难道要不断的设置IP地址吗（包括子网掩码、网关、DNS服务器）？</p>
+<p>不需要的，DHCP协议可以给我们自动分配临时IP地址，过程大概是这样</p>
+<ol>
+<li>DHCP服务器发现</li>
+<li>DHCP提供可用IP，以及租用期</li>
+<li>发送DHCP请求</li>
+<li>DHCP服务器发送响应</li>
+</ol>
+<h2 id="NAT"><a href="#NAT" class="headerlink" title="NAT"></a>NAT</h2><p>考虑这个需求，你们公司拥有上百台机器，但是只有一个对外IP，同时因为预算和集群机器经常进进出出（包括手机等移动设备）那么如何解决这些设备的IP地址问题呢？</p>
+<p>一种流行的技术方案是<strong>NAT（地址转换协议）</strong>，主要原理是这些设备在公司的内网具有一个内网IP地址，然后在对外网关那里利用端口来映射内网机器和端口，这样内网的各个机器可以公用这个唯一IP的机器对外通信</p>
+<p>这也会导致一个问题，即从内网可以与外部IP建立连接，但反过来，外部IP想访问内部机器却没有办法，这主要是因为从内网往外访问时NAT转换表中有记录如何转发数据报，而直接从外往内时却无法察觉内部机器</p>
+<p>解决这个问题有个专用术语，<strong>NAT穿越</strong>。原理大致是利用一台额外的主机，内网机器先与此机器建立连接，然后该主机代理内网机器对外接受连接，然后转发给内网机器。国内的花生壳网就提供类似服务</p>
+<h2 id="RIP"><a href="#RIP" class="headerlink" title="RIP"></a>RIP</h2><p>RIP，Routing Information Protocol，路由信息协议，即网络系统如何构建并维护路由表的</p>
+<p>大致说一下原理便是，相邻的路由器之间每个一段时间就会将自己所知道的网络信息与相邻的设备进行交换，经过一定时间的交换后，某个IP便在网络中“发布”了，然后当路由器收到数据报后，根据数据报的IP信息和自身路由表的信息决定如何转发数据报</p>
+<p>一般一个数据报会在15跳内到达目的地，所以超过15跳会被设置为无效数据报</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/06/Linux实用知识持续构建——基础篇/" rel="next" title="Linux实用知识持续构建——基础篇">
+                <i class="fa fa-chevron-left"></i> Linux实用知识持续构建——基础篇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/07/计算机网络知识持续构建（五）——链路层/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.png"
+               alt="Liufxlucky365" />
+          <p class="site-author-name" itemprop="name">Liufxlucky365</p>
+          <p class="site-description motion-element" itemprop="description">程序猿 IT php mysql 生活 秀恩爱</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#绪"><span class="nav-number">1.</span> <span class="nav-text">绪</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络模型"><span class="nav-number">2.</span> <span class="nav-text">网络模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#虚电路"><span class="nav-number">2.1.</span> <span class="nav-text">虚电路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据报网络"><span class="nav-number">2.2.</span> <span class="nav-text">数据报网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPv4编址"><span class="nav-number">3.</span> <span class="nav-text">IPv4编址</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#子网"><span class="nav-number">3.1.</span> <span class="nav-text">子网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分类编址（classful-addressing）"><span class="nav-number">3.2.</span> <span class="nav-text">分类编址（classful addressing）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCP"><span class="nav-number">4.</span> <span class="nav-text">DHCP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT"><span class="nav-number">5.</span> <span class="nav-text">NAT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RIP"><span class="nav-number">6.</span> <span class="nav-text">RIP</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liufxlucky365</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -206,6 +206,539 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/08/计算机网络知识持续构建（三）——运输层/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-08T00:02:53+08:00" content="2016-10-08">
+              2016-10-08
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p>运输层将网络层在两个端系统之间的交付服务，扩展到运行在两个不同端系统上的应用层进程之间的交付服务，同时提供了额外的<strong>逻辑通信</strong>服务</p>
+<h3 id="简单概念"><a href="#简单概念" class="headerlink" title="简单概念"></a>简单概念</h3><p>一般运输层传输的数据叫做<strong>报文段</strong>，而网络层传输数据称为<strong>数据报</strong>，但由于UDP与网络层数据报很类似，个别也会将UDP传输的数据称为<strong>数据报</strong></p>
+<p><strong>多路复用</strong>、<strong>多路分解</strong>即将网络层所提供的主机到主机的交付服务扩展为两个端进程间的交付服务，其中多路复用是指发送时将不同进程的数据通过不同的socket发送出去，多路分解为将接受到的网络层数据分解到不同的socket中</p>
+<p>端口号是一个16比特的数字，范围为0~65535，其中0~1023为<strong>周知端口号</strong>，是被系统保留并被严格控制的</p>
+<p><strong>套接字（socket）</strong>其实是由<strong>源端口号、源IP、目标端口号、目标IP</strong>四个字段确定的，即一个连接对应一个套接字，同时不要忘了一个端口可以同时维护多个连接</p>
+<h2 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h2><p>UDP其实很简单，只是在网络层的数据报基础上增加了部分多路复用和分解的报头。也就是说UDP如同网络层一样，只提供<strong>尽力的交付服务</strong>，不保证完整、有序，那我们选择UDP的场景有哪些呢？</p>
+<ul>
+<li><strong>可以忍受一定的数据丢失，但要求强实时性</strong> 因为不要建立连接，同时没有拥塞控制，所以UDP的网络时延小</li>
+<li><strong>性能更好</strong> 因为不需要维护连接，所以UDP的性能要更好，可以支持更多的活跃客户机</li>
+<li><strong>网络开销小</strong> 因为功能简单所以UDP的报文头短小，所以报文整体要比TCP小</li>
+</ul>
+<h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><p>TCP提供的一个重要服务便是可靠传输，即保证数据完整、有序，且在合理的时间范围内。我们知道传输层所依赖的网络层并不是可靠的，那TCP是如何在此基础上实现了可靠传输协议呢？在本小节中，我们会在一个不断<strong>接近真实的网络模型上逐步建立一个可靠传输协议</strong>。希望能够帮助大家更加深入的理解TCP的各个功能的意义</p>
+<h3 id="完全可靠的信道"><a href="#完全可靠的信道" class="headerlink" title="完全可靠的信道"></a>完全可靠的信道</h3><p>最简单的，我们假设网络是完全可靠的，不会丢失数据、不会拥塞。那么我们该如何构建该协议呢？</p>
+<p>很简单，发送方发送数据，然后接收方收到数据后发送一个反馈，发送方接收到反馈后继续发送，甚至当我们可以约定两者的速度匹配，则不需要接收方发送反馈，这样我们完成了可靠传输协议<strong>rdt1.0</strong></p>
+<h3 id="会出现比特差错的信道"><a href="#会出现比特差错的信道" class="headerlink" title="会出现比特差错的信道"></a>会出现比特差错的信道</h3><p>好，我们现在再增加一点真实性，即信道中传输的数据会出现比特差错（即0、1跳变），现在该怎么办呢？</p>
+<p>也很简单，只需要在rdt1.0的基础上增加</p>
+<ul>
+<li><strong>差错检测</strong> 检测报文数据完整性有很多办法，常用的包括奇偶校验位、摘要等</li>
+<li><strong>反馈接收</strong> 即发送方获取接收方正确收到数据后的反馈</li>
+<li><strong>重发</strong> 当接收方发送的反馈是数据错误时则重发数据</li>
+</ul>
+<p>好了，增加这几个功能后我们便可以解决比特差错的问题了。oh，yeah！</p>
+<p>等等，<strong>反馈本身要是也出错了怎么办？</strong></p>
+<p>所以，还差一点，那就是当反馈本身也出错时（即发送方收到了‘含糊不清’的反馈）则也默认重发数据，但这又会有个问题，接收方万一之前正确接收了，现在又发送，他又接收了怎么办？解决办法就是在发送报文中添加<strong>重传标记</strong>，标明数据会重发</p>
+<p>至此，我们就有了更加健壮的rdt2.0了</p>
+<h3 id="会出现丢包、比特差错的信道"><a href="#会出现丢包、比特差错的信道" class="headerlink" title="会出现丢包、比特差错的信道"></a>会出现丢包、比特差错的信道</h3><p>道高一尺，魔高一丈。真实的网络环境中不仅数据会跳变，还会丢包。即发送方和接收方发送的任何报文段都可能丢失。解决这个问题其实很简单，只需要在发送方增加<strong>倒数计时器</strong>即可。当发送方发送数据后便开始计时，若超时未得到响应，则重发数据。至于这个超时如何确定，一般会设置为报文段的一次往返时间。</p>
+<p>rdt3.0完成。截止目前，我们已经有了一个基本可以在真实网络环境中工作的简易TCP了</p>
+<h3 id="以流水线方式实现"><a href="#以流水线方式实现" class="headerlink" title="以流水线方式实现"></a>以流水线方式实现</h3><p>rdt3.0其实已经能够真实运行了，但还存在一个很大的缺陷，那就是性能很差。因为发送方和接收方之间的每一步基本都是“停等”的。我们可以通过流水线的方式来加速数据传输，但一旦使用流水线，那么发送和接收的模型都会更加复杂，他们必须得做到以下几点</p>
+<ol>
+<li><strong>增加编号</strong> 即每个分组要增加一个唯一的序号，方便流水线管理分组</li>
+<li><strong>增加缓存</strong> 即发送方和接收方都要增加一个缓冲区，用来缓存双方尚未确认的分组</li>
+<li><strong>解决差错</strong> 流水线方式的话，因为是批量发送数据，出现错误后处理难度会较之刚才更大，TCP使用<strong>回退N步</strong>和<strong>选择重传</strong>两种策略解决这个问题</li>
+</ol>
+<p><strong>回退N步</strong></p>
+<p>发送方的发送模型大概是这样的，发送方不断的发送数据，直至一个阈值（这也叫做发送窗口长度，这样做也是为了防止网络拥塞），然后缓存起来这些已发送但为确认的分组，等待确认反馈</p>
+<p>收到确认反馈后窗口便会向前滑动继续发送新的分组，这里有个原则就是分组是<strong>累计确认</strong>的，这主要是由于反馈可能是乱序的，为了提高效率，发送方和接收方约定了<strong>只会反馈正确收到的最大分组序号</strong>。所以假如发送方发送了1-100号分组，当收到1、2、88反馈时，即可判定88号以前的分组均已确认，窗口可以滑动到89了 </p>
+<p>同时为了简化模型，发送方当收到一个失败反馈时，会将窗口回退到该位置继续发送，即如果已发送的1-100分组中，收到了2号分组的失败确认，则会将窗口回退到2号位置，继续重新发送，这也是因为接收方也是按序接收的，不会在未收到8号之前，接收8之后的分组</p>
+<p><strong>选择重传</strong></p>
+<p>选择重传是对回退N步策略的一种改进，发送方和接收方都会缓存一些数据，允许乱序确认。即发送方当收到2号出错时，窗口并不回退，而是单独处理2号，同时接收方在收到乱序到达的分组后不会丢失不连续的，而是暂存起来。这样虽然增加了实现难度，但却大大提高了效率</p>
+<p>到这里，TCP是如何在不可靠的网络上实现可靠传输的方法应该有一个感性的认识了吧</p>
+<h2 id="TCP连接管理"><a href="#TCP连接管理" class="headerlink" title="TCP连接管理"></a>TCP连接管理</h2><p>那么TCP的发送方和接收方之间是如何建立和关闭连接的呢？我们常说的<strong>三次握手</strong>和<strong>四次挥手</strong>是什么意思呢？</p>
+<h3 id="建立连接-三次握手"><a href="#建立连接-三次握手" class="headerlink" title="建立连接 三次握手"></a>建立连接 三次握手</h3><p><img src="/images/computer_net_up_to_down/tcp_three_handshake.png"></p>
+<ol>
+<li>终端发送<strong>SYN字段为1</strong>的特殊分组，请求建立连接</li>
+<li>服务器确认收到连接建立请求，并开辟所需的变量和缓冲区，返回确认分组，一次握手</li>
+<li>终端收到确认分组，然后准备变量和缓冲区，返回确认分组，二次握手</li>
+<li>服务器收到确认请求，三次握手</li>
+</ol>
+<p>这里要插一嘴，就是一些坏分子会利用第二步攻击服务器，即只发送连接建立请求，然后服务器准备资源等待后续时终止发送，达到服务器空转的目的。则就是<strong>SYN洪泛攻击</strong></p>
+<h3 id="关闭连接-四次挥手"><a href="#关闭连接-四次挥手" class="headerlink" title="关闭连接 四次挥手"></a>关闭连接 四次挥手</h3><p><img src="/images/computer_net_up_to_down/tcp_four_goodbye.png"></p>
+<ol>
+<li>终端发送<strong>FIN字段为1</strong>的特殊分组，请求关闭连接，一次挥手</li>
+<li>服务器返回确认分组，开始清理变量、缓冲区，二次挥手</li>
+<li>服务器清理完毕，发送<strong>FIN字段为1</strong>分组，通知终端可以关闭，三次挥手</li>
+<li>终端返回确认分组，开始清理，四次挥手</li>
+</ol>
+<h2 id="TCP拥塞控制"><a href="#TCP拥塞控制" class="headerlink" title="TCP拥塞控制"></a>TCP拥塞控制</h2><p>TCP的拥塞控制主要是面向整个互联网的，因为它的主要作用便是根据当前网络环境遏制自己的发送速度。这里我们只需要了解几个简单的概念即可</p>
+<h3 id="慢启动"><a href="#慢启动" class="headerlink" title="慢启动"></a>慢启动</h3><p>即发送方在发送数据时首先发送1个分组进行试探，成功后继续发送2个，然后依次类推。当然不会这么一直翻倍下去，而是当达到某个阈值后，变化为线性速度增加</p>
+<h3 id="加性增，乘性减"><a href="#加性增，乘性减" class="headerlink" title="加性增，乘性减"></a>加性增，乘性减</h3><p>在线性增加过程中，若遇到拥塞，窗口大小按照几何倍率减小，重新开始慢启动过程</p>
+<h3 id="快速恢复"><a href="#快速恢复" class="headerlink" title="快速恢复"></a>快速恢复</h3><p>当在慢启动阶段收到多个冗余确认反馈时，会触发快速恢复事件，发送窗口重新进入加性增阶段</p>
+<p>所以一个典型的TCP发送模型大概如下图</p>
+<p><img src="/images/computer_net_up_to_down/tcp_speed_demo.png"></p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/08/计算机网络知识持续构建（一）——概览篇/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-08T00:00:50+08:00" content="2016-10-08">
+              2016-10-08
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p>作为程序员，关于网络方面的知识是必不可少的，本系列以《计算机网络 自顶向下方法》为基础，为大家总结梳理计算机网络方面的主要知识体系和相关原理，必有疏漏错误的地方，欢迎大家指出分享</p>
+<h2 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h2><p>可以说整个计算机网络都是围绕以下这个五层模型进行构建的，先大概看一下我自己总结的大白话版</p>
+<table>
+<thead>
+<tr>
+<th>层级名称</th>
+<th>主要相关协议</th>
+<th>主要作用</th>
+<th>传输内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用层</td>
+<td>HTTP、SMTP、FTP、DNS</td>
+<td>应用之间数据交换</td>
+<td>报文</td>
+<td></td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>TCP、UDP</td>
+<td>在不稳定的网络基础上实现可控（稳定）网络传输</td>
+<td>报文段</td>
+<td></td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>IP、DHCP、NAT</td>
+<td>划分、定位网络，实现数据跨网络传输；构建路由表，转发数据报</td>
+<td>数据报</td>
+<td></td>
+</tr>
+<tr>
+<td>链路层</td>
+<td>ARP、RARP、RIP</td>
+<td>信道调度</td>
+<td>帧</td>
+<td></td>
+</tr>
+<tr>
+<td>物理层</td>
+<td></td>
+<td>利用各种介质（双绞铜线、光纤、电磁波）实现0、1数据的真实传输</td>
+<td>位</td>
+</tr>
+</tbody>
+</table>
+<p>始终不要忘记，我们构建网络的目的是为了实现<strong>远程终端之间应用的信息共享</strong>，也就是应用层的目的。由此出发，自上而下来分析，这个模型就很合情合理了，甚至可以理解为当时的最优可行解。</p>
+<ol>
+<li>为了实现远程终端之间的数据传输，那首先我们需要能够在不同网络之间定位到目标终端，这就是网络层IP协议的主要作用</li>
+<li>同时又由于网络层只能实现<strong>最大努力的交付，即不保证数据是否达到</strong>，为了实现可控（即确保百分百到达，或者可以丢失一部分数据），我们在网络层之上又构建了传输层来实现传输控制</li>
+<li>有了地址和交付确认，我们现在还缺实现跨网络交换数据的“虚拟顺丰”，这便是链路层的作用，构建好各个网络的传输地址，逐级的交换数据，将数据送达到目标终端</li>
+<li>说一千道一万，之前的几点都是模型的建立，真正要进行01数据传输，依赖的还是物理层，物理层利用各种物理介质的特性进行数据的传输</li>
+</ol>
+<p>首先对网络模型有个总体的了解，至于各层的细节，比如终端中包含了很多应用，如何区分？IP地址即将耗尽，如何最大效率的分配？一些企业的私有网络又是如何和因特网对接的？将会在之后陆续进行总结</p>
+<h2 id="网络接入"><a href="#网络接入" class="headerlink" title="网络接入"></a>网络接入</h2><p>说了这么多，好像所有都是免费的啊，除了自己买根网线。那我们的网费都交给谁了？</p>
+<p>我们的网费都交给各级网络提供商了（ISP）。各大洲之间会有海底光缆进行互联，然后各个国家又有自己的主网络节点，然后各个地区都有ISP的节点，这些节点将散落在各个社区的住户接入了互联网</p>
+<p><img src="/images/computer_net_up_to_down/internet_world.png"></p>
+<p>另外值得一提的是谷歌由于财大气粗和出于安全考虑，自己完成了网络的接入，在各个国家建立了自己的节点，俨然一个小型ISP</p>
+<h2 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h2><p>深入了解网络模型后，你会发现这里面有很多地方都是基于相信各个终端是不会作恶的（这主要是由于网络最初的建立便是基于“一群相互信任的用户连接到一个透明的网络上”），但现实中这几乎是不可能的，所以网络攻击手段层出不穷。</p>
+<p>比如网络嗅探，本来一些终端是应该忽略掉不是发给他的信息的，就比如学校传达室里的信件，谁都能够接触到，但应该又收信人查看，网络嗅探就是在窥伺别人的隐私</p>
+<p>又比如IP哄骗，快递员把邮件送到了你们的合租房，本来是你室友的东西，但你冒充了他，哄骗了快递员，将数据交付给了你</p>
+<p>另一个臭名昭著的是拒绝服务攻击（DoS），不断的对网络服务发起请求，直到其瘫痪为止，后来又演变为分布式的拒绝服务攻击（DDoS），消耗服务器资源的方式也层出不穷，最简单即暴力请求，复杂点的如利用TCP协议的一些特性，发送一些特制的报文，延长服务器的处理时间，消耗有限资源</p>
+<p>至此，我们大概对计算机网络模型有了一个肤浅的认识，然后将在以下各篇总结中对各个协议的主要细节和工作原理有更深刻的认识</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/07/计算机网络知识持续构建（五）——链路层/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-07T23:20:32+08:00" content="2016-10-07">
+              2016-10-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p>我们把沿着通信路径连接相邻节点的通信信道称为<strong>链路</strong>。链路层的主体在网络适配器中实现（即网卡），主要作用是将数据以帧为单位从一块网卡发送给另一个网卡</p>
+<p>但是可能有多个网卡同时向一个网卡发送数据，就有可能出现<strong>碰撞</strong>，当出现数据碰撞时，碰撞的数据便损坏了（0、1混在一起了），所以链路层另一个重要作用是控制流量，划分信道</p>
+<h2 id="多路访问协议"><a href="#多路访问协议" class="headerlink" title="多路访问协议"></a>多路访问协议</h2><p>调度多个网卡向一块网卡发送数据帧的协议叫做多路访问协议，一共有几十种，常见的几种如下</p>
+<h3 id="时分多路复用-TDM"><a href="#时分多路复用-TDM" class="headerlink" title="时分多路复用 TDM"></a>时分多路复用 TDM</h3><p>即将信道的使用时间划分为若干时间片，然后分配给各个终端，每个终端依据所持有的时间片独享信道</p>
+<h3 id="频分多路复用-FDM"><a href="#频分多路复用-FDM" class="headerlink" title="频分多路复用 FDM"></a>频分多路复用 FDM</h3><p>即将信道按照频率划分为多个子信道，然后分配给各个终端，每个终端可以在独自的子信道中传输数据</p>
+<h3 id="时隙ALOHA"><a href="#时隙ALOHA" class="headerlink" title="时隙ALOHA"></a>时隙ALOHA</h3><p>简单来说，就是发送数据前先进行<strong>载波侦听</strong>，若发现其他终端使用信道则继续等待；同时，如果在两个终端同时使用信道，即发生了碰撞，则均停止发送，各自顺延一个随机时间</p>
+<h3 id="令牌传递"><a href="#令牌传递" class="headerlink" title="令牌传递"></a>令牌传递</h3><p>之前的几种协议都有可能造成信道的浪费，令牌传递是指信道对应一个唯一的虚拟令牌，拿到令牌的终端才能使用信道，令牌在各个终端之间传递，当某个终端空闲时可以将令牌直接传给下个终端，这样信道就不需要空闲</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/07/计算机网络知识持续构建（四）——网络层/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-07T18:04:18+08:00" content="2016-10-07">
+              2016-10-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p>网络层主要作用有两个，<strong>转发</strong>和<strong>路由</strong></p>
+<ul>
+<li>转发是指不同的网络设备的输入链路收到数据报后将其移动到适当的输出链路，可以理解为战术层面</li>
+<li>路由是指网络层必须规划数据报从源端到目标端的路径（主要借助IP，网际协议），可以理解为战略层面的规划</li>
+</ul>
+<p>路由器和交换机是主要的网络设备，便是在网络层发挥作用，负责转发数据报和维护路由表计算路由</p>
+<h2 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h2><p>网络层的服务模型主要有两个<strong>虚电路</strong>网络和<strong>数据报网络</strong></p>
+<h3 id="虚电路"><a href="#虚电路" class="headerlink" title="虚电路"></a>虚电路</h3><p>虚电路网络基本上模仿了现实中的网络，它的数据报中包含各个链路编号，在发送数据前，首先建立一个“真实”的连接，然后发送的数据报会根据已定好的链路编号依次将数据传送到目的地</p>
+<p>路由器也维护相关的连接状态信息</p>
+<h3 id="数据报网络"><a href="#数据报网络" class="headerlink" title="数据报网络"></a>数据报网络</h3><p>这是我们最常见的网络模型，即无需预先建立任何连接，只需要依靠网络设备不断转发。所以每个数据报到达目的地经过的路径可能不一样</p>
+<p><strong>最大传输单元（MTU）</strong>，一个链路层帧能承载的最大数据量，所以其严格限制了IP数据报的长度</p>
+<h2 id="IPv4编址"><a href="#IPv4编址" class="headerlink" title="IPv4编址"></a>IPv4编址</h2><p>即我们平时最常接触到的IP地址，由32个比特位组成，可以表示2^32个地址（大约40亿）。为了记忆方便，一般会用4个十进制数表示，并用点号分开</p>
+<h3 id="子网"><a href="#子网" class="headerlink" title="子网"></a>子网</h3><p>多个IP地址可以组成一个子网，一般会使用<strong>子网掩码</strong>来表示子网的IP前缀，用IP地址和子网掩码进行与运算则可以计算出子网号</p>
+<p>用单个网络前缀来表示多个网络的能力称为<strong>地址聚合</strong>，也称<strong>路由聚合</strong>或<strong>路由摘要</strong>，即几个子网可以用他们的公共前缀来表示，这样可以方便路由表的维护</p>
+<h3 id="分类编址（classful-addressing）"><a href="#分类编址（classful-addressing）" class="headerlink" title="分类编址（classful addressing）"></a>分类编址（classful addressing）</h3><p>即我们通常所说的A、B、C类网络，分别具有8、16、24比特的前缀，这样可以方便网络地址的分配，但由于分配口径过大，容易造成浪费</p>
+<h2 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h2><p>接入网络要具有一个IP地址，但我们经常在各个时候、各个地点都需要接入网络，难道要不断的设置IP地址吗（包括子网掩码、网关、DNS服务器）？</p>
+<p>不需要的，DHCP协议可以给我们自动分配临时IP地址，过程大概是这样</p>
+<ol>
+<li>DHCP服务器发现</li>
+<li>DHCP提供可用IP，以及租用期</li>
+<li>发送DHCP请求</li>
+<li>DHCP服务器发送响应</li>
+</ol>
+<h2 id="NAT"><a href="#NAT" class="headerlink" title="NAT"></a>NAT</h2><p>考虑这个需求，你们公司拥有上百台机器，但是只有一个对外IP，同时因为预算和集群机器经常进进出出（包括手机等移动设备）那么如何解决这些设备的IP地址问题呢？</p>
+<p>一种流行的技术方案是<strong>NAT（地址转换协议）</strong>，主要原理是这些设备在公司的内网具有一个内网IP地址，然后在对外网关那里利用端口来映射内网机器和端口，这样内网的各个机器可以公用这个唯一IP的机器对外通信</p>
+<p>这也会导致一个问题，即从内网可以与外部IP建立连接，但反过来，外部IP想访问内部机器却没有办法，这主要是因为从内网往外访问时NAT转换表中有记录如何转发数据报，而直接从外往内时却无法察觉内部机器</p>
+<p>解决这个问题有个专用术语，<strong>NAT穿越</strong>。原理大致是利用一台额外的主机，内网机器先与此机器建立连接，然后该主机代理内网机器对外接受连接，然后转发给内网机器。国内的花生壳网就提供类似服务</p>
+<h2 id="RIP"><a href="#RIP" class="headerlink" title="RIP"></a>RIP</h2><p>RIP，Routing Information Protocol，路由信息协议，即网络系统如何构建并维护路由表的</p>
+<p>大致说一下原理便是，相邻的路由器之间每个一段时间就会将自己所知道的网络信息与相邻的设备进行交换，经过一定时间的交换后，某个IP便在网络中“发布”了，然后当路由器收到数据报后，根据数据报的IP信息和自身路由表的信息决定如何转发数据报</p>
+<p>一般一个数据报会在15跳内到达目的地，所以超过15跳会被设置为无效数据报</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/06/Linux实用知识持续构建——基础篇/" itemprop="url">
                   Linux实用知识持续构建——基础篇
                 </a>
@@ -400,6 +933,148 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/04/计算机网络知识持续构建（二）——应用层/" itemprop="url">
+                  MySQL不权威指南
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-04T11:24:49+08:00" content="2016-04-04">
+              2016-04-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
+
+<h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p><strong>网络应用是计算机网络存在的的理由</strong>，所以上至TCP/IP协议栈，下至双绞铜线和光纤，都是为实现网络应用提供各种服务</p>
+<p>但是由于良好的分层模型，我们码农在应用层尽情发挥想象力的时候，除了关注应用之间的数据交互外，其他的对我们基本是透明的，大大降低了复杂度</p>
+<h3 id="网络应用程序体系结构"><a href="#网络应用程序体系结构" class="headerlink" title="网络应用程序体系结构"></a>网络应用程序体系结构</h3><p>应用层常见的程序体系机构有两种</p>
+<ul>
+<li>Client/Server，即客户机/服务器体系结构，该体系结构包含一个始终运行着提供服务的<strong>服务器</strong>，以及分布在各个用户那里的<strong>客户机</strong></li>
+<li>P2P，该体系结构很少依赖服务器，主要利用网络中互相平等的主机提供服务，著名的Skype、BT均便是该体系结构</li>
+</ul>
+<h3 id="我们可以做什么？"><a href="#我们可以做什么？" class="headerlink" title="我们可以做什么？"></a>我们可以做什么？</h3><p>码农在开发网络应用时只需要关注应用层的协议，更底层的我们一般能够做的只是</p>
+<ol>
+<li>选择运输层协议，TCP？UDP？</li>
+<li>设定几个运输层的参数，最大缓存、最大报文长度等</li>
+</ol>
+<p>关于运输层协议的选择，首先要知道的是两种协议为我们提供了什么服务？</p>
+<p>TCP提供了</p>
+<ol>
+<li>面向连接的服务，即在数据交互之前要先建立一个虚拟的‘连接’，这个连接是<strong>全双工</strong>的</li>
+<li>可靠数据传输服务，可靠是指能够保证数据有序、完整的传输</li>
+<li>拥塞控制服务，这可能对单个应用好处不大，但却能够提供整个互联网的性能</li>
+<li>未提供加密服务，如果需要可以使用安全套接字实现SSL</li>
+</ol>
+<p>UDP提供了</p>
+<ol>
+<li>是一个轻量级的协议，不需要建立连接</li>
+<li>不可靠的数据传输服务，不可靠是指不保证数据能付完整、有序的传输</li>
+<li>也没有拥塞控制</li>
+</ol>
+<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>超文本传输协议（HyperText Transfer Protocol），它是web的核心。使用TCP作为它的支撑运输层协议。是一个无状态协议</p>
+<h3 id="HTTP请求报文格式"><a href="#HTTP请求报文格式" class="headerlink" title="HTTP请求报文格式"></a>HTTP请求报文格式</h3><p><img src="/images/computer_net_up_to_down/http_request.png"></p>
+<p>请求报文第一行是请求行（request line），后续为首部行（header line）</p>
+<p>请求行中请求方法一般为POST、GET、PUT、DELETE，协议版本类似<strong>HTTP/1.1</strong></p>
+<h3 id="HTTP响应报文格式"><a href="#HTTP响应报文格式" class="headerlink" title="HTTP响应报文格式"></a>HTTP响应报文格式</h3><p><img src="/images/computer_net_up_to_down/http_response.png"></p>
+<p>一些常见的响应码</p>
+<ul>
+<li>200 ok 请求成功</li>
+<li>301 moved permanently 请求的对象已经被永久转移了</li>
+<li>400 bad request 一个通用差错代码，该请求服务器无法理解</li>
+<li>404 not found 被请求的文档不在服务器</li>
+<li>500 server error 服务器错误</li>
+<li>505 http version is not supported 当前http版本不被支持</li>
+</ul>
+<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p>DNS（域名系统）的主要作用是提供主机名到IP地址的转换服务，由一个分布式的DNS数据库和查询该数据库的协议组成，基于UDP协议。DNS同时也可以提供负载均衡服务。</p>
+<h3 id="DNS分布式、层次数据库"><a href="#DNS分布式、层次数据库" class="headerlink" title="DNS分布式、层次数据库"></a>DNS分布式、层次数据库</h3><ol>
+<li><strong>根DNS服务器</strong> 因特网上有13个根服务器，其中大部分在北美。实际上每台服务器都是冗余的，为了提供安全性和可靠性</li>
+<li><strong>顶级域（TLD）服务器</strong> 这些服务器负责顶级域名（com、org、net、edu）和所有国家的顶级域名（uk、fr、ca等）</li>
+<li><strong>权威DNS服务器</strong> 网络上具有公共可访问主机的组织和公司必须提供公共课访问的DNS记录</li>
+</ol>
+<h2 id="P2P"><a href="#P2P" class="headerlink" title="P2P"></a>P2P</h2><p>P2P是除了服务器-客户端之外另一种重要的网络体系，是在网络中互相对等的两个终端之间进行通信，常见的应用为<strong>文件分发</strong>，即著名的BitTorrent协议；另一种是在对等方中组织并搜索信息；第三种是Skype，一个成功的P2P因特网电话应用。</p>
+<h3 id="BitTorrent"><a href="#BitTorrent" class="headerlink" title="BitTorrent"></a>BitTorrent</h3><p>BT下载的主要原理是充分利用加入分发的各终端的网络上载流量，因为一般情况下，终端的下载流量会远远大于上载。简单来说，就是各终端均匀的下载文件的各个部分，然后再在临近的终端之间互相交换数据，既减轻服务器下载压力，又能提供终端的下载速度，实现了下载的人越多，下载速度越快的“变态”下载</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/04/MySQL不权威指南/" itemprop="url">
                   MySQL不权威指南
                 </a>
@@ -446,11 +1121,8 @@
 <script src="//cdn.bootcss.com/jquery/3.0.0-beta1/jquery.js"></script>
 
 <script type="text/javascript">
-    $(function(){
-        $('a').click(function() {
-            $("#tar").show();
-        })
-    });
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'a'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        $(<span class="string">"#tar"</span>).show();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 </script>
 
 <h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>mysql最重要、最与众不同的特性是它的<strong>存储引擎架构</strong>, 这种架构的设计将查询处理, 及其他系统任务和数据的存储/提取相分离. 这种处理和存储分离的设计可以在使用时根据性能、特性, 以及其他需求来选择数据存储方式</p>
@@ -628,7 +1300,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

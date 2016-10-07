@@ -1,0 +1,563 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="绪网络应用是计算机网络存在的的理由，所以上至TCP/IP协议栈，下至双绞铜线和光纤，都是为实现网络应用提供各种服务
+但是由于良好的分层模型，我们码农在应用层尽情发挥想象力的时候，除了关注应用之间的数据交互外，其他的对我们基本是透明的，大大降低了复杂度
+网络应用程序体系结构应用层常见的程序体系机构有两种
+
+Client/Server，即客户机/服务器体系结构，该体系结构包含一个始终运行着提供服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL不权威指南">
+<meta property="og:url" content="http://yoursite.com/2016/04/04/计算机网络知识持续构建（二）——应用层/index.html">
+<meta property="og:site_name" content="Liufxlucky365">
+<meta property="og:description" content="绪网络应用是计算机网络存在的的理由，所以上至TCP/IP协议栈，下至双绞铜线和光纤，都是为实现网络应用提供各种服务
+但是由于良好的分层模型，我们码农在应用层尽情发挥想象力的时候，除了关注应用之间的数据交互外，其他的对我们基本是透明的，大大降低了复杂度
+网络应用程序体系结构应用层常见的程序体系机构有两种
+
+Client/Server，即客户机/服务器体系结构，该体系结构包含一个始终运行着提供服务">
+<meta property="og:image" content="http://yoursite.com/images/computer_net_up_to_down/http_request.png">
+<meta property="og:image" content="http://yoursite.com/images/computer_net_up_to_down/http_response.png">
+<meta property="og:updated_time" content="2016-10-07T16:01:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL不权威指南">
+<meta name="twitter:description" content="绪网络应用是计算机网络存在的的理由，所以上至TCP/IP协议栈，下至双绞铜线和光纤，都是为实现网络应用提供各种服务
+但是由于良好的分层模型，我们码农在应用层尽情发挥想象力的时候，除了关注应用之间的数据交互外，其他的对我们基本是透明的，大大降低了复杂度
+网络应用程序体系结构应用层常见的程序体系机构有两种
+
+Client/Server，即客户机/服务器体系结构，该体系结构包含一个始终运行着提供服务">
+<meta name="twitter:image" content="http://yoursite.com/images/computer_net_up_to_down/http_request.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> MySQL不权威指南 | Liufxlucky365 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Liufxlucky365</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">211&835</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                MySQL不权威指南
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-04T11:24:49+08:00" content="2016-04-04">
+              2016-04-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
+
+<h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p><strong>网络应用是计算机网络存在的的理由</strong>，所以上至TCP/IP协议栈，下至双绞铜线和光纤，都是为实现网络应用提供各种服务</p>
+<p>但是由于良好的分层模型，我们码农在应用层尽情发挥想象力的时候，除了关注应用之间的数据交互外，其他的对我们基本是透明的，大大降低了复杂度</p>
+<h3 id="网络应用程序体系结构"><a href="#网络应用程序体系结构" class="headerlink" title="网络应用程序体系结构"></a>网络应用程序体系结构</h3><p>应用层常见的程序体系机构有两种</p>
+<ul>
+<li>Client/Server，即客户机/服务器体系结构，该体系结构包含一个始终运行着提供服务的<strong>服务器</strong>，以及分布在各个用户那里的<strong>客户机</strong></li>
+<li>P2P，该体系结构很少依赖服务器，主要利用网络中互相平等的主机提供服务，著名的Skype、BT均便是该体系结构</li>
+</ul>
+<h3 id="我们可以做什么？"><a href="#我们可以做什么？" class="headerlink" title="我们可以做什么？"></a>我们可以做什么？</h3><p>码农在开发网络应用时只需要关注应用层的协议，更底层的我们一般能够做的只是</p>
+<ol>
+<li>选择运输层协议，TCP？UDP？</li>
+<li>设定几个运输层的参数，最大缓存、最大报文长度等</li>
+</ol>
+<p>关于运输层协议的选择，首先要知道的是两种协议为我们提供了什么服务？</p>
+<p>TCP提供了</p>
+<ol>
+<li>面向连接的服务，即在数据交互之前要先建立一个虚拟的‘连接’，这个连接是<strong>全双工</strong>的</li>
+<li>可靠数据传输服务，可靠是指能够保证数据有序、完整的传输</li>
+<li>拥塞控制服务，这可能对单个应用好处不大，但却能够提供整个互联网的性能</li>
+<li>未提供加密服务，如果需要可以使用安全套接字实现SSL</li>
+</ol>
+<p>UDP提供了</p>
+<ol>
+<li>是一个轻量级的协议，不需要建立连接</li>
+<li>不可靠的数据传输服务，不可靠是指不保证数据能付完整、有序的传输</li>
+<li>也没有拥塞控制</li>
+</ol>
+<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>超文本传输协议（HyperText Transfer Protocol），它是web的核心。使用TCP作为它的支撑运输层协议。是一个无状态协议</p>
+<h3 id="HTTP请求报文格式"><a href="#HTTP请求报文格式" class="headerlink" title="HTTP请求报文格式"></a>HTTP请求报文格式</h3><p><img src="/images/computer_net_up_to_down/http_request.png"></p>
+<p>请求报文第一行是请求行（request line），后续为首部行（header line）</p>
+<p>请求行中请求方法一般为POST、GET、PUT、DELETE，协议版本类似<strong>HTTP/1.1</strong></p>
+<h3 id="HTTP响应报文格式"><a href="#HTTP响应报文格式" class="headerlink" title="HTTP响应报文格式"></a>HTTP响应报文格式</h3><p><img src="/images/computer_net_up_to_down/http_response.png"></p>
+<p>一些常见的响应码</p>
+<ul>
+<li>200 ok 请求成功</li>
+<li>301 moved permanently 请求的对象已经被永久转移了</li>
+<li>400 bad request 一个通用差错代码，该请求服务器无法理解</li>
+<li>404 not found 被请求的文档不在服务器</li>
+<li>500 server error 服务器错误</li>
+<li>505 http version is not supported 当前http版本不被支持</li>
+</ul>
+<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p>DNS（域名系统）的主要作用是提供主机名到IP地址的转换服务，由一个分布式的DNS数据库和查询该数据库的协议组成，基于UDP协议。DNS同时也可以提供负载均衡服务。</p>
+<h3 id="DNS分布式、层次数据库"><a href="#DNS分布式、层次数据库" class="headerlink" title="DNS分布式、层次数据库"></a>DNS分布式、层次数据库</h3><ol>
+<li><strong>根DNS服务器</strong> 因特网上有13个根服务器，其中大部分在北美。实际上每台服务器都是冗余的，为了提供安全性和可靠性</li>
+<li><strong>顶级域（TLD）服务器</strong> 这些服务器负责顶级域名（com、org、net、edu）和所有国家的顶级域名（uk、fr、ca等）</li>
+<li><strong>权威DNS服务器</strong> 网络上具有公共可访问主机的组织和公司必须提供公共课访问的DNS记录</li>
+</ol>
+<h2 id="P2P"><a href="#P2P" class="headerlink" title="P2P"></a>P2P</h2><p>P2P是除了服务器-客户端之外另一种重要的网络体系，是在网络中互相对等的两个终端之间进行通信，常见的应用为<strong>文件分发</strong>，即著名的BitTorrent协议；另一种是在对等方中组织并搜索信息；第三种是Skype，一个成功的P2P因特网电话应用。</p>
+<h3 id="BitTorrent"><a href="#BitTorrent" class="headerlink" title="BitTorrent"></a>BitTorrent</h3><p>BT下载的主要原理是充分利用加入分发的各终端的网络上载流量，因为一般情况下，终端的下载流量会远远大于上载。简单来说，就是各终端均匀的下载文件的各个部分，然后再在临近的终端之间互相交换数据，既减轻服务器下载压力，又能提供终端的下载速度，实现了下载的人越多，下载速度越快的“变态”下载</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/04/MySQL不权威指南/" rel="next" title="MySQL不权威指南">
+                <i class="fa fa-chevron-left"></i> MySQL不权威指南
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/12/Linux实用知识持续构建——工具篇/" rel="prev" title="Linux实用知识持续构建——工具篇">
+                Linux实用知识持续构建——工具篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.png"
+               alt="Liufxlucky365" />
+          <p class="site-author-name" itemprop="name">Liufxlucky365</p>
+          <p class="site-description motion-element" itemprop="description">程序猿 IT php mysql 生活 秀恩爱</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#绪"><span class="nav-number">1.</span> <span class="nav-text">绪</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络应用程序体系结构"><span class="nav-number">1.1.</span> <span class="nav-text">网络应用程序体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我们可以做什么？"><span class="nav-number">1.2.</span> <span class="nav-text">我们可以做什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP"><span class="nav-number">2.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP请求报文格式"><span class="nav-number">2.1.</span> <span class="nav-text">HTTP请求报文格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP响应报文格式"><span class="nav-number">2.2.</span> <span class="nav-text">HTTP响应报文格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS"><span class="nav-number">3.</span> <span class="nav-text">DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS分布式、层次数据库"><span class="nav-number">3.1.</span> <span class="nav-text">DNS分布式、层次数据库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2P"><span class="nav-number">4.</span> <span class="nav-text">P2P</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BitTorrent"><span class="nav-number">4.1.</span> <span class="nav-text">BitTorrent</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liufxlucky365</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
