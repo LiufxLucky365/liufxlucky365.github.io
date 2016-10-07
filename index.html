@@ -206,8 +206,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/08/计算机网络知识持续构建（三）——运输层/" itemprop="url">
-                  未命名
+                <a class="post-title-link" href="/2016/10/18/计算机网络知识持续构建（五）——链路层/" itemprop="url">
+                  计算机网络知识持续构建（五）——链路层
                 </a>
               
             
@@ -220,8 +220,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-08T00:02:53+08:00" content="2016-10-08">
-              2016-10-08
+            <time itemprop="dateCreated" datetime="2016-10-18T00:00:05+08:00" content="2016-10-18">
+              2016-10-18
             </time>
           </span>
 
@@ -249,7 +249,234 @@
       
         
           
-            <h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p>运输层将网络层在两个端系统之间的交付服务，扩展到运行在两个不同端系统上的应用层进程之间的交付服务，同时提供了额外的<strong>逻辑通信</strong>服务</p>
+            <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
+
+<h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p>我们把沿着通信路径连接相邻节点的通信信道称为<strong>链路</strong>。链路层的主体在网络适配器中实现（即网卡），主要作用是将数据以帧为单位从一块网卡发送给另一个网卡</p>
+<p>但是可能有多个网卡同时向一个网卡发送数据，就有可能出现<strong>碰撞</strong>，当出现数据碰撞时，碰撞的数据便损坏了（0、1混在一起了），所以链路层另一个重要作用是控制流量，划分信道</p>
+<h2 id="多路访问协议"><a href="#多路访问协议" class="headerlink" title="多路访问协议"></a>多路访问协议</h2><p>调度多个网卡向一块网卡发送数据帧的协议叫做多路访问协议，一共有几十种，常见的几种如下</p>
+<h3 id="时分多路复用-TDM"><a href="#时分多路复用-TDM" class="headerlink" title="时分多路复用 TDM"></a>时分多路复用 TDM</h3><p>即将信道的使用时间划分为若干时间片，然后分配给各个终端，每个终端依据所持有的时间片独享信道</p>
+<h3 id="频分多路复用-FDM"><a href="#频分多路复用-FDM" class="headerlink" title="频分多路复用 FDM"></a>频分多路复用 FDM</h3><p>即将信道按照频率划分为多个子信道，然后分配给各个终端，每个终端可以在独自的子信道中传输数据</p>
+<h3 id="时隙ALOHA"><a href="#时隙ALOHA" class="headerlink" title="时隙ALOHA"></a>时隙ALOHA</h3><p>简单来说，就是发送数据前先进行<strong>载波侦听</strong>，若发现其他终端使用信道则继续等待；同时，如果在两个终端同时使用信道，即发生了碰撞，则均停止发送，各自顺延一个随机时间</p>
+<h3 id="令牌传递"><a href="#令牌传递" class="headerlink" title="令牌传递"></a>令牌传递</h3><p>之前的几种协议都有可能造成信道的浪费，令牌传递是指信道对应一个唯一的虚拟令牌，拿到令牌的终端才能使用信道，令牌在各个终端之间传递，当某个终端空闲时可以将令牌直接传给下个终端，这样信道就不需要空闲</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/18/计算机网络知识持续构建（四）——网络层/" itemprop="url">
+                  计算机网络知识持续构建（四）——运输层
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-18T00:00:04+08:00" content="2016-10-18">
+              2016-10-18
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
+
+<h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p>网络层主要作用有两个，<strong>转发</strong>和<strong>路由</strong></p>
+<ul>
+<li>转发是指不同的网络设备的输入链路收到数据报后将其移动到适当的输出链路，可以理解为战术层面</li>
+<li>路由是指网络层必须规划数据报从源端到目标端的路径（主要借助IP，网际协议），可以理解为战略层面的规划</li>
+</ul>
+<p>路由器和交换机是主要的网络设备，便是在网络层发挥作用，负责转发数据报和维护路由表计算路由</p>
+<h2 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h2><p>网络层的服务模型主要有两个<strong>虚电路</strong>网络和<strong>数据报网络</strong></p>
+<h3 id="虚电路"><a href="#虚电路" class="headerlink" title="虚电路"></a>虚电路</h3><p>虚电路网络基本上模仿了现实中的网络，它的数据报中包含各个链路编号，在发送数据前，首先建立一个“真实”的连接，然后发送的数据报会根据已定好的链路编号依次将数据传送到目的地</p>
+<p>路由器也维护相关的连接状态信息</p>
+<h3 id="数据报网络"><a href="#数据报网络" class="headerlink" title="数据报网络"></a>数据报网络</h3><p>这是我们最常见的网络模型，即无需预先建立任何连接，只需要依靠网络设备不断转发。所以每个数据报到达目的地经过的路径可能不一样</p>
+<p><strong>最大传输单元（MTU）</strong>，一个链路层帧能承载的最大数据量，所以其严格限制了IP数据报的长度</p>
+<h2 id="IPv4编址"><a href="#IPv4编址" class="headerlink" title="IPv4编址"></a>IPv4编址</h2><p>即我们平时最常接触到的IP地址，由32个比特位组成，可以表示2^32个地址（大约40亿）。为了记忆方便，一般会用4个十进制数表示，并用点号分开</p>
+<h3 id="子网"><a href="#子网" class="headerlink" title="子网"></a>子网</h3><p>多个IP地址可以组成一个子网，一般会使用<strong>子网掩码</strong>来表示子网的IP前缀，用IP地址和子网掩码进行与运算则可以计算出子网号</p>
+<p>用单个网络前缀来表示多个网络的能力称为<strong>地址聚合</strong>，也称<strong>路由聚合</strong>或<strong>路由摘要</strong>，即几个子网可以用他们的公共前缀来表示，这样可以方便路由表的维护</p>
+<h3 id="分类编址（classful-addressing）"><a href="#分类编址（classful-addressing）" class="headerlink" title="分类编址（classful addressing）"></a>分类编址（classful addressing）</h3><p>即我们通常所说的A、B、C类网络，分别具有8、16、24比特的前缀，这样可以方便网络地址的分配，但由于分配口径过大，容易造成浪费</p>
+<h2 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h2><p>接入网络要具有一个IP地址，但我们经常在各个时候、各个地点都需要接入网络，难道要不断的设置IP地址吗（包括子网掩码、网关、DNS服务器）？</p>
+<p>不需要的，DHCP协议可以给我们自动分配临时IP地址，过程大概是这样</p>
+<ol>
+<li>DHCP服务器发现</li>
+<li>DHCP提供可用IP，以及租用期</li>
+<li>发送DHCP请求</li>
+<li>DHCP服务器发送响应</li>
+</ol>
+<h2 id="NAT"><a href="#NAT" class="headerlink" title="NAT"></a>NAT</h2><p>考虑这个需求，你们公司拥有上百台机器，但是只有一个对外IP，同时因为预算和集群机器经常进进出出（包括手机等移动设备）那么如何解决这些设备的IP地址问题呢？</p>
+<p>一种流行的技术方案是<strong>NAT（地址转换协议）</strong>，主要原理是这些设备在公司的内网具有一个内网IP地址，然后在对外网关那里利用端口来映射内网机器和端口，这样内网的各个机器可以公用这个唯一IP的机器对外通信</p>
+<p>这也会导致一个问题，即从内网可以与外部IP建立连接，但反过来，外部IP想访问内部机器却没有办法，这主要是因为从内网往外访问时NAT转换表中有记录如何转发数据报，而直接从外往内时却无法察觉内部机器</p>
+<p>解决这个问题有个专用术语，<strong>NAT穿越</strong>。原理大致是利用一台额外的主机，内网机器先与此机器建立连接，然后该主机代理内网机器对外接受连接，然后转发给内网机器。国内的花生壳网就提供类似服务</p>
+<h2 id="RIP"><a href="#RIP" class="headerlink" title="RIP"></a>RIP</h2><p>RIP，Routing Information Protocol，路由信息协议，即网络系统如何构建并维护路由表的</p>
+<p>大致说一下原理便是，相邻的路由器之间每个一段时间就会将自己所知道的网络信息与相邻的设备进行交换，经过一定时间的交换后，某个IP便在网络中“发布”了，然后当路由器收到数据报后，根据数据报的IP信息和自身路由表的信息决定如何转发数据报</p>
+<p>一般一个数据报会在15跳内到达目的地，所以超过15跳会被设置为无效数据报</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/18/计算机网络知识持续构建（三）——运输层/" itemprop="url">
+                  计算机网络知识持续构建（三）——运输层
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-18T00:00:03+08:00" content="2016-10-18">
+              2016-10-18
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
+
+<h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p>运输层将网络层在两个端系统之间的交付服务，扩展到运行在两个不同端系统上的应用层进程之间的交付服务，同时提供了额外的<strong>逻辑通信</strong>服务</p>
 <h3 id="简单概念"><a href="#简单概念" class="headerlink" title="简单概念"></a>简单概念</h3><p>一般运输层传输的数据叫做<strong>报文段</strong>，而网络层传输数据称为<strong>数据报</strong>，但由于UDP与网络层数据报很类似，个别也会将UDP传输的数据称为<strong>数据报</strong></p>
 <p><strong>多路复用</strong>、<strong>多路分解</strong>即将网络层所提供的主机到主机的交付服务扩展为两个端进程间的交付服务，其中多路复用是指发送时将不同进程的数据通过不同的socket发送出去，多路分解为将接受到的网络层数据分解到不同的socket中</p>
 <p>端口号是一个16比特的数字，范围为0~65535，其中0~1023为<strong>周知端口号</strong>，是被系统保留并被严格控制的</p>
@@ -360,8 +587,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/08/计算机网络知识持续构建（一）——概览篇/" itemprop="url">
-                  未命名
+                <a class="post-title-link" href="/2016/10/18/计算机网络知识持续构建（二）——应用层/" itemprop="url">
+                  计算机网络知识持续构建（二）——应用层
                 </a>
               
             
@@ -374,8 +601,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-08T00:00:50+08:00" content="2016-10-08">
-              2016-10-08
+            <time itemprop="dateCreated" datetime="2016-10-18T00:00:02+08:00" content="2016-10-18">
+              2016-10-18
             </time>
           </span>
 
@@ -403,7 +630,151 @@
       
         
           
-            <h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p>作为程序员，关于网络方面的知识是必不可少的，本系列以《计算机网络 自顶向下方法》为基础，为大家总结梳理计算机网络方面的主要知识体系和相关原理，必有疏漏错误的地方，欢迎大家指出分享</p>
+            <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
+
+<h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p><strong>网络应用是计算机网络存在的的理由</strong>，所以上至TCP/IP协议栈，下至双绞铜线和光纤，都是为实现网络应用提供各种服务</p>
+<p>但是由于良好的分层模型，我们码农在应用层尽情发挥想象力的时候，除了关注应用之间的数据交互外，其他的对我们基本是透明的，大大降低了复杂度</p>
+<h3 id="网络应用程序体系结构"><a href="#网络应用程序体系结构" class="headerlink" title="网络应用程序体系结构"></a>网络应用程序体系结构</h3><p>应用层常见的程序体系机构有两种</p>
+<ul>
+<li>Client/Server，即客户机/服务器体系结构，该体系结构包含一个始终运行着提供服务的<strong>服务器</strong>，以及分布在各个用户那里的<strong>客户机</strong></li>
+<li>P2P，该体系结构很少依赖服务器，主要利用网络中互相平等的主机提供服务，著名的Skype、BT均便是该体系结构</li>
+</ul>
+<h3 id="我们可以做什么？"><a href="#我们可以做什么？" class="headerlink" title="我们可以做什么？"></a>我们可以做什么？</h3><p>码农在开发网络应用时只需要关注应用层的协议，更底层的我们一般能够做的只是</p>
+<ol>
+<li>选择运输层协议，TCP？UDP？</li>
+<li>设定几个运输层的参数，最大缓存、最大报文长度等</li>
+</ol>
+<p>关于运输层协议的选择，首先要知道的是两种协议为我们提供了什么服务？</p>
+<p>TCP提供了</p>
+<ol>
+<li>面向连接的服务，即在数据交互之前要先建立一个虚拟的‘连接’，这个连接是<strong>全双工</strong>的</li>
+<li>可靠数据传输服务，可靠是指能够保证数据有序、完整的传输</li>
+<li>拥塞控制服务，这可能对单个应用好处不大，但却能够提供整个互联网的性能</li>
+<li>未提供加密服务，如果需要可以使用安全套接字实现SSL</li>
+</ol>
+<p>UDP提供了</p>
+<ol>
+<li>是一个轻量级的协议，不需要建立连接</li>
+<li>不可靠的数据传输服务，不可靠是指不保证数据能付完整、有序的传输</li>
+<li>也没有拥塞控制</li>
+</ol>
+<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>超文本传输协议（HyperText Transfer Protocol），它是web的核心。使用TCP作为它的支撑运输层协议。是一个无状态协议</p>
+<h3 id="HTTP请求报文格式"><a href="#HTTP请求报文格式" class="headerlink" title="HTTP请求报文格式"></a>HTTP请求报文格式</h3><p><img src="/images/computer_net_up_to_down/http_request.png"></p>
+<p>请求报文第一行是请求行（request line），后续为首部行（header line）</p>
+<p>请求行中请求方法一般为POST、GET、PUT、DELETE，协议版本类似<strong>HTTP/1.1</strong></p>
+<h3 id="HTTP响应报文格式"><a href="#HTTP响应报文格式" class="headerlink" title="HTTP响应报文格式"></a>HTTP响应报文格式</h3><p><img src="/images/computer_net_up_to_down/http_response.png"></p>
+<p>一些常见的响应码</p>
+<ul>
+<li>200 ok 请求成功</li>
+<li>301 moved permanently 请求的对象已经被永久转移了</li>
+<li>400 bad request 一个通用差错代码，该请求服务器无法理解</li>
+<li>404 not found 被请求的文档不在服务器</li>
+<li>500 server error 服务器错误</li>
+<li>505 http version is not supported 当前http版本不被支持</li>
+</ul>
+<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p>DNS（域名系统）的主要作用是提供主机名到IP地址的转换服务，由一个分布式的DNS数据库和查询该数据库的协议组成，基于UDP协议。DNS同时也可以提供负载均衡服务。</p>
+<h3 id="DNS分布式、层次数据库"><a href="#DNS分布式、层次数据库" class="headerlink" title="DNS分布式、层次数据库"></a>DNS分布式、层次数据库</h3><ol>
+<li><strong>根DNS服务器</strong> 因特网上有13个根服务器，其中大部分在北美。实际上每台服务器都是冗余的，为了提供安全性和可靠性</li>
+<li><strong>顶级域（TLD）服务器</strong> 这些服务器负责顶级域名（com、org、net、edu）和所有国家的顶级域名（uk、fr、ca等）</li>
+<li><strong>权威DNS服务器</strong> 网络上具有公共可访问主机的组织和公司必须提供公共课访问的DNS记录</li>
+</ol>
+<h2 id="P2P"><a href="#P2P" class="headerlink" title="P2P"></a>P2P</h2><p>P2P是除了服务器-客户端之外另一种重要的网络体系，是在网络中互相对等的两个终端之间进行通信，常见的应用为<strong>文件分发</strong>，即著名的BitTorrent协议；另一种是在对等方中组织并搜索信息；第三种是Skype，一个成功的P2P因特网电话应用。</p>
+<h3 id="BitTorrent"><a href="#BitTorrent" class="headerlink" title="BitTorrent"></a>BitTorrent</h3><p>BT下载的主要原理是充分利用加入分发的各终端的网络上载流量，因为一般情况下，终端的下载流量会远远大于上载。简单来说，就是各终端均匀的下载文件的各个部分，然后再在临近的终端之间互相交换数据，既减轻服务器下载压力，又能提供终端的下载速度，实现了下载的人越多，下载速度越快的“变态”下载</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/18/计算机网络知识持续构建（一）——概览篇/" itemprop="url">
+                  计算机网络知识持续构建（一）——概览篇
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-18T00:00:01+08:00" content="2016-10-18">
+              2016-10-18
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
+
+<h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p>作为程序员，关于网络方面的知识是必不可少的，本系列以《计算机网络 自顶向下方法》为基础，为大家总结梳理计算机网络方面的主要知识体系和相关原理，必有疏漏错误的地方，欢迎大家指出分享</p>
 <h2 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h2><p>可以说整个计算机网络都是围绕以下这个五层模型进行构建的，先大概看一下我自己总结的大白话版</p>
 <table>
 <thead>
@@ -469,227 +840,6 @@
 <p>又比如IP哄骗，快递员把邮件送到了你们的合租房，本来是你室友的东西，但你冒充了他，哄骗了快递员，将数据交付给了你</p>
 <p>另一个臭名昭著的是拒绝服务攻击（DoS），不断的对网络服务发起请求，直到其瘫痪为止，后来又演变为分布式的拒绝服务攻击（DDoS），消耗服务器资源的方式也层出不穷，最简单即暴力请求，复杂点的如利用TCP协议的一些特性，发送一些特制的报文，延长服务器的处理时间，消耗有限资源</p>
 <p>至此，我们大概对计算机网络模型有了一个肤浅的认识，然后将在以下各篇总结中对各个协议的主要细节和工作原理有更深刻的认识</p>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/07/计算机网络知识持续构建（五）——链路层/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-07T23:20:32+08:00" content="2016-10-07">
-              2016-10-07
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p>我们把沿着通信路径连接相邻节点的通信信道称为<strong>链路</strong>。链路层的主体在网络适配器中实现（即网卡），主要作用是将数据以帧为单位从一块网卡发送给另一个网卡</p>
-<p>但是可能有多个网卡同时向一个网卡发送数据，就有可能出现<strong>碰撞</strong>，当出现数据碰撞时，碰撞的数据便损坏了（0、1混在一起了），所以链路层另一个重要作用是控制流量，划分信道</p>
-<h2 id="多路访问协议"><a href="#多路访问协议" class="headerlink" title="多路访问协议"></a>多路访问协议</h2><p>调度多个网卡向一块网卡发送数据帧的协议叫做多路访问协议，一共有几十种，常见的几种如下</p>
-<h3 id="时分多路复用-TDM"><a href="#时分多路复用-TDM" class="headerlink" title="时分多路复用 TDM"></a>时分多路复用 TDM</h3><p>即将信道的使用时间划分为若干时间片，然后分配给各个终端，每个终端依据所持有的时间片独享信道</p>
-<h3 id="频分多路复用-FDM"><a href="#频分多路复用-FDM" class="headerlink" title="频分多路复用 FDM"></a>频分多路复用 FDM</h3><p>即将信道按照频率划分为多个子信道，然后分配给各个终端，每个终端可以在独自的子信道中传输数据</p>
-<h3 id="时隙ALOHA"><a href="#时隙ALOHA" class="headerlink" title="时隙ALOHA"></a>时隙ALOHA</h3><p>简单来说，就是发送数据前先进行<strong>载波侦听</strong>，若发现其他终端使用信道则继续等待；同时，如果在两个终端同时使用信道，即发生了碰撞，则均停止发送，各自顺延一个随机时间</p>
-<h3 id="令牌传递"><a href="#令牌传递" class="headerlink" title="令牌传递"></a>令牌传递</h3><p>之前的几种协议都有可能造成信道的浪费，令牌传递是指信道对应一个唯一的虚拟令牌，拿到令牌的终端才能使用信道，令牌在各个终端之间传递，当某个终端空闲时可以将令牌直接传给下个终端，这样信道就不需要空闲</p>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/07/计算机网络知识持续构建（四）——网络层/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-07T18:04:18+08:00" content="2016-10-07">
-              2016-10-07
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p>网络层主要作用有两个，<strong>转发</strong>和<strong>路由</strong></p>
-<ul>
-<li>转发是指不同的网络设备的输入链路收到数据报后将其移动到适当的输出链路，可以理解为战术层面</li>
-<li>路由是指网络层必须规划数据报从源端到目标端的路径（主要借助IP，网际协议），可以理解为战略层面的规划</li>
-</ul>
-<p>路由器和交换机是主要的网络设备，便是在网络层发挥作用，负责转发数据报和维护路由表计算路由</p>
-<h2 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h2><p>网络层的服务模型主要有两个<strong>虚电路</strong>网络和<strong>数据报网络</strong></p>
-<h3 id="虚电路"><a href="#虚电路" class="headerlink" title="虚电路"></a>虚电路</h3><p>虚电路网络基本上模仿了现实中的网络，它的数据报中包含各个链路编号，在发送数据前，首先建立一个“真实”的连接，然后发送的数据报会根据已定好的链路编号依次将数据传送到目的地</p>
-<p>路由器也维护相关的连接状态信息</p>
-<h3 id="数据报网络"><a href="#数据报网络" class="headerlink" title="数据报网络"></a>数据报网络</h3><p>这是我们最常见的网络模型，即无需预先建立任何连接，只需要依靠网络设备不断转发。所以每个数据报到达目的地经过的路径可能不一样</p>
-<p><strong>最大传输单元（MTU）</strong>，一个链路层帧能承载的最大数据量，所以其严格限制了IP数据报的长度</p>
-<h2 id="IPv4编址"><a href="#IPv4编址" class="headerlink" title="IPv4编址"></a>IPv4编址</h2><p>即我们平时最常接触到的IP地址，由32个比特位组成，可以表示2^32个地址（大约40亿）。为了记忆方便，一般会用4个十进制数表示，并用点号分开</p>
-<h3 id="子网"><a href="#子网" class="headerlink" title="子网"></a>子网</h3><p>多个IP地址可以组成一个子网，一般会使用<strong>子网掩码</strong>来表示子网的IP前缀，用IP地址和子网掩码进行与运算则可以计算出子网号</p>
-<p>用单个网络前缀来表示多个网络的能力称为<strong>地址聚合</strong>，也称<strong>路由聚合</strong>或<strong>路由摘要</strong>，即几个子网可以用他们的公共前缀来表示，这样可以方便路由表的维护</p>
-<h3 id="分类编址（classful-addressing）"><a href="#分类编址（classful-addressing）" class="headerlink" title="分类编址（classful addressing）"></a>分类编址（classful addressing）</h3><p>即我们通常所说的A、B、C类网络，分别具有8、16、24比特的前缀，这样可以方便网络地址的分配，但由于分配口径过大，容易造成浪费</p>
-<h2 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h2><p>接入网络要具有一个IP地址，但我们经常在各个时候、各个地点都需要接入网络，难道要不断的设置IP地址吗（包括子网掩码、网关、DNS服务器）？</p>
-<p>不需要的，DHCP协议可以给我们自动分配临时IP地址，过程大概是这样</p>
-<ol>
-<li>DHCP服务器发现</li>
-<li>DHCP提供可用IP，以及租用期</li>
-<li>发送DHCP请求</li>
-<li>DHCP服务器发送响应</li>
-</ol>
-<h2 id="NAT"><a href="#NAT" class="headerlink" title="NAT"></a>NAT</h2><p>考虑这个需求，你们公司拥有上百台机器，但是只有一个对外IP，同时因为预算和集群机器经常进进出出（包括手机等移动设备）那么如何解决这些设备的IP地址问题呢？</p>
-<p>一种流行的技术方案是<strong>NAT（地址转换协议）</strong>，主要原理是这些设备在公司的内网具有一个内网IP地址，然后在对外网关那里利用端口来映射内网机器和端口，这样内网的各个机器可以公用这个唯一IP的机器对外通信</p>
-<p>这也会导致一个问题，即从内网可以与外部IP建立连接，但反过来，外部IP想访问内部机器却没有办法，这主要是因为从内网往外访问时NAT转换表中有记录如何转发数据报，而直接从外往内时却无法察觉内部机器</p>
-<p>解决这个问题有个专用术语，<strong>NAT穿越</strong>。原理大致是利用一台额外的主机，内网机器先与此机器建立连接，然后该主机代理内网机器对外接受连接，然后转发给内网机器。国内的花生壳网就提供类似服务</p>
-<h2 id="RIP"><a href="#RIP" class="headerlink" title="RIP"></a>RIP</h2><p>RIP，Routing Information Protocol，路由信息协议，即网络系统如何构建并维护路由表的</p>
-<p>大致说一下原理便是，相邻的路由器之间每个一段时间就会将自己所知道的网络信息与相邻的设备进行交换，经过一定时间的交换后，某个IP便在网络中“发布”了，然后当路由器收到数据报后，根据数据报的IP信息和自身路由表的信息决定如何转发数据报</p>
-<p>一般一个数据报会在15跳内到达目的地，所以超过15跳会被设置为无效数据报</p>
 
           
         
@@ -886,148 +1036,6 @@
               阅读全文 &raquo;
             </a>
           </div>
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/04/计算机网络知识持续构建（二）——应用层/" itemprop="url">
-                  MySQL不权威指南
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-04T11:24:49+08:00" content="2016-04-04">
-              2016-04-04
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
-
-<h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p><strong>网络应用是计算机网络存在的的理由</strong>，所以上至TCP/IP协议栈，下至双绞铜线和光纤，都是为实现网络应用提供各种服务</p>
-<p>但是由于良好的分层模型，我们码农在应用层尽情发挥想象力的时候，除了关注应用之间的数据交互外，其他的对我们基本是透明的，大大降低了复杂度</p>
-<h3 id="网络应用程序体系结构"><a href="#网络应用程序体系结构" class="headerlink" title="网络应用程序体系结构"></a>网络应用程序体系结构</h3><p>应用层常见的程序体系机构有两种</p>
-<ul>
-<li>Client/Server，即客户机/服务器体系结构，该体系结构包含一个始终运行着提供服务的<strong>服务器</strong>，以及分布在各个用户那里的<strong>客户机</strong></li>
-<li>P2P，该体系结构很少依赖服务器，主要利用网络中互相平等的主机提供服务，著名的Skype、BT均便是该体系结构</li>
-</ul>
-<h3 id="我们可以做什么？"><a href="#我们可以做什么？" class="headerlink" title="我们可以做什么？"></a>我们可以做什么？</h3><p>码农在开发网络应用时只需要关注应用层的协议，更底层的我们一般能够做的只是</p>
-<ol>
-<li>选择运输层协议，TCP？UDP？</li>
-<li>设定几个运输层的参数，最大缓存、最大报文长度等</li>
-</ol>
-<p>关于运输层协议的选择，首先要知道的是两种协议为我们提供了什么服务？</p>
-<p>TCP提供了</p>
-<ol>
-<li>面向连接的服务，即在数据交互之前要先建立一个虚拟的‘连接’，这个连接是<strong>全双工</strong>的</li>
-<li>可靠数据传输服务，可靠是指能够保证数据有序、完整的传输</li>
-<li>拥塞控制服务，这可能对单个应用好处不大，但却能够提供整个互联网的性能</li>
-<li>未提供加密服务，如果需要可以使用安全套接字实现SSL</li>
-</ol>
-<p>UDP提供了</p>
-<ol>
-<li>是一个轻量级的协议，不需要建立连接</li>
-<li>不可靠的数据传输服务，不可靠是指不保证数据能付完整、有序的传输</li>
-<li>也没有拥塞控制</li>
-</ol>
-<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>超文本传输协议（HyperText Transfer Protocol），它是web的核心。使用TCP作为它的支撑运输层协议。是一个无状态协议</p>
-<h3 id="HTTP请求报文格式"><a href="#HTTP请求报文格式" class="headerlink" title="HTTP请求报文格式"></a>HTTP请求报文格式</h3><p><img src="/images/computer_net_up_to_down/http_request.png"></p>
-<p>请求报文第一行是请求行（request line），后续为首部行（header line）</p>
-<p>请求行中请求方法一般为POST、GET、PUT、DELETE，协议版本类似<strong>HTTP/1.1</strong></p>
-<h3 id="HTTP响应报文格式"><a href="#HTTP响应报文格式" class="headerlink" title="HTTP响应报文格式"></a>HTTP响应报文格式</h3><p><img src="/images/computer_net_up_to_down/http_response.png"></p>
-<p>一些常见的响应码</p>
-<ul>
-<li>200 ok 请求成功</li>
-<li>301 moved permanently 请求的对象已经被永久转移了</li>
-<li>400 bad request 一个通用差错代码，该请求服务器无法理解</li>
-<li>404 not found 被请求的文档不在服务器</li>
-<li>500 server error 服务器错误</li>
-<li>505 http version is not supported 当前http版本不被支持</li>
-</ul>
-<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p>DNS（域名系统）的主要作用是提供主机名到IP地址的转换服务，由一个分布式的DNS数据库和查询该数据库的协议组成，基于UDP协议。DNS同时也可以提供负载均衡服务。</p>
-<h3 id="DNS分布式、层次数据库"><a href="#DNS分布式、层次数据库" class="headerlink" title="DNS分布式、层次数据库"></a>DNS分布式、层次数据库</h3><ol>
-<li><strong>根DNS服务器</strong> 因特网上有13个根服务器，其中大部分在北美。实际上每台服务器都是冗余的，为了提供安全性和可靠性</li>
-<li><strong>顶级域（TLD）服务器</strong> 这些服务器负责顶级域名（com、org、net、edu）和所有国家的顶级域名（uk、fr、ca等）</li>
-<li><strong>权威DNS服务器</strong> 网络上具有公共可访问主机的组织和公司必须提供公共课访问的DNS记录</li>
-</ol>
-<h2 id="P2P"><a href="#P2P" class="headerlink" title="P2P"></a>P2P</h2><p>P2P是除了服务器-客户端之外另一种重要的网络体系，是在网络中互相对等的两个终端之间进行通信，常见的应用为<strong>文件分发</strong>，即著名的BitTorrent协议；另一种是在对等方中组织并搜索信息；第三种是Skype，一个成功的P2P因特网电话应用。</p>
-<h3 id="BitTorrent"><a href="#BitTorrent" class="headerlink" title="BitTorrent"></a>BitTorrent</h3><p>BT下载的主要原理是充分利用加入分发的各终端的网络上载流量，因为一般情况下，终端的下载流量会远远大于上载。简单来说，就是各终端均匀的下载文件的各个部分，然后再在临近的终端之间互相交换数据，既减轻服务器下载压力，又能提供终端的下载速度，实现了下载的人越多，下载速度越快的“变态”下载</p>
-
-          
         
       
     </div>

@@ -59,20 +59,20 @@
 
 <meta name="description" content="绪我们把沿着通信路径连接相邻节点的通信信道称为链路。链路层的主体在网络适配器中实现（即网卡），主要作用是将数据以帧为单位从一块网卡发送给另一个网卡
 但是可能有多个网卡同时向一个网卡发送数据，就有可能出现碰撞，当出现数据碰撞时，碰撞的数据便损坏了（0、1混在一起了），所以链路层另一个重要作用是控制流量，划分信道
-多路访问协议调度多个网卡向一块网卡发送数据帧的协议叫做多路访问协议，一共有几十种，常见的">
+多路访问协议调度多个网卡向一块网卡发送数据帧的协议叫做多路访问协议，一共有几十种，常">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Liufxlucky365">
-<meta property="og:url" content="http://yoursite.com/2016/10/07/计算机网络知识持续构建（五）——链路层/index.html">
+<meta property="og:title" content="计算机网络知识持续构建（五）——链路层">
+<meta property="og:url" content="http://yoursite.com/2016/10/18/计算机网络知识持续构建（五）——链路层/index.html">
 <meta property="og:site_name" content="Liufxlucky365">
 <meta property="og:description" content="绪我们把沿着通信路径连接相邻节点的通信信道称为链路。链路层的主体在网络适配器中实现（即网卡），主要作用是将数据以帧为单位从一块网卡发送给另一个网卡
 但是可能有多个网卡同时向一个网卡发送数据，就有可能出现碰撞，当出现数据碰撞时，碰撞的数据便损坏了（0、1混在一起了），所以链路层另一个重要作用是控制流量，划分信道
-多路访问协议调度多个网卡向一块网卡发送数据帧的协议叫做多路访问协议，一共有几十种，常见的">
-<meta property="og:updated_time" content="2016-10-07T15:44:18.000Z">
+多路访问协议调度多个网卡向一块网卡发送数据帧的协议叫做多路访问协议，一共有几十种，常">
+<meta property="og:updated_time" content="2016-10-07T16:06:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Liufxlucky365">
+<meta name="twitter:title" content="计算机网络知识持续构建（五）——链路层">
 <meta name="twitter:description" content="绪我们把沿着通信路径连接相邻节点的通信信道称为链路。链路层的主体在网络适配器中实现（即网卡），主要作用是将数据以帧为单位从一块网卡发送给另一个网卡
 但是可能有多个网卡同时向一个网卡发送数据，就有可能出现碰撞，当出现数据碰撞时，碰撞的数据便损坏了（0、1混在一起了），所以链路层另一个重要作用是控制流量，划分信道
-多路访问协议调度多个网卡向一块网卡发送数据帧的协议叫做多路访问协议，一共有几十种，常见的">
+多路访问协议调度多个网卡向一块网卡发送数据帧的协议叫做多路访问协议，一共有几十种，常">
 
 
 
@@ -90,7 +90,7 @@
   };
 </script>
 
-  <title>  | Liufxlucky365 </title>
+  <title> 计算机网络知识持续构建（五）——链路层 | Liufxlucky365 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -210,7 +210,7 @@
             
             
               
-                
+                计算机网络知识持续构建（五）——链路层
               
             
           </h1>
@@ -222,8 +222,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-07T23:20:32+08:00" content="2016-10-07">
-              2016-10-07
+            <time itemprop="dateCreated" datetime="2016-10-18T00:00:05+08:00" content="2016-10-18">
+              2016-10-18
             </time>
           </span>
 
@@ -249,7 +249,9 @@
       
 
       
-        <h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p>我们把沿着通信路径连接相邻节点的通信信道称为<strong>链路</strong>。链路层的主体在网络适配器中实现（即网卡），主要作用是将数据以帧为单位从一块网卡发送给另一个网卡</p>
+        <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
+
+<h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p>我们把沿着通信路径连接相邻节点的通信信道称为<strong>链路</strong>。链路层的主体在网络适配器中实现（即网卡），主要作用是将数据以帧为单位从一块网卡发送给另一个网卡</p>
 <p>但是可能有多个网卡同时向一个网卡发送数据，就有可能出现<strong>碰撞</strong>，当出现数据碰撞时，碰撞的数据便损坏了（0、1混在一起了），所以链路层另一个重要作用是控制流量，划分信道</p>
 <h2 id="多路访问协议"><a href="#多路访问协议" class="headerlink" title="多路访问协议"></a>多路访问协议</h2><p>调度多个网卡向一块网卡发送数据帧的协议叫做多路访问协议，一共有几十种，常见的几种如下</p>
 <h3 id="时分多路复用-TDM"><a href="#时分多路复用-TDM" class="headerlink" title="时分多路复用 TDM"></a>时分多路复用 TDM</h3><p>即将信道的使用时间划分为若干时间片，然后分配给各个终端，每个终端依据所持有的时间片独享信道</p>
@@ -279,17 +281,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/07/计算机网络知识持续构建（四）——网络层/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2016/10/18/计算机网络知识持续构建（四）——网络层/" rel="next" title="计算机网络知识持续构建（四）——运输层">
+                <i class="fa fa-chevron-left"></i> 计算机网络知识持续构建（四）——运输层
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/08/计算机网络知识持续构建（一）——概览篇/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
