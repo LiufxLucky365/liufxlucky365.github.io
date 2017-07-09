@@ -57,19 +57,16 @@
 
 
 
-<meta name="description" content="写在最前项目开发过程中，一个重要的副产品就是NLPC服务类。项目中的多个服务都依赖此类此类提供了公司内部NLPC服务的http接口封装，包括lextag wordseg wordner wordpos 四个常用算子但整个类的完善并不是一蹴而就的，而是在不断的掉坑爬坑的过程中逐渐完善的先对这个过程做一个简单的小记
-NLPC Http接口封装最初是完成了类最核心的功能部分，即nlpc的接口封装结构">
+<meta name="description" content="写在最前项目开发过程中，一个重要的副产品就是NLPC服务类。项目中的多个服务都依赖此类此类提供了公司内部NLPC服务的http接口封装，包括lextag wordseg wordner wordpos 四个常用算子但整个类的完善并不是一蹴而就的，而是在不断的掉坑爬坑的过程中逐渐完善的先对这个过程做一个简单的小记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NLPC服务类开发踩坑小结">
 <meta property="og:url" content="http://yoursite.com/2017/07/09/NLPC服务类开发踩坑小结/index.html">
 <meta property="og:site_name" content="Liufxlucky365">
-<meta property="og:description" content="写在最前项目开发过程中，一个重要的副产品就是NLPC服务类。项目中的多个服务都依赖此类此类提供了公司内部NLPC服务的http接口封装，包括lextag wordseg wordner wordpos 四个常用算子但整个类的完善并不是一蹴而就的，而是在不断的掉坑爬坑的过程中逐渐完善的先对这个过程做一个简单的小记
-NLPC Http接口封装最初是完成了类最核心的功能部分，即nlpc的接口封装结构">
-<meta property="og:updated_time" content="2017-07-09T09:01:49.000Z">
+<meta property="og:description" content="写在最前项目开发过程中，一个重要的副产品就是NLPC服务类。项目中的多个服务都依赖此类此类提供了公司内部NLPC服务的http接口封装，包括lextag wordseg wordner wordpos 四个常用算子但整个类的完善并不是一蹴而就的，而是在不断的掉坑爬坑的过程中逐渐完善的先对这个过程做一个简单的小记">
+<meta property="og:updated_time" content="2017-07-09T09:11:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLPC服务类开发踩坑小结">
-<meta name="twitter:description" content="写在最前项目开发过程中，一个重要的副产品就是NLPC服务类。项目中的多个服务都依赖此类此类提供了公司内部NLPC服务的http接口封装，包括lextag wordseg wordner wordpos 四个常用算子但整个类的完善并不是一蹴而就的，而是在不断的掉坑爬坑的过程中逐渐完善的先对这个过程做一个简单的小记
-NLPC Http接口封装最初是完成了类最核心的功能部分，即nlpc的接口封装结构">
+<meta name="twitter:description" content="写在最前项目开发过程中，一个重要的副产品就是NLPC服务类。项目中的多个服务都依赖此类此类提供了公司内部NLPC服务的http接口封装，包括lextag wordseg wordner wordpos 四个常用算子但整个类的完善并不是一蹴而就的，而是在不断的掉坑爬坑的过程中逐渐完善的先对这个过程做一个简单的小记">
 
 
 
@@ -249,6 +246,7 @@ NLPC Http接口封装最初是完成了类最核心的功能部分，即nlpc的�
         <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
 
 <h3 id="写在最前"><a href="#写在最前" class="headerlink" title="写在最前"></a>写在最前</h3><p>项目开发过程中，一个重要的副产品就是NLPC服务类。项目中的多个服务都依赖此类<br>此类提供了公司内部NLPC服务的http接口封装，包括lextag wordseg wordner wordpos 四个常用算子<br>但整个类的完善并不是一蹴而就的，而是在不断的掉坑爬坑的过程中逐渐完善的<br>先对这个过程做一个简单的小记</p>
+<a id="more"></a>
 <h3 id="NLPC-Http接口封装"><a href="#NLPC-Http接口封装" class="headerlink" title="NLPC Http接口封装"></a>NLPC Http接口封装</h3><p>最初是完成了类最核心的功能部分，即nlpc的接口封装<br>结构也十分简单，一个请求发送方法，和四个算子的返回结果解析方法<br>不过这期间也遇到不少问题</p>
 <h4 id="参数格式"><a href="#参数格式" class="headerlink" title="参数格式"></a>参数格式</h4><p>这里面的一个坑是一般的web接口都是直接发送http参数，而公司的nlpc居然是要发送json格式的字符串<br>这个有违常理的接口着实让我抓耳挠腮的几个小时</p>
 <h4 id="参数中的中文"><a href="#参数中的中文" class="headerlink" title="参数中的中文"></a>参数中的中文</h4><p>php生成json字符串使用json_encode就可，但是有个问题却是php会默认把中文转换成unicode，这样nlpc便无法识别。解决的办法便如下<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$strReq = <span class="string">"一串中文"</span>;</span><br><span class="line">$strReq = urlencode($strReq);</span><br><span class="line">$jsonReq = json_encode($strReq);</span><br><span class="line">$jsonReqPlain = urldecode($jsonReq);</span><br></pre></td></tr></table></figure></p>
@@ -260,7 +258,7 @@ NLPC Http接口封装最初是完成了类最核心的功能部分，即nlpc的�
 <h3 id="繁体中文"><a href="#繁体中文" class="headerlink" title="繁体中文"></a>繁体中文</h3><p>经过以上的几次优化后，过了几天平静的日子，直到繁体中文的到来。。。</p>
 <h4 id="繁体的问题"><a href="#繁体的问题" class="headerlink" title="繁体的问题"></a>繁体的问题</h4><p><strong>问题</strong><br>最初发现的问题是请求包含繁体时，返回结果为解析错误<br>后来研究发现，并不是所有的繁体有此问题，只有个别utf8编码是\5c结尾时会有此错误<br>搜索后发现因为\5c是跟语言常用的转义字符\编码相同导致解析错误</p>
 <p><strong>gbk编码</strong><br>既然utf8编码有此问题，而且nlpc默认支持的是gbk编码<br>所以想着是否能够通过使用gbk来避免此问题，但繁体字是没有gbk编码的，所以使用big5对中文进行编码<br>经过实际测试确实可以避免此问题，这里只能吐槽nlpc对不同编码的支持问题了</p>
-<p><strong>繁体、简体转换</strong><br>但还是高兴太早，big5编码后虽然能够正常调用，但返回的结果确实乱七八糟，nlpc对掺杂了繁体的字符串解析效果很差<br>为了解决这个问题想到了将繁体转换为简体</p>
+<p><strong>繁体、简体转换</strong><br>但还是高兴太早，big5编码后虽然能够正常调用，但返回的结果却是乱七八糟，nlpc对掺杂了繁体的字符串解析效果很差<br>为了解决这个问题想到了将繁体转换为简体</p>
 <p>此时又掉了一个大坑，我直接使用了将utf8字符串先转换为big5，然后再将big5转换为gbk，以为这样便可以完成繁简体转换，实际测试后，发现确实可以，便上线了</p>
 <p>但后来发现项目数据存在异常，经过排查后发现字符串经过big5转换后出现了大量的丢失情况<br>研究后发现，是因为<code>big5并不是我想象的是gbk的父集，而是两者只是存在交集关系</code><br>搜索渊源后发现</p>
 <blockquote>

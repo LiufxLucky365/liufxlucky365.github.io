@@ -248,49 +248,14 @@
 
       
         
-          
-            <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
+          <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
 
 <h3 id="写在最前"><a href="#写在最前" class="headerlink" title="写在最前"></a>写在最前</h3><p>项目开发过程中，一个重要的副产品就是NLPC服务类。项目中的多个服务都依赖此类<br>此类提供了公司内部NLPC服务的http接口封装，包括lextag wordseg wordner wordpos 四个常用算子<br>但整个类的完善并不是一蹴而就的，而是在不断的掉坑爬坑的过程中逐渐完善的<br>先对这个过程做一个简单的小记</p>
-<h3 id="NLPC-Http接口封装"><a href="#NLPC-Http接口封装" class="headerlink" title="NLPC Http接口封装"></a>NLPC Http接口封装</h3><p>最初是完成了类最核心的功能部分，即nlpc的接口封装<br>结构也十分简单，一个请求发送方法，和四个算子的返回结果解析方法<br>不过这期间也遇到不少问题</p>
-<h4 id="参数格式"><a href="#参数格式" class="headerlink" title="参数格式"></a>参数格式</h4><p>这里面的一个坑是一般的web接口都是直接发送http参数，而公司的nlpc居然是要发送json格式的字符串<br>这个有违常理的接口着实让我抓耳挠腮的几个小时</p>
-<h4 id="参数中的中文"><a href="#参数中的中文" class="headerlink" title="参数中的中文"></a>参数中的中文</h4><p>php生成json字符串使用json_encode就可，但是有个问题却是php会默认把中文转换成unicode，这样nlpc便无法识别。解决的办法便如下<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$strReq = <span class="string">"一串中文"</span>;</span><br><span class="line">$strReq = urlencode($strReq);</span><br><span class="line">$jsonReq = json_encode($strReq);</span><br><span class="line">$jsonReqPlain = urldecode($jsonReq);</span><br></pre></td></tr></table></figure></p>
-<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>类基本功能稳定后，便投入到了生产环境中使用。此时遇到了另一个问题就是性能问题，因为NLPC类是基于http的，每次解析都会有一次网络请求，而且因为上层调用经常不会缓存解析结果，而是简单的多次调用。所以接下来就在类中内置了一个缓存层</p>
-<p>做法很简单，直接使用php的static变量存储，每次请求前先检查缓存是否命中，不命中则生成结果并缓存<br>同时为了防止内存泄漏，一个简单做法是当缓存大于10000时，便清空缓存</p>
-<h3 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h3><p>再后来就遇到了可用性的问题，发现隔一段时间，就会有几个小时某个算子频繁超时，阻塞了流程，为了解决可用性问题，又在类中添加了异常处理模块</p>
-<h4 id="服务切换"><a href="#服务切换" class="headerlink" title="服务切换"></a>服务切换</h4><p>nlpc服务提供了北京、南京多个接口，代码中在检测到结果返回异常后，便会自动将结果转发给另一个接口，而且增加了重试次数</p>
-<h4 id="异常分级"><a href="#异常分级" class="headerlink" title="异常分级"></a>异常分级</h4><p>对异常进行了分级。对于请求超时异常，则放回队列，等待下次调度。对于解析错误或者其他错误，考虑到数目不多，则记录结果后直接跳过</p>
-<h3 id="繁体中文"><a href="#繁体中文" class="headerlink" title="繁体中文"></a>繁体中文</h3><p>经过以上的几次优化后，过了几天平静的日子，直到繁体中文的到来。。。</p>
-<h4 id="繁体的问题"><a href="#繁体的问题" class="headerlink" title="繁体的问题"></a>繁体的问题</h4><p><strong>问题</strong><br>最初发现的问题是请求包含繁体时，返回结果为解析错误<br>后来研究发现，并不是所有的繁体有此问题，只有个别utf8编码是\5c结尾时会有此错误<br>搜索后发现因为\5c是跟语言常用的转义字符\编码相同导致解析错误</p>
-<p><strong>gbk编码</strong><br>既然utf8编码有此问题，而且nlpc默认支持的是gbk编码<br>所以想着是否能够通过使用gbk来避免此问题，但繁体字是没有gbk编码的，所以使用big5对中文进行编码<br>经过实际测试确实可以避免此问题，这里只能吐槽nlpc对不同编码的支持问题了</p>
-<p><strong>繁体、简体转换</strong><br>但还是高兴太早，big5编码后虽然能够正常调用，但返回的结果确实乱七八糟，nlpc对掺杂了繁体的字符串解析效果很差<br>为了解决这个问题想到了将繁体转换为简体</p>
-<p>此时又掉了一个大坑，我直接使用了将utf8字符串先转换为big5，然后再将big5转换为gbk，以为这样便可以完成繁简体转换，实际测试后，发现确实可以，便上线了</p>
-<p>但后来发现项目数据存在异常，经过排查后发现字符串经过big5转换后出现了大量的丢失情况<br>研究后发现，是因为<code>big5并不是我想象的是gbk的父集，而是两者只是存在交集关系</code><br>搜索渊源后发现</p>
-<blockquote>
-<p>gbk是大陆的中文编码，是对gb2312的扩展，包含了少数民族文字和所有简体字<br>而big5是中国台湾的字符编码，主要是对繁体字进行编码。但因为部分汉字的繁简体是一致的，所以这些汉字是可以<br>在big5和gbk之间正常转换的。但大部分经过转换后边乱码了</p>
-</blockquote>
-<p>所以通过编码的方式快速实现繁简体转换的路是行不通的</p>
-<p><strong>繁体转简体实现</strong><br>后来找到一个php类实现了常见繁简体的转换，思路也很简单</p>
-<p>依靠php内置函数实现繁简体转换的话，只能通过编码来进行。比如big5转换gbk，内置函数是通过比较unicode的对应关系来实现转换的，但对于gbk中不包含的繁体字因为不存在对应关系，所以无法转换</p>
-<p>所以便自建了一个繁简体unicode的对应关系表<br>然后通过遍历字符字节，实现繁简体的转换<br>优势是</p>
-<ul>
-<li>不需要进行编码转换，均是utf8编码</li>
-<li>包含了常见的三千字，如果有其他生僻字，可以自行添加</li>
-<li>代码简单，方便定制<br>但也有个缺点就是，该库的繁简体是一对一的，而真实情况是<code>简体字不光简化了书写，而且简化了词义，一个简体字往往对应多个繁体字</code>，比如干字，则根据语义可以对应多个繁体字幹、檊、簳。。。很无语是吧</li>
-</ul>
-<p>如此便实现了繁简体的转换</p>
-<p>还有一个需要收尾的是，虽然nlpc能够正常解析了，但试想使用者输入了“慶酆包子”，而我的类返回的分词却是“庆丰/包子”，分词虽然对了，却破坏了输入，不免为调用者埋下了坑</p>
-<p>所以这里做了一个小的转换，输入前对繁体进行转换，同时记录转换的字，在返回结果前再对结果进行还原，这里对前面提到到那个类进行了简单的修改</p>
-<p>如此则大功搞成</p>
-<h3 id="桥豆麻袋！-v来袭"><a href="#桥豆麻袋！-v来袭" class="headerlink" title="桥豆麻袋！\v来袭"></a>桥豆麻袋！\v来袭</h3><p>本以为此事告一段落，不曾想又有意外来了。某天发现输入包含一些不可见字符如\r\n\f\t\v或者转义字符\时，nlpc倒是可以正常工作，可当json_decode结果时却返回错误，导致服务失效。。。</p>
-<p>经过排查后，进行过滤解决</p>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>至此，该服务可以稳定处理各种输入了。还有一些工作是未来可以做的，如</p>
-<ul>
-<li>通过内部资源访问层来提高服务的性能和可维护性</li>
-<li>网络请求性能确实是个问题，在处理用户上报的场景时10ms的开销尚不是问题，但当数据清洗时，上百万的数据，10ms就成了重大的负担，后续则需要将底层引擎修改为可以使用本地服务，不进行网络请求</li>
-</ul>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/07/09/NLPC服务类开发踩坑小结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
