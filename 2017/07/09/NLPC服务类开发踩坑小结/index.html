@@ -57,18 +57,18 @@
 
 
 
-<meta name="description" content="### 写在最前项目开发过程中，一个重要的副产品就是NLPC工具类。项目中的多个服务都依赖此类。此类提供了公司内部NLPC服务的http接口封装，包括lextag wordseg wordner wordpos 四个常用算子
+<meta name="description" content="写在最前项目开发过程中，一个重要的副产品就是NLPC工具类。项目中的多个服务都依赖此类。此类提供了公司内部NLPC服务的http接口封装，包括lextag wordseg wordner wordpos 四个常用算子
 但整个类的完善并不是一蹴而就的，而是在不断的掉坑爬坑的过程中逐渐完善的，现对这个过程做一个简单的小记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NLPC工具类开发踩坑小结">
 <meta property="og:url" content="http://yoursite.com/2017/07/09/NLPC服务类开发踩坑小结/index.html">
 <meta property="og:site_name" content="Liufxlucky365">
-<meta property="og:description" content="### 写在最前项目开发过程中，一个重要的副产品就是NLPC工具类。项目中的多个服务都依赖此类。此类提供了公司内部NLPC服务的http接口封装，包括lextag wordseg wordner wordpos 四个常用算子
+<meta property="og:description" content="写在最前项目开发过程中，一个重要的副产品就是NLPC工具类。项目中的多个服务都依赖此类。此类提供了公司内部NLPC服务的http接口封装，包括lextag wordseg wordner wordpos 四个常用算子
 但整个类的完善并不是一蹴而就的，而是在不断的掉坑爬坑的过程中逐渐完善的，现对这个过程做一个简单的小记">
-<meta property="og:updated_time" content="2017-07-09T14:11:17.000Z">
+<meta property="og:updated_time" content="2017-07-09T14:14:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLPC工具类开发踩坑小结">
-<meta name="twitter:description" content="### 写在最前项目开发过程中，一个重要的副产品就是NLPC工具类。项目中的多个服务都依赖此类。此类提供了公司内部NLPC服务的http接口封装，包括lextag wordseg wordner wordpos 四个常用算子
+<meta name="twitter:description" content="写在最前项目开发过程中，一个重要的副产品就是NLPC工具类。项目中的多个服务都依赖此类。此类提供了公司内部NLPC服务的http接口封装，包括lextag wordseg wordner wordpos 四个常用算子
 但整个类的完善并不是一蹴而就的，而是在不断的掉坑爬坑的过程中逐渐完善的，现对这个过程做一个简单的小记">
 
 
@@ -248,7 +248,7 @@
       
         <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
 
-<p>﻿### 写在最前<br>项目开发过程中，一个重要的副产品就是NLPC工具类。项目中的多个服务都依赖此类。此类提供了公司内部NLPC服务的http接口封装，包括lextag wordseg wordner wordpos 四个常用算子</p>
+<h3 id="写在最前"><a href="#写在最前" class="headerlink" title="写在最前"></a>写在最前</h3><p>项目开发过程中，一个重要的副产品就是NLPC工具类。项目中的多个服务都依赖此类。此类提供了公司内部NLPC服务的http接口封装，包括lextag wordseg wordner wordpos 四个常用算子</p>
 <p>但整个类的完善并不是一蹴而就的，而是在不断的掉坑爬坑的过程中逐渐完善的，现对这个过程做一个简单的小记</p>
 <a id="more"></a>
 <h3 id="NLPC-Http接口封装"><a href="#NLPC-Http接口封装" class="headerlink" title="NLPC Http接口封装"></a>NLPC Http接口封装</h3><p>最初是完成了类最核心的功能部分，即nlpc的接口封装，结构也十分简单，一个请求发送方法，和四个算子的返回结果解析方法，不过这期间也遇到不少问题</p>
@@ -421,7 +421,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#NLPC-Http接口封装"><span class="nav-number">1.</span> <span class="nav-text">NLPC Http接口封装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参数格式"><span class="nav-number">1.1.</span> <span class="nav-text">参数格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数中的中文"><span class="nav-number">1.2.</span> <span class="nav-text">参数中的中文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存"><span class="nav-number">2.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可用性"><span class="nav-number">3.</span> <span class="nav-text">可用性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#服务切换"><span class="nav-number">3.1.</span> <span class="nav-text">服务切换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异常分级"><span class="nav-number">3.2.</span> <span class="nav-text">异常分级</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#繁体中文"><span class="nav-number">4.</span> <span class="nav-text">繁体中文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#繁体的问题"><span class="nav-number">4.1.</span> <span class="nav-text">繁体的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#桥豆麻袋！-v来袭"><span class="nav-number">5.</span> <span class="nav-text">桥豆麻袋！\v来袭</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后记"><span class="nav-number">6.</span> <span class="nav-text">后记</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在最前"><span class="nav-number">1.</span> <span class="nav-text">写在最前</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NLPC-Http接口封装"><span class="nav-number">2.</span> <span class="nav-text">NLPC Http接口封装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参数格式"><span class="nav-number">2.1.</span> <span class="nav-text">参数格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数中的中文"><span class="nav-number">2.2.</span> <span class="nav-text">参数中的中文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存"><span class="nav-number">3.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可用性"><span class="nav-number">4.</span> <span class="nav-text">可用性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#服务切换"><span class="nav-number">4.1.</span> <span class="nav-text">服务切换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异常分级"><span class="nav-number">4.2.</span> <span class="nav-text">异常分级</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#繁体中文"><span class="nav-number">5.</span> <span class="nav-text">繁体中文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#繁体的问题"><span class="nav-number">5.1.</span> <span class="nav-text">繁体的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#桥豆麻袋！-v来袭"><span class="nav-number">6.</span> <span class="nav-text">桥豆麻袋！\v来袭</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后记"><span class="nav-number">7.</span> <span class="nav-text">后记</span></a></li></ol></div>
             
           </div>
         </section>
