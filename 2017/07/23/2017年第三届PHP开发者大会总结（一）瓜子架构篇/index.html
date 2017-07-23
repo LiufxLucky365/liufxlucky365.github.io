@@ -1,0 +1,557 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="写在最前大会干货很多，讲师阵容也很强大，一场接着一场，连续两天，还是学到了不少东西的，用主持人的话说就是我们干货很干，硬广很硬。不过窃以为讲师里面还是夹杂了“合作方”的，推销一些平台和书籍，不过无伤大雅，权作休息。
+不过由于时间和地点的原因不少朋友没能及时参加，今年也不知道是否会有大会视频，所以我打算根据现场朋友用打赏堆出来的排名来对大会进行一个简单的总结，自己复习巩固一下，也希望能给其他人一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2017年第三届PHP开发者大会总结（一）瓜子架构篇.md">
+<meta property="og:url" content="http://yoursite.com/2017/07/23/2017年第三届PHP开发者大会总结（一）瓜子架构篇/index.html">
+<meta property="og:site_name" content="Liufxlucky365">
+<meta property="og:description" content="写在最前大会干货很多，讲师阵容也很强大，一场接着一场，连续两天，还是学到了不少东西的，用主持人的话说就是我们干货很干，硬广很硬。不过窃以为讲师里面还是夹杂了“合作方”的，推销一些平台和书籍，不过无伤大雅，权作休息。
+不过由于时间和地点的原因不少朋友没能及时参加，今年也不知道是否会有大会视频，所以我打算根据现场朋友用打赏堆出来的排名来对大会进行一个简单的总结，自己复习巩固一下，也希望能给其他人一">
+<meta property="og:image" content="http://yoursite.com/images/devlink2017/guazi-01.png">
+<meta property="og:image" content="http://yoursite.com/images/devlink2017/guazi-02.png">
+<meta property="og:image" content="http://yoursite.com/images/devlink2017/guazi-03.png">
+<meta property="og:image" content="http://yoursite.com/images/devlink2017/guazi-04.png">
+<meta property="og:image" content="http://yoursite.com/images/devlink2017/guazi-05.png">
+<meta property="og:image" content="http://yoursite.com/images/devlink2017/guazi-06.png">
+<meta property="og:updated_time" content="2017-07-23T15:25:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2017年第三届PHP开发者大会总结（一）瓜子架构篇.md">
+<meta name="twitter:description" content="写在最前大会干货很多，讲师阵容也很强大，一场接着一场，连续两天，还是学到了不少东西的，用主持人的话说就是我们干货很干，硬广很硬。不过窃以为讲师里面还是夹杂了“合作方”的，推销一些平台和书籍，不过无伤大雅，权作休息。
+不过由于时间和地点的原因不少朋友没能及时参加，今年也不知道是否会有大会视频，所以我打算根据现场朋友用打赏堆出来的排名来对大会进行一个简单的总结，自己复习巩固一下，也希望能给其他人一">
+<meta name="twitter:image" content="http://yoursite.com/images/devlink2017/guazi-01.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 2017年第三届PHP开发者大会总结（一）瓜子架构篇.md | Liufxlucky365 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Liufxlucky365</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">211&835</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                2017年第三届PHP开发者大会总结（一）瓜子架构篇.md
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-23T00:00:01+08:00" content="2017-07-23">
+              2017-07-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
+
+<h3 id="写在最前"><a href="#写在最前" class="headerlink" title="写在最前"></a>写在最前</h3><p>大会干货很多，讲师阵容也很强大，一场接着一场，连续两天，还是学到了不少东西的，用主持人的话说就是<code>我们干货很干，硬广很硬</code>。不过窃以为讲师里面还是夹杂了“合作方”的，推销一些平台和书籍，不过无伤大雅，权作休息。</p>
+<p>不过由于时间和地点的原因不少朋友没能及时参加，今年也不知道是否会有大会视频，所以我打算根据现场朋友用打赏堆出来的排名来对大会进行一个简单的总结，自己复习巩固一下，也希望能给其他人一些帮助。</p>
+<a id="more"></a>
+<h3 id="瓜子后端技术架构的变迁（纪鹏程）"><a href="#瓜子后端技术架构的变迁（纪鹏程）" class="headerlink" title="瓜子后端技术架构的变迁（纪鹏程）"></a>瓜子后端技术架构的变迁（纪鹏程）</h3><p>这个分享是热度最高的，原因可能在于它是最接地气的。不仅完整的介绍了瓜子二手车架构一步步由小到大的发展过程，以及这期间的经验教训，还逐条分享了各种最佳实践，可以说他的分享基本可以指导一个新兴业务，技术架构的快速发展方向。</p>
+<h4 id="石器时代，业务发展早期"><a href="#石器时代，业务发展早期" class="headerlink" title="石器时代，业务发展早期"></a>石器时代，业务发展早期</h4><p>这段时期的第一目的、最高目的是活下去</p>
+<p><strong>技术人员要把精力集中在业务上，快速迭代，实时响应业务需求</strong>，可能要做不少<code>Quick but dirty work</code>。此时也不要忙着造轮子和优化，能花钱买就花钱买，能用开源的就用开源的</p>
+<blockquote>
+<p>过早优化和造轮子是万恶之源 —— 尼古拉斯·赵四</p>
+</blockquote>
+<p><strong>也不要着急上缓存</strong>。一是多一层依赖就多一层的风险，早期快速迭代时，尽量保持架构的简单。二是缓存可能隐藏掉一些代码性能、逻辑缺陷，导致一些性能问题可能到架构复杂到一定程度时才暴露出来，此时的修改的成本就十分高昂了。</p>
+<p><strong>尽早确定数据库规范、数据字典</strong>。因为在后期业务代码还有修改空间，底层数据库和一些约定一旦养成是很难改动的。</p>
+<p><strong>保密工作也要做好</strong>。对外开放的数据一定要做好加密和脱敏工作，前期激烈竞争阶段，一个泄密可能拖垮一个公司。</p>
+<p><img src="/images/devlink2017/guazi-01.png"></p>
+<p>这个阶段的问题也很突出。代码质量差，文档缺失，新人上手难度高。基础服务脆弱，缺少各种管理平台（日志、部署）。不过没关系，坚持过这个阶段，业务只要能活下来，这些问题都不是问题。</p>
+<h4 id="铁器时代，业务发展期"><a href="#铁器时代，业务发展期" class="headerlink" title="铁器时代，业务发展期"></a>铁器时代，业务发展期</h4><p>熬过业务早期，进入快速发展阶段后，业务种类与规模会迅速增加，各种通用服务的重要性也逐渐显现，同时用户量也会大幅增长，服务性能压力开始出现。这个时期的架构也要做出相应的调整。</p>
+<ul>
+<li><strong>业务拆分</strong>。包括代码和数据库，业务之间通过http接口调用</li>
+<li><strong>redis集群</strong>。使用Twemproxy来做中间代理</li>
+<li><strong>php性能监控</strong>。使用xhprof和各种日志，指定统一的日志规范</li>
+</ul>
+<p><img src="/images/devlink2017/guazi-02.png"></p>
+<p>这个阶段常见的问题是，业务快速调整，接口混乱，调用方式混乱、性能缺乏监控；还缺少可靠的持续交付流程</p>
+<h4 id="蒸汽时代，业务稳定期"><a href="#蒸汽时代，业务稳定期" class="headerlink" title="蒸汽时代，业务稳定期"></a>蒸汽时代，业务稳定期</h4><p>各项业务逐渐稳定，各种痛点持续的暴露。</p>
+<ul>
+<li><strong>业务进行细分</strong>，通用服务、业务独立管理。</li>
+<li><strong>统一的接口调用方式</strong>，性能监控。</li>
+<li><strong>规范持续交付流程</strong>，代码的上线、回滚，数据库的建立、评审，统一的监控、测试框架，代码之间的隔离</li>
+<li><strong>健壮的第三方</strong>，一些通用平台没必要由专人维护，可以使用第三方平台，不过最好同时使用多家</li>
+</ul>
+<p><img src="/images/devlink2017/guazi-03.png"></p>
+<h4 id="工作效率实践"><a href="#工作效率实践" class="headerlink" title="工作效率实践"></a>工作效率实践</h4><p>本部分讲师分享了实践过程中能够提高效率一些经验方法，比较实用</p>
+<p><strong>代码的艺术</strong></p>
+<ul>
+<li>代码分层，遵循psr1 psr2 psr4规范</li>
+<li>代码提交添加统一hook，控制格式</li>
+<li>compsor，包括封装公司的内部库</li>
+</ul>
+<p><strong>单测</strong><br>单测的重要性被反复提及。完整的单测是代码发布、升级的重要支撑。尤其是核心代码，覆盖率要保证。这里他推荐使用PATest代替PHPUnit作为主要单测工具</p>
+<p><img src="/images/devlink2017/guazi-04.png"></p>
+<p><strong>RPC</strong><br>业务庞大后RPC的场景必不可少。最重要最基本的要求是调用方式统一。业界通用的解决方案一般是使用http接口，他们使用了<code>guzzle</code>基础上进行封装，支持了签名、并发请求和超时设置。另一个常用的方案是鸟哥开源的<code>Yar</code></p>
+<p>最后再啰嗦一句。<code>RPC方法一定要跟普通的方法有明确区别！！！</code>，否则可能被误用、滥用</p>
+<p><strong>服务解耦</strong></p>
+<p>服务级别，Rabbitmq &amp; Kafka</p>
+<p>数据表级别，Canal+Kafka</p>
+<p><img src="/images/devlink2017/guazi-05.png"></p>
+<p><strong>前后端分离</strong><br>使用nodejs负责UI层展示与数据准备。php则负责业务逻辑与架构。明确职责范围，提高各自效率。</p>
+<p><img src="/images/devlink2017/guazi-06.png"></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/09/NLPC服务类开发踩坑小结/" rel="next" title="NLPC工具类开发踩坑小结">
+                <i class="fa fa-chevron-left"></i> NLPC工具类开发踩坑小结
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/23/PHP开发者 & PHPCon 2016之前大会PPT总结/" rel="prev" title="﻿PHP开发者 & PHPCon 2016之前大会PPT总结.md">
+                ﻿PHP开发者 & PHPCon 2016之前大会PPT总结.md <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.png"
+               alt="Liufxlucky365" />
+          <p class="site-author-name" itemprop="name">Liufxlucky365</p>
+          <p class="site-description motion-element" itemprop="description">程序猿 IT php mysql 生活 秀恩爱</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在最前"><span class="nav-number">1.</span> <span class="nav-text">写在最前</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#瓜子后端技术架构的变迁（纪鹏程）"><span class="nav-number">2.</span> <span class="nav-text">瓜子后端技术架构的变迁（纪鹏程）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#石器时代，业务发展早期"><span class="nav-number">2.1.</span> <span class="nav-text">石器时代，业务发展早期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#铁器时代，业务发展期"><span class="nav-number">2.2.</span> <span class="nav-text">铁器时代，业务发展期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#蒸汽时代，业务稳定期"><span class="nav-number">2.3.</span> <span class="nav-text">蒸汽时代，业务稳定期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工作效率实践"><span class="nav-number">2.4.</span> <span class="nav-text">工作效率实践</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liufxlucky365</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

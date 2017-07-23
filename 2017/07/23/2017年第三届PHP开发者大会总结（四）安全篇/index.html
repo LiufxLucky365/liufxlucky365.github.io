@@ -57,19 +57,18 @@
 
 
 
-<meta name="description" content="绪我们把沿着通信路径连接相邻节点的通信信道称为链路。链路层的主体在网络适配器中实现（即网卡），主要作用是将数据以帧为单位从一块网卡发送给另一个网卡
-但是可能有多个网卡同时向一个网卡发送数据，就有可能出现碰撞，当出现数据碰撞时，碰撞的数据便损坏了（0、1混在一起了），所以链路层另一个重要作用是控制流量，划分信道">
+<meta name="description" content="PHP安全开发：从白帽角度做安全（汤青松）本节讲师分享了网络安全现状，和常见的安全问题及应对措施">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机网络知识持续构建（五）——链路层">
-<meta property="og:url" content="http://yoursite.com/2016/10/18/计算机网络知识持续构建（五）——链路层/index.html">
+<meta property="og:title" content="2017年第三届PHP开发者大会总结（四）安全篇.md">
+<meta property="og:url" content="http://yoursite.com/2017/07/23/2017年第三届PHP开发者大会总结（四）安全篇/index.html">
 <meta property="og:site_name" content="Liufxlucky365">
-<meta property="og:description" content="绪我们把沿着通信路径连接相邻节点的通信信道称为链路。链路层的主体在网络适配器中实现（即网卡），主要作用是将数据以帧为单位从一块网卡发送给另一个网卡
-但是可能有多个网卡同时向一个网卡发送数据，就有可能出现碰撞，当出现数据碰撞时，碰撞的数据便损坏了（0、1混在一起了），所以链路层另一个重要作用是控制流量，划分信道">
-<meta property="og:updated_time" content="2016-10-07T16:13:22.000Z">
+<meta property="og:description" content="PHP安全开发：从白帽角度做安全（汤青松）本节讲师分享了网络安全现状，和常见的安全问题及应对措施">
+<meta property="og:image" content="http://yoursite.com/images/devlink2017/safe-01.png">
+<meta property="og:updated_time" content="2017-07-23T15:29:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="计算机网络知识持续构建（五）——链路层">
-<meta name="twitter:description" content="绪我们把沿着通信路径连接相邻节点的通信信道称为链路。链路层的主体在网络适配器中实现（即网卡），主要作用是将数据以帧为单位从一块网卡发送给另一个网卡
-但是可能有多个网卡同时向一个网卡发送数据，就有可能出现碰撞，当出现数据碰撞时，碰撞的数据便损坏了（0、1混在一起了），所以链路层另一个重要作用是控制流量，划分信道">
+<meta name="twitter:title" content="2017年第三届PHP开发者大会总结（四）安全篇.md">
+<meta name="twitter:description" content="PHP安全开发：从白帽角度做安全（汤青松）本节讲师分享了网络安全现状，和常见的安全问题及应对措施">
+<meta name="twitter:image" content="http://yoursite.com/images/devlink2017/safe-01.png">
 
 
 
@@ -87,7 +86,7 @@
   };
 </script>
 
-  <title> 计算机网络知识持续构建（五）——链路层 | Liufxlucky365 </title>
+  <title> 2017年第三届PHP开发者大会总结（四）安全篇.md | Liufxlucky365 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -207,7 +206,7 @@
             
             
               
-                计算机网络知识持续构建（五）——链路层
+                2017年第三届PHP开发者大会总结（四）安全篇.md
               
             
           </h1>
@@ -219,8 +218,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-18T00:00:05+08:00" content="2016-10-18">
-              2016-10-18
+            <time itemprop="dateCreated" datetime="2017-07-23T00:00:01+08:00" content="2017-07-23">
+              2017-07-23
             </time>
           </span>
 
@@ -248,14 +247,59 @@
       
         <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
 
-<h2 id="绪"><a href="#绪" class="headerlink" title="绪"></a>绪</h2><p>我们把沿着通信路径连接相邻节点的通信信道称为<strong>链路</strong>。链路层的主体在网络适配器中实现（即网卡），主要作用是将数据以帧为单位从一块网卡发送给另一个网卡</p>
-<p>但是可能有多个网卡同时向一个网卡发送数据，就有可能出现<strong>碰撞</strong>，当出现数据碰撞时，碰撞的数据便损坏了（0、1混在一起了），所以链路层另一个重要作用是控制流量，划分信道</p>
+<h3 id="PHP安全开发：从白帽角度做安全（汤青松）"><a href="#PHP安全开发：从白帽角度做安全（汤青松）" class="headerlink" title="PHP安全开发：从白帽角度做安全（汤青松）"></a>PHP安全开发：从白帽角度做安全（汤青松）</h3><p>本节讲师分享了网络安全现状，和常见的安全问题及应对措施</p>
 <a id="more"></a>
-<h2 id="多路访问协议"><a href="#多路访问协议" class="headerlink" title="多路访问协议"></a>多路访问协议</h2><p>调度多个网卡向一块网卡发送数据帧的协议叫做多路访问协议，一共有几十种，常见的几种如下</p>
-<h3 id="时分多路复用-TDM"><a href="#时分多路复用-TDM" class="headerlink" title="时分多路复用 TDM"></a>时分多路复用 TDM</h3><p>即将信道的使用时间划分为若干时间片，然后分配给各个终端，每个终端依据所持有的时间片独享信道</p>
-<h3 id="频分多路复用-FDM"><a href="#频分多路复用-FDM" class="headerlink" title="频分多路复用 FDM"></a>频分多路复用 FDM</h3><p>即将信道按照频率划分为多个子信道，然后分配给各个终端，每个终端可以在独自的子信道中传输数据</p>
-<h3 id="时隙ALOHA"><a href="#时隙ALOHA" class="headerlink" title="时隙ALOHA"></a>时隙ALOHA</h3><p>简单来说，就是发送数据前先进行<strong>载波侦听</strong>，若发现其他终端使用信道则继续等待；同时，如果在两个终端同时使用信道，即发生了碰撞，则均停止发送，各自顺延一个随机时间</p>
-<h3 id="令牌传递"><a href="#令牌传递" class="headerlink" title="令牌传递"></a>令牌传递</h3><p>之前的几种协议都有可能造成信道的浪费，令牌传递是指信道对应一个唯一的虚拟令牌，拿到令牌的终端才能使用信道，令牌在各个终端之间传递，当某个终端空闲时可以将令牌直接传给下个终端，这样信道就不需要空闲</p>
+<h4 id="严峻的现状"><a href="#严峻的现状" class="headerlink" title="严峻的现状"></a>严峻的现状</h4><p>目前网络黑产发展迅速，聊天工具中搜索‘漏洞、低价、线报’能够找到大量的卖家。同时他表示他认识一个17岁的小孩，不读书，只做黑产，月入8k+</p>
+<p>另一个是简单搜索会发现，国内开放3306端口的服务器数量有180万之多。<code>有500T以上的mysql数据库此刻正在使用root账号裸奔！</code></p>
+<h4 id="漏洞的分类"><a href="#漏洞的分类" class="headerlink" title="漏洞的分类"></a>漏洞的分类</h4><p>讲师对常见的漏洞进行了分类，我感觉大致可以分为以下三类</p>
+<ul>
+<li>代码漏洞。即你所写的代码没有实现你的意图。可能是你水平不行，也可能是语言不行</li>
+<li>逻辑漏洞。即你设计的业务逻辑存在你没想到的情况</li>
+<li>第三方漏洞。即你麻痹大意了，所托非人~</li>
+</ul>
+<p><strong>代码漏洞</strong><br>常见的代码漏洞包括</p>
+<ul>
+<li>代码注入</li>
+<li>sql注入</li>
+<li>xss</li>
+<li>csrf</li>
+<li>文件包含</li>
+<li>命令执行</li>
+</ul>
+<p>总的来说，代码漏洞主要原因是<code>盲目相信用户输入</code>，一条安全口诀始终不能忘记就是<code>用户输入、程序输出始终过滤</code>。另外就是不必要的权限不要开，不使用的代码不加载</p>
+<p>比如代码漏洞的一般防护措施是，open_basedir限制程序访问范围，过滤点、斜杠、反斜杠，禁止加载远程文件，eval这种高危函数禁用，使用代码检查工具如<code>Taint</code></p>
+<p>以下几个环节是事故高发区，应着重检查</p>
+<ul>
+<li>文件上传</li>
+<li>全局变量</li>
+<li>裸写sql</li>
+<li>include参数文件</li>
+<li>执行参数代码</li>
+</ul>
+<p><strong>逻辑漏洞</strong><br>常见的逻辑漏洞包括</p>
+<ul>
+<li>越权访问</li>
+<li>连续id暴露重要信息</li>
+<li>身份认证、密码找回</li>
+</ul>
+<p>业务安全问题的几个重灾区是</p>
+<ul>
+<li>授权</li>
+<li>身份认证</li>
+<li>用户输入限制</li>
+<li>密码找回</li>
+<li>验证码</li>
+</ul>
+<p><code>据统计，产品发布上线后的bug修复成本大约是开发阶段的30倍！</code></p>
+<p><strong>第三方漏洞</strong><br>我们在平时开发中会用到大量的第三方框架与类库，虽然大部分都经过了大量实战测试，但仍然会时不时爆发漏洞，国内常见的php框架ECshop，WordPress，Discuz，Dedecms，PHPcms等都曾报过漏洞。此时我们更多需要做的是保证使用最新版，保证第一时间修复漏洞</p>
+<ol>
+<li>溯源检查。代码版本不能存在已知漏洞</li>
+<li>版本更新。不要遗漏安全补丁更新</li>
+<li>后台隐藏。不要使用默认的地址与账号密码</li>
+</ol>
+<p>查看一下16年国内漏洞占比</p>
+<p><img src="/images/devlink2017/safe-01.png"></p>
+<p><strong>最后，系统的安全性不是取决于最强的地方有多强，而是取决于最弱的地方有多弱！</strong></p>
 
       
     </div>
@@ -279,16 +323,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/18/计算机网络知识持续构建（四）——网络层/" rel="next" title="计算机网络知识持续构建（四）——网络层">
-                <i class="fa fa-chevron-left"></i> 计算机网络知识持续构建（四）——网络层
+              <a href="/2017/07/23/PHP开发者 & PHPCon 2016之前大会PPT总结/" rel="next" title="﻿PHP开发者 & PHPCon 2016之前大会PPT总结.md">
+                <i class="fa fa-chevron-left"></i> ﻿PHP开发者 & PHPCon 2016之前大会PPT总结.md
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/09/2016年家庭工作报告/" rel="prev" title="2016年家庭工作报告">
-                2016年家庭工作报告 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/23/2017年第三届PHP开发者大会总结（二）鸟哥JIT篇/" rel="prev" title="﻿﻿﻿2017年第三届PHP开发者大会总结（二）鸟哥JIT篇.md">
+                ﻿﻿﻿2017年第三届PHP开发者大会总结（二）鸟哥JIT篇.md <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -391,7 +435,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#绪"><span class="nav-number">1.</span> <span class="nav-text">绪</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多路访问协议"><span class="nav-number">2.</span> <span class="nav-text">多路访问协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#时分多路复用-TDM"><span class="nav-number">2.1.</span> <span class="nav-text">时分多路复用 TDM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#频分多路复用-FDM"><span class="nav-number">2.2.</span> <span class="nav-text">频分多路复用 FDM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时隙ALOHA"><span class="nav-number">2.3.</span> <span class="nav-text">时隙ALOHA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#令牌传递"><span class="nav-number">2.4.</span> <span class="nav-text">令牌传递</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP安全开发：从白帽角度做安全（汤青松）"><span class="nav-number">1.</span> <span class="nav-text">PHP安全开发：从白帽角度做安全（汤青松）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#严峻的现状"><span class="nav-number">1.1.</span> <span class="nav-text">严峻的现状</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#漏洞的分类"><span class="nav-number">1.2.</span> <span class="nav-text">漏洞的分类</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
