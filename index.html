@@ -259,7 +259,7 @@
 <li>手游类</li>
 </ul>
 <p>但游戏开发跟web开发还是有区别的</p>
-<p><img src="/images/devlink/php-game-dev-01.png"></p>
+<p><img src="/images/devlink2016/php-game-dev-01.png"></p>
 <h4 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h4><p>游戏开发对数据缓存要求很高，桶哥说缓存可以分为三级</p>
 <ul>
 <li>进程内缓存，即直接在程序里面使用static保存</li>
@@ -287,9 +287,9 @@
 </ul>
 <h4 id="配置化管理"><a href="#配置化管理" class="headerlink" title="配置化管理"></a>配置化管理</h4><p>这点非常受启发，通过hook机制，在运营同学更新配置文件（如excel）后自动解析加载新配置文件，能够大大提高迭代速度</p>
 <h2 id="PHP做大数据量实时分析（吕毅）"><a href="#PHP做大数据量实时分析（吕毅）" class="headerlink" title="PHP做大数据量实时分析（吕毅）"></a>PHP做大数据量实时分析（吕毅）</h2><p>此PPT最大的感觉是漂亮，PPT能力果然很重要哦 ^_^，感受一下</p>
-<p><img src="/images/devlink/php-data-01.png"></p>
+<p><img src="/images/devlink2016/php-data-01.png"></p>
 <p>这个结构也很好，即表明摘要，也说明各部分的占比</p>
-<p><img src="/images/devlink/php-data-02.png"></p>
+<p><img src="/images/devlink2016/php-data-02.png"></p>
 <h2 id="PHP开发企业应用常见问题（王春生）"><a href="#PHP开发企业应用常见问题（王春生）" class="headerlink" title="PHP开发企业应用常见问题（王春生）"></a>PHP开发企业应用常见问题（王春生）</h2><p>讲师总结的企业应用常见的几个问题感觉不错</p>
 <ul>
 <li>如何选择PHP的开发框架？</li>
@@ -330,11 +330,11 @@
 </ul>
 <p>缺点的话，依赖第三方扩展swoole，配套开源方案不够强大</p>
 <h4 id="swoole造轮子"><a href="#swoole造轮子" class="headerlink" title="swoole造轮子"></a>swoole造轮子</h4><p>第二部分为峰哥基于swoole服务治理开发的一些列轮子<br>先看一下服务治理全景</p>
-<p><img src="/images/devlink/php-swoole-server.png"></p>
+<p><img src="/images/devlink2016/php-swoole-server.png"></p>
 <p>配置管理，swoole搞了一套可以在各个平台同步json配置文件的方案<br>服务发现，swoole搞了一套服务的注册、上线、下线管理方案（<code>zookeeper本质也是这？</code>）<br>监控报警 &amp; 调用统计，swoole实现了一套机器信息监控、统计监控报警的方案</p>
 <h3 id="淘宝社区双十一性能优化实践（信海龙）"><a href="#淘宝社区双十一性能优化实践（信海龙）" class="headerlink" title="淘宝社区双十一性能优化实践（信海龙）"></a>淘宝社区双十一性能优化实践（信海龙）</h3><p>本篇主要讲的是淘宝社区在高并发到来之前如何进行优化的</p>
 <h4 id="找出性能瓶颈"><a href="#找出性能瓶颈" class="headerlink" title="找出性能瓶颈"></a>找出性能瓶颈</h4><p>还在使用<code>microtime(true)</code>打点？请使用xhprof</p>
-<p><img src="/images/devlink/php-xhprof.png"></p>
+<p><img src="/images/devlink2016/php-xhprof.png"></p>
 <p>另外还有一个技巧，能够在每个php文件都优雅统一插入统计文件<br>php auto_prepend_file=”client.php”<br>nginx fastcgi_param PHP_VALUE “auto_prepend_file=client.php”<br>apache php_value auto_prepend_file=”client.php”</p>
 <h4 id="数据库分库分表"><a href="#数据库分库分表" class="headerlink" title="数据库分库分表"></a>数据库分库分表</h4><p>首先明白为何分库分表。因为</p>
 <ul>
@@ -350,7 +350,7 @@
 </ul>
 <p>分库分表的难点一般有查询sql复杂、主从延迟。一般需要使用中间件进行封装与数据同步系统</p>
 <h4 id="降级系统"><a href="#降级系统" class="headerlink" title="降级系统"></a>降级系统</h4><p>降级系统的意义是<code>勉强的活着，优雅的死去</code></p>
-<p><img src="/images/devlink/php-server-level-down.png"></p>
+<p><img src="/images/devlink2016/php-server-level-down.png"></p>
 <p><code>这个架构看的不是很懂</code></p>
 <h3 id="程序猿都该知道的MySQL秘籍（叶金荣）"><a href="#程序猿都该知道的MySQL秘籍（叶金荣）" class="headerlink" title="程序猿都该知道的MySQL秘籍（叶金荣）"></a>程序猿都该知道的MySQL秘籍（叶金荣）</h3><p>老叶一如既往的干货满满，开篇即是高潮，逐条手撕myisam</p>
 <p>myisam的观点</p>
