@@ -71,10 +71,10 @@
 
 
 架构mysql最重要、最与众不同的特性是它的存储引擎架构, 这种架构的设计将查询处理, 及其他系统任务和数据的存储/提取相分离. 这种处理和存储分离的设计可以在使用时根据性能、特性,">
-<meta property="og:image" content="http://yoursite.com/images/mysql_guide/mysql_structure.png">
-<meta property="og:image" content="http://yoursite.com/images/mysql_guide/mysql_engine_compare.png">
-<meta property="og:image" content="http://yoursite.com/images/mysql_guide/cluster_index.png">
-<meta property="og:updated_time" content="2017-07-23T13:51:30.000Z">
+<meta property="og:image" content="http://p53rt01rv.bkt.clouddn.com/mysql_structure.png">
+<meta property="og:image" content="http://p53rt01rv.bkt.clouddn.com/mysql_engine-compare.png">
+<meta property="og:image" content="http://p53rt01rv.bkt.clouddn.com/mysql_cluster-index.png">
+<meta property="og:updated_time" content="2018-03-05T09:19:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL不权威指南">
 <meta name="twitter:description" content="12345$(function()&amp;#123;    $(&apos;a&apos;).click(function() &amp;#123;        $(&quot;#tar&quot;).show();    &amp;#125;)&amp;#125;);
@@ -82,7 +82,7 @@
 
 
 架构mysql最重要、最与众不同的特性是它的存储引擎架构, 这种架构的设计将查询处理, 及其他系统任务和数据的存储/提取相分离. 这种处理和存储分离的设计可以在使用时根据性能、特性,">
-<meta name="twitter:image" content="http://yoursite.com/images/mysql_guide/mysql_structure.png">
+<meta name="twitter:image" content="http://p53rt01rv.bkt.clouddn.com/mysql_structure.png">
 
 
 
@@ -269,7 +269,7 @@
 
 <h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>mysql最重要、最与众不同的特性是它的<strong>存储引擎架构</strong>, 这种架构的设计将查询处理, 及其他系统任务和数据的存储/提取相分离. 这种处理和存储分离的设计可以在使用时根据性能、特性, 以及其他需求来选择数据存储方式</p>
 <a id="more"></a>
-<p><img src="/images/mysql_guide/mysql_structure.png"></p>
+<p><img src="http://p53rt01rv.bkt.clouddn.com/mysql_structure.png"></p>
 <p>图中包含的部分</p>
 <ul>
 <li>连接池组件</li>
@@ -365,7 +365,7 @@
 <li><strong>日志应用</strong> 写(add多 update少)多读少, 同时决不能成为瓶颈, 耗费存储, 基本不更新数据, 适合采用myisam</li>
 <li><strong>订单应用</strong> 需要事务支持, InnoDB</li>
 </ul>
-<h3 id="mysql主要存储引擎对照表"><a href="#mysql主要存储引擎对照表" class="headerlink" title="mysql主要存储引擎对照表"></a>mysql主要存储引擎对照表</h3><p><img src="/images/mysql_guide/mysql_engine_compare.png"></p>
+<h3 id="mysql主要存储引擎对照表"><a href="#mysql主要存储引擎对照表" class="headerlink" title="mysql主要存储引擎对照表"></a>mysql主要存储引擎对照表</h3><p><img src="http://p53rt01rv.bkt.clouddn.com/mysql_engine-compare.png"></p>
 <h3 id="修改存储引擎"><a href="#修改存储引擎" class="headerlink" title="修改存储引擎"></a>修改存储引擎</h3><ul>
 <li><p><strong>alter table</strong> 最简单的办法, 适用任何存储引擎, 但是需要很长时间, 因为mysql会按行将数据从原表复制到一张新的表中, 在复制期间可能会消耗系统所有的I/O能力</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE mytable ENGINE = InnoDB;</span><br></pre></td></tr></table></figure>
@@ -492,7 +492,7 @@
 <li>二级索引查找需要两次索引查找, 因为二级索引中保存的是主键而不是数据</li>
 </ul>
 <h3 id="InnoDB与myisam比较"><a href="#InnoDB与myisam比较" class="headerlink" title="InnoDB与myisam比较"></a>InnoDB与myisam比较</h3><p>myisam使用的是堆存储(存疑？), InnoDB使用的是聚簇索引, 所以他们的索引分布是这样的</p>
-<p><img src="/images/mysql_guide/cluster_index.png"></p>
+<p><img src="http://p53rt01rv.bkt.clouddn.com/mysql_cluster-index.png"></p>
 <p><em>这也就解释了, myisam中的二级索引为什么和主键索引差别不大, 而InnoDB中主键索引和二级索引差别比较大</em></p>
 <h3 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h3><p>由于mysql的索引可以获取到索引列的值(<em>BTree决定的, 叶子节点最后一层有所有索引值</em>), 所以当索引列包含了查找的全部列时, 我们称之为<strong>覆盖索引</strong></p>
 <h4 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h4><ul>

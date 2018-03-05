@@ -63,14 +63,14 @@
 <meta property="og:url" content="http://yoursite.com/2016/10/18/计算机网络知识持续构建（三）——运输层/index.html">
 <meta property="og:site_name" content="Liufxlucky365">
 <meta property="og:description" content="绪运输层将网络层在两个端系统之间的交付服务，扩展到运行在两个不同端系统上的应用层进程之间的交付服务，同时提供了额外的逻辑通信服务">
-<meta property="og:image" content="http://yoursite.com/images/computer_net_up_to_down/tcp_three_handshake.png">
-<meta property="og:image" content="http://yoursite.com/images/computer_net_up_to_down/tcp_four_goodbye.png">
-<meta property="og:image" content="http://yoursite.com/images/computer_net_up_to_down/tcp_speed_demo.png">
-<meta property="og:updated_time" content="2016-10-07T16:13:08.000Z">
+<meta property="og:image" content="http://p53rt01rv.bkt.clouddn.com/cntda_tcp_three_handshake.png">
+<meta property="og:image" content="http://p53rt01rv.bkt.clouddn.com/cntda_tcp_four_goodbye.png">
+<meta property="og:image" content="http://p53rt01rv.bkt.clouddn.com/cntda_tcp_speed_demo.png">
+<meta property="og:updated_time" content="2018-03-05T08:58:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络知识持续构建（三）——运输层">
 <meta name="twitter:description" content="绪运输层将网络层在两个端系统之间的交付服务，扩展到运行在两个不同端系统上的应用层进程之间的交付服务，同时提供了额外的逻辑通信服务">
-<meta name="twitter:image" content="http://yoursite.com/images/computer_net_up_to_down/tcp_three_handshake.png">
+<meta name="twitter:image" content="http://p53rt01rv.bkt.clouddn.com/cntda_tcp_three_handshake.png">
 
 
 
@@ -291,7 +291,7 @@
 <p>选择重传是对回退N步策略的一种改进，发送方和接收方都会缓存一些数据，允许乱序确认。即发送方当收到2号出错时，窗口并不回退，而是单独处理2号，同时接收方在收到乱序到达的分组后不会丢失不连续的，而是暂存起来。这样虽然增加了实现难度，但却大大提高了效率</p>
 <p>到这里，TCP是如何在不可靠的网络上实现可靠传输的方法应该有一个感性的认识了吧</p>
 <h2 id="TCP连接管理"><a href="#TCP连接管理" class="headerlink" title="TCP连接管理"></a>TCP连接管理</h2><p>那么TCP的发送方和接收方之间是如何建立和关闭连接的呢？我们常说的<strong>三次握手</strong>和<strong>四次挥手</strong>是什么意思呢？</p>
-<h3 id="建立连接-三次握手"><a href="#建立连接-三次握手" class="headerlink" title="建立连接 三次握手"></a>建立连接 三次握手</h3><p><img src="/images/computer_net_up_to_down/tcp_three_handshake.png"></p>
+<h3 id="建立连接-三次握手"><a href="#建立连接-三次握手" class="headerlink" title="建立连接 三次握手"></a>建立连接 三次握手</h3><p><img src="http://p53rt01rv.bkt.clouddn.com/cntda_tcp_three_handshake.png"></p>
 <ol>
 <li>终端发送<strong>SYN字段为1</strong>的特殊分组，请求建立连接</li>
 <li>服务器确认收到连接建立请求，并开辟所需的变量和缓冲区，返回确认分组，一次握手</li>
@@ -299,7 +299,7 @@
 <li>服务器收到确认请求，三次握手</li>
 </ol>
 <p>这里要插一嘴，就是一些坏分子会利用第二步攻击服务器，即只发送连接建立请求，然后服务器准备资源等待后续时终止发送，达到服务器空转的目的。则就是<strong>SYN洪泛攻击</strong></p>
-<h3 id="关闭连接-四次挥手"><a href="#关闭连接-四次挥手" class="headerlink" title="关闭连接 四次挥手"></a>关闭连接 四次挥手</h3><p><img src="/images/computer_net_up_to_down/tcp_four_goodbye.png"></p>
+<h3 id="关闭连接-四次挥手"><a href="#关闭连接-四次挥手" class="headerlink" title="关闭连接 四次挥手"></a>关闭连接 四次挥手</h3><p><img src="http://p53rt01rv.bkt.clouddn.com/cntda_tcp_four_goodbye.png"></p>
 <ol>
 <li>终端发送<strong>FIN字段为1</strong>的特殊分组，请求关闭连接，一次挥手</li>
 <li>服务器返回确认分组，开始清理变量、缓冲区，二次挥手</li>
@@ -311,7 +311,7 @@
 <h3 id="加性增，乘性减"><a href="#加性增，乘性减" class="headerlink" title="加性增，乘性减"></a>加性增，乘性减</h3><p>在线性增加过程中，若遇到拥塞，窗口大小按照几何倍率减小，重新开始慢启动过程</p>
 <h3 id="快速恢复"><a href="#快速恢复" class="headerlink" title="快速恢复"></a>快速恢复</h3><p>当在慢启动阶段收到多个冗余确认反馈时，会触发快速恢复事件，发送窗口重新进入加性增阶段</p>
 <p>所以一个典型的TCP发送模型大概如下图</p>
-<p><img src="/images/computer_net_up_to_down/tcp_speed_demo.png"></p>
+<p><img src="http://p53rt01rv.bkt.clouddn.com/cntda_tcp_speed_demo.png"></p>
 
       
     </div>

@@ -63,12 +63,12 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/23/2017年第三届PHP开发者大会总结（二）鸟哥JIT篇/index.html">
 <meta property="og:site_name" content="Liufxlucky365">
 <meta property="og:description" content="THE NEXT GENERATION OF PHP（惠新宸）鸟哥本次分享的主要内容是，在php7发布的这两年期间他们的主要工作，包括release的7.1和正在开发中的jit分支。说实话，由于本人水平有限，鸟哥分享的内容只能大概听懂意思，知道他们在做什么，但具体原理细节，鸟哥分享的我还真听不懂。这里就对鸟哥的分享内容做个总结。">
-<meta property="og:image" content="http://yoursite.com/images/devlink2017/laruence-01.png">
-<meta property="og:updated_time" content="2017-07-23T15:35:14.000Z">
+<meta property="og:image" content="http://p53rt01rv.bkt.clouddn.com/devlink2017_laruence-01.png">
+<meta property="og:updated_time" content="2018-03-05T09:13:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="﻿﻿﻿2017年第三届PHP开发者大会总结（二）鸟哥JIT篇.md">
 <meta name="twitter:description" content="THE NEXT GENERATION OF PHP（惠新宸）鸟哥本次分享的主要内容是，在php7发布的这两年期间他们的主要工作，包括release的7.1和正在开发中的jit分支。说实话，由于本人水平有限，鸟哥分享的内容只能大概听懂意思，知道他们在做什么，但具体原理细节，鸟哥分享的我还真听不懂。这里就对鸟哥的分享内容做个总结。">
-<meta name="twitter:image" content="http://yoursite.com/images/devlink2017/laruence-01.png">
+<meta name="twitter:image" content="http://p53rt01rv.bkt.clouddn.com/devlink2017_laruence-01.png">
 
 
 
@@ -264,7 +264,7 @@
 <p>基于以上几个优点，再结合php一贯的简单易用原则，我想JIT确实是不错的选择。不过php也是支持AOT的，有兴趣的同学可以查一下。</p>
 <p>但JIT技术也绝不是灵丹妙药，<code>即便是编译也是需要时间的，当代码编译的时间消耗大于运行收益时，程序反而会变慢！</code>会有这种情况吗？有的，比如某个项目中，热点并不明显，JIT编译的代码执行次数都很少，那么编译带来的收益是有可能小于编译本身的消耗的</p>
 <p>以下是在标准测试中引入JIT技术后，php运行效率比7.2有100%的性能提升，不过在实际生产环境中效果不会有这么好</p>
-<p><img src="/images/devlink2017/laruence-01.png"></p>
+<p><img src="http://p53rt01rv.bkt.clouddn.com/devlink2017_laruence-01.png"></p>
 <h4 id="php7-1做了什么？类型预测"><a href="#php7-1做了什么？类型预测" class="headerlink" title="php7.1做了什么？类型预测"></a>php7.1做了什么？类型预测</h4><p>php要想实现JIT，有一个难题必须解决，那就是变量的<code>类型预测</code>。试想如果在动态编译时还要进行大量的类型检查，性能将会大打折扣。php7中已经可以对变量类型进行控制，7.1则是更加完善了这个机制，可以说目前php已经是半强类型语言了。但由于php的弱类型历史，仍有大量代码运行前是无法得知变量类型的，所以在7.1中鸟哥进行了大量变量类型预测的工作，为后续JIT打基础</p>
 <p><strong>变量预测</strong><br>比较简单的一种办法是数据流分析，即分析代码的上下文，推断出变量的可能类型，比如<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calc</span> <span class="params">($a1, $b2)</span> </span>&#123;        <span class="comment">// $a1: [ANY], $b2: [ANY]</span></span><br><span class="line">    $T3 = $a1 * <span class="number">2</span>;                <span class="comment">// $T3: [LONG, DOUBLE]</span></span><br><span class="line">    $a4 = $T3 % <span class="number">1000</span>;             <span class="comment">// $a4: [LONG]</span></span><br><span class="line">    $T5 = $b2 * <span class="number">3</span>;                <span class="comment">// $T5: [LONG, DOUBLE]</span></span><br><span class="line">    $b6 = $T5 % <span class="number">1000</span>;             <span class="comment">// $b6: [LONG]</span></span><br><span class="line">    $T7 = $a4 + $b6;              <span class="comment">// $T7: [LONG, DOUBLE]</span></span><br><span class="line">    <span class="keyword">return</span> $T7;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>其实这还是很困难的，鸟哥列举了一些开发过程中遇到的困难。比如变量的变量，<code>$$var_name</code>，或者顶层代码（即写在函数和类之外的代码）等等。php的历史包袱还是很重的。解决这些问题的简单办法就是强类型，但这又会降低开发效率，<code>因为优化而影响phper的开发效率</code>这是鸟哥所不愿意的，他认为业务永远是优先的，优化只是支线</p>
