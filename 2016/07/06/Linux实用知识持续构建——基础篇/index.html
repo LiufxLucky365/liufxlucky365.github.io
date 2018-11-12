@@ -57,16 +57,22 @@
 
 
 
-<meta name="description" content="这是什么本文将持续更新在学习Linux过程中遇到的基础知识点的总结,为了简单实用,避免长篇大论令人生厌,尽量保持简洁.或有不准确的地方,请注意">
+<meta name="description" content="这是什么本文最初只是想持续更新在学习Linux过程中遇到的基础知识点的总结，后来认识到计算机组成与操作系统方面的知识与此联系紧密，所以一并进行整理。为了避免长篇大论令人生厌，本文将尽量保持简单实用.
+或有不准确的地方,请注意">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux实用知识持续构建——基础篇">
 <meta property="og:url" content="http://yoursite.com/2016/07/06/Linux实用知识持续构建——基础篇/index.html">
 <meta property="og:site_name" content="Liufxlucky365">
-<meta property="og:description" content="这是什么本文将持续更新在学习Linux过程中遇到的基础知识点的总结,为了简单实用,避免长篇大论令人生厌,尽量保持简洁.或有不准确的地方,请注意">
-<meta property="og:updated_time" content="2017-12-11T06:27:54.000Z">
+<meta property="og:description" content="这是什么本文最初只是想持续更新在学习Linux过程中遇到的基础知识点的总结，后来认识到计算机组成与操作系统方面的知识与此联系紧密，所以一并进行整理。为了避免长篇大论令人生厌，本文将尽量保持简单实用.
+或有不准确的地方,请注意">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1fx32ob2sv9j30c308fmxr.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1fx363xvqo6j30an0a0dk4.jpg">
+<meta property="og:updated_time" content="2018-11-12T16:45:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux实用知识持续构建——基础篇">
-<meta name="twitter:description" content="这是什么本文将持续更新在学习Linux过程中遇到的基础知识点的总结,为了简单实用,避免长篇大论令人生厌,尽量保持简洁.或有不准确的地方,请注意">
+<meta name="twitter:description" content="这是什么本文最初只是想持续更新在学习Linux过程中遇到的基础知识点的总结，后来认识到计算机组成与操作系统方面的知识与此联系紧密，所以一并进行整理。为了避免长篇大论令人生厌，本文将尽量保持简单实用.
+或有不准确的地方,请注意">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1fx32ob2sv9j30c308fmxr.jpg">
 
 
 
@@ -245,28 +251,42 @@
       
         <link rel="stylesheet" type="text/css" href="/css/theme-1.css">
 
-<h2 id="这是什么"><a href="#这是什么" class="headerlink" title="这是什么"></a>这是什么</h2><p>本文将持续更新在学习Linux过程中遇到的基础知识点的总结,为了简单实用,避免长篇大论令人生厌,尽量保持简洁.<br>或有不准确的地方,请注意</p>
+<h2 id="这是什么"><a href="#这是什么" class="headerlink" title="这是什么"></a>这是什么</h2><p>本文最初只是想持续更新在学习Linux过程中遇到的基础知识点的总结，后来认识到计算机组成与操作系统方面的知识与此联系紧密，所以一并进行整理。为了避免长篇大论令人生厌，本文将尽量保持简单实用.</p>
+<p>或有不准确的地方,请注意</p>
 <a id="more"></a>
 <h2 id="Linux简史"><a href="#Linux简史" class="headerlink" title="Linux简史"></a>Linux简史</h2><h3 id="计算机的发明"><a href="#计算机的发明" class="headerlink" title="计算机的发明"></a>计算机的发明</h3><ul>
-<li>各大厂家各自制造机器,市场充斥着各种大型机(IBM GE HP)和小型机(Intex).</li>
-<li>各个厂家从硬件到软件（主要是操作系统）维护自己的产品.</li>
+<li><p>各大厂家各自制造机器,市场充斥着各种大型机(IBM GE HP)和小型机(Intex).</p>
+</li>
+<li><p>各个厂家从硬件到软件（主要是操作系统）维护自己的产品.</p>
+</li>
 </ul>
 <h3 id="Unix诞生"><a href="#Unix诞生" class="headerlink" title="Unix诞生"></a>Unix诞生</h3><ul>
-<li>最早的大型机只能服务数十人,于是Bell实验室跟GE MIT合作启动MULTICS计划,旨在开发一个能够服务上百人的多用户,多任务,多层级操作系统,卒，但该项目培养了大批优秀的计算机人才</li>
-<li>Ken Thompson为了玩一款&lt;星际旅行&gt;的游戏,反MULTICS其道而行,力求简洁实用,诞生了Unix</li>
-<li>后续Thompson被汇编语言折腾受不了,发明了c语言,重写了Unix内核(1970)</li>
-<li>由于全新的Unix易于开发移植（得益于c语言）,同时功能强大,所以迅速发展,各大厂商也开始兼容Unix,并诞生了POSIX,规范OS提供的编程接口</li>
-<li>AT&amp;T禁止Unix传播,Unix开始内战,互不兼容,各自为战,一发不可收拾的出现各种变种</li>
-<li>此时Intel为各个中小计算机公司生产通用CPU，然后微软为该体系架构生产通用的操作系统，自此，win-tel体系建立，在Unix内乱之际疯狂生长</li>
-<li>Berkeley发布FreeBSD</li>
+<li><p>最早的大型机只能服务数十人,于是Bell实验室跟GE MIT合作启动MULTICS计划,旨在开发一个能够服务上百人的多用户,多任务,多层级操作系统,卒，但该项目培养了大批优秀的计算机人才</p>
+</li>
+<li><p>Ken Thompson为了玩一款&lt;星际旅行&gt;的游戏,反MULTICS其道而行,力求简洁实用,诞生了Unix</p>
+</li>
+<li><p>后续Thompson被汇编语言折腾受不了,发明了c语言,重写了Unix内核(1970)</p>
+</li>
+<li><p>由于全新的Unix易于开发移植（得益于c语言）,同时功能强大,所以迅速发展,各大厂商也开始兼容Unix,并诞生了POSIX,规范OS提供的编程接口</p>
+</li>
+<li><p>AT&amp;T禁止Unix传播,Unix开始内战,互不兼容,各自为战,一发不可收拾的出现各种变种</p>
+</li>
+<li><p>此时Intel为各个中小计算机公司生产通用CPU，然后微软为该体系架构生产通用的操作系统，自此，win-tel体系建立，在Unix内乱之际疯狂生长</p>
+</li>
+<li><p>Berkeley发布FreeBSD</p>
+</li>
 </ul>
 <h3 id="GNU-GNU’s-not-Unix"><a href="#GNU-GNU’s-not-Unix" class="headerlink" title="GNU (GNU’s not Unix)"></a>GNU (GNU’s not Unix)</h3><ul>
-<li>Unix的封闭之路使多数人深恶痛绝，Stallman发起自由软件计划</li>
-<li>GPL授权诞生,确定了开源软件服务化的商业空间</li>
-<li>GNU计划开发兼容Unix的操作系统,但是为了先易后难,从应用软件下手</li>
-<li>从免费的编译器，编辑器，公共库，脚本工具着手，于是gcc emacs glibc bash…等一大批优秀的开源软件诞生</li>
+<li><p>Unix的封闭之路使多数人深恶痛绝，Stallman发起自由软件计划</p>
+</li>
+<li><p>GPL授权诞生,确定了开源软件服务化的商业空间</p>
+</li>
+<li><p>GNU计划开发兼容Unix的操作系统,但是为了先易后难,从应用软件下手</p>
+</li>
+<li><p>从免费的编译器，编辑器，公共库，脚本工具着手，于是gcc emacs glibc bash…等一大批优秀的开源软件诞生</p>
+</li>
 </ul>
-<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><ul>
+<h3 id="Linux诞生"><a href="#Linux诞生" class="headerlink" title="Linux诞生"></a>Linux诞生</h3><ul>
 <li>Linus Torvalds(芬兰大学生)在一个教授开发的Unix简易教学版minix上学习,但由于教授不愿意继续开发,他便酝酿自己的操作系统</li>
 <li>Linus发布了自己写的”小玩意儿”,吸引了大量黑客的兴趣</li>
 <li>为了效率Linus主要开发内核,而将源码免费开放,所有人协同开发,统一整合</li>
@@ -274,109 +294,263 @@
 <li>Linux正式确定,同时支持移植386小型家用机</li>
 <li>厂商开始支持Linux,由于Linux使用gcc,bash等很多GNU计划的工具,GNU也顺理成章的采用Linux,填补了开源内核这一空白，Stallman认为Linux其实应该是GNU/Linux</li>
 </ul>
-<h2 id="Linux主要目录"><a href="#Linux主要目录" class="headerlink" title="Linux主要目录"></a>Linux主要目录</h2><h3 id="主要目录"><a href="#主要目录" class="headerlink" title="主要目录"></a>主要目录</h3><ul>
-<li><code>/</code>           根目录,存放着系统核心程序</li>
-<li><code>/usr</code>        unix software resource,存放unix厂商(可能是改版的发行者)开发的软件资源</li>
-<li><code>/usr/local</code>  存放用户安装的软件资源</li>
-<li><code>/opt</code>        option(选装),存放第三方厂商开发的软件资源</li>
-<li><code>/lost+found</code> 标准ext2/ext3文件系统才会有该目录,主要是在文件系统异常时暂存碎片,日后恢复</li>
-<li><code>/boot</code>       系统启动所需程序</li>
-<li><code>/home</code>       系统用户主文件夹</li>
-<li><code>/mnt</code>        临时设备挂载点</li>
-<li><code>/log</code>        非日志目录，而是与用户登录相关</li>
-<li><code>/var</code>        见下文</li>
-<li><code>/proc</code>       见下文</li>
-</ul>
-<p>此外还有一些目录经常成套出现在以上个别目录中,意义是差不多的</p>
-<ul>
-<li><code>/bin</code>      二进制可执行文件,在 / 中为与系统运行相关</li>
-<li><code>/sbin</code>     二进制可执行文件,主要是系统维护相关</li>
-<li><code>/include</code>  c/c++常用头文件,我们在以源码包方式编译安装软件时,会使用</li>
-<li><code>/lib</code>      应用软件的函数库,目标文件</li>
-<li><code>/etc</code>      配置文件</li>
-<li><code>/src</code>      源码</li>
-<li><code>/tmp</code>      临时文件夹</li>
-</ul>
-<h3 id="var"><a href="#var" class="headerlink" title="/var"></a>/var</h3><p>主要存放一些经常变化的文件,和系统运行过程中产生的文件</p>
-<ul>
-<li>/var/run   一般是各个进程用于存放运行时的信息,如nginx.id</li>
-<li>/var/lock  进程控制资源的锁</li>
-<li>/var/cache 进程运行中的一些缓存</li>
-</ul>
-<h3 id="proc"><a href="#proc" class="headerlink" title="/proc"></a>/proc</h3><p>这个目录比较特殊,是一个虚拟文件系统,保存着系统内核,进程,外设,网络等的状态,数据全在内存中,本身不占用<br>任何硬盘空间,比较重要的目录有/proc/cpuinfo, /proc/ioports, /proc/net/*</p>
-<p>注意linux中文件的目录结构只是逻辑结构, 真正的物理结构还要看实际挂载位置</p>
-<h2 id="文件与目录权限"><a href="#文件与目录权限" class="headerlink" title="文件与目录权限"></a>文件与目录权限</h2><h3 id="权限基础"><a href="#权限基础" class="headerlink" title="权限基础"></a>权限基础</h3><p>linux中每个文件(目录本质也是文件),都会有一组以下权限串<code>rwxrwxrwx</code></p>
-<ul>
-<li>r 读权限</li>
-<li>w 写权限</li>
-<li>x 执行权限</li>
-</ul>
-<p>另外,这三组rwx分别代表了对于文件创建者,文件用户组,其他人的权限<br>通常也会用三个八进制数来表示权限,比如<code>rwxrwxrwx</code>会用<code>777</code>表示,<code>r-x-wx---</code>用<code>530</code>表示</p>
-<h3 id="inode"><a href="#inode" class="headerlink" title="inode"></a>inode</h3><p>inode是linux的重要概念,对于理解权限如何发挥作用和软硬链接非常有用<br>inode可以理解为linux存储文件的’本体’,文件名与inode的关系类似ip于域名的关系,系统底层真正操作的是inode<br>inode保存了文件的拥有者,用户组,权限,字节数,存储位置…</p>
-<p>相关命令</p>
-<ul>
-<li><code>stat file</code> 查看文件inode信息</li>
-<li><code>ls -i</code> 查看文件inode号</li>
-</ul>
-<h3 id="rwx于文件意义"><a href="#rwx于文件意义" class="headerlink" title="rwx于文件意义"></a>rwx于文件意义</h3><ul>
-<li>r 是否可以读取文件内容</li>
-<li>w 是否可以更改文件内容</li>
-<li>x 是否可以执行文件</li>
-</ul>
-<h3 id="rwx于目录意义"><a href="#rwx于目录意义" class="headerlink" title="rwx于目录意义"></a>rwx于目录意义</h3><ul>
-<li>r 是否可以获取到目录中文件</li>
-<li>w 是否可以在目录中新建,删除,重命名</li>
-<li>x<ul>
-<li>是否可以cd进入目录;</li>
-<li>是否可以读取包含文件的inode信息,这就导致x其实是rw的前提(即便有r权限,可以知道文件名但因为无法读取inode,不能获取文件类型大小等);</li>
-<li>x权限是会影响子目录的,rw不会,即无父目录的rw,也不影响子的rw权限;</li>
-</ul>
-</li>
-</ul>
-<h3 id="权限修改"><a href="#权限修改" class="headerlink" title="权限修改"></a>权限修改</h3><p>文件权限修改有两种办法</p>
-<ul>
-<li><code>chmod 777 file</code></li>
-<li><code>chmod [a|u|g|o]+r-w file</code> u为拥有者,g为用户组,o为其他,a为全部,+为添加,-为去掉,比迁一种要容易记一些</li>
-</ul>
-<p>相关命令</p>
-<ul>
-<li><code>chgrp</code> 修改文件用户组, chgrp [-R] users file, 改变file文件的用户组为users,-R为递归修改</li>
-<li><code>chown</code> 修改文件, chown [-R] user[:group] file, 除了改变文件拥有者,还可以修改文件用户组</li>
-</ul>
-<h3 id="默认权限"><a href="#默认权限" class="headerlink" title="默认权限"></a>默认权限</h3><p>umask控制,类似子网掩码. 创建文件时,系统会去掉umask标记的权限,比如umask为111则创建的文件权限为666<br>但要注意,无论umask如何设置<strong>新建的文件都不会具有x权限</strong>,为了安全起见, 一般umask为022</p>
-<ul>
-<li><code>umask</code> 查看umask值</li>
-<li><code>umask 022</code> 设置umask</li>
-</ul>
-<h3 id="SetUID-SUID"><a href="#SetUID-SUID" class="headerlink" title="SetUID (SUID)"></a>SetUID (SUID)</h3><p>想想这样的场景, /etc/shadow文件中保存着所有用户的密码信息,只有管理员能查看. /usr/bin/passwd为修改密码程序<br>所有用户都有执行该程序的权限, 但是我们进程的权限与启动用户一致的, 那非管理员启动的passwd进程是如何修改密码呢?</p>
-<p>这是由特殊权限SetUID控制的, 当<strong>文件拥有者</strong>的权限中<strong>执行位</strong>为s时, 其他用户执行该文件期间可以具有拥有者的权限,<br>仅对二进制文件有效</p>
-<p>类似的还有SetGID(SGID), 表明执行期间拥有文件所在用户组的权限</p>
-<h3 id="Sticky-Bit-SBIT"><a href="#Sticky-Bit-SBIT" class="headerlink" title="Sticky Bit (SBIT)"></a>Sticky Bit (SBIT)</h3><p>想想这样的场景, 团队公共目录 ~/work, 所有人都拥有该目录的x权限, 若再具有w权限则能够进行删减和重命名, 如何避免误操作?</p>
-<p>只需要为目录设置SBIT权限即可, SBIT只对目录有效, 设置后仅有root或拥有者可以删减对应文件</p>
-<h3 id="SUID-SGID-SBIT权限修改"><a href="#SUID-SGID-SBIT权限修改" class="headerlink" title="SUID SGID SBIT权限修改"></a>SUID SGID SBIT权限修改</h3><p>第一种是在原来三位权限前再添加一位</p>
-<ul>
-<li>4 SUID</li>
-<li>2 SGID</li>
-<li>1 SBIT<br>比如<code>chmod 4666 file</code></li>
-</ul>
-<p>或者使用符合, <code>chmod u+s|g+s|o+t file</code></p>
-<p>注意当看到S或者T时, 说明无效, 比如不具备目录w权限, t就无效</p>
-<h2 id="软硬链接"><a href="#软硬链接" class="headerlink" title="软硬链接"></a>软硬链接</h2><p>linux中有软硬链接文件, 可以方便用户管理和使用文件系统, 首先回忆一下前文中inode的概念…</p>
-<h3 id="硬链接"><a href="#硬链接" class="headerlink" title="硬链接"></a>硬链接</h3><p>并未创建新的inode节点, 只是新建了一个文件名, 并指向源inode, 通过<code>ls -i</code>可以看到文件的链接数+1<br>当删除源文件时, 不会影响链接文件. 创建硬链接<code>ln source target</code></p>
-<p>因为是公用inode所以就决定, 硬链接不能跨文件系统, 不能远程</p>
-<h3 id="软链接"><a href="#软链接" class="headerlink" title="软链接"></a>软链接</h3><p>新建了一个链接文件, 然后这个文件指向了源inode, 类似windows的快捷方式, 创建方式<code>ln -s source target</code></p>
-<h2 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h2><p>Linux中程序的输出可以被重定向<br>系统会为每个程序都默认打开3个标准文件标示符，0标准输1，1标准输出，2标准错误输出<br>> 覆盖式写 >&gt; 追加式写<br>&amp;的作用是获取其后文件标示符表示的设备</p>
-<p><strong>/bin/sh script 1&gt; out  2&gt; err</strong><br>注意&gt;前无空格，否则意义1、2就变成‘参数’了</p>
-<p><strong>/bin/sh script 1&gt;out 2&gt;&amp;1</strong><br>标准输出到out，然后标准错误输出重定向到标准输出，注意顺序和无空格</p>
-<p><strong>/bin/sh script &amp;&gt; out</strong><br>将标准输出和错误都输出到out<br>注意<code>/bin/sh script 1&gt;list 2&gt;list</code>是错误写法，这样写会导致两个输出混在一起</p>
-<h2 id="换行和回车的来历"><a href="#换行和回车的来历" class="headerlink" title="换行和回车的来历"></a>换行和回车的来历</h2><ol>
+<h3 id="内核版本-amp-发布版本"><a href="#内核版本-amp-发布版本" class="headerlink" title="内核版本 &amp; 发布版本"></a>内核版本 &amp; 发布版本</h3><p>linux的内核版本号形如<code>2.6.18-92.e15</code>，依次为主版本.次版本.发布版本-修改版本</p>
+<p>主、次版本号为奇数的话为内核开发版本，一般是用来测试新功能，内核工程师开发使用的；主、次版本号为偶数则为稳定版本</p>
+<p>发布版本distributions，是指各个linux开发商发布的版本，比如CentOS、RedHat。这些开发商都是基于相同的linux内核，不同的是他们会基于此提供不同的服务、工具，比如包安装、系统管理等</p>
+<h3 id="换行和回车"><a href="#换行和回车" class="headerlink" title="换行和回车"></a>换行和回车</h3><ol>
 <li>在早期输出设备是一种叫做电传打字机的设备，该设备能够0.1s打一个字</li>
 <li>但当需要换行的时候，该设备需要0.2秒，两个动作，换行，同时返回行首</li>
 <li>正好是两个字符的时间，所有当时为了省事，直接在行尾设置了两个特殊字符，给设备换行的时间CR 回车 LF 换行</li>
 <li>后来使用电子屏后，一些系统为了节省字符(unix linux)就只有一个LF(\n)，mac则只有一个CR(\r)，win则两个都做了保留</li>
 <li>所以如果把win的文件在linux下打开，则会在每行多看见一个^M字符(win的回车)，可以使用unix2dos或者dos2unix进行转换</li>
 </ol>
-<h2 id="服务器CPU数量"><a href="#服务器CPU数量" class="headerlink" title="服务器CPU数量"></a>服务器CPU数量</h2><p>服务器的物理CPU是可以多核的<br>所以 <code>逻辑cpu数 = 物理cpu * 核数</code><br>可以通过uptime  top 等工具查看系统的平均负载，了解服务器的运行情况<br><em>注：如果有4个逻辑cpu，top显示负载在4及以下，则说明系统相对正常，如果长期在4以上则说明服务器压力过大（负载值同一时间段内运行的进程数，所以是会比cpu数大的）</em></p>
+<h2 id="计算机硬件组成"><a href="#计算机硬件组成" class="headerlink" title="计算机硬件组成"></a>计算机硬件组成</h2><h3 id="硬件基本架构"><a href="#硬件基本架构" class="headerlink" title="硬件基本架构"></a>硬件基本架构</h3><p>现代计算机基本都是冯·诺依曼结构，即由核心运算器、程序控制器、内存、输入设备、输出设备组成。</p>
+<p><img src="http://ww1.sinaimg.cn/large/006QGE4bly1fx32ob2sv9j30c308fmxr.jpg" alt=""></p>
+<p>CPU包括核心运算器（ALU）和程序控制器（PC），通过其提供的一系列<code>cpu指令</code>来提供包括数学运算、数据读取、数据写入，以及应该运行哪条指令等服务，是计算机的‘心脏’</p>
+<p>主存储器，也就是内存，服务CPU的数据读取和写入，与I/O设备数据加载</p>
+<p>I/O设备，则各种各种，常见如鼠标、键盘、显示器、USB、磁盘、网卡等，负责从真实世界读取数据和以各种形式数据数据</p>
+<p>这些设备通过<code>总线（PCI）</code>通信，总线同一时间只能广播一条指令</p>
+<h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><p>中央处理单元，可以说是人类智慧的集中体现。它的模型被抽象的很简单，读取一条cpu指令，翻译指令，然后执行（可能为数学运算、读取数据、写入数据或者指定下一条指令），循环往复，直到关机</p>
+<h4 id="CPU指令"><a href="#CPU指令" class="headerlink" title="CPU指令"></a>CPU指令</h4><p>cpu指令很简单就是一系列的0、1序列，cpu从寄存器中读取到这些0、1序列后，执行相应的操作。我们编写的程序最终都要翻译成cpu指令。不同的机器cpu实现不同，其指令集也会有所不同，所以编译好的可执行程序一般不能直接在不同的机器上运行</p>
+<blockquote>
+<p>  cpu的指令历史上有两条路线，<code>精简指令集（CISC）</code>和<code>复杂指令集（RISC）</code>，他们的主要区别是CISC认为cpu常用的指令并不多，不需要因为少数不常用的操作来增加cpu的复杂度，只需要一个少量的简单指令集合即可，既可以降低cpu的复杂度，也方便对指令进行优化；RISC则是提供功能强大，但是更耗cpu周期的指令来方便cpu的使用。目前两者已经逐渐融合</p>
+</blockquote>
+<h4 id="CPU型号"><a href="#CPU型号" class="headerlink" title="CPU型号"></a>CPU型号</h4><p>不同厂家生产的CPU具有不同构造和指令集，最初计算机的CPU是需要各个公司自己设计生产的。后来Intel公司设计生产了通用cpu，逐渐成为市场标准</p>
+<p>由于Intel生产的cpu最初型号是8086、80286、i386、i486等，人们习惯称Intel系列cpu为x86，根据cpu支持的位数不同，又分为x86-32和x86-64。此外还有IBM处理器和arm处理器</p>
+<h4 id="CPU数量"><a href="#CPU数量" class="headerlink" title="CPU数量"></a>CPU数量</h4><p>服务器的物理CPU是可以多核的，所以 <code>逻辑cpu数 = 物理cpu * 核数</code></p>
+<p>可以通过uptime top 等工具查看系统的平均负载，了解服务器的运行情况</p>
+<blockquote>
+<p>  如果有4个逻辑cpu，top显示负载在4及以下，则说明系统相对正常，如果长期在4以上则说明服务器压力过大（负载值同一时间段内运行的进程数，所以是会比cpu数大的）*</p>
+</blockquote>
+<h2 id="Linux文件系统"><a href="#Linux文件系统" class="headerlink" title="Linux文件系统"></a>Linux文件系统</h2><h3 id="一切皆文件"><a href="#一切皆文件" class="headerlink" title="一切皆文件"></a>一切皆文件</h3><p>linux一个非常优雅的设计便是将所有I/O设备抽象为文件，本质上文件只是一个字节序列，这个字节序列可能存储在磁盘上，也可能来自网卡，也可能来自键盘输入，也可能来自其他程序输出，等等等等。这样做的好处是linux只需要提供少数简单一致的api接口来实现输入和输出，比如read write</p>
+<h3 id="主要目录"><a href="#主要目录" class="headerlink" title="主要目录"></a>主要目录</h3><ul>
+<li><p><code>/</code> 根目录,存放着系统核心程序</p>
+</li>
+<li><p><code>/usr</code> unix software resource,存放unix厂商(可能是改版的发行者)开发的软件资源</p>
+</li>
+<li><p><code>/usr/local</code> 存放用户安装的软件资源</p>
+</li>
+<li><p><code>/opt</code> option(选装),存放第三方厂商开发的软件资源</p>
+</li>
+<li><p><code>/lost+found</code> 标准ext2/ext3文件系统才会有该目录,主要是在文件系统异常时暂存碎片,日后恢复</p>
+</li>
+<li><p><code>/boot</code> 系统启动所需程序</p>
+</li>
+<li><p><code>/home</code> 系统用户主文件夹</p>
+</li>
+<li><p><code>/mnt</code> 临时设备挂载点</p>
+</li>
+<li><p><code>/log</code> 非日志目录，而是与用户登录相关</p>
+</li>
+<li><p><code>/var</code> 见下文</p>
+</li>
+<li><p><code>/proc</code> 见下文</p>
+</li>
+</ul>
+<p>此外还有一些目录经常成套出现在以上个别目录中,意义是差不多的</p>
+<ul>
+<li><p><code>/bin</code> 二进制可执行文件,在 / 中为与系统运行相关</p>
+</li>
+<li><p><code>/sbin</code> 二进制可执行文件,主要是系统维护相关</p>
+</li>
+<li><p><code>/include</code> c/c++常用头文件,我们在以源码包方式编译安装软件时,会使用</p>
+</li>
+<li><p><code>/lib</code> 应用软件的函数库,目标文件</p>
+</li>
+<li><p><code>/etc</code> 配置文件</p>
+</li>
+<li><p><code>/src</code> 源码</p>
+</li>
+<li><p><code>/tmp</code> 临时文件夹</p>
+</li>
+</ul>
+<p><code>/var</code>主要存放一些经常变化的文件,和系统运行过程中产生的文件</p>
+<ul>
+<li><p><code>/var/run</code> 一般是各个进程用于存放运行时的信息,如nginx.id</p>
+</li>
+<li><p><code>/var/lock</code> 进程控制资源的锁</p>
+</li>
+<li><p><code>/var/cache</code> 进程运行中的一些缓存</p>
+</li>
+</ul>
+<p><code>/proc</code>这个目录比较特殊,是一个虚拟文件系统,保存着系统内核,进程,外设,网络等的状态,数据全在内存中,本身不占用</p>
+<p>任何硬盘空间,比较重要的目录有/proc/cpuinfo, /proc/ioports, /proc/net/*</p>
+<p>注意linux中文件的目录结构只是逻辑结构, 真正的物理结构还要看实际挂载位置</p>
+<h3 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h3><p>linux中每个文件(目录本质也是文件),都会有一组以下权限串<code>rwxrwxrwx</code></p>
+<ul>
+<li><p>r 读权限</p>
+</li>
+<li><p>w 写权限</p>
+</li>
+<li><p>x 执行权限</p>
+</li>
+</ul>
+<p>另外,这三组rwx分别代表了对于文件创建者,文件用户组,其他人的权限</p>
+<p>通常也会用三个八进制数来表示权限,比如<code>rwxrwxrwx</code>会用<code>777</code>表示,<code>r-x-wx---</code>用<code>530</code>表示</p>
+<h4 id="inode"><a href="#inode" class="headerlink" title="inode"></a>inode</h4><p>inode是linux的重要概念,对于理解权限如何发挥作用和软硬链接非常有用</p>
+<p>inode可以理解为linux存储文件的’本体’,文件名与inode的关系类似ip于域名的关系,系统底层真正操作的是inode</p>
+<p>inode保存了文件的拥有者,用户组,权限,字节数,存储位置…</p>
+<p>相关命令</p>
+<ul>
+<li><p><code>stat file</code> 查看文件inode信息</p>
+</li>
+<li><p><code>ls -i</code> 查看文件inode号</p>
+</li>
+</ul>
+<h4 id="rwx于文件意义"><a href="#rwx于文件意义" class="headerlink" title="rwx于文件意义"></a>rwx于文件意义</h4><ul>
+<li><p>r 是否可以读取文件内容</p>
+</li>
+<li><p>w 是否可以更改文件内容</p>
+</li>
+<li><p>x 是否可以执行文件</p>
+</li>
+</ul>
+<h4 id="rwx于目录意义"><a href="#rwx于目录意义" class="headerlink" title="rwx于目录意义"></a>rwx于目录意义</h4><ul>
+<li><p>r 是否可以获取到目录中文件</p>
+</li>
+<li><p>w 是否可以在目录中新建,删除,重命名</p>
+</li>
+<li><p>x</p>
+<ul>
+<li><p>是否可以cd进入目录;</p>
+<ul>
+<li><p>是否可以读取包含文件的inode信息,这就导致x其实是rw的前提(即便有r权限,可以知道文件名但因为无法读取inode,不能获取文件类型大小等);</p>
+</li>
+<li><p>x权限是会影响子目录的,rw不会,即无父目录的rw,也不影响子的rw权限;</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="权限修改"><a href="#权限修改" class="headerlink" title="权限修改"></a>权限修改</h4><p>文件权限修改有两种办法</p>
+<ul>
+<li><p><code>chmod 777 file</code></p>
+</li>
+<li><p><code>chmod [a|u|g|o]+r-w file</code> u为拥有者,g为用户组,o为其他,a为全部,+为添加,-为去掉,比迁一种要容易记一些</p>
+</li>
+</ul>
+<p>相关命令</p>
+<ul>
+<li><p><code>chgrp</code> 修改文件用户组, chgrp [-R] users file, 改变file文件的用户组为users,-R为递归修改</p>
+</li>
+<li><p><code>chown</code> 修改文件, chown [-R] user[:group] file, 除了改变文件拥有者,还可以修改文件用户组</p>
+</li>
+</ul>
+<h4 id="默认权限"><a href="#默认权限" class="headerlink" title="默认权限"></a>默认权限</h4><p>umask控制,类似子网掩码. 创建文件时,系统会去掉umask标记的权限,比如umask为111则创建的文件权限为666</p>
+<p>但要注意,无论umask如何设置<strong>新建的文件都不会具有x权限</strong>,为了安全起见, 一般umask为022</p>
+<ul>
+<li><p><code>umask</code> 查看umask值</p>
+</li>
+<li><p><code>umask 022</code> 设置umask</p>
+</li>
+</ul>
+<h4 id="SetUID-SUID"><a href="#SetUID-SUID" class="headerlink" title="SetUID (SUID)"></a>SetUID (SUID)</h4><p>想想这样的场景, /etc/shadow文件中保存着所有用户的密码信息,只有管理员能查看. /usr/bin/passwd为修改密码程序</p>
+<p>所有用户都有执行该程序的权限, 但是我们进程的权限与启动用户一致的, 那非管理员启动的passwd进程是如何修改密码呢?</p>
+<p>这是由特殊权限SetUID控制的, 当 <strong>文件拥有者</strong> 的权限中 <strong>执行位</strong> 为s时, 其他用户执行该文件期间可以具有拥有者的权限,</p>
+<p>仅对二进制文件有效</p>
+<p>类似的还有SetGID(SGID), 表明执行期间拥有文件所在用户组的权限</p>
+<h4 id="Sticky-Bit-SBIT"><a href="#Sticky-Bit-SBIT" class="headerlink" title="Sticky Bit (SBIT)"></a>Sticky Bit (SBIT)</h4><p>想想这样的场景, 团队公共目录 ~/work, 所有人都拥有该目录的x权限, 若再具有w权限则能够进行删减和重命名, 如何避免误操作?</p>
+<p>只需要为目录设置SBIT权限即可, SBIT只对目录有效, 设置后仅有root或拥有者可以删减对应文件</p>
+<h4 id="SUID-SGID-SBIT权限修改"><a href="#SUID-SGID-SBIT权限修改" class="headerlink" title="SUID SGID SBIT权限修改"></a>SUID SGID SBIT权限修改</h4><p>第一种是在原来三位权限前再添加一位</p>
+<ul>
+<li><p>4 SUID</p>
+</li>
+<li><p>2 SGID</p>
+</li>
+<li><p>1 SBIT</p>
+<p>比如<code>chmod 4666 file</code></p>
+</li>
+</ul>
+<p>或者使用符号, <code>chmod u+s|g+s|o+t file</code></p>
+<p>注意当看到S或者T时, 说明无效, 比如不具备目录w权限, t就无效</p>
+<h3 id="软-硬链接"><a href="#软-硬链接" class="headerlink" title="软/硬链接"></a>软/硬链接</h3><p>linux中有软硬链接文件, 可以方便用户管理和使用文件系统, 首先回忆一下前文中inode的概念</p>
+<h4 id="硬链接"><a href="#硬链接" class="headerlink" title="硬链接"></a>硬链接</h4><p>并未创建新的inode节点, 只是新建了一个文件名, 并指向源inode, 通过<code>ls -i</code>可以看到文件的链接数+1</p>
+<p>当删除源文件时, 不会影响链接文件. 创建硬链接<code>ln source target</code></p>
+<p>因为是公用inode所以就决定, 硬链接不能跨文件系统, 不能远程。而且由于硬连接指向了inode，所以当源文件被删除时，真正的inode不会被删除，硬连接依旧正常使用。软连接则不行；同时目前硬链接不支持目标文件为目录</p>
+<h4 id="软链接"><a href="#软链接" class="headerlink" title="软链接"></a>软链接</h4><p>新建了一个链接文件, 然后这个文件指向了源inode, 类似windows的快捷方式, 创建方式<code>ln -s source target</code></p>
+<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>计算机中的所有数据本质上都是01序列，只有在特定的上下文中，这些01序列才具有意义</p>
+<h4 id="数据表示"><a href="#数据表示" class="headerlink" title="数据表示"></a>数据表示</h4><p>通常，一个0、1为1个bit，即一位</p>
+<p>8个bit为一个byte，即一个字节</p>
+<p>2个byte为一个word，即一个字</p>
+<p>一般使用4个byte表示int，1个byte表示char</p>
+<h4 id="ASCII-UTF-8-Unicode"><a href="#ASCII-UTF-8-Unicode" class="headerlink" title="ASCII UTF-8 Unicode"></a>ASCII UTF-8 Unicode</h4><p>unicode是对全世界所有字符的一种编码，用4个byte来标记一个字符，称为<code>统一字符集</code></p>
+<p>ascii则是计算机早期的一种字符编码，用1个byte来表示一个字符，主要用来表示英文字母、常用符号</p>
+<p>utf-8则是unicode的一种为了节约空间的编码，将常用的字符如英文字符使用1个byte表示，用3个byte来表示中文字符</p>
+<h4 id="大端、小端"><a href="#大端、小端" class="headerlink" title="大端、小端"></a>大端、小端</h4><p>比如整数255的字节表示为01 00，01被称为最高有效字节，00称为最低有效字节，所以</p>
+<p>大端模式是指计算机在存储数据时，最高有效字节在前，最低在后，即 01 00</p>
+<p>小端模式是指计算机在存储数据时，最低有效字节在前，即00 01</p>
+<p><code>需要注意的是为了数据在网络中交换，规定网络数据一律使用大端模式</code></p>
+<h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><p>Linux中程序的输出可以被重定向</p>
+<p>系统会为每个程序都默认打开3个标准文件标示符，0标准输1，1标准输出，2标准错误输出</p>
+<p>> 覆盖式写 >&gt; 追加式写</p>
+<p>&amp;的作用是获取其后文件标示符表示的设备</p>
+<p><strong>/bin/sh script 1&gt; out 2&gt; err</strong></p>
+<p>注意&gt;前无空格，否则意义1、2就变成‘参数’了</p>
+<p><strong>/bin/sh script 1&gt;out 2&gt;&amp;1</strong></p>
+<p>标准输出到out，然后标准错误输出重定向到标准输出，注意顺序和无空格</p>
+<p><strong>/bin/sh script &amp;&gt; out</strong></p>
+<p>将标准输出和错误都输出到out</p>
+<p>注意<code>/bin/sh script 1&gt;list 2&gt;list</code>是错误写法，这样写会导致两个输出混在一起</p>
+<h3 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h3><p>一台计算机的存储设备一般包括寄存器、主存（内存）、硬盘，现在考虑这些问题：</p>
+<ul>
+<li>cpu只能直接与寄存器进行交互，而且只能加载内存中的数据，和输出数据到内存中，那么如何高效的将数据从硬盘中载入寄存器供cpu使用？</li>
+<li>如何维护内存，来为进程提供内存的分配、释放、隔离？</li>
+</ul>
+<p>虚拟内存便是操作系统用来维护计算机存储设备的机制。其基本模型是将内存、硬盘都划分为以页为基本元素的大的数组。</p>
+<p>基于这个模型，使用“文件”这个概念来维护硬盘中的数据，文件记录了其所代表的数据在磁盘的所有页的位置</p>
+<p>进程申请内存便是为其在内存中分配页槽位，释放内存便是释放这些槽位，read文件数据便是将文件的页从磁盘读入到内存的页槽中。操作系统维护着内存中每个页槽属于哪个进程，来保证进程内存之间的隔离，同时给每个进程造成一种在“独占”内存的假象（在进程看来，自己的内存空间是连续的）</p>
+<p>就是这么一个简单的模型，保证了数据有序的在硬盘、内存、寄存器之间有序维护</p>
+<h4 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h4><p>寄存器的读取速度为1个单位的话，那么内存的读取速度就是10个单位，而硬盘的读取速度则是100000个单位，如果每次从文件读取数据都要由硬盘重新读取的话，那么cpu资源将极大浪费</p>
+<p>操作系统使用缓存来解决不同存储设备读取速度巨大差距的问题。当进程申请将一页从硬盘读入进程的页槽中时，操作系统会先把页加载到内核进程的页槽中，再copy到进程的页槽中，之后的一定时间内当其他进程再申请同一个页时，便可以直接在内存中copy</p>
+<p>而且由于当前硬盘的构造，读取时间基本消耗在寻址阶段，当找到页后，顺序读取时，其实只需要大约10个单位的时间，所以操作系统在加载页时，也会顺便把该页前后的页也顺带加载，根据程序的<code>局部性原理</code>这些页大概率会在接下来的时间内被申请</p>
+<blockquote>
+<p>  程序的局部性原理，是指时间的维度看同一份数据大概率会在短时间内被程序反复使用，或者从空间的维度看一份数据一旦被程序使用，那么它相邻的数据也大概率会被程序使用</p>
+<p>  正是局部性原理，保证了可以进行缓存。试想如果一个程序天上一脚、地下一脚的读取数据，那么操作系统就只能反复从硬盘中加载数据，这也是一些程序性能差的原因之一</p>
+</blockquote>
+<h4 id="延迟写"><a href="#延迟写" class="headerlink" title="延迟写"></a>延迟写</h4><p>另一项操作系统提供性能的策略是延迟写，当进程修改页中的数据时，操作系统不会立刻刷会硬盘中，因为进程可能会短时间内频繁操作，而且刷回硬盘需要大量时间。被修改的页（称为脏页）会在内核空间中停留一段时间后，根据不同的策略再刷回硬盘</p>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>进程简单来说，就是操作系统一个可执行程序的实例</p>
+<p>他是对计算机计算能力（cpu）、存储能力（主存）、交互能力（I/O设备）的抽象，通过进程，你可以对着三者完全无感知的情况下来控制计算机。比如我们写程序从文件读入一个字符串，并不需要关系文件数据的存储，处理整个字符串也并不需要知道执行哪些cpu指令，把他打印出来也不需要知道外设如何使用</p>
+<blockquote>
+<p>  类似地，文件是操作系统对I/O设备的抽象。虚拟内存是对I/O设备+主存的抽象</p>
+</blockquote>
+<p>我们来利用计算机工作，就必须执行具体的程序，生成进程来完成</p>
+<h3 id="进程的内存结构"><a href="#进程的内存结构" class="headerlink" title="进程的内存结构"></a>进程的内存结构</h3><p>进程会给程序一种假象，他是在独占地使用计算机的计算、存储资源。这样不仅可以最大程度发挥计算机硬件性能，而且降低程序的开发难度。而要实现这一点，进程的内存就必须互相隔离，操作系统利用虚拟内存机制来实现这一点。下面是进程的典型内存结构</p>
+<p><img src="http://ww1.sinaimg.cn/large/006QGE4bly1fx363xvqo6j30an0a0dk4.jpg" alt=""></p>
+<p>依旧把进程的内存空间想象为一个很长的页槽数组。所有进程的0x004000000位开始是进程的指令序列，即<code>text段</code>，是在进程启动前完成加载的（这就是为什么更改已经运行的程序源码不会影响进程），进程的起始位置一样也是基于虚拟内存实现的，其真正的物理内存位置都不一样</p>
+<p>text段之上是<code>static段</code>包含由编译器所分配的变量，包括全局变量，和使用static声明的局部变量；</p>
+<p>再往上是<code>heap段</code>进程运行过程中间的内存扩展部分；再之上是共享库的内存空间；</p>
+<p>最顶部对用户进程隐藏的是内核的虚拟内存；往下是进程运行过程中的栈空间<code>stack段</code>（用来执行函数、线程等）；</p>
+<h4 id="用户模式-amp-内核模式"><a href="#用户模式-amp-内核模式" class="headerlink" title="用户模式 &amp; 内核模式"></a>用户模式 &amp; 内核模式</h4><p>进程运行模式机制主要是为了防止恶意进程非法访问其他进程的数据，或者进行破坏，进程在正常运行是在用户模式下，当需要进行一些‘高难度’操作比如读取文件、使用显示器显示数据等，则需要通过操作系统提供的<code>系统调用</code>来进行，此时进程的运行模式为内核模式，进程执行的指令跳转到内存的顶层内核指令空间，等待系统再次指定进入进程自己的指令空间</p>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>进程是可执行程序的实例，那么可执行程序又是如何来的？</p>
+<p>以c语言为例。我们在写好程序之后，编译器（如gcc）会把这些程序文本编译为汇编代码，然后再通过汇编器生成目标文件（不同的机器因为cpu指令集合可能不同，需要不同的汇编器），最终目标文件链接起来就是0、1组成的可执行文件了</p>
+<h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><p>为什么不直接汇编生成可执行代码，还要经过一次链接？</p>
+<p>最初的程序确实是这样，经过汇编之后产生的就是可执行文件，但实践证明这种模式并不高效，比如打印字符到显示器这样的功能代码段，大部分程序都需要，我们就必须在所有程序里实现一次，很傻是不是？所以就有了链接，把这些常用的程序提前汇编为目标代码，执行前链接一下就好。这样的的另一个好处就是减少编译时间，比如我就修改了一个目标文件的源码，难道我要都编译一遍吗？</p>
+<h4 id="动态库-amp-静态库"><a href="#动态库-amp-静态库" class="headerlink" title="动态库 &amp; 静态库"></a>动态库 &amp; 静态库</h4><p>跟链接的情况类似，还是打印字符到显示器这样的指令集合，难道要在每个进程的内存空间都加载一次一模一样的吗？</p>
+<p>进程内存空间中共享内存便是这个作用，将常用的库在进程之间共享，还是通过虚拟内存机制实现，这就是静态库</p>
+<p>而动态库是指有些指令集合也是标准的，但使用频率很低，没必要提前加载，进程会在实际需要运行的时候，动态将指令空间加载进内存空间</p>
+<p>linux会提前把动态库的代码加载进主存，所以当更新了动态库后，需要执行ldconfig来重新加载。lld可以查看一个可执行程序所依赖的动态库</p>
+<h3 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a>文件描述符</h3><p>进程有一个<code>描述符表</code>用正整数来表示进程已经打开的文件。操作系统会在进程创建时预先为其打开文件，0标准输出，1标准输入，2标准错误输出</p>
+<p>同时操作系统会全局维护一个<code>文件表</code>记录所有被进程打开的文件，以及他们被引用的次数，文件被删除时，只有当引用数为0时才会真正从系统删除，所以进程要及时关闭不使用的文件</p>
+<h3 id="进程的并发"><a href="#进程的并发" class="headerlink" title="进程的并发"></a>进程的并发</h3><p>最初的计算机都是单任务的，同一时间只能做一件事。实现进程的根本目的是想要应用程序并发执行，即多任务</p>
+<h4 id="并发-amp-并行"><a href="#并发-amp-并行" class="headerlink" title="并发 &amp; 并行"></a>并发 &amp; 并行</h4><p>并发是指同一个<code>时间段</code>内有多个进程在运行。并行是并发的真子集，意思同一个<code>时间点</code>有多个进程在运行，需要多cpu支持</p>
+<h4 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h4><p>操作系统实现进程并发的模型很简单，就是cpu不断在多个进程之间进行切换运行，由于cpu的周期非常短，所以多个进程看似是在同时运行，不过如果进程数不多于cpu核数的话，进程则确实是在同时运行，不过多数情况是进程数要多于cpu核数，进程需要交替运行</p>
+<p>进程让出cpu的使用权叫做<code>上下文切换</code>，内核不仅需要保存出让cpu使用权进程的各种信息，同时还要载入将运行的进程信息，这些信息被称为上下文，包括通用寄存器、浮点寄存器、程序计数器、用户栈、状态寄存器、内核栈和各种内核数据结构，比如描述地址空间的页表、包含当前有关进程信息的进程表，以及包含进程已打开文件的文件表</p>
+<p>上下文切换的代价还是挺大的，甚至可能是操作系统cpu周期耗费的主要地方，所以<code>多进程并不一定比单进程快</code>，在计算密集的场景下，频繁的进程切换反而会效率更差</p>
+<h4 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h4><p>最初的进程切换是进程互相协调的，但很快发现这种模式容易导致恶意进程抢占运行资源，所以目前主流操作系统都使用竞争式进程抢占，由操作系统来负责进程之间的切换，这个机制便是异常</p>
+<p>当触发异常时，比如读取文件、读取网络数据，或者其他硬件触发的中断，进程会从运行状态，转变为挂起、或者终止（由异常是否可以恢复决定），进程会在等待条件满足时，再次进入就绪态，等待下一次调度</p>
+<h3 id="fork-amp-exec"><a href="#fork-amp-exec" class="headerlink" title="fork &amp; exec"></a>fork &amp; exec</h3><p>进程可以fork一个子进程，子进程会复制父进程的内存空间，包括父进程的文件表，即子进程会默认打开父进程已打开的所有文件，这个要特别注意，而且操作系统为了提高性能，实现了<code>写时复制</code>机制，即只有子进程的内存被写入时才会触发内存复制</p>
+<p>exec则是在当前进程的上下文环境中启动一个新进程来代替当前进程，在该进程执行结束之后再恢复之前的进程</p>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>线程是cpu调度的基本单位，其实每个进程至少要包含一个线程</p>
+<p>同一个进程中的线程互相之间共享进程虚拟内存</p>
+<p>线程的切换成本主要是寄存器、计数器等，要远低于进程切换成本</p>
+<h4 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h4><p>线程安全是指一个函数在多个线程同时调用的场景下，输出结果保持一致，反之则为线程不安全</p>
+<p>线程不安全的函数可能是依赖了静态变量、全局变量，或者线程之间共享的进程变量没有加锁维护一致性</p>
+<h2 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h2><p>由于一切皆文件的抽象，网络编程其实就是利用网卡这个特殊的文件进行编程，这个‘文件’字节流的交换是由多种网络协议与以太网来实现的</p>
+<h3 id="port端口"><a href="#port端口" class="headerlink" title="port端口"></a>port端口</h3><p>端口是操作系统对外提供服务的进程的抽象，每个提供服务的端口背后都对应一个进程</p>
+<p>端口由一个整数表示，从0到65535，其中0-1023为<code>著名端口</code>，这些端口会由一些基础服务占用；1024-49151为<code>注册端口</code>，这些端口是建议给用户进程服务使用的；49152-65535则是<code>动态端口</code>一般是临时分配的</p>
+<h3 id="socket套接字"><a href="#socket套接字" class="headerlink" title="socket套接字"></a>socket套接字</h3><p>网卡是用来进行网络数据交换的设备，维护着本地进程与外界大量的网络连接，socket套接字则是这些连接的抽象。socket由四个字段组成，本机ip、服务端口、连接ip、连接的端口</p>
+<p>当本地进程是提供服务的进程时，端口号是固定的由进程申请bind。当本地进程是发起外界建立连接时，本地的端口是随机分配的</p>
 
       
     </div>
@@ -512,7 +686,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#这是什么"><span class="nav-number">1.</span> <span class="nav-text">这是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux简史"><span class="nav-number">2.</span> <span class="nav-text">Linux简史</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机的发明"><span class="nav-number">2.1.</span> <span class="nav-text">计算机的发明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unix诞生"><span class="nav-number">2.2.</span> <span class="nav-text">Unix诞生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GNU-GNU’s-not-Unix"><span class="nav-number">2.3.</span> <span class="nav-text">GNU (GNU’s not Unix)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux"><span class="nav-number">2.4.</span> <span class="nav-text">Linux</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux主要目录"><span class="nav-number">3.</span> <span class="nav-text">Linux主要目录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主要目录"><span class="nav-number">3.1.</span> <span class="nav-text">主要目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#var"><span class="nav-number">3.2.</span> <span class="nav-text">/var</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#proc"><span class="nav-number">3.3.</span> <span class="nav-text">/proc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件与目录权限"><span class="nav-number">4.</span> <span class="nav-text">文件与目录权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#权限基础"><span class="nav-number">4.1.</span> <span class="nav-text">权限基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inode"><span class="nav-number">4.2.</span> <span class="nav-text">inode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rwx于文件意义"><span class="nav-number">4.3.</span> <span class="nav-text">rwx于文件意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rwx于目录意义"><span class="nav-number">4.4.</span> <span class="nav-text">rwx于目录意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权限修改"><span class="nav-number">4.5.</span> <span class="nav-text">权限修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认权限"><span class="nav-number">4.6.</span> <span class="nav-text">默认权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SetUID-SUID"><span class="nav-number">4.7.</span> <span class="nav-text">SetUID (SUID)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sticky-Bit-SBIT"><span class="nav-number">4.8.</span> <span class="nav-text">Sticky Bit (SBIT)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SUID-SGID-SBIT权限修改"><span class="nav-number">4.9.</span> <span class="nav-text">SUID SGID SBIT权限修改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软硬链接"><span class="nav-number">5.</span> <span class="nav-text">软硬链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#硬链接"><span class="nav-number">5.1.</span> <span class="nav-text">硬链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软链接"><span class="nav-number">5.2.</span> <span class="nav-text">软链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重定向"><span class="nav-number">6.</span> <span class="nav-text">重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#换行和回车的来历"><span class="nav-number">7.</span> <span class="nav-text">换行和回车的来历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器CPU数量"><span class="nav-number">8.</span> <span class="nav-text">服务器CPU数量</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#这是什么"><span class="nav-number">1.</span> <span class="nav-text">这是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux简史"><span class="nav-number">2.</span> <span class="nav-text">Linux简史</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机的发明"><span class="nav-number">2.1.</span> <span class="nav-text">计算机的发明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unix诞生"><span class="nav-number">2.2.</span> <span class="nav-text">Unix诞生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GNU-GNU’s-not-Unix"><span class="nav-number">2.3.</span> <span class="nav-text">GNU (GNU’s not Unix)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux诞生"><span class="nav-number">2.4.</span> <span class="nav-text">Linux诞生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内核版本-amp-发布版本"><span class="nav-number">2.5.</span> <span class="nav-text">内核版本 & 发布版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#换行和回车"><span class="nav-number">2.6.</span> <span class="nav-text">换行和回车</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机硬件组成"><span class="nav-number">3.</span> <span class="nav-text">计算机硬件组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#硬件基本架构"><span class="nav-number">3.1.</span> <span class="nav-text">硬件基本架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU"><span class="nav-number">3.2.</span> <span class="nav-text">CPU</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CPU指令"><span class="nav-number">3.2.1.</span> <span class="nav-text">CPU指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CPU型号"><span class="nav-number">3.2.2.</span> <span class="nav-text">CPU型号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CPU数量"><span class="nav-number">3.2.3.</span> <span class="nav-text">CPU数量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux文件系统"><span class="nav-number">4.</span> <span class="nav-text">Linux文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一切皆文件"><span class="nav-number">4.1.</span> <span class="nav-text">一切皆文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主要目录"><span class="nav-number">4.2.</span> <span class="nav-text">主要目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件权限"><span class="nav-number">4.3.</span> <span class="nav-text">文件权限</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#inode"><span class="nav-number">4.3.1.</span> <span class="nav-text">inode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rwx于文件意义"><span class="nav-number">4.3.2.</span> <span class="nav-text">rwx于文件意义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rwx于目录意义"><span class="nav-number">4.3.3.</span> <span class="nav-text">rwx于目录意义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#权限修改"><span class="nav-number">4.3.4.</span> <span class="nav-text">权限修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#默认权限"><span class="nav-number">4.3.5.</span> <span class="nav-text">默认权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SetUID-SUID"><span class="nav-number">4.3.6.</span> <span class="nav-text">SetUID (SUID)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sticky-Bit-SBIT"><span class="nav-number">4.3.7.</span> <span class="nav-text">Sticky Bit (SBIT)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SUID-SGID-SBIT权限修改"><span class="nav-number">4.3.8.</span> <span class="nav-text">SUID SGID SBIT权限修改</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软-硬链接"><span class="nav-number">4.4.</span> <span class="nav-text">软/硬链接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#硬链接"><span class="nav-number">4.4.1.</span> <span class="nav-text">硬链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#软链接"><span class="nav-number">4.4.2.</span> <span class="nav-text">软链接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编码"><span class="nav-number">4.5.</span> <span class="nav-text">编码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据表示"><span class="nav-number">4.5.1.</span> <span class="nav-text">数据表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ASCII-UTF-8-Unicode"><span class="nav-number">4.5.2.</span> <span class="nav-text">ASCII UTF-8 Unicode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#大端、小端"><span class="nav-number">4.5.3.</span> <span class="nav-text">大端、小端</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重定向"><span class="nav-number">4.6.</span> <span class="nav-text">重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟内存"><span class="nav-number">4.7.</span> <span class="nav-text">虚拟内存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存"><span class="nav-number">4.7.1.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#延迟写"><span class="nav-number">4.7.2.</span> <span class="nav-text">延迟写</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程"><span class="nav-number">5.</span> <span class="nav-text">进程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程的内存结构"><span class="nav-number">5.1.</span> <span class="nav-text">进程的内存结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用户模式-amp-内核模式"><span class="nav-number">5.1.1.</span> <span class="nav-text">用户模式 & 内核模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译"><span class="nav-number">5.2.</span> <span class="nav-text">编译</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#链接"><span class="nav-number">5.2.1.</span> <span class="nav-text">链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态库-amp-静态库"><span class="nav-number">5.2.2.</span> <span class="nav-text">动态库 & 静态库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件描述符"><span class="nav-number">5.3.</span> <span class="nav-text">文件描述符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程的并发"><span class="nav-number">5.4.</span> <span class="nav-text">进程的并发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#并发-amp-并行"><span class="nav-number">5.4.1.</span> <span class="nav-text">并发 & 并行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上下文切换"><span class="nav-number">5.4.2.</span> <span class="nav-text">上下文切换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异常"><span class="nav-number">5.4.3.</span> <span class="nav-text">异常</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fork-amp-exec"><span class="nav-number">5.5.</span> <span class="nav-text">fork & exec</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-number">6.</span> <span class="nav-text">线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线程安全"><span class="nav-number">6.0.1.</span> <span class="nav-text">线程安全</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络编程"><span class="nav-number">7.</span> <span class="nav-text">网络编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#port端口"><span class="nav-number">7.1.</span> <span class="nav-text">port端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#socket套接字"><span class="nav-number">7.2.</span> <span class="nav-text">socket套接字</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
