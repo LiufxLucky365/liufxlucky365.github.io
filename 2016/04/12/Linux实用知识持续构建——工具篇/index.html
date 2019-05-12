@@ -83,7 +83,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/04/12/Linux实用知识持续构建——工具篇/index.html">
 <meta property="og:site_name" content="Liufxlucky365">
 <meta property="og:description" content="这是什么本文将持续更新在学习Linux过程中,所遇到各种实用工具的实用示例,示例将尽量简洁,且只包含常用场景.">
-<meta property="og:updated_time" content="2018-11-12T16:45:24.000Z">
+<meta property="og:updated_time" content="2019-05-12T07:17:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux实用知识持续构建——工具篇">
 <meta name="twitter:description" content="这是什么本文将持续更新在学习Linux过程中,所遇到各种实用工具的实用示例,示例将尽量简洁,且只包含常用场景.">
@@ -269,6 +269,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -301,8 +323,7 @@
       
 
       
-        <p><link rel="stylesheet" type="text/css" href="/css/theme-1.css"></p>
-<h2 id="这是什么"><a href="#这是什么" class="headerlink" title="这是什么"></a>这是什么</h2><p>本文将持续更新在学习Linux过程中,所遇到各种实用工具的实用示例,示例将尽量简洁,且只包含常用场景.</p>
+        <h2 id="这是什么"><a href="#这是什么" class="headerlink" title="这是什么"></a>这是什么</h2><p>本文将持续更新在学习Linux过程中,所遇到各种实用工具的实用示例,示例将尽量简洁,且只包含常用场景.</p>
 <a id="more"></a>
 <h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 不要忘了cat是可以同时显示多个文件的</span><br><span class="line">cat file1 file2 ...</span><br><span class="line"></span><br><span class="line"># 合并标准输入和文件</span><br><span class="line">echo &apos;standout&apos; | cat - file1</span><br><span class="line"></span><br><span class="line"># 压缩空白行</span><br><span class="line">cat -s file1</span><br><span class="line"></span><br><span class="line"># 显示行号，针对所有行，-b则只针对非空白行</span><br><span class="line">cat -n file1</span><br></pre></td></tr></table></figure>
 <h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"># 未指明搜索条件，则是列出dir目录及其子目录的所有文件</span><br><span class="line">find dir</span><br><span class="line"></span><br><span class="line"># 文件名称搜索，*为通配符，匹配任意多的字符，例子即为以Target开头的文件 -iname为忽略大小写</span><br><span class="line">find dir -name &quot;Target*&quot;</span><br><span class="line"></span><br><span class="line"># 文件类型搜索，f为文件，d为目录，l为符号链接，s为套接字，p为管道，b为块文件</span><br><span class="line">find dir -type [fdlspb]</span><br><span class="line"></span><br><span class="line"># -name匹配的是文件名称，-path则是匹配文件的完整路径</span><br><span class="line"></span><br><span class="line"># -path路径不能加入结尾的/，比如路径/vobs/gliethttp/signature，不能写成/vobs/gliethttp/signature/，这是硬性规定</span><br><span class="line"></span><br><span class="line"># -prune则指不在-path目录中查找</span><br><span class="line">find dir -path &apos;/home/user/target&apos;</span><br><span class="line"></span><br><span class="line"># 否定</span><br><span class="line">find dir ! -name &apos;Target&apos;</span><br><span class="line"></span><br><span class="line"># 多个搜索条件，-o为&apos;或&apos; -a为&apos;与&apos;</span><br><span class="line">find dir -name traget -[oa] -type d</span><br><span class="line"></span><br><span class="line"># 指定搜索的最大|小深度，据不可靠消息，深度应该放在搜索条件的第一个，否则系统将搜索出来全部后再过滤层次</span><br><span class="line">find dir -[maxdepth|mindepth] 2 -name &apos;Target&apos;</span><br><span class="line"></span><br><span class="line"># 使用正则表达式搜索，注意匹配的是find的输出结果，而不是如-name那样只匹配文件名</span><br><span class="line">find dir -regex &quot;.*\.jpg&quot;</span><br><span class="line"></span><br><span class="line"># 文件大小搜索，&apos;+&apos;为&apos;大于&apos;，&apos;-&apos;为&apos;小于&apos;，不写为等于；</span><br><span class="line">find dir -size [±]2[bcwkMG]</span><br><span class="line"></span><br><span class="line"># &apos;b&apos;    for 512-byte blocks (this is the default if no suffix is used)</span><br><span class="line"></span><br><span class="line"># &apos;c&apos;    for bytes</span><br><span class="line"></span><br><span class="line"># &apos;w&apos;    for two-byte words</span><br><span class="line"></span><br><span class="line"># &apos;k&apos;    for Kilobytes (units of 1024 bytes)</span><br><span class="line"></span><br><span class="line"># &apos;M&apos;    for Megabytes (units of 1048576 bytes)</span><br><span class="line"></span><br><span class="line"># &apos;G&apos;    for Gigabytes (units of 1073741824 bytes)</span><br><span class="line"></span><br><span class="line"># 按照时间搜索，首先明白Linux文件系统每个文件都有三个时间戳</span><br><span class="line"></span><br><span class="line"># 搜索的单位是天，-n指n天以内，+n指n天以前，无是等于，另外amin|mmin|cmin类似，但单位是分钟</span><br><span class="line">find dir -atime|-mtime|-ctime [±]2</span><br><span class="line"></span><br><span class="line"># 访问时间(-atime): 用户最后一次访问文件时间</span><br><span class="line"></span><br><span class="line"># 修改时间(-mtime): 文件内容最后一次修改时间</span><br><span class="line"></span><br><span class="line"># 变化时间(-ctime): 文件元数据(权限或所有权，即inode)最后一次修改时间</span><br><span class="line"></span><br><span class="line"># 按照文件所有者搜索</span><br><span class="line">find dir -user UNAME</span><br><span class="line"></span><br><span class="line"># 按照文件权限搜索</span><br><span class="line">find dir -perm 665</span><br><span class="line"></span><br><span class="line"># 删除搜索匹配项</span><br><span class="line">find dir [搜索条件] -delete</span><br><span class="line"></span><br><span class="line"># -exec选项将会将搜索结果替换&#123;&#125;，执行COMMOND命令</span><br><span class="line">find dir -exec COMMOND &#123;&#125; \;</span><br></pre></td></tr></table></figure>
@@ -538,10 +559,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">1</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
