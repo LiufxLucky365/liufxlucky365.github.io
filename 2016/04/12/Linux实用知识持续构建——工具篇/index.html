@@ -3,12 +3,12 @@
 
 
 
-<html class="theme-next mist" lang="zh-Hans">
+<html class="theme-next gemini" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="">
+<meta name="theme-color" content="#222">
 
 
 
@@ -36,16 +36,9 @@
 
 
 
-
-
-
-
-
-
-<link href="/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="//main.css?v=" rel="stylesheet" type="text/css" />
-
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -53,6 +46,27 @@
 
 
 
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -80,27 +94,29 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
-    version: '',
-    sidebar: "",
-    fancybox: ,
-    tabs: ,
-    motion: "",
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
-      userId: 'undefined',
+      userId: '0',
       author: '博主'
     },
     algolia: {
       applicationID: '',
       apiKey: '',
       indexName: '',
-      hits: "",
-      labels: ""
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
+
+  <link rel="canonical" href="http://yoursite.com/2016/04/12/Linux实用知识持续构建——工具篇/"/>
 
 
 
@@ -122,8 +138,10 @@
 
   
   
+    
+  
 
-  <div class="container  page-post-detail">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -155,6 +173,32 @@
 <nav class="site-nav">
   
 
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
   
 
   
@@ -207,6 +251,16 @@
 
         <div class="post-meta">
           <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-12T12:47:49+08:00">
+                2016-04-12
+              </time>
             
 
             
@@ -333,6 +387,35 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>觉得有帮助的话, 请我喝杯茶吧</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wepay.jpg" alt="Liufxlucky365 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Liufxlucky365 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
@@ -389,6 +472,11 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDE5Mi8yMDcyNQ=="></div>
+    </div>
+
+  
 
 
 
@@ -411,8 +499,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -468,6 +565,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#这是什么"><span class="nav-text">这是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cat"><span class="nav-text">cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find"><span class="nav-text">find</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xargs"><span class="nav-text">xargs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tr"><span class="nav-text">tr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sort"><span class="nav-text">sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uniq"><span class="nav-text">uniq</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#split"><span class="nav-text">split</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#、-、-、"><span class="nav-text">#、%、##、%%</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dd"><span class="nav-text">dd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mkdir"><span class="nav-text">mkdir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#touch"><span class="nav-text">touch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ln"><span class="nav-text">ln</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#head-amp-tail"><span class="nav-text">head & tail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ls"><span class="nav-text">ls</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wc"><span class="nav-text">wc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chmod"><span class="nav-text">chmod</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chown-chgrp"><span class="nav-text">chown chgrp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grep"><span class="nav-text">grep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cut"><span class="nav-text">cut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wget"><span class="nav-text">wget</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#curl"><span class="nav-text">curl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tar"><span class="nav-text">tar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gzip、bzip"><span class="nav-text">gzip、bzip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#base64"><span class="nav-text">base64</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ping"><span class="nav-text">ping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scp"><span class="nav-text">scp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lsof"><span class="nav-text">lsof</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#netstat"><span class="nav-text">netstat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#du"><span class="nav-text">du</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#df"><span class="nav-text">df</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#time"><span class="nav-text">time</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#watch"><span class="nav-text">watch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ps"><span class="nav-text">ps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kill"><span class="nav-text">kill</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#which、whereis、locate"><span class="nav-text">which、whereis、locate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#file、whatis、uptime"><span class="nav-text">file、whatis、uptime</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wall"><span class="nav-text">wall</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uname"><span class="nav-text">uname</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logger"><span class="nav-text">logger</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sar"><span class="nav-text">sar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#crontab"><span class="nav-text">crontab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#展开运算符"><span class="nav-text">展开运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数读取"><span class="nav-text">参数读取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tee"><span class="nav-text">tee</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#umask"><span class="nav-text">umask</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看cpu"><span class="nav-text">查看cpu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#top"><span class="nav-text">top</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境变量"><span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户管理"><span class="nav-text">用户管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sed"><span class="nav-text">sed</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -483,7 +596,7 @@
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Liufxlucky365</span>
 
@@ -491,9 +604,15 @@
 </div>
 
 
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 <div>
@@ -548,6 +667,8 @@
 
 
 
+  
+
 
 
 
@@ -561,52 +682,64 @@
 
   
   
-    <script type="text/javascript" src="//jquery/index.js?v=2.1.3"></script>
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
   
-    <script type="text/javascript" src="//fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
   
 
   
   
-    <script type="text/javascript" src="//jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
   
 
   
   
-    <script type="text/javascript" src="//velocity/velocity.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="//velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="//src/utils.js?v="></script>
-
-  <script type="text/javascript" src="//src/motion.js?v="></script>
-
-
-
-  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
   
-  <script type="text/javascript" src="//src/scrollspy.js?v="></script>
-<script type="text/javascript" src="//src/post-details.js?v="></script>
-
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
 
-  <script type="text/javascript" src="//src/bootstrap.js?v="></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -630,6 +763,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
