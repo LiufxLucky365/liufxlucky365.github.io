@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="写在最前大会干货很多，讲师阵容也很强大，一场接着一场，连续两天，还是学到了不少东西的，用主持人的话说就是我们干货很干，硬广很硬。不过窃以为讲师里面还是夹杂了“合作方”的，推销一些平台和书籍，不过无伤大雅，权作休息。
+不过由于时间和地点的原因不少朋友没能及时参加，今年也不知道是否会有大会视频，所以我打算根据现场朋友用打赏堆出来的排名来对大会进行一个简单的总结，自己复习巩固一下，也希望能给其他人一些帮">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2017年第三届PHP开发者大会总结.md">
+<meta property="og:url" content="http://yoursite.com/2017/07/23/2017年第三届PHP开发者大会总结/index.html">
+<meta property="og:site_name" content="Liufxlucky365">
+<meta property="og:description" content="写在最前大会干货很多，讲师阵容也很强大，一场接着一场，连续两天，还是学到了不少东西的，用主持人的话说就是我们干货很干，硬广很硬。不过窃以为讲师里面还是夹杂了“合作方”的，推销一些平台和书籍，不过无伤大雅，权作休息。
+不过由于时间和地点的原因不少朋友没能及时参加，今年也不知道是否会有大会视频，所以我打算根据现场朋友用打赏堆出来的排名来对大会进行一个简单的总结，自己复习巩固一下，也希望能给其他人一些帮">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1gdq287v9zkj30li0g6n1j.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1gdq287q6jrj30tq0fomzq.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1gdq287srk4j30xa0ec78p.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1gdq1dxxw39j31oq0kotg8.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1gdq287rer0j30pc0gatdj.jpg">
+<meta property="og:updated_time" content="2020-04-11T12:23:58.458Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2017年第三届PHP开发者大会总结.md">
+<meta name="twitter:description" content="写在最前大会干货很多，讲师阵容也很强大，一场接着一场，连续两天，还是学到了不少东西的，用主持人的话说就是我们干货很干，硬广很硬。不过窃以为讲师里面还是夹杂了“合作方”的，推销一些平台和书籍，不过无伤大雅，权作休息。
+不过由于时间和地点的原因不少朋友没能及时参加，今年也不知道是否会有大会视频，所以我打算根据现场朋友用打赏堆出来的排名来对大会进行一个简单的总结，自己复习巩固一下，也希望能给其他人一些帮">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1gdq287v9zkj30li0g6n1j.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/23/2017年第三届PHP开发者大会总结/"/>
+
+
+
+
+
+  <title>2017年第三届PHP开发者大会总结.md | Liufxlucky365</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liufxlucky365</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">211&835</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/23/2017年第三届PHP开发者大会总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liufxlucky365">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/default_avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liufxlucky365">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2017年第三届PHP开发者大会总结.md</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-23T00:00:01+08:00">
+                2017-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="写在最前"><a href="#写在最前" class="headerlink" title="写在最前"></a>写在最前</h3><p>大会干货很多，讲师阵容也很强大，一场接着一场，连续两天，还是学到了不少东西的，用主持人的话说就是<code>我们干货很干，硬广很硬</code>。不过窃以为讲师里面还是夹杂了“合作方”的，推销一些平台和书籍，不过无伤大雅，权作休息。</p>
+<p>不过由于时间和地点的原因不少朋友没能及时参加，今年也不知道是否会有大会视频，所以我打算根据现场朋友用打赏堆出来的排名来对大会进行一个简单的总结，自己复习巩固一下，也希望能给其他人一些帮助。</p>
+<a id="more"></a>
+<h3 id="瓜子后端技术架构的变迁（纪鹏程）"><a href="#瓜子后端技术架构的变迁（纪鹏程）" class="headerlink" title="瓜子后端技术架构的变迁（纪鹏程）"></a>瓜子后端技术架构的变迁（纪鹏程）</h3><p>这个分享是热度最高的，原因可能在于它是最接地气的。不仅完整的介绍了瓜子二手车架构一步步由小到大的发展过程，以及这期间的经验教训，还逐条分享了各种最佳实践，可以说他的分享基本可以指导一个新兴业务，技术架构的快速发展方向。</p>
+<h4 id="石器时代，业务发展早期"><a href="#石器时代，业务发展早期" class="headerlink" title="石器时代，业务发展早期"></a>石器时代，业务发展早期</h4><p>这段时期的第一目的、最高目的是活下去</p>
+<p><strong>技术人员要把精力集中在业务上，快速迭代，实时响应业务需求</strong>，可能要做不少<code>Quick but dirty work</code>。此时也不要忙着造轮子和优化，能花钱买就花钱买，能用开源的就用开源的</p>
+<blockquote>
+<p>过早优化和造轮子是万恶之源 —— 尼古拉斯·赵四</p>
+</blockquote>
+<p><strong>也不要着急上缓存</strong>。一是多一层依赖就多一层的风险，早期快速迭代时，尽量保持架构的简单。二是缓存可能隐藏掉一些代码性能、逻辑缺陷，导致一些性能问题可能到架构复杂到一定程度时才暴露出来，此时的修改的成本就十分高昂了。<br><strong>尽早确定数据库规范、数据字典</strong>。因为在后期业务代码还有修改空间，底层数据库和一些约定一旦养成是很难改动的。<br><strong>保密工作也要做好</strong>。对外开放的数据一定要做好加密和脱敏工作，前期激烈竞争阶段，一个泄密可能拖垮一个公司。</p>
+<p>这个阶段的问题也很突出。代码质量差，文档缺失，新人上手难度高。基础服务脆弱，缺少各种管理平台（日志、部署）。不过没关系，坚持过这个阶段，业务只要能活下来，这些问题都不是问题。</p>
+<p><img src="http://ww1.sinaimg.cn/large/006QGE4bly1gdq287v9zkj30li0g6n1j.jpg" alt="瓜子架构-石器.png"></p>
+<h4 id="铁器时代，业务发展期"><a href="#铁器时代，业务发展期" class="headerlink" title="铁器时代，业务发展期"></a>铁器时代，业务发展期</h4><p>熬过业务早期，进入快速发展阶段后，业务种类与规模会迅速增加，各种通用服务的重要性也逐渐显现，同时用户量也会大幅增长，服务性能压力开始出现。这个时期的架构也要做出相应的调整。</p>
+<ul>
+<li><strong>业务拆分</strong>。包括代码和数据库，业务之间通过http接口调用</li>
+<li><strong>redis集群</strong>。使用Twemproxy来做中间代理</li>
+<li><strong>php性能监控</strong>。使用xhprof和各种日志，指定统一的日志规范</li>
+</ul>
+<p>这个阶段常见的问题是，业务快速调整，接口混乱，调用方式混乱、性能缺乏监控；还缺少可靠的持续交付流程</p>
+<p><img src="http://ww1.sinaimg.cn/large/006QGE4bly1gdq287q6jrj30tq0fomzq.jpg" alt="瓜子架构-铁器.png"></p>
+<h4 id="蒸汽时代，业务稳定期"><a href="#蒸汽时代，业务稳定期" class="headerlink" title="蒸汽时代，业务稳定期"></a>蒸汽时代，业务稳定期</h4><p>各项业务逐渐稳定，各种痛点持续的暴露。</p>
+<ul>
+<li><strong>业务进行细分</strong>，通用服务、业务独立管理。</li>
+<li><strong>统一的接口调用方式</strong>，性能监控。</li>
+<li><strong>规范持续交付流程</strong>，代码的上线、回滚，数据库的建立、评审，统一的监控、测试框架，代码之间的隔离</li>
+<li><strong>健壮的第三方</strong>，一些通用平台没必要由专人维护，可以使用第三方平台，不过最好同时使用多家</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/006QGE4bly1gdq287srk4j30xa0ec78p.jpg" alt="瓜子架构-蒸汽时代.png"></p>
+<h4 id="工作效率实践"><a href="#工作效率实践" class="headerlink" title="工作效率实践"></a>工作效率实践</h4><p>本部分讲师分享了实践过程中能够提高效率一些经验方法，比较实用</p>
+<p><strong>代码的艺术</strong></p>
+<ul>
+<li>代码分层，遵循psr1 psr2 psr4规范</li>
+<li>代码提交添加统一hook，控制格式</li>
+<li>compsor，包括封装公司的内部库</li>
+</ul>
+<p><strong>单测</strong></p>
+<p>单测的重要性被反复提及。完整的单测是代码发布、升级的重要支撑。尤其是核心代码，覆盖率要保证。这里他推荐使用PATest代替PHPUnit作为主要单测工具</p>
+<p><strong>RPC</strong></p>
+<p>业务庞大后RPC的场景必不可少。最重要最基本的要求是调用方式统一。业界通用的解决方案一般是使用http接口，他们使用了<code>guzzle</code>基础上进行封装，支持了签名、并发请求和超时设置。另一个常用的方案是鸟哥开源的<code>Yar</code></p>
+<p>最后再啰嗦一句。<code>RPC方法一定要跟普通的方法有明确区别！！！</code>，否则可能被误用、滥用</p>
+<p><strong>服务解耦</strong></p>
+<p>服务级别，Rabbitmq &amp; Kafka<br>数据表级别，Canal+Kafka</p>
+<p><strong>前后端分离</strong></p>
+<p>使用nodejs负责UI层展示与数据准备。php则负责业务逻辑与架构。明确职责范围，提高各自效率。</p>
+<h3 id="THE-NEXT-GENERATION-OF-PHP（惠新宸）"><a href="#THE-NEXT-GENERATION-OF-PHP（惠新宸）" class="headerlink" title="THE NEXT GENERATION OF PHP（惠新宸）"></a>THE NEXT GENERATION OF PHP（惠新宸）</h3><p>鸟哥本次分享的主要内容是，在php7发布的这两年期间他们的主要工作，包括release的7.1和正在开发中的jit分支。说实话，由于本人水平有限，鸟哥分享的内容只能大概听懂意思，知道他们在做什么，但具体原理细节，鸟哥分享的我还真听不懂。这里就对鸟哥的分享内容做个总结。</p>
+<h4 id="php7之后还有什么？JIT"><a href="#php7之后还有什么？JIT" class="headerlink" title="php7之后还有什么？JIT"></a>php7之后还有什么？JIT</h4><p>php7于15年正式发布，他的最大卖点是，无感知的100%性能提升，包含了运行速度与内存消耗。那么在此之后php该往哪里发展呢？目前已经在开发的一个大方向就是JIT</p>
+<p><strong>JIT是什么？为什么是JIT？</strong></p>
+<p>鸟哥并没有做过多的解释。我就谈一些我的肤浅认识，给phper们提供些参考。</p>
+<p>首先JIT（just in time）并非是新技术，一大批语言如java早已实现。JIT的思想很简单，即在程序运行时动态对程序进行编译，生成平台相关的机器码，从而加快程序运行速度。</p>
+<p>php文件的执行流程大致是首先引擎加载php文件，解释器逐条解释执行代码。引入JIT后，前面一样，重点是JIT编译器会根据Runtime信息对热点代码进行动态编译生成机器码，然后这部分代码以后就可以直接执行了，而不需要解释器逐条解释执行了，运行效率便得到了提升</p>
+<p><code>看到这里不知道大家是否和我有一样的疑问，既然编译为机器码执行的效率那么高，为何不在项目正式部署前全部进行编译，何必在运行时编译？</code>要知道运行时编译也会增加程序的执行时间的。我在查阅了一些资料和一番思考后，有以下一些浅见</p>
+<p>代码发布前先编译，是比JIT更早的通用办法，称为<code>AOT（ahead of time）</code>，c语言便是这种执行模式。关于这两种模式孰优孰劣，学术界一直争论不休，目前也没有定论。但JIT相比AOT有这样几个优点</p>
+<ul>
+<li><strong>发布速度快</strong>。不用每次都编译，发布速度自然快</li>
+<li><strong>优化效率更好</strong>。因为JIT是基于Runtime信息，比AOT更“了解”代码，优化的效率更好。比如分析Runtime得知某个变量虽然声明是10个字节，但运行过程中一直是1个字节，那么就可以减小程序内存消耗；再比如某段代码始终未被执行，JIT则可以直接将其忽略</li>
+<li><strong>粒度更精细</strong>。JIT可以只针对hotspot（热点）进行编译，热点可能是一个函数或者只是一个代码段</li>
+<li><strong>对码农透明</strong>。JIT无须码农自己对程序根据不同平台进行编译发布，只需要写高级代码即可</li>
+</ul>
+<p>基于以上几个优点，再结合php一贯的简单易用原则，我想JIT确实是不错的选择。不过php也是支持AOT的，有兴趣的同学可以查一下。</p>
+<p>但JIT技术也绝不是灵丹妙药，<code>即便是编译也是需要时间的，当代码编译的时间消耗大于运行收益时，程序反而会变慢！</code>会有这种情况吗？有的，比如某个项目中，热点并不明显，JIT编译的代码执行次数都很少，那么编译带来的收益是有可能小于编译本身的消耗的</p>
+<p>以下是在标准测试中引入JIT技术后，php运行效率比7.2有100%的性能提升，不过在实际生产环境中效果不会有这么好</p>
+<p><img src="http://ww1.sinaimg.cn/large/006QGE4bly1gdq1dxxw39j31oq0kotg8.jpg" alt="jit.png"></p>
+<h4 id="php7-1做了什么？类型预测"><a href="#php7-1做了什么？类型预测" class="headerlink" title="php7.1做了什么？类型预测"></a>php7.1做了什么？类型预测</h4><p>php要想实现JIT，有一个难题必须解决，那就是变量的<code>类型预测</code>。试想如果在动态编译时还要进行大量的类型检查，性能将会大打折扣。php7中已经可以对变量类型进行控制，7.1则是更加完善了这个机制，可以说目前php已经是半强类型语言了。但由于php的弱类型历史，仍有大量代码运行前是无法得知变量类型的，所以在7.1中鸟哥进行了大量变量类型预测的工作，为后续JIT打基础</p>
+<p><strong>变量预测</strong></p>
+<p>比较简单的一种办法是数据流分析，即分析代码的上下文，推断出变量的可能类型，比如</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calc</span> <span class="params">($a1, $b2)</span> </span>&#123;        <span class="comment">// $a1: [ANY], $b2: [ANY]</span></span><br><span class="line">    $T3 = $a1 * <span class="number">2</span>;                <span class="comment">// $T3: [LONG, DOUBLE]</span></span><br><span class="line">    $a4 = $T3 % <span class="number">1000</span>;             <span class="comment">// $a4: [LONG]</span></span><br><span class="line">    $T5 = $b2 * <span class="number">3</span>;                <span class="comment">// $T5: [LONG, DOUBLE]</span></span><br><span class="line">    $b6 = $T5 % <span class="number">1000</span>;             <span class="comment">// $b6: [LONG]</span></span><br><span class="line">    $T7 = $a4 + $b6;              <span class="comment">// $T7: [LONG, DOUBLE]</span></span><br><span class="line">    <span class="keyword">return</span> $T7;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实这还是很困难的，鸟哥列举了一些开发过程中遇到的困难。比如变量的变量，<code>$$var_name</code>，或者顶层代码（即写在函数和类之外的代码）等等。php的历史包袱还是很重的。解决这些问题的简单办法就是强类型，但这又会降低开发效率，<code>因为优化而影响phper的开发效率</code>这是鸟哥所不愿意的，他认为业务永远是优先的，优化只是支线</p>
+<p>目前鸟哥的解决办法就是对JIT进行分级，通过配置实现不同程度的动态编译，从而降低类型预测的难度。另外就是针对具体的场景，进行垂直优化</p>
+<h4 id="问答环节"><a href="#问答环节" class="headerlink" title="问答环节"></a>问答环节</h4><p>鸟哥的问答环节也非常精彩，原定一小时的分享最终超了一小时，下面我就凭着记忆对一些问题复现一下，<code>可能存在偏差，将来我可不负责</code></p>
+<p><strong>php7.1那个诡异的函数返回类型限定是如何考虑的？</strong></p>
+<p>鸟哥：没什么特别考虑，投票投出来的。首先说明一点，我投的是反对票。包括php的命名空间反斜杠我也是非常反对的，但可能由于我并没有对这方面太深的认识，没有理解其他开发者的意图。不过这些问题用习惯了也不是什么大的问题</p>
+<p><strong>升级php7后，遇到了一个诡异的引用计数的问题。具体记不清了，大致是他们发现有个应该回收的变量在升级后没有回收</strong></p>
+<p>鸟哥：我现在不能给你准确答复，有可能是个bug，这个我随后跟进一下。但我想说的是你刚才介绍了你们在调试过程中对引用数的反复推算，其实不必纠结这，引用数用于垃圾回收时只有0和非0两种区别，我们在增加引用计数时可能有时候不是加1，而是加2，所以不要太在意具体是多少，确定大于0就行</p>
+<p><strong>一位学生提问者表示自己对高并发、分布式感兴趣，如何提升这方面的技能呢？</strong></p>
+<p>鸟哥：这里你有一个误区。我们研究学习技术并不是为了学习而学习，而是为了解决实际的业务问题。你没有接触过这方面的业务，自然没有这方面的经验，等你真正有这个业务需求时，好多东西原理都很简单，使用方法也很成熟，自然就会了，这是个水到渠成的过程，不必刻意去追求那个“术”。另外，我多说一句是，其实当你真正处在这样的业务中时，你会发现这些事情很少需要你操心的，OP通过各种集群就已经把这些问题给屏蔽了。</p>
+<p><strong>鸟哥你是怎样看待php的前景呢？现在黑php的这么多人</strong></p>
+<p>鸟哥：php的前景不要问我，要问你和我，整个php生态。天峰贡献一个swoole，php就有了高性能网络请求功能，xx贡献个php-ml，php就有了大数据处理功能，我今天贡献一个jit，php就有了动态编译能力。php发展到今天就是大家你一个小贡献，他一个小贡献积累出来的，所以php的前景好不好，要看我们生态，也希望大家踊跃贡献。至于黑php，我现在都懒得反驳了，有句话说的好，“黑php之前，先数数他给你挣了多少钱”，我一直认为业务是技术存在的理由，能不能快速响应需求、实现业务才是最根本的。</p>
+<p><strong>目前php没有连接池，非常不方便，不知道官方是否有支持计划？</strong></p>
+<p>鸟哥：目前没有。不过这不正是一个给社区做贡献的机会吗？你们开发一个连接池，贡献到社区既方便了自己，也方便了大家。天峰昨天的分享PHP-X，不就是为了这样的事</p>
+<p><strong>鸟哥你是怎样看待全栈工程师这个概念的？</strong></p>
+<p>鸟哥：我并不认同这个概念，我认为这是个伪命题。全栈这个概念最早是前端工程师提出来的，认为从前端到后端这是“全栈”，但我理解的全栈应该是对一个领域从底层原理到上层应用，这不才更应该叫做栈？自称全栈工程师的大部分属于只对各个领域多少有些认识而已。优秀的工程师不必刻意去追求全栈，你只需要在你的领域里不断深入就行，深度达到了，自然就有了广度，<code>广度是深度的副产品</code>，推而广之，就是所谓的全栈工程师是当你在一个领域深入到一定阶段后的副产品，而不是刻意在各个领域学出来的</p>
+<p><strong>php7对性能压榨已经比较彻底了，未来php是继续提高性能呢，还是增加新的特性？</strong></p>
+<p>鸟哥：你想太多了，目前并未任何打算。JIT开发就非常困难了，这个是否能够成功还是未知数，下次大会如果JIT没有完成，我就没啥可分享的了。</p>
+<p><strong>现在在北京很难安家，将来回到二三线城市，php很难找工作，不知道鸟哥有什么看法吗？</strong></p>
+<p>鸟哥：不必过于担心，不光是程序猿，其实还有好多公司也很难承受一线城市的成本，也在不断的往二三城市分流，所以找工作问题还是不大的。另外至于你担心php难找工作，那你可以换java、换go啊，一个程序猿不应该给自己打上标签，“xx程序猿”，你作为一个工程师，至少要精通3种以上的语言，而且要有良好的学习能力</p>
+<p><strong>鸟哥你是如何放松你的部下呢？会请他们去大保健吗？</strong></p>
+<p>鸟哥：这个我没太多经验，不过就我自己来说，有时候加班多了还是比较累的，我有段时间脖子特别疼，一周得去至少三次按摩院按摩才能缓解，当然我说的是盲人按摩。后来我真的研究了颈椎康复指南，不是开玩笑，我是真研究了。人的脑袋大概12斤重，你想你整天顶个西瓜，要是颈椎肌肉不行的话，能不难受吗？所以我后来经常去健身房，锻炼颈椎，后来才慢慢好了</p>
+<h3 id="使用c-11开发php7扩展（韩天峰）"><a href="#使用c-11开发php7扩展（韩天峰）" class="headerlink" title="使用c++11开发php7扩展（韩天峰）"></a>使用c++11开发php7扩展（韩天峰）</h3><p>简单说就是天峰在多年的php扩展开发中，感受到基于c的zend api十分不方便，所以基于c++11对zend api进行了封装，既降低了php扩展的开发难度，提高了开发效率，同时也为php带了更多的想象空间，并把这个项目命名为<strong>php-x</strong></p>
+<h4 id="什么是php扩展？"><a href="#什么是php扩展？" class="headerlink" title="什么是php扩展？"></a>什么是php扩展？</h4><p><strong>定义</strong></p>
+<p>php本身是c语言开发的，其实可以想象我们是使用php这个高级语言去驱动一个c开发的引擎（zend engine）去做事情的。php扩展就是允许我们使用c为整个引擎开发新的插件来扩展php的功能，比如网络请求的curl扩展，使用mysql的mysqli扩展等。这种机制有利于社区为php的发展添砖加瓦，可以说zend engine本身就是一个个插件堆积出来的</p>
+<p><strong>如何开发扩展？</strong></p>
+<ol>
+<li>使用ext_skel生成扩展开发骨架</li>
+<li>编辑config.m4文件</li>
+<li>在extension.h头文件中定义扩展函数</li>
+<li>修改extension.c源文件，实现扩展函数逻辑</li>
+<li>利用phpize configure make &amp; make install安装扩展</li>
+</ol>
+<p>这样当php程序中调用扩展函数时，zend引擎会去调用你所开发的扩展。当然，你在扩展逻辑中只能使用c语言通过zend api来对传入的php变量进行解析、处理，最终再通过zend api返回php变量，继续原流程</p>
+<h4 id="目前扩展开发有何痛点？"><a href="#目前扩展开发有何痛点？" class="headerlink" title="目前扩展开发有何痛点？"></a>目前扩展开发有何痛点？</h4><p><strong>zend api不好用</strong></p>
+<ol>
+<li>大量使用宏</li>
+<li>api名称太长，参数太多，容易出错</li>
+<li>api分散在众多.h和.c文件中</li>
+<li>需要精通c语言，大量的指针场景，容易出错</li>
+<li>没有任何，任何的教程或手册！</li>
+</ol>
+<p><strong>古老的c语言</strong></p>
+<ol>
+<li>50年历史的古老编程语言</li>
+<li>面向过程的风格，封装性差</li>
+<li>指针容易出错</li>
+<li>缺少原生的数据结构支持</li>
+<li>仅适合编写底层软件</li>
+</ol>
+<h4 id="php-x做了哪些工作？"><a href="#php-x做了哪些工作？" class="headerlink" title="php-x做了哪些工作？"></a>php-x做了哪些工作？</h4><p>鉴于前面说的问题，php-x使用c++11对zend api进行了封装，选择c++11是因为</p>
+<ol>
+<li>c++是现代编程语言</li>
+<li>面向对象风格，封装性好</li>
+<li>模板泛型编程</li>
+<li>STL容器</li>
+<li>通用编程，适用范围广</li>
+</ol>
+<p>可以简单对比一下封装后的代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 变量操作</span></span><br><span class="line">ZVAL_LONG(&amp;a, <span class="number">1234</span>);    <span class="comment">// zend api</span></span><br><span class="line">Variant a = <span class="number">1234</span>;       <span class="comment">// php-x</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 类型推断</span></span><br><span class="line">Z_TYPE_P(value) == IS_LONG;    <span class="comment">// zend api</span></span><br><span class="line">value.isLong();                <span class="comment">// php-x</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 类型转换</span></span><br><span class="line">convert_to_long(value);    <span class="comment">// zend api</span></span><br><span class="line">value.toInt()              <span class="comment">// php-x</span></span><br></pre></td></tr></table></figure>
+<p>此外，php-x还提供了数组、字典、资源等多种常见数据结构和方法封装。而且还提供了在<code>c++中嵌套php的功能</code>，c++中也可以访问诸如$_GET、$_POST等上下文，配合通过php扩展赋予了php调用c++的能力，实际上php-x完全打通了php与c++</p>
+<h4 id="实战php7扩展"><a href="#实战php7扩展" class="headerlink" title="实战php7扩展"></a>实战php7扩展</h4><p>本小节利用php-x实现一个扩展my_ext，包含my_ext_class类和my_ext_test函数，对php-x开发php7扩展做一个简单的示例</p>
+<p><strong>php7扩展注册</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PHPX_EXTENSION() &#123;</span><br><span class="line">    Extension *extension = <span class="keyword">new</span> Extension(<span class="string">"my_ext"</span>, <span class="string">"0.0.1"</span>);</span><br><span class="line">    extension-&gt;onStart = [extension]() &#123;</span><br><span class="line">        extension-&gt;registerConstant(<span class="string">"MY_EXT_VERSION"</span>, <span class="string">"0.0.1"</span>);</span><br><span class="line">        extension-&gt;registerClass(my_ext_class);</span><br><span class="line">    &#125;;</span><br><span class="line">    extension-&gt;registerFunction(PHPX_FN(my_ext_test));</span><br><span class="line">    <span class="keyword">return</span> extension;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>实现扩展函数</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PHPX_FUNCTION(my_ext_test) &#123;</span><br><span class="line">    for (int i = 0; i &lt; args.count(); i++) &#123;</span><br><span class="line">        php::echo("arg[%d] type is %d\n", i, args[i].type());</span><br><span class="line">    &#125;</span><br><span class="line">    Variant v1 = arg[0];</span><br><span class="line">    Array arr(v1);</span><br><span class="line">    arr.set(1, 'efg');</span><br><span class="line">    retval = arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>实现扩展类</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Class *my_ext_class = new Class('myClass');</span><br><span class="line">my_ext_class-&gt;addMethod(PHPX_ME(myClass, test), STATIC);</span><br><span class="line">my_ext_class-&gt;addMethod(PHPX_ME(myClass, test2));</span><br><span class="line">my_ext_class-&gt;addProperty('name', 'Rango');</span><br><span class="line">extension-&gt;registerClass(my_ext_class);</span><br></pre></td></tr></table></figure>
+<p><strong>实现类方法</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PHPX_METHOND(myClass, test2) &#123;</span><br><span class="line">    Variant res = newResource('String', new String('hello'));</span><br><span class="line">    _this.set('resource', res);</span><br><span class="line">    php::error(E_WARNING, 'err message');</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注册phpinfo</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">extension-&gt;info(&#123;'gtk support', 'enabled'&#125;, &#123;</span><br><span class="line">    &#123;'author', 'Rango'&#125;,</span><br><span class="line">    &#123;'version', ext-&gt;version&#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>然后和一般扩展一样编译安装就行</p>
+<h4 id="php的想象空间"><a href="#php的想象空间" class="headerlink" title="php的想象空间"></a>php的想象空间</h4><p>php-x打通了php与c++，理论上c++可以做的事，php同样也能做到。同时php扩展的开发难度也大大降低，可以应用于更多的场景</p>
+<ol>
+<li>可以用c++扩展实现多线程</li>
+<li>程序中计算密集型部分可以轻松使用扩展实现</li>
+<li>可以通过扩展加密商业软件</li>
+<li>Fackbook、Google、Microsoft、Tencent等巨头的开源c++库可以为php所用了</li>
+</ol>
+<h3 id="PHP安全开发：从白帽角度做安全（汤青松）"><a href="#PHP安全开发：从白帽角度做安全（汤青松）" class="headerlink" title="PHP安全开发：从白帽角度做安全（汤青松）"></a>PHP安全开发：从白帽角度做安全（汤青松）</h3><p>本节讲师分享了网络安全现状，和常见的安全问题及应对措施</p>
+<h4 id="严峻的现状"><a href="#严峻的现状" class="headerlink" title="严峻的现状"></a>严峻的现状</h4><p>目前网络黑产发展迅速，聊天工具中搜索‘漏洞、低价、线报’能够找到大量的卖家。同时他表示他认识一个17岁的小孩，不读书，只做黑产，月入8k+</p>
+<p>另一个是简单搜索会发现，国内开放3306端口的服务器数量有180万之多。<code>有500T以上的mysql数据库此刻正在使用root账号裸奔！</code></p>
+<h4 id="漏洞的分类"><a href="#漏洞的分类" class="headerlink" title="漏洞的分类"></a>漏洞的分类</h4><p>讲师对常见的漏洞进行了分类，我感觉大致可以分为以下三类</p>
+<ul>
+<li>代码漏洞。即你所写的代码没有实现你的意图。可能是你水平不行，也可能是语言不行</li>
+<li>逻辑漏洞。即你设计的业务逻辑存在你没想到的情况</li>
+<li>第三方漏洞。即你麻痹大意了，所托非人~</li>
+</ul>
+<p><strong>代码漏洞</strong></p>
+<p>常见的代码漏洞包括</p>
+<ul>
+<li>代码注入</li>
+<li>sql注入</li>
+<li>xss</li>
+<li>csrf</li>
+<li>文件包含</li>
+<li>命令执行</li>
+</ul>
+<p>总的来说，代码漏洞主要原因是<code>盲目相信用户输入</code>，一条安全口诀始终不能忘记就是<code>用户输入、程序输出始终过滤</code>。另外就是不必要的权限不要开，不使用的代码不加载</p>
+<p>比如代码漏洞的一般防护措施是，open_basedir限制程序访问范围，过滤点、斜杠、反斜杠，禁止加载远程文件，eval这种高危函数禁用，使用代码检查工具如<code>Taint</code></p>
+<p>以下几个环节是事故高发区，应着重检查</p>
+<ul>
+<li>文件上传</li>
+<li>全局变量</li>
+<li>裸写sql</li>
+<li>include参数文件</li>
+<li>执行参数代码</li>
+</ul>
+<p><strong>逻辑漏洞</strong></p>
+<p>常见的逻辑漏洞包括</p>
+<ul>
+<li>越权访问</li>
+<li>连续id暴露重要信息</li>
+<li>身份认证、密码找回</li>
+</ul>
+<p>业务安全问题的几个重灾区是</p>
+<ul>
+<li>授权</li>
+<li>身份认证</li>
+<li>用户输入限制</li>
+<li>密码找回</li>
+<li>验证码</li>
+</ul>
+<p><code>据统计，产品发布上线后的bug修复成本大约是开发阶段的30倍！</code></p>
+<p><img src="http://ww1.sinaimg.cn/large/006QGE4bly1gdq287rer0j30pc0gatdj.jpg" alt="2016web漏洞统计.png"></p>
+<p><strong>第三方漏洞</strong></p>
+<p>我们在平时开发中会用到大量的第三方框架与类库，虽然大部分都经过了大量实战测试，但仍然会时不时爆发漏洞，国内常见的php框架ECshop，WordPress，Discuz，Dedecms，PHPcms等都曾报过漏洞。此时我们更多需要做的是保证使用最新版，保证第一时间修复漏洞</p>
+<ol>
+<li>溯源检查。代码版本不能存在已知漏洞</li>
+<li>版本更新。不要遗漏安全补丁更新</li>
+<li>后台隐藏。不要使用默认的地址与账号密码</li>
+</ol>
+<p>查看一下16年国内漏洞占比</p>
+<p><strong>最后，系统的安全性不是取决于最强的地方有多强，而是取决于最弱的地方有多弱！</strong></p>
+<h3 id="swoole2-0原生协程高性能开发实践（思超）"><a href="#swoole2-0原生协程高性能开发实践（思超）" class="headerlink" title="swoole2.0原生协程高性能开发实践（思超）"></a>swoole2.0原生协程高性能开发实践（思超）</h3><p>该分享的主要学的是swoole1.0已经实现了协程，不过是用yield和generator，来实现函数的中途退出与再入</p>
+<p>但这样存在很多问题，如对程序员不透明，需要掌握yield和gen的用法，其次要求整个流程都要使用这种方式。swoole2.0则是原生支持协程，使用新client可以方便的实现协程特性</p>
+<h3 id="mysql5-7不求人（叶金荣）"><a href="#mysql5-7不求人（叶金荣）" class="headerlink" title="mysql5.7不求人（叶金荣）"></a>mysql5.7不求人（叶金荣）</h3><p>叶老师核心是讲发布四年的5.7可以代替5.6了，据官方测试，5.7的性能要优于5.6三倍</p>
+<p>5.7的主要特性包括</p>
+<ul>
+<li>增加json数据类型</li>
+<li>支持隐藏索引</li>
+<li>varchar可以动态加长</li>
+<li>innodb读性能优化</li>
+<li>innodb支持全文索引</li>
+<li>innodb支持地理位置索引</li>
+<li>默认使用sql严格模式</li>
+<li>select支持超时设置</li>
+<li>支持多主复制</li>
+<li>更多详情可以见另一篇mysql文章（mysql5.7特性分析）</li>
+</ul>
+<h4 id="是时候告别myisam了"><a href="#是时候告别myisam了" class="headerlink" title="是时候告别myisam了"></a>是时候告别myisam了</h4><p>最后，5.7的下一个版本将是8.0，也已经开始进入测试阶段了</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>觉得有帮助的话, 请我喝杯茶吧</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wepay.jpg" alt="Liufxlucky365 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Liufxlucky365 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/22/2016之前PHPCon大会PPT总结/" rel="next" title="﻿2016之前PHPCon大会PPT总结.md">
+                <i class="fa fa-chevron-left"></i> ﻿2016之前PHPCon大会PPT总结.md
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/03/2017年家庭工作报告/" rel="prev" title="2017年家庭工作报告">
+                2017年家庭工作报告 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDE5Mi8yMDcyNQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/default_avatar.png"
+                alt="Liufxlucky365" />
+            
+              <p class="site-author-name" itemprop="name">Liufxlucky365</p>
+              <p class="site-description motion-element" itemprop="description">程序猿 IT php mysql 生活 秀恩爱</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在最前"><span class="nav-text">写在最前</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#瓜子后端技术架构的变迁（纪鹏程）"><span class="nav-text">瓜子后端技术架构的变迁（纪鹏程）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#石器时代，业务发展早期"><span class="nav-text">石器时代，业务发展早期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#铁器时代，业务发展期"><span class="nav-text">铁器时代，业务发展期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#蒸汽时代，业务稳定期"><span class="nav-text">蒸汽时代，业务稳定期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工作效率实践"><span class="nav-text">工作效率实践</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#THE-NEXT-GENERATION-OF-PHP（惠新宸）"><span class="nav-text">THE NEXT GENERATION OF PHP（惠新宸）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#php7之后还有什么？JIT"><span class="nav-text">php7之后还有什么？JIT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#php7-1做了什么？类型预测"><span class="nav-text">php7.1做了什么？类型预测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问答环节"><span class="nav-text">问答环节</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用c-11开发php7扩展（韩天峰）"><span class="nav-text">使用c++11开发php7扩展（韩天峰）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是php扩展？"><span class="nav-text">什么是php扩展？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目前扩展开发有何痛点？"><span class="nav-text">目前扩展开发有何痛点？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#php-x做了哪些工作？"><span class="nav-text">php-x做了哪些工作？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实战php7扩展"><span class="nav-text">实战php7扩展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#php的想象空间"><span class="nav-text">php的想象空间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP安全开发：从白帽角度做安全（汤青松）"><span class="nav-text">PHP安全开发：从白帽角度做安全（汤青松）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#严峻的现状"><span class="nav-text">严峻的现状</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#漏洞的分类"><span class="nav-text">漏洞的分类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swoole2-0原生协程高性能开发实践（思超）"><span class="nav-text">swoole2.0原生协程高性能开发实践（思超）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql5-7不求人（叶金荣）"><span class="nav-text">mysql5.7不求人（叶金荣）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#是时候告别myisam了"><span class="nav-text">是时候告别myisam了</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liufxlucky365</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    访问量 <span id="busuanzi_value_site_pv"></span>
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    <span id="busuanzi_value_site_uv"></span>人看过
+</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

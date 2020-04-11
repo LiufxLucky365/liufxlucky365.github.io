@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="写在最前Devlink2016开发者大会没有直接参加，十分遗憾，只能通过会后的PPT来学习学习。最后还附加了一些其他比较有影响力的大会PPT总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="﻿2016之前PHPCon大会PPT总结.md">
+<meta property="og:url" content="http://yoursite.com/2017/07/22/2016之前PHPCon大会PPT总结/index.html">
+<meta property="og:site_name" content="Liufxlucky365">
+<meta property="og:description" content="写在最前Devlink2016开发者大会没有直接参加，十分遗憾，只能通过会后的PPT来学习学习。最后还附加了一些其他比较有影响力的大会PPT总结">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1gdq3coi46lj313o0sy4qp.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1gdq3cohoswj30s20usnpd.jpg">
+<meta property="og:updated_time" content="2020-04-11T12:23:58.454Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="﻿2016之前PHPCon大会PPT总结.md">
+<meta name="twitter:description" content="写在最前Devlink2016开发者大会没有直接参加，十分遗憾，只能通过会后的PPT来学习学习。最后还附加了一些其他比较有影响力的大会PPT总结">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1gdq3coi46lj313o0sy4qp.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/22/2016之前PHPCon大会PPT总结/"/>
+
+
+
+
+
+  <title>﻿2016之前PHPCon大会PPT总结.md | Liufxlucky365</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liufxlucky365</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">211&835</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/22/2016之前PHPCon大会PPT总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liufxlucky365">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/default_avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liufxlucky365">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">﻿2016之前PHPCon大会PPT总结.md</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-22T00:00:01+08:00">
+                2017-07-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="写在最前"><a href="#写在最前" class="headerlink" title="写在最前"></a>写在最前</h3><p>Devlink2016开发者大会没有直接参加，十分遗憾，只能通过会后的PPT来学习学习。最后还附加了一些其他比较有影响力的大会PPT总结</p>
+<a id="more"></a>
+<h3 id="PHP游戏开发（王晶，半桶水）"><a href="#PHP游戏开发（王晶，半桶水）" class="headerlink" title="PHP游戏开发（王晶，半桶水）"></a>PHP游戏开发（王晶，半桶水）</h3><p>桶哥的分享很受启发，原来php还可以在游戏领域开发，而且试用领域还挺广，并不只是只能做后台和官网等边缘功能，游戏领域包括</p>
+<ul>
+<li>社交类</li>
+<li>页游类</li>
+<li>手游类</li>
+</ul>
+<p>但也有一些差异：</p>
+<ul>
+<li>单机极致，web开发的无状态特点有很强的横向扩展能力，游戏开发则更考验单机能力的最大化</li>
+<li>缓存不易，web有很多静态数据需要缓存，游戏则缓存的场景不多，需要动态计算的多</li>
+<li>读写比例，web的读比例更大，游戏则读写都很大</li>
+</ul>
+<h4 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h4><p>游戏开发对数据缓存要求很高，桶哥说缓存可以分为三级</p>
+<ul>
+<li>进程内缓存，即直接在程序里面使用static保存</li>
+<li>本机共享缓存，比如redis、mysql、文件</li>
+<li>分布式缓存，<code>网络缓存？不是很懂</code></li>
+</ul>
+<p><strong>一些坑</strong></p>
+<ul>
+<li>不要缓存大数组，反序列化会很慢，可以缓存单个值</li>
+<li>Yac会有几率返回错误值！</li>
+</ul>
+<h4 id="数据特点"><a href="#数据特点" class="headerlink" title="数据特点"></a>数据特点</h4><p>游戏数据的特点</p>
+<ul>
+<li>小</li>
+<li>快</li>
+<li>相对独立</li>
+</ul>
+<p>redis非常适合，性能好、可持久化、数据类型也丰富</p>
+<h4 id="5ms级别的业务请求"><a href="#5ms级别的业务请求" class="headerlink" title="5ms级别的业务请求"></a>5ms级别的业务请求</h4><p>游戏里有大量此种类型的接口要求，桶哥这里给出了以下建议：</p>
+<p><strong>不论业务的复杂度如何，一个api请求，只读一次数据，只写一次数据</strong></p>
+<p>这样做的好处是速度快、不产生脏数据、业务逻辑清晰</p>
+<h4 id="外挂处理"><a href="#外挂处理" class="headerlink" title="外挂处理"></a>外挂处理</h4><p>游戏领域的一个常见问题就是作弊问题，比如外挂，有以下几种预防措施</p>
+<ul>
+<li>同一ip请求监控，不是很可靠，作弊者会切换ip，局域网的ip一样会误伤</li>
+<li>同一用户的请求密度监控，不是很可靠，游戏里是会出现狂按鼠标的</li>
+<li>同一用户每天行为阈值，可靠</li>
+<li><code>社会工程学，外挂是有一定规律的</code></li>
+</ul>
+<h4 id="配置化管理"><a href="#配置化管理" class="headerlink" title="配置化管理"></a>配置化管理</h4><p>这点非常受启发，通过hook机制，在运营同学更新配置文件（如excel）后自动解析加载新配置文件，能够大大提高迭代速度</p>
+<h3 id="PHP做大数据量实时分析（吕毅）"><a href="#PHP做大数据量实时分析（吕毅）" class="headerlink" title="PHP做大数据量实时分析（吕毅）"></a>PHP做大数据量实时分析（吕毅）</h3><p>此PPT最大的感觉是漂亮，PPT能力果然很重要哦 ^_^，感受一下</p>
+<p><img src="http://ww1.sinaimg.cn/large/006QGE4bly1gdq3coi46lj313o0sy4qp.jpg" alt="吕毅-架构设计.png"></p>
+<h3 id="PHP开发企业应用常见问题（王春生）"><a href="#PHP开发企业应用常见问题（王春生）" class="headerlink" title="PHP开发企业应用常见问题（王春生）"></a>PHP开发企业应用常见问题（王春生）</h3><p>讲师总结的企业应用常见的几个问题感觉不错</p>
+<ul>
+<li>如何选择PHP的开发框架？</li>
+<li>如何保护自己的代码？</li>
+<li>如何解决PHP环境部署的问题？</li>
+<li>如何实现全文检索的问题？</li>
+<li>如何实现计划任务的问题？</li>
+<li>怎么导入导出word, excel?</li>
+<li>如何实现轻量级的聊天服务器？</li>
+<li>如何实现常见的消息通知？</li>
+<li>如何应对常见的安全问题？</li>
+</ul>
+<h4 id="如何保护自己代码？"><a href="#如何保护自己代码？" class="headerlink" title="如何保护自己代码？"></a>如何保护自己代码？</h4><p><code>保护代码的最好方式是开源？</code> 这句话不懂，我猜讲师的意思是最好的方式是不要依赖代码的保密性，依赖服务、数据、内容可能更有优势</p>
+<p>或者通过加密（ioncube、zend）<br>或者通过法律途径，这个比较困难</p>
+<h4 id="如何解决应用部署问题？"><a href="#如何解决应用部署问题？" class="headerlink" title="如何解决应用部署问题？"></a>如何解决应用部署问题？</h4><p>不是指业务代码部署，而是指用户拿到代码后如何部署？<br>原则是要简单，尽可能的简单<br>可以通过镜像、deb、rpm、docker等，尽量减少第三方依赖</p>
+<h4 id="如何实现计划任务？"><a href="#如何实现计划任务？" class="headerlink" title="如何实现计划任务？"></a>如何实现计划任务？</h4><p>看到这个主题终于理解了php版本task的意义<br>因为不可能再让用户去配置crontab，所以在项目要内置自己的计划任务管理</p>
+<h4 id="如何防止安全问题？"><a href="#如何防止安全问题？" class="headerlink" title="如何防止安全问题？"></a>如何防止安全问题？</h4><ul>
+<li>XSS攻击: 对输入做标准化，过滤。HTML Purifier</li>
+<li>SQL注入: 接管SQL的拼装，并严格过滤</li>
+<li>附件木马: 白名单模式，严格过滤</li>
+<li>CSRF攻击: 重要操作密码验证，邮箱验证，文件验证</li>
+<li>垃圾过滤: 审核再发布，基于用户行为特征过滤</li>
+<li>防DDOS: 第三方cdn，云加速之类的解决方案</li>
+</ul>
+<h3 id="PHP-Swoole在车轮互联的应用与实践（韩天峰）"><a href="#PHP-Swoole在车轮互联的应用与实践（韩天峰）" class="headerlink" title="PHP+Swoole在车轮互联的应用与实践（韩天峰）"></a>PHP+Swoole在车轮互联的应用与实践（韩天峰）</h3><p>峰哥主要介绍了swoole是如何在车轮网造轮子的，实现了一套相对轻量可控的服务治理系统</p>
+<h4 id="服务治理"><a href="#服务治理" class="headerlink" title="服务治理"></a>服务治理</h4><p>我目前理解的服务治理是指公司内部众多团队都会产出各种各样的通用服务，如何高效的组织管理这些服务是一个很大的挑战。同时如果能够有一套优秀的解决方案，则会鼓励更多的使用服务化的架构（微服务），更加清晰易于维护</p>
+<p>那么流行的服务治理有以下几种思路</p>
+<ul>
+<li>基于PHP类库部署，优点是简单，直接引入类即可。但缺点同样是需要引入类，不易更新升级，无法跨语言- 基于数据库，如mysql、redis。优点是简单，也方便升级，可以跨语言。但这样系统之间耦合度太高，比较难扩展，同时还产生了依赖</li>
+<li>基于HTTP + JSON + webAPI，优点是简单、跨语言、易升级、解耦，<code>目前比较通用的解决方案</code>。但缺点是http性能差，不支持订阅、推送，长连接支持不好</li>
+<li>Thrift、ProtoBuf。优点是解包打包性能好，IDL自动生成多语言调用。缺点为门槛高，难维护</li>
+</ul>
+<p>最后是基于swoole的解决方案，优点为</p>
+<ul>
+<li>基于c扩展封装了底层网络通信，性能好，简单易用，功能强大</li>
+<li>可以跨语言调用</li>
+<li>服务端自带task池，可以异步执行慢任务</li>
+</ul>
+<p>缺点的话，依赖第三方扩展swoole，配套开源方案不够强大</p>
+<h4 id="swoole造轮子"><a href="#swoole造轮子" class="headerlink" title="swoole造轮子"></a>swoole造轮子</h4><p>第二部分为峰哥基于swoole服务治理开发的一些列轮子</p>
+<p>先看一下服务治理全景</p>
+<p><img src="http://ww1.sinaimg.cn/large/006QGE4bly1gdq3cohoswj30s20usnpd.jpg" alt="服务治理.png"></p>
+<p>配置管理，swoole搞了一套可以在各个平台同步json配置文件的方案<br>服务发现，swoole搞了一套服务的注册、上线、下线管理方案（<code>zookeeper本质也是这？</code>）<br>监控报警 &amp; 调用统计，swoole实现了一套机器信息监控、统计监控报警的方案</p>
+<h3 id="淘宝社区双十一性能优化实践（信海龙）"><a href="#淘宝社区双十一性能优化实践（信海龙）" class="headerlink" title="淘宝社区双十一性能优化实践（信海龙）"></a>淘宝社区双十一性能优化实践（信海龙）</h3><p>本篇主要讲的是淘宝社区在高并发到来之前如何进行优化的</p>
+<h4 id="找出性能瓶颈"><a href="#找出性能瓶颈" class="headerlink" title="找出性能瓶颈"></a>找出性能瓶颈</h4><p>还在使用<code>microtime(true)</code>打点？请使用xhprof</p>
+<p>另外还有一个技巧，能够在每个php文件都优雅统一插入统计文件</p>
+<p>php auto_prepend_file=”client.php”<br>nginx fastcgi_param PHP_VALUE “auto_prepend_file=client.php”<br>apache php_value auto_prepend_file=”client.php”</p>
+<h4 id="数据库分库分表"><a href="#数据库分库分表" class="headerlink" title="数据库分库分表"></a>数据库分库分表</h4><p>首先明白为何分库分表。因为</p>
+<ul>
+<li>单表读写压力大</li>
+<li>大表结构调整困难</li>
+</ul>
+<p>那么常用的分库手段包含？</p>
+<ul>
+<li>水平分表</li>
+<li>垂直分表</li>
+<li>建立新库</li>
+<li>增加从库</li>
+</ul>
+<p>分库分表的难点一般有查询sql复杂、主从延迟。一般需要使用中间件进行封装与数据同步系统</p>
+<h4 id="降级系统"><a href="#降级系统" class="headerlink" title="降级系统"></a>降级系统</h4><p>降级系统的意义是<code>勉强的活着，优雅的死去</code></p>
+<h3 id="程序猿都该知道的MySQL秘籍（叶金荣）"><a href="#程序猿都该知道的MySQL秘籍（叶金荣）" class="headerlink" title="程序猿都该知道的MySQL秘籍（叶金荣）"></a>程序猿都该知道的MySQL秘籍（叶金荣）</h3><p>老叶一如既往的干货满满，开篇即是高潮，逐条手撕myisam</p>
+<p>myisam的观点</p>
+<ul>
+<li>读性能更好</li>
+<li>索引和数据分开，且索引有压缩，内存使用效率更高</li>
+<li>可以直接覆盖myd/myi文件恢复数据，更快更方便</li>
+<li>count(*)和<code>order by</code>效率好，innodb count(*)会锁表</li>
+<li>innodb的insert和update太快，从库跟不上。。跟不上。。</li>
+<li>有<code>merge</code>类型，可以快速count(*)</li>
+</ul>
+<p>老叶的观点</p>
+<ul>
+<li>大多数业务中，95%的场景都可以使用innodb</li>
+<li>innodb可以把数据、索引、有修改的数据都存放在buffer中，而且还有<code>自适应hash索引，change buffer merge</code>事实上更高效</li>
+<li>innodb也有类似的拷贝文件导入库，虽然不是那么方便，但也不麻烦</li>
+<li>count(*)没索引时任何引擎都慢。innodb全表count(*)时因为是事务表确实会慢，但不会锁表</li>
+<li>额。。。</li>
+<li>innodb可以使用分区分表，虽然麻烦一些。另外如果目标仅仅是count(*)的话，可以使用第三方如redis统计</li>
+<li>innodb有完整的事务支持，更高的TPS</li>
+<li>innodb支持crash recovery。myisam不能自动修复，且耗时更久</li>
+<li>事实上，多数场景innodb读性能更好，因为myisam只能缓存索引，而innodb同时缓存了数据</li>
+</ul>
+<h4 id="innodb正确玩法"><a href="#innodb正确玩法" class="headerlink" title="innodb正确玩法"></a>innodb正确玩法</h4><p>这里老叶总结的很全，但我只记录一下我还模糊的</p>
+<ul>
+<li>innodb的行锁是加在索引上的</li>
+<li>支持四个隔离级别，默认的RR解决了幻读</li>
+<li>若无特殊需要，开启事务自动提交。大事务尽量拆成小事务</li>
+<li>没有索引的update，可能导致锁表</li>
+</ul>
+<h4 id="联合索引怎么用？"><a href="#联合索引怎么用？" class="headerlink" title="联合索引怎么用？"></a>联合索引怎么用？</h4><p>现有联合索引k1(c1, c2, c3)，下面哪个查询不能完整使用整个联合索引？</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">where c1=? and c2 in (?, ?) and c3=?</span><br><span class="line">where c3=? and c1=? and c2 in (?, ?)where c1=? and c2=? order by c3</span><br><span class="line">where c1=? and c2 in (?, ?) order by c3</span><br></pre></td></tr></table></figure>
+<p>多表join时，order by的若不是驱动列，则无法使用索引</p>
+<p><code>没踩过坑的都不是正常人</code></p>
+<h4 id="query-cache-qc"><a href="#query-cache-qc" class="headerlink" title="query cache(qc)"></a>query cache(qc)</h4><p>绝大多数场景鸡肋，最好关闭(query_cache_size=0 &amp; query_cache_type=0)。因为qc锁是全局锁，每次更新qc的内存块锁代价高，很容易出现waiting from query cache lock状态</p>
+<h4 id="ibdata1文件暴增"><a href="#ibdata1文件暴增" class="headerlink" title="ibdata1文件暴增"></a>ibdata1文件暴增</h4><p>文件内存了什么</p>
+<ul>
+<li>Data dictionary</li>
+<li>Double write buffer</li>
+<li>Insert buffer</li>
+<li>Rollback segments</li>
+<li>UNDO space</li>
+<li>Foreign key constraint system tables</li>
+</ul>
+<p>暴增原因一般为大量的未提交事务，或者文件io性能差，还有32bit系统下的bug<br>解决的话升级5.6，提高io性能，事务及时提交，默认打开自动事务</p>
+<h4 id="表数据从十万到千万"><a href="#表数据从十万到千万" class="headerlink" title="表数据从十万到千万"></a>表数据从十万到千万</h4><ul>
+<li>10万，一般索引足矣</li>
+<li>100万，需要考虑线上DDL风险，以及超过1s的查询</li>
+<li>1000万，做好备份，上线前预评估sql，预防严重更新难问题</li>
+<li>监控sql执行时间</li>
+<li>分库分表不是银弹。优先考虑冷热数据分离或者无用数据归档。分库分表优先考虑在同一示例，否则需要靠谱的代理</li>
+<li>工具pt-query-digest + anemometer</li>
+</ul>
+<h4 id="大量日志如何处理"><a href="#大量日志如何处理" class="headerlink" title="大量日志如何处理"></a>大量日志如何处理</h4><ul>
+<li>存储入库优先使用<code>tokudb</code>引擎</li>
+<li>历史数据归档大数据分析平台</li>
+<li>日志表可以按时间分区分表，并定期归档处理</li>
+</ul>
+<h3 id="LAMP这些年开发的一些感悟（老百度）"><a href="#LAMP这些年开发的一些感悟（老百度）" class="headerlink" title="LAMP这些年开发的一些感悟（老百度）"></a>LAMP这些年开发的一些感悟（老百度）</h3><p>PPT里多是经验之谈，有一些还是很中肯的，印象深的如下<br>不要太迷信于一些流言，xx性能不好、xx架构不行，更多时候是因为理解的不够，该做的优化没有做</p>
+<p>另一个是关于规范的制定</p>
+<ol>
+<li>能够对开发人员透明的规范最优</li>
+<li>其次为包含了自动检查的规范</li>
+<li>再次为人肉检查代码的规范</li>
+<li>下下策为口头约束</li>
+</ol>
+<h3 id="安全编码实战经验（黄敏）"><a href="#安全编码实战经验（黄敏）" class="headerlink" title="安全编码实战经验（黄敏）"></a>安全编码实战经验（黄敏）</h3><h4 id="应对cc攻击（ddos的一种）"><a href="#应对cc攻击（ddos的一种）" class="headerlink" title="应对cc攻击（ddos的一种）"></a>应对cc攻击（ddos的一种）</h4><ul>
+<li>最简单的就是限制异常ip</li>
+<li>然后就是尽量提高qps</li>
+<li>减少sleep的进程</li>
+</ul>
+<h4 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h4><p>老生常谈，但有几个仍然需要注意的地方</p>
+<ul>
+<li>gbk是存在漏洞的 比如錦</li>
+<li>php的单字节字符串函数也存在不安全的地方。最好统一使用utf-8和mb_*函数</li>
+</ul>
+<h4 id="函数安全"><a href="#函数安全" class="headerlink" title="函数安全"></a>函数安全</h4><p>线上环境尽量禁用以下函数</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">eval</span></span><br><span class="line">passthru</span><br><span class="line">exec</span><br><span class="line">system</span><br><span class="line">chroot</span><br><span class="line">scandir</span><br><span class="line">chgrp</span><br><span class="line">chown</span><br><span class="line">shell_exec</span><br><span class="line">proc_open</span><br><span class="line">proc_get_status</span><br><span class="line">ini_alter</span><br><span class="line">ini_restore</span><br><span class="line">dl</span><br><span class="line">pfsockopen</span><br><span class="line">openlog</span><br><span class="line">syslog</span><br><span class="line">readlink</span><br><span class="line">symlink</span><br><span class="line">popepassthru</span><br><span class="line">stream_socket_server</span><br></pre></td></tr></table></figure>
+<h4 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h4><p>上传文件的格式限制要使用白名单而不是黑名单<br>尽量使用开源库，直接从http请求中处理<br>因为php原生后缀检查和web服务器的一些配置都存在已知漏洞</p>
+<p>include文件时一定要控制可访问目录的权限以及 ../../../ 攻击</p>
+<h4 id="xss"><a href="#xss" class="headerlink" title="xss"></a>xss</h4><p>xss攻击成功的话基本可以获取平台的部分甚至全部权限</p>
+<p><code>不要试图使用正则去过滤script onload onerror等，xss有一万种方法绕过</code></p>
+<p>服务端采用严格html语法解析，对tagname attrname attrvalue css严格检查才能杜绝</p>
+<p>推荐开源库<code>XML_HTMLSax3</code></p>
+<h4 id="社会工程学"><a href="#社会工程学" class="headerlink" title="社会工程学"></a>社会工程学</h4><p>最难防的攻击来自代码之外</p>
+<p>加好友套话、欺骗工作人员、qq空间、朋友圈搜集信息</p>
+<p>防不胜防</p>
+<h4 id="一个简单例子"><a href="#一个简单例子" class="headerlink" title="一个简单例子"></a>一个简单例子</h4><p>用户基本信息：张小军 ZhangXiaoJun 19901210 18612345678<br>那么他的密码可能是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">zxj1990</span><br><span class="line">zxj19901210</span><br><span class="line">zxj1210</span><br><span class="line">Zxj1990</span><br><span class="line">zhangxiaojun1990</span><br><span class="line">zhangxiaojun1210</span><br><span class="line">zhang1990</span><br><span class="line">zhang18612345678</span><br><span class="line">12345678zhang</span><br><span class="line">zxj18612345678</span><br><span class="line">zxj@1990</span><br><span class="line">zxj@1234</span><br><span class="line">zxj@123456</span><br><span class="line">zxj12345678</span><br><span class="line">12345678zxj</span><br></pre></td></tr></table></figure>
+<h3 id="微博升级PHP7经验分享（胡波）"><a href="#微博升级PHP7经验分享（胡波）" class="headerlink" title="微博升级PHP7经验分享（胡波）"></a>微博升级PHP7经验分享（胡波）</h3><p>微博升级php7的最大经验就是<code>完善的单元测试</code>，这是他们最大的后盾</p>
+<p>在升级过程中，依次保证</p>
+<ol>
+<li>函数功能兼容性测试</li>
+<li>扩展配置兼容性测试</li>
+<li>公共库单元测试</li>
+<li>业务逻辑测试</li>
+<li>线上小流量测试</li>
+</ol>
+<h3 id="编写可测试的PHP代码（罗承成）"><a href="#编写可测试的PHP代码（罗承成）" class="headerlink" title="编写可测试的PHP代码（罗承成）"></a>编写可测试的PHP代码（罗承成）</h3><p>这位讲师的分享也很中肯，分享了什么是单元测试？什么是可测试的代码？如何写可测试的代码？</p>
+<h4 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h4><p>单元测试又称模块测试，是对程序中最小单元模块进行功能测试，最小模块可以是一个函数、一个过程、一个类或者就是一个小程序。需要提一下的是，单元测试有一个隐喻是指被测试的单元要跟周围的环境尽量隔离，依赖倒置</p>
+<h4 id="可测试的代码"><a href="#可测试的代码" class="headerlink" title="可测试的代码"></a>可测试的代码</h4><p>可测试的代码主要是指容易测试的，一般需要遵循以下原则</p>
+<ul>
+<li>隔离性，尽量不要依赖运行环境，或者至少要有明确的环境依赖配置</li>
+<li>单元性，一个测试单元要实现一个单一的功能，不要多个功能混杂在一起，做到低耦合、高内聚</li>
+<li>依赖注入，单元中所有的依赖要通过注入的方式明确声明，不要在程序深处有任何假设</li>
+</ul>
+<h4 id="不可测试代码"><a href="#不可测试代码" class="headerlink" title="不可测试代码"></a>不可测试代码</h4><ul>
+<li>$_ 超全局变量，对运行环境严重依赖，难以测试</li>
+<li>PHP魔法方法，同上</li>
+<li>单例，同上？</li>
+<li>依赖框架环境的静态方法，如TP的M、I方法</li>
+<li>构造函数中包含业务逻辑，这种就很难创建类</li>
+<li>超长的函数和类</li>
+</ul>
+<h3 id="Laravel-Lego-save-you-from-CURD（张卫）"><a href="#Laravel-Lego-save-you-from-CURD（张卫）" class="headerlink" title="Laravel Lego save you from CURD（张卫）"></a>Laravel Lego save you from CURD（张卫）</h3><p>PPT风格很独特，幽默风趣<br><strong>懒是最大的美德</strong><br>同时还是个远程工作者（蛋壳公寓）<br>自己开发了一个库，能够方便的进行各种表单处理，挺实用方便的功能</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>觉得有帮助的话, 请我喝杯茶吧</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wepay.jpg" alt="Liufxlucky365 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Liufxlucky365 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/09/NLPC服务类开发踩坑小结/" rel="next" title="NLPC工具类开发踩坑小结">
+                <i class="fa fa-chevron-left"></i> NLPC工具类开发踩坑小结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/23/2017年第三届PHP开发者大会总结/" rel="prev" title="2017年第三届PHP开发者大会总结.md">
+                2017年第三届PHP开发者大会总结.md <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDE5Mi8yMDcyNQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/default_avatar.png"
+                alt="Liufxlucky365" />
+            
+              <p class="site-author-name" itemprop="name">Liufxlucky365</p>
+              <p class="site-description motion-element" itemprop="description">程序猿 IT php mysql 生活 秀恩爱</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在最前"><span class="nav-text">写在最前</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP游戏开发（王晶，半桶水）"><span class="nav-text">PHP游戏开发（王晶，半桶水）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存"><span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据特点"><span class="nav-text">数据特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5ms级别的业务请求"><span class="nav-text">5ms级别的业务请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外挂处理"><span class="nav-text">外挂处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置化管理"><span class="nav-text">配置化管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP做大数据量实时分析（吕毅）"><span class="nav-text">PHP做大数据量实时分析（吕毅）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP开发企业应用常见问题（王春生）"><span class="nav-text">PHP开发企业应用常见问题（王春生）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何保护自己代码？"><span class="nav-text">如何保护自己代码？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何解决应用部署问题？"><span class="nav-text">如何解决应用部署问题？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何实现计划任务？"><span class="nav-text">如何实现计划任务？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何防止安全问题？"><span class="nav-text">如何防止安全问题？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-Swoole在车轮互联的应用与实践（韩天峰）"><span class="nav-text">PHP+Swoole在车轮互联的应用与实践（韩天峰）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#服务治理"><span class="nav-text">服务治理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#swoole造轮子"><span class="nav-text">swoole造轮子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#淘宝社区双十一性能优化实践（信海龙）"><span class="nav-text">淘宝社区双十一性能优化实践（信海龙）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#找出性能瓶颈"><span class="nav-text">找出性能瓶颈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库分库分表"><span class="nav-text">数据库分库分表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#降级系统"><span class="nav-text">降级系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序猿都该知道的MySQL秘籍（叶金荣）"><span class="nav-text">程序猿都该知道的MySQL秘籍（叶金荣）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#innodb正确玩法"><span class="nav-text">innodb正确玩法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#联合索引怎么用？"><span class="nav-text">联合索引怎么用？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#query-cache-qc"><span class="nav-text">query cache(qc)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ibdata1文件暴增"><span class="nav-text">ibdata1文件暴增</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表数据从十万到千万"><span class="nav-text">表数据从十万到千万</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#大量日志如何处理"><span class="nav-text">大量日志如何处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LAMP这些年开发的一些感悟（老百度）"><span class="nav-text">LAMP这些年开发的一些感悟（老百度）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全编码实战经验（黄敏）"><span class="nav-text">安全编码实战经验（黄敏）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#应对cc攻击（ddos的一种）"><span class="nav-text">应对cc攻击（ddos的一种）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sql注入"><span class="nav-text">sql注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数安全"><span class="nav-text">函数安全</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件"><span class="nav-text">文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#xss"><span class="nav-text">xss</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#社会工程学"><span class="nav-text">社会工程学</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一个简单例子"><span class="nav-text">一个简单例子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微博升级PHP7经验分享（胡波）"><span class="nav-text">微博升级PHP7经验分享（胡波）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写可测试的PHP代码（罗承成）"><span class="nav-text">编写可测试的PHP代码（罗承成）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单元测试"><span class="nav-text">单元测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可测试的代码"><span class="nav-text">可测试的代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不可测试代码"><span class="nav-text">不可测试代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Laravel-Lego-save-you-from-CURD（张卫）"><span class="nav-text">Laravel Lego save you from CURD（张卫）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liufxlucky365</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    访问量 <span id="busuanzi_value_site_pv"></span>
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    <span id="busuanzi_value_site_uv"></span>人看过
+</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
