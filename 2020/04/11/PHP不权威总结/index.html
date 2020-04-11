@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="欢迎阅读本文目标用户是我自己，系统地持续集成PHP方方面面的知识，但不会事无巨细的一一列举，只会挑选我认为易忘、易错、重要的内容进行集成，而且大多是点到为止，需要更详细文档的话会额外链接。所以，如果你已经靠PHP谋生了几年的话这篇文档应该会对你有帮助，如果你是PHP新手，建议重点阅读学习资料一节。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP不权威总结">
+<meta property="og:url" content="http://yoursite.com/2020/04/11/PHP不权威总结/index.html">
+<meta property="og:site_name" content="Liufxlucky365">
+<meta property="og:description" content="欢迎阅读本文目标用户是我自己，系统地持续集成PHP方方面面的知识，但不会事无巨细的一一列举，只会挑选我认为易忘、易错、重要的内容进行集成，而且大多是点到为止，需要更详细文档的话会额外链接。所以，如果你已经靠PHP谋生了几年的话这篇文档应该会对你有帮助，如果你是PHP新手，建议重点阅读学习资料一节。">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1g9xrdmlzs7j30vc0oawhm.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1ga5yf37krrj30lk0ba0tq.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1gdq1dxxw39j31oq0kotg8.jpg">
+<meta property="og:updated_time" content="2020-04-11T12:29:49.322Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP不权威总结">
+<meta name="twitter:description" content="欢迎阅读本文目标用户是我自己，系统地持续集成PHP方方面面的知识，但不会事无巨细的一一列举，只会挑选我认为易忘、易错、重要的内容进行集成，而且大多是点到为止，需要更详细文档的话会额外链接。所以，如果你已经靠PHP谋生了几年的话这篇文档应该会对你有帮助，如果你是PHP新手，建议重点阅读学习资料一节。">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1g9xrdmlzs7j30vc0oawhm.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/11/PHP不权威总结/"/>
+
+
+
+
+
+  <title>PHP不权威总结 | Liufxlucky365</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liufxlucky365</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">211&835</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/11/PHP不权威总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liufxlucky365">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/default_avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liufxlucky365">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PHP不权威总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-11T00:00:00+08:00">
+                2020-04-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程语言/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="欢迎阅读"><a href="#欢迎阅读" class="headerlink" title="欢迎阅读"></a>欢迎阅读</h2><p>本文目标用户是我自己，系统地持续集成PHP方方面面的知识，但不会事无巨细的一一列举，只会挑选我认为易忘、易错、重要的内容进行集成，而且大多是点到为止，需要更详细文档的话会额外链接。所以，如果你已经靠PHP谋生了几年的话这篇文档应该会对你有帮助，如果你是PHP新手，建议重点阅读<a href="#学习资料">学习资料</a>一节。</p>
+<a id="more"></a>
+<h2 id="安装配置-amp-环境搭建"><a href="#安装配置-amp-环境搭建" class="headerlink" title="安装配置 &amp; 环境搭建"></a>安装配置 &amp; 环境搭建</h2><p>PHP的开发环境主要是LA/NMP，即Linux、Apache/Nginx、Mysql、PHP，关于这些工具在不同平台的安装有大量优秀详细的文档，这里不废话，重点还是PHP的安装，不过强烈推荐Laravel的<code>Homestead</code>解决方案，一套方便管理的、跨平台、统一的、虚拟化开发环境。</p>
+<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><p>推荐使用Like Unix操作系统作为开发、线上环境，强大且简单。我推荐的PHP安装方式是编译安装，对新手也是，不走弯路、不踩坑怎么成长。源码安装你的选择会更加自由，能第一时间尝试各种Alpha版，而且在日常工作中，安装扩展、调试、优化，都需要对PHP的目录、文件有一定了解。</p>
+<ol>
+<li><a href="https://php.net" target="_blank" rel="external">PHP官网</a>下载你需要的版本源码</li>
+<li><p>编译 &amp; 安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"># --prefix指定目录，--with-config-file-path指定php-config目录，其他为要一同安装的扩展或开启的功能</span><br><span class="line"></span><br><span class="line">./configure --prefix=/usr/local/php \</span><br><span class="line">--with-config-file-path=/etc/php \</span><br><span class="line">--enable-fpm \</span><br><span class="line">--enable-pcntl \</span><br><span class="line">--enable-mysqlnd \</span><br><span class="line">--enable-opcache \</span><br><span class="line">--enable-sockets \</span><br><span class="line">--enable-sysvmsg \</span><br><span class="line">--enable-sysvsem \</span><br><span class="line">--enable-sysvshm \</span><br><span class="line">--enable-shmop \</span><br><span class="line">--enable-zip \</span><br><span class="line">--enable-soap \</span><br><span class="line">--enable-xml \</span><br><span class="line">--enable-mbstring \</span><br><span class="line">--disable-rpath \</span><br><span class="line">--disable-debug \</span><br><span class="line">--disable-fileinfo \</span><br><span class="line">--with-mysql=mysqlnd \</span><br><span class="line">--with-mysqli=mysqlnd \</span><br><span class="line">--with-pdo-mysql=mysqlnd \</span><br><span class="line">--with-pcre-regex \</span><br><span class="line">--with-iconv \</span><br><span class="line">--with-zlib \</span><br><span class="line">--with-mcrypt \</span><br><span class="line">--with-gd \</span><br><span class="line">--with-openssl \</span><br><span class="line">--with-mhash \</span><br><span class="line">--with-xmlrpc \</span><br><span class="line">--with-curl \</span><br><span class="line">--with-imap-ssl</span><br><span class="line"></span><br><span class="line">sudo make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加配置。PHP的源码包中附带了一个开发环境使用的配置（开启了方便调试、减少性能消耗的配置），只需要放到默认位置就行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /etc/php</span><br><span class="line">sudo cp php.ini-development /etc/php/php.ini</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>扩展安装。如果需要在已安装的PHP中添加扩展的话，只需下载好扩展源码后进入扩展的源码目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">phpize</span><br><span class="line">./configure --with-php-config=/usr/local/php-config</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Homestead"><a href="#Homestead" class="headerlink" title="Homestead"></a>Homestead</h3><p>团队作战中，由于依赖众多（git、redis、memcache、nodejs、npm），每个人习惯不同，开发环境都会有所差别，会导致许多难以察觉的问题，并大大提高团队协调的难度，<em>我曾遇到过PHP5.2、5.4两个版本的正则执行结果不同而导致上线折腾到凌晨2点的坑事</em>。所以Laravel团队提供了一套基于虚拟机的跨平台开发环境搭建方案 —— Homestead（译为家园）。</p>
+<p>我来简单梳理一下。Homestead的做法是，首先选择免费稳定的Virtual Box作为虚拟机，用Vagrant来管理虚拟机和开发环境，然后又配置了一套统一的git、redis等常用工具，直接安装即可。这里有<a href="https://learnku.com/docs/laravel-development-environment/5.8/preface/4366" target="_blank" rel="external">详细</a>的说明文档。</p>
+<h3 id="Mac安装"><a href="#Mac安装" class="headerlink" title="Mac安装"></a>Mac安装</h3><p>直接使用Homebrew安装，类似Linux的yum、apt-get方案。</p>
+<h3 id="Windows安装"><a href="#Windows安装" class="headerlink" title="Windows安装"></a>Windows安装</h3><p>推荐使用XAMPP、EasyPHP、WAMP等一类的套件，简单易用，包括了LN/AMP最基本的开发环境，提供了GUI管理界面。<code>需要提醒的是千万不要用这些套件部署线上环境</code>。</p>
+<h2 id="基本特性"><a href="#基本特性" class="headerlink" title="基本特性"></a>基本特性</h2><h3 id="日期时间"><a href="#日期时间" class="headerlink" title="日期时间"></a>日期时间</h3><p>日期处理非常讨厌的地方是每月天数不同和闰年、时区的差异，以及日期之间的运算。早期的phper主要使用date、strtotime等几个函数进行转换，费时费力易出错。5.2之后其实提供了以下几个类，来简化日期处理。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 基本的日期处理对象</span></span><br><span class="line">DateTime: __construct ([ string $time = <span class="string">"now"</span> [, DateTimeZone $timezone = <span class="keyword">NULL</span> ]] );</span><br><span class="line"></span><br><span class="line"><span class="comment">// 时区对象</span></span><br><span class="line">DateTimeZone: __construct ($timezone);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 时间段对象</span></span><br><span class="line">DateInterval: __construct ($interval_spec);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 时间迭代器</span></span><br><span class="line">DatePeriod: __construct (DateTimeInterface $start, DateInterval $interval, DateTimeInterface $end, $options=<span class="number">0</span>);</span><br></pre></td></tr></table></figure></p>
+<p>列举几个使用场景<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$datetime = <span class="keyword">new</span> DateTime();</span><br><span class="line"><span class="keyword">echo</span> $datetime-&gt;format(<span class="string">'Y-m-d H:i:s'</span>); <span class="comment">// out当前时间</span></span><br><span class="line"></span><br><span class="line">$datetime-&gt;setTimezone(<span class="keyword">new</span> DateTimeZone(<span class="string">'Asia/ShangHai'</span>));</span><br><span class="line"><span class="keyword">echo</span> $datetime-&gt;format(<span class="string">'Y-m-d H:i:s'</span>); <span class="comment">// out上海时间</span></span><br><span class="line"></span><br><span class="line">$yesterday = <span class="keyword">new</span> DateTime(<span class="string">'-1 day'</span>);</span><br><span class="line"><span class="keyword">echo</span> $datetime-&gt;diff($yesterday)-&gt;format(<span class="string">'%a'</span>); <span class="comment">// out日期天数差，1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 生成一个时间段</span></span><br><span class="line">$interval = <span class="keyword">new</span> DateInterval(<span class="string">'P2DT2H'</span>); <span class="comment">// P开头, 日期和时间T隔开 Y M D W H M S</span></span><br><span class="line">$datetime-&gt;add($interval);</span><br><span class="line">$datetime-&gt;sub($interval);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 两个时间点之间进行迭代</span></span><br><span class="line">$start = DateTime(<span class="string">'2019-11-01'</span>);</span><br><span class="line">$end = DateTime(<span class="string">'2019-11-21'</span>);</span><br><span class="line">$interval = <span class="keyword">new</span> DateInterval(<span class="string">'P2D'</span>);</span><br><span class="line">$period = <span class="keyword">new</span> DatePeriod($start, $interval, $end, DatePeriod::EXCLUDE_START_DATE);</span><br><span class="line"><span class="keyword">foreach</span> ($period <span class="keyword">as</span> $datetime) &#123;</span><br><span class="line">    <span class="keyword">echo</span> $datetime-&gt;format(<span class="string">"Y-m-d H:i:s"</span>) , PHP_EOL; <span class="comment">// out 2019-11-03 2019-11-05...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>延伸</p>
+<ul>
+<li><a href="https://www.php.net/manual/en/class.datetime.php" target="_blank" rel="external">https://www.php.net/manual/en/class.datetime.php</a></li>
+</ul>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>常用mysqli<em>* mysql</em>*函数簇由于比较底层且繁琐，加之经常使用框架封装好的方法，经常忘记原生的数据库操作，出于便捷性、通用性与安全性的考虑，数据库连接推荐使用PDO<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 建立数据库连接，pdo支持mysql oracle sqlite等多种常用数据库</span></span><br><span class="line">$pdo = <span class="keyword">new</span> PDO(<span class="string">'mysql:host=...;dbname=...;prot=...;charset=...'</span>);</span><br><span class="line">$stmt = $pdo-&gt;query(<span class="string">'select * from user'</span>);</span><br><span class="line">$rows = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC); <span class="comment">// fetchAll一次读取尚未读取的所有记录</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 逐条读取，减少内存消耗；注意查询结果以及缓存在本地，只是逐条加载近内存</span></span><br><span class="line">$stmt = $pdo-&gt;query(<span class="string">'select * from user'</span>);</span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">false</span> !== ($row = $stmt-&gt;fetch()) &#123;</span><br><span class="line">    print_r($row);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 一般为了防止sql注入，和提高性能，常使用prepare</span></span><br><span class="line">$sql = <span class="string">"insert into foo (name, age) values (:name, :age)"</span>;</span><br><span class="line">$stmt = $pdo-&gt;prepare($sql);</span><br><span class="line">$stmt-&gt;bindValue(<span class="string">':name'</span>, <span class="string">'name'</span>);</span><br><span class="line">$stmt-&gt;bindValue(<span class="string">':age'</span>, <span class="number">18</span>);</span><br><span class="line">$stmt-&gt;execute();</span><br></pre></td></tr></table></figure></p>
+<h3 id="define-VS-const"><a href="#define-VS-const" class="headerlink" title="define VS const"></a>define VS const</h3><p>关于常量的处理有define和const两种实现方法，其中const是在编译阶段执行性能、可读性都要略好一些，但由于其不能使用函数、不能if条件控制，灵活性要比define差。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// define</span></span><br><span class="line">define(<span class="string">'NAME_1'</span>, <span class="number">1</span>);</span><br><span class="line">define(<span class="string">'NAME_2'</span>, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line">define(<span class="string">'NAME_3'</span>, time());</span><br><span class="line"><span class="keyword">if</span> ($flag) &#123;</span><br><span class="line">    define(<span class="string">'NAME_4'</span>, <span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">    define(<span class="string">'class_const'</span>, <span class="number">1</span>); <span class="comment">// compile error</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// const</span></span><br><span class="line"><span class="keyword">const</span> NAME_5 = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> NAME_6 = time(); <span class="comment">// compile error</span></span><br><span class="line"><span class="keyword">if</span> ($flag) &#123;</span><br><span class="line">    <span class="keyword">const</span> NAME_7 = <span class="number">1</span>; <span class="comment">// compile error</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> A = <span class="number">1</span>; <span class="comment">// compile error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="OOP特性"><a href="#OOP特性" class="headerlink" title="OOP特性"></a>OOP特性</h2><h3 id="错误与异常"><a href="#错误与异常" class="headerlink" title="错误与异常"></a>错误与异常</h3><p>php程序运行时可能会出现各种错误，错误分为notice、warning、error、compile_error等，正确处理这些错误信息能够帮助我们快速解决问题。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误报告控制，也可以在php.ini中修改error_reporting</span></span><br><span class="line">error_reporting(E_ALL &amp; ~E_NOTICE); <span class="comment">// 关闭notice错误</span></span><br><span class="line">error_reporting(E_WARNING | E_ERROR); <span class="comment">// 只开启warning和error错误</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 错误显示</span></span><br><span class="line">ini_set(<span class="string">'display_errors'</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># php中错误相关配置</span><br><span class="line"># 错误日志是否打开</span><br><span class="line">log_errors = On （Off）</span><br><span class="line"></span><br><span class="line"># 错误日志记录的位置</span><br><span class="line">error_log = php_errors.log</span><br><span class="line"></span><br><span class="line"># 是否打开错误显示</span><br><span class="line">display_errors = Off</span><br><span class="line"></span><br><span class="line"># 定义错误显示的级别</span><br><span class="line">error_reporting = E_ALL</span><br></pre></td></tr></table></figure>
+<p>关于错误的控制，建议为：</p>
+<ul>
+<li>任何环境都要记录错误</li>
+<li>开发环境尽可能多显示错误</li>
+<li>生产环境要关闭错误显示</li>
+</ul>
+<p>异常OOP的错误处理机制，强大且优雅。但php在这方面比较混乱，程序出错时既可能抛异常，也可能只是个warning或直接中断运行，甚至继续执行下去。php7中尝试对此进行一定的统一，部分运行时fatal error不再直接中断程序，而是改为抛出Error异常，并与Exception统一实现了Throwable接口<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">require_once</span> <span class="string">'b.php'</span>; <span class="comment">// 依然fatal error</span></span><br><span class="line">    $b = <span class="number">1</span> % <span class="number">0</span>; <span class="comment">// Error, DivisionByZeroError</span></span><br><span class="line">    foo(); <span class="comment">// Error</span></span><br><span class="line">    <span class="keyword">echo</span> $a; <span class="comment">// warning而已</span></span><br><span class="line"></span><br><span class="line">    $b = <span class="keyword">null</span>;</span><br><span class="line">    $b-&gt;test(); <span class="comment">// Error</span></span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">catch</span> (<span class="keyword">Exception</span> $e) &#123;</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">catch</span> (Error $e) &#123;</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">catch</span> (Throwable $e) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果想严格执行异常机制，可以注册一个error回调函数将所有错误转换为异常抛出。注意，<code>E_ERROR E_PARSE E_CORE_ERROR E_CORE_WARNING E_COMPILE_ERROR E_COMPILE_WARNING</code>会直接导致程序退出而无法转换为异常<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">set_error_handler(<span class="function"><span class="keyword">function</span><span class="params">($errno, $errstr, $errfile, $errline)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 屏蔽不报告的错误</span></span><br><span class="line">    <span class="keyword">if</span> (!(error_reporting() &amp; $errno)) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> \ErrorException($errstr, $errno);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>延伸</p>
+<ul>
+<li><a href="https://www.php.net/manual/zh/spl.exceptions.php" target="_blank" rel="external">SPL扩展的多个标准异常</a></li>
+</ul>
+<h3 id="延迟静态绑定"><a href="#延迟静态绑定" class="headerlink" title="延迟静态绑定"></a>延迟静态绑定</h3><p>延迟静态绑定是指类静态方法调用时执行调用者的逻辑，而非方法定义时的逻辑，看个例子<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">out</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'people'</span> . PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">callOut</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">self</span>::out();</span><br><span class="line">        <span class="keyword">static</span>::out();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">out</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'user'</span> . PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$user = <span class="keyword">new</span> User();</span><br><span class="line">$user-&gt;callOut();</span><br><span class="line"></span><br><span class="line"><span class="comment">// static指向运行时的调用者也就是User类，而self为定义者也就是People类，所以输出为</span></span><br><span class="line"><span class="comment">// people</span></span><br><span class="line"><span class="comment">// user</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><p>反射是一种面向对象的机制，提供了一套API允许程序在运行时对类进行检查，类定义、类方法、成员变量、可访问性、源码，甚至访问私有成员与方法。反射机制经常使用在测试、构建与框架底层代码中，能够产生很多“神奇”的效果。</p>
+<p>延伸</p>
+<ul>
+<li>《深入PHP 面向对象、模式与实践》反射一节</li>
+<li><a href="https://learnku.com/articles/7538/the-application-of-reflection-in-php" target="_blank" rel="external">反射在PHP中应用</a></li>
+</ul>
+<h3 id="trait"><a href="#trait" class="headerlink" title="trait"></a>trait</h3><p>trait，翻译为性状，主要用于在类之间抽象一些特性。比如超人和小鸟，他们都需要实现一个fly方法，一般的做法是抽象一个更高级的类实现fly方法他们共同继承，但是这样强行耦合了两个并不强相关的类；另一种做法是定义一个Fly的接口实现fly方法，这样虽然避免耦合，但同样的fly方法需要实现两遍，违背了DYR原则；比较好的办法是has-a，即定义一个包含fly方法的公共类，并在超人类和小鸟类中分别实例化。其实trai就类似第三种做法，而且使用起来更方便一些<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">trait</span> Fly &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">fly</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'I can fly'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Superman</span> </span>&#123;</span><br><span class="line">    <span class="keyword">use</span> <span class="title">Fly</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bird</span> </span>&#123;</span><br><span class="line">    <span class="keyword">use</span> <span class="title">Fly</span>;</span><br><span class="line">&#125;</span><br><span class="line">$clark = <span class="keyword">new</span> Superman();</span><br><span class="line">$clark-&gt;fly();</span><br></pre></td></tr></table></figure></p>
+<p>就是这么简单，但trait使用时有几个需要注意的地方</p>
+<ul>
+<li>php的方法调用优先级为class自身方法 &gt; trait &gt; 继承</li>
+<li>多个trait用逗号分隔</li>
+<li>trait也可以使用trait</li>
+<li>trait也可以定义属性，但不能与class中属性冲突，fatal error</li>
+</ul>
+<h2 id="高级特性"><a href="#高级特性" class="headerlink" title="高级特性"></a>高级特性</h2><h3 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h3><p>命名空间主要用来解决命名冲突。php的命名空间其实很简单，只是由于其只是个虚拟空间，并不要求与代码实际文件相对应，虽然会灵活许多，但导致使用起来不好理解，这也是我诟病php哲学的一点，过分追求灵活简单，反而导致方案太多而困惑。</p>
+<p>先看几个命名空间的常见场景<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">A</span>\<span class="title">Route</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Http</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">B</span>\<span class="title">Route</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Http</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接new，默认当前命名空间</span></span><br><span class="line">$routeB = <span class="keyword">new</span> Http();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用全限定命名空间，\开头</span></span><br><span class="line">$routeA = <span class="keyword">new</span> \App\A\Route();</span><br><span class="line"></span><br><span class="line"><span class="comment">// use导入，同时重命名</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">A</span>\<span class="title">Route</span>\<span class="title">Http</span> <span class="title">as</span> <span class="title">HttpA</span>;</span><br><span class="line">$routeA = <span class="keyword">new</span> HttpA();</span><br><span class="line"></span><br><span class="line"><span class="comment">// use导入半限定</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">A</span>;</span><br><span class="line">$routeA = <span class="keyword">new</span> A\Route\Http();</span><br></pre></td></tr></table></figure></p>
+<p><code>php的命名空间只是个虚拟概念，use并不能自动加载文件，还需要依靠其他办法加载文件</code>，php标准psr要求每个php文件只能定义一个namespace，且与其文件路径保持一致，并利用spl_autoload自动加载，这样就大大优化了命名空间</p>
+<ul>
+<li>namespace必须在文件开头</li>
+<li>function const同样可以使用命名空间，导入时关键字为use function,  use const</li>
+</ul>
+<p>延伸</p>
+<ul>
+<li><a href="https://learnku.com/articles/15064/namespace-namespace-detailed-explanation" target="_blank" rel="external">PHP命名空间详解</a></li>
+</ul>
+<h3 id="yield"><a href="#yield" class="headerlink" title="yield"></a>yield</h3><p>yield，生成器，主要用于“逐步”的处理大文件、复杂计算，减少内存消耗，和一定程度的降低代码复杂度，类似游标。生成器是基于协程实现的，其基本特点是函数不再是<code>调用-返回</code>的模式，而是<code>调用-运行-暂停……-返回</code>，即函数可以让出，和重入。</p>
+<p>生成器的基本使用，定义、生成、执行<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="string">'first record'</span>;</span><br><span class="line">    <span class="keyword">yield</span> <span class="string">'second record'</span>;</span><br><span class="line">&#125;</span><br><span class="line">$gen = foo();</span><br><span class="line">$gen-&gt;current(); <span class="comment">// out: first record</span></span><br><span class="line">$gen-&gt;current(); <span class="comment">// out: second record</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="keyword">foreach</span>($gen <span class="keyword">as</span> $v) &#123;</span><br><span class="line">    <span class="keyword">echo</span> $v;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="keyword">while</span> ($gen-&gt;valid()) &#123;</span><br><span class="line">    $gen-&gt;current();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>生成器，就是一个包含yield关键字的函数，比较特殊，<code>调用这个函数时，会返回一个迭代器（即实现了Iterator，next valid current），这也是生成器名字的由来</code><br>生成器的返回值，和交互<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span>; <span class="comment">// null</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="string">'string'</span>; <span class="comment">// string</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="string">'key'</span> =&gt; <span class="number">10</span>; <span class="comment">// key-val foreach($gen as $k =&gt; $v)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'retval'</span>; <span class="comment">// php7以后支持，$foo-&gt;getReturn();</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="string">'end'</span> != ($msg = <span class="keyword">yield</span>)) &#123;</span><br><span class="line">        <span class="keyword">echo</span> $msg;</span><br><span class="line">        sleep(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$gen-&gt;send(<span class="string">'go'</span>);</span><br><span class="line">$gen-&gt;send(<span class="string">'go ahead'</span>);</span><br><span class="line">$gen-&gt;send(<span class="string">'end'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>需要注意的是直接send可能导致数据丢失<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line">$gen = foo();</span><br><span class="line">$gen-&gt;send(<span class="string">'msg'</span>);</span><br><span class="line"><span class="keyword">echo</span> $gen-&gt;current(); <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确做法</span></span><br><span class="line">$gen-&gt;current(); <span class="comment">// 1</span></span><br><span class="line">$gen-&gt;send(<span class="string">'msg'</span>);</span><br><span class="line">$gen-&gt;current(); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure></p>
+<p>延伸</p>
+<ul>
+<li><a href="https://tlanyan.me/php-review-coroutine/" target="_blank" rel="external">PHP协程</a></li>
+<li><a href="http://www.laruence.com/2015/05/28/3038.html" target="_blank" rel="external">在PHP中使用协程实现多任务调度</a></li>
+</ul>
+<h3 id="session"><a href="#session" class="headerlink" title="session"></a>session</h3><p>session意为会话，作用是解决无状态的Http协议实现用户登录的问题。用户第一次访问应用时生成一个seesion_id并将会话信息持久化，用户后续访问时均带上该session_id，应用程序籍此区分用户并共享会话信息，用户在退出时注销该session_id。目前直接使用原生的php session机制并不多，大多数是使用一个单点的统一用户会话管理服务，不过php本身的session机制在一些场景依然简单有效。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">session_start(); <span class="comment">// 开启session，无session_id时创建，并生成文件</span></span><br><span class="line">$_SESSION; <span class="comment">// 超全局数组，保存着session信息</span></span><br><span class="line">session_unset(); <span class="comment">// 清空session信息，并非unset($_SESSION)</span></span><br><span class="line">session_commit(); <span class="comment">// 保存session信息，并结束session</span></span><br><span class="line">session_destroy(); <span class="comment">// 清空session，删除session文件</span></span><br></pre></td></tr></table></figure>
+<p>php的session在使用时有这么几个缺陷和注意点：</p>
+<ul>
+<li>session_id默认是使用cookie传递，一旦cookie被禁用，需要其他办法兼容，比如session_id应用自己维护传输，或者自动加在url中</li>
+<li>session信息默认是保存在单机文件中的，这就导致分布式集群无法正常使用，需要覆盖实现php的session回调，借助redis、mysql等集中式存储实现分布式的session</li>
+<li>php的session过期有些费解<ul>
+<li>由于判断session过期是要频繁的文件检查，性能原因考虑，配置了一个检查概率，默认1/100</li>
+<li>坑爹的以文件最后修改时间为过期依旧，而每次更新会话变量，最后修改时间都会刷新</li>
+<li>由于默认目录是/tmp，假如服务器部署多个应用而没有调整时，超时时间短的应用会导致长的被清理</li>
+</ul>
+</li>
+</ul>
+<p>延伸</p>
+<ul>
+<li><a href="https://www.pureweber.com/article/how-session-works/" target="_blank" rel="external">Session原理简述</a></li>
+<li><a href="http://www.laruence.com/2012/01/10/2469.html" target="_blank" rel="external">如何设置一个严格30分钟过期的session</a></li>
+</ul>
+<h3 id="取值范围"><a href="#取值范围" class="headerlink" title="取值范围"></a>取值范围</h3><p>php中整型不区分int、short、long，统一全是long，且始终为有符号，位数与平台有关，32位系统取值范围为-2147483648到2147483647（正负21亿，共10位，-2^32~2^32-1），64位系统上为-9223372036854775808到9223372036854775807（正负19位）</p>
+<p>浮点型不区分float和double，统一全是double，且始终有符号，位数与平台有关，具体表示数值的范围需要根据精度而定，php默认配置的精度是14位有效数字。32位系统中1位符号8位精度23位尾数，64位系统中1位符号11位精度52位尾数</p>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><h3 id="xdebug"><a href="#xdebug" class="headerlink" title="xdebug"></a>xdebug</h3><h3 id="xhprof"><a href="#xhprof" class="headerlink" title="xhprof"></a>xhprof</h3><p>xdebug虽然强大，但由于采集的信息比较多，对性能影响较大无法在实际生产环境使用，导致一些问题难以发现。xhprof是Facebook发布的一款轻量级性能分析器，性能影响小，能够用于生产环境，同时收集的信息也能满足大部分分析需求，主要是function级别的，包括运行时间、运行次数、cpu占用、内存占用等。需要注意由于Facebook不再维护，官方版并不支持php7，github另外一个分支维护了php7版本</p>
+<p>xhprof需要额外安装扩展，需要在应用程序中显示开启、终止分析，会生成性能分析文件，借助可视化工具，可清晰的看到性能瓶颈</p>
+<p>延伸<br><a href="https://github.com/longxinH/xhprof" target="_blank" rel="external">github项目地址</a></p>
+<h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><p>单测自己的使用经验有限，但也尝到了甜头。PHP的单元测试主要借助PHPunit，可以通过composer安装。简单记录几个使用经验</p>
+<ul>
+<li>最好在调试阶段就开始使用phpunit，<code>既可以第一时间实际使用类/方法，发现错误与难用之处；也可以持续积累case，方便后续回归</code></li>
+<li>TDD，所谓测试驱动，是先通过测试用例确认软件行为，然后再实现软件来通过测试用例，达到明确的需求确认和保证软件质量。但由于测试用例比较耗费精力，所以我一般用在小模块开发中</li>
+<li>phpunit的–filter选项比较有用，可以方便的测试指定的用例</li>
+<li>将case放在一个回滚的事务中，可以在自动测试完后恢复现场</li>
+<li>phpunit中的data准备回调非常好用，可以自动准备、恢复测试数据，保证每次测试的现场一致可复现</li>
+</ul>
+<p>延伸<br><a href="https://phpunit.readthedocs.io/zh_CN/latest/installation.html" target="_blank" rel="external">PHPUnit手册</a><br><a href="http://blog.yangxiaochen.com/blog/design-and-thinking/how-to-write-unittest.html" target="_blank" rel="external">如何有效的书写项目单元测试</a></p>
+<h3 id="gdb"><a href="#gdb" class="headerlink" title="gdb"></a>gdb</h3><p>延伸</p>
+<ul>
+<li><a href="https://www.laruence.com/2011/06/23/2057.html" target="_blank" rel="external">如何调试PHP的Core之获取基本信息</a></li>
+</ul>
+<h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><h3 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h3><p>加密的一个原则是绝对不要明文存储、传输密码，一般使用一种单向算法对密码加密，以前常用md5+salt的方式，但由于彩虹表的出现，md5不再安全，目前PHP中比较安全的是使用bcrypt算法加密。这个算法故意被设计的比较耗时（单次大约毫秒级），从而增加破解成本。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 计算hash，可以指定算法、计算因子，会自动补充salt</span></span><br><span class="line">$pwd = <span class="string">'password'</span>;</span><br><span class="line">$hash = password_hash($pwd, PASSWORD_DEFAULT, [<span class="string">'cost'</span> =&gt; <span class="number">10</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调试，可以看到hash值中同时保存了salt，和配置信息（算法、因子等）</span></span><br><span class="line">$pwdInfo = password_get_info($hash);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 验证，就这么简单</span></span><br><span class="line">$bolEqual = password_verify($pwd, $hash);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 维护，可以自动判断hash是否满足当前配置，籍此可判断是否需要重新生成hash</span></span><br><span class="line">$bolNeedRehash = password_needs_rehash($hash, PASSWORD_DEFAULT, [<span class="string">'cost'</span> =&gt; <span class="number">15</span>]);</span><br></pre></td></tr></table></figure>
+<p>延伸<br><a href="https://www.php.net/manual/zh/function.password-needs-rehash.php" target="_blank" rel="external">password_hash、password_verify、password_needs_rehash手册</a></p>
+<h2 id="组件-amp-扩展-amp-工具"><a href="#组件-amp-扩展-amp-工具" class="headerlink" title="组件 &amp; 扩展 &amp; 工具"></a>组件 &amp; 扩展 &amp; 工具</h2><h3 id="自动加载"><a href="#自动加载" class="headerlink" title="自动加载"></a>自动加载</h3><p>PHP中所谓的自动加载是class的命名空间与类名去解析class文件真实path并require，映射规则一般使用官方推荐的PSR-4，大概为一个文件只包含一个class、trait、interface，同时namespace要与文件路径一致。这样利用PHP内置的类加载器注册机制便可以自动require了。一个典型的autoloader.php如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * 使用SPL组册这个自动加载函数后，遇到下述代码时这个函数会尝试   从/path/to/project/src/Baz/Qux.php文件中加载\Foo\Bar\Baz\Qux类：</span><br><span class="line">	 *  new \Foo\Bar\Baz\Qux;</span><br><span class="line">	 * <span class="doctag">@param</span> string $class 完全限定的类名。</span><br><span class="line">	 * <span class="doctag">@return</span> void</span><br><span class="line">	 **/</span></span><br><span class="line">	spl_autoload_register(<span class="function"><span class="keyword">function</span> <span class="params">($class)</span> </span>&#123;</span><br><span class="line">	    <span class="comment">// 项目的命名空间前缀</span></span><br><span class="line">	    $prefix = <span class="string">'Foo\\Bar\\'</span>;</span><br><span class="line"></span><br><span class="line">	    <span class="comment">// 目录前缀对应的根目录</span></span><br><span class="line">	    $base_dir = <span class="keyword">__DIR__</span> . <span class="string">'/src/'</span>;</span><br><span class="line"></span><br><span class="line">	    <span class="comment">// 判断传入的类是否使用了这个命名空间前缀</span></span><br><span class="line">	    $len = strlen($prefix);</span><br><span class="line">	    <span class="keyword">if</span> (strncmp($prefix, $class, $len) !== <span class="number">0</span>) &#123;</span><br><span class="line">	        <span class="comment">// 没有使用，交给注册的下一个自动加载器处理</span></span><br><span class="line">	        <span class="keyword">return</span>;</span><br><span class="line">	    &#125;</span><br><span class="line"></span><br><span class="line">	    <span class="comment">// 获取去掉前缀后的类名</span></span><br><span class="line">	    $relative_class = substr($class, $len);</span><br><span class="line"></span><br><span class="line">	    <span class="comment">// 把命名空间前缀替换成根目录，</span></span><br><span class="line">	    <span class="comment">// 在去掉前缀的类名中，把命名空间分隔符替换成目录分隔符，</span></span><br><span class="line">	    <span class="comment">// 然后在后面加上.php</span></span><br><span class="line">	    $file = $base_dir . str_replace(<span class="string">'\\'</span>, <span class="string">'/'</span>, $relative_class) . <span class="string">'.php'</span>;</span><br><span class="line"></span><br><span class="line">	    <span class="comment">// 如果该文件存在，就将其导入</span></span><br><span class="line">	    <span class="keyword">if</span> (file_exists($file)) &#123;</span><br><span class="line">	        <span class="keyword">require</span> $file;</span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="composer"><a href="#composer" class="headerlink" title="composer"></a>composer</h3><p>类似apt-get yum npm等，composer是PHP的类管理器，可以自动下载更新class、库、项目，管理项目依赖，结合目前最大的PHP包分享社区packagist可以非常方便的完成项目环境搭建</p>
+<p>延伸<br><a href="https://packagist.org/" target="_blank" rel="external">PHP最流行的包分享packagist</a><br><a href="https://docs.phpcomposer.com/04-schema.html" target="_blank" rel="external">Composer使用手册</a></p>
+<h2 id="底层原理"><a href="#底层原理" class="headerlink" title="底层原理"></a>底层原理</h2><h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><p><strong>SPAI</strong><br>Server Application Programming Interface，服务应用编程接口，php一切的开始，简单说作用是负责隔离php程序的执行与运行环境，使得无论是cli、fpm、webserver module，php代码都可以正常运行</p>
+<p><img src="http://ww1.sinaimg.cn/large/006QGE4bly1g9xrdmlzs7j30vc0oawhm.jpg" alt="php生命周期"></p>
+<p>php的生命周期如图所示，fpm中主要是启动请求周期中循环，cli中则仅仅是一次完整的流程。简要说明一下各个环节的主要作用：</p>
+<ul>
+<li>MINIT，模块初始化阶段，只执行一次<ul>
+<li>激活SAPI</li>
+<li>初始化垃圾回收器</li>
+<li>启动zend引擎</li>
+<li>注册PHP内置常量</li>
+<li>解析php.ini</li>
+<li>注册\$_GET、\$_POST等超全局变量及处理回调</li>
+<li>动态加载 .so</li>
+<li>回调扩展minit方法</li>
+</ul>
+</li>
+<li>RINIT，请求初始化阶段，每次请求到达时都会执行<ul>
+<li>重置zend引擎，重置编译器、符号表等</li>
+<li>重置垃圾回收器</li>
+<li>回调扩展rinit</li>
+</ul>
+</li>
+<li>EXECUTE，脚本执行阶段<ul>
+<li>加载php脚本</li>
+<li>预编译、词法解析、语法解析，生成抽象语法树（AST）</li>
+<li>编译生成中间码，op_code</li>
+<li>ZendVM执行op_code</li>
+</ul>
+</li>
+<li>RSHUTDOWN，请求关闭阶段<ul>
+<li>flush输出内容</li>
+<li>发送http response header</li>
+<li>清理全局变量、关闭编译器</li>
+<li>关闭内存管理器</li>
+<li>回调扩展rshutdown</li>
+</ul>
+</li>
+<li>MSHUTDOWN，模块关闭阶段<ul>
+<li>关闭zend引擎</li>
+<li>回调扩展mshutdown</li>
+<li>清理资源</li>
+</ul>
+</li>
+</ul>
+<p>延伸</p>
+<ul>
+<li><a href="http://www.php-internals.com/book/?p=chapt02/02-01-php-life-cycle-and-zend-engine" target="_blank" rel="external">TIPI深入理解PHP内核-生命周期</a></li>
+<li>《PHP7内核剖析》第1章基础架构</li>
+</ul>
+<h3 id="zval-zend-value-zend-reference-和-CoW"><a href="#zval-zend-value-zend-reference-和-CoW" class="headerlink" title="zval zend_value zend_reference 和 CoW"></a>zval zend_value zend_reference 和 CoW</h3><p>PHP7中一个重要改动是变量数据结构的优化，将原来的变量的数据结构从一个zval拆为zval、zend_value，并将原zval中引用计数移入zend_value中，可以简单理解为zval是变量名，zend_value是实际的变量值，减少了内存占用，结构更清晰。另一个变化是 <strong>PHP7中整形，浮点型，布尔型，NULL是直接保存在zval中，无zend_value，所以无引用计数；另外字符串虽然有zend_value，但由于是程序结束后统一回收，所以也没引用计数</strong></p>
+<p>zend_reference则是原来的是否为引用变量标记位，在PHP7中扩展为一种数据类型。<strong>生成引用类型的唯一方法就是使用&amp;$val，直接复制一个引用类型的变量是无法复制引用的，而对象和资源复制则默认为引用复制</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> _zval_struct &#123;</span><br><span class="line">    zend_value	value; <span class="comment">// 变量实际值</span></span><br><span class="line">    ……</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> _zend_value &#123;</span><br><span class="line">    zend_refcounted	*counted; <span class="comment">// gc头部</span></span><br><span class="line">    zend_reference	*ref;	<span class="comment">// 引用类型</span></span><br><span class="line">    ……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实际测试一下<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="comment">/* 引用计数 */</span></span><br><span class="line">    $a = <span class="number">1</span>; <span class="comment">// a[zval]</span></span><br><span class="line">    xdebug_debug_zval(<span class="string">'a'</span>); <span class="comment">// a: (refcount=0, is_ref=0)=1</span></span><br><span class="line"></span><br><span class="line">    $b = <span class="string">'string'</span>; <span class="comment">// b[zval] -&gt; 'string'[zend_value]</span></span><br><span class="line">    xdebug_debug_zval(<span class="string">'b'</span>); <span class="comment">// b: (refcount=1, is_ref=0)='string'</span></span><br><span class="line"></span><br><span class="line">    $c = []; <span class="comment">// c[zval] -&gt; Array[zend_value]</span></span><br><span class="line">    xdebug_debug_zval(<span class="string">'c'</span>); <span class="comment">// c: (refcount=2, is_ref=0)=array ()</span></span><br><span class="line"></span><br><span class="line">    $b_1 = $b; <span class="comment">// b_1[zval] b[zval] -&gt; 'string'[zend_value]</span></span><br><span class="line">    xdebug_debug_zval(<span class="string">'b'</span>); <span class="comment">// b: (refcount=1, is_ref=0)='string'</span></span><br><span class="line">    xdebug_debug_zval(<span class="string">'b_1'</span>); <span class="comment">// b_1: (refcount=1, is_ref=0)='string'</span></span><br><span class="line"></span><br><span class="line">    $c_1 = $c; <span class="comment">// c_1[zval] c[zval] -&gt; Array[zend_value]</span></span><br><span class="line">    xdebug_debug_zval(<span class="string">'c'</span>); <span class="comment">// c: (refcount=3, is_ref=0)=array ()</span></span><br><span class="line">    xdebug_debug_zval(<span class="string">'c_1'</span>); <span class="comment">// c_1: (refcount=3, is_ref=0)='array ()</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 引用类型 */</span></span><br><span class="line">    $r_c = &amp;$c; <span class="comment">// r_c[zval] c[zval] -&gt; [zend_reference] -&gt; Array[zend_value]</span></span><br><span class="line">    xdebug_debug_zval(<span class="string">'c'</span>); <span class="comment">// c: (refcount=2, is_ref=1)=array ()</span></span><br><span class="line">    xdebug_debug_zval(<span class="string">'r_c'</span>); <span class="comment">// r_c: (refcount=2, is_ref=1)=array ()</span></span><br><span class="line"></span><br><span class="line">    $d = $r_c; <span class="comment">// c[zval] -&gt; Array[zend_value]</span></span><br><span class="line">    xdebug_debug_zval(<span class="string">'d'</span>); <span class="comment">// d: (refcount=4, is_ref=0)=array ()，d并不是引用变量，但他们仍然指向同一个zend_value</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* CoW */</span></span><br><span class="line">    $d = [];</span><br><span class="line">    xdebug_debug_zval(<span class="string">'d'</span>); <span class="comment">// d: (refcount=2, is_ref=0)=array ()，写时复制，d指向了新的zend_value</span></span><br><span class="line"></span><br><span class="line">    $a = [];</span><br><span class="line">    xdebug_debug_zval(<span class="string">'a'</span>); <span class="comment">// a: (refcount=2, is_ref=0)=array ()</span></span><br><span class="line"></span><br><span class="line">    $b = $a; <span class="comment">// 此时公用zend_value</span></span><br><span class="line">    xdebug_debug_zval(<span class="string">'a'</span>); <span class="comment">// a: (refcount=3, is_ref=0)=array ()</span></span><br><span class="line">    xdebug_debug_zval(<span class="string">'b'</span>); <span class="comment">// b: (refcount=3, is_ref=0)=array ()</span></span><br><span class="line"></span><br><span class="line">    $c = &amp;$a; <span class="comment">// a、c为引用变量，b单独，但他们依旧指向同一zend_value</span></span><br><span class="line">    xdebug_debug_zval(<span class="string">'a'</span>); <span class="comment">// a: (refcount=2, is_ref=1)=array ()</span></span><br><span class="line">    xdebug_debug_zval(<span class="string">'b'</span>); <span class="comment">// b: (refcount=3, is_ref=0)=array ()</span></span><br><span class="line">    xdebug_debug_zval(<span class="string">'c'</span>); <span class="comment">// c: (refcount=2, is_ref=1)=array ()</span></span><br><span class="line"></span><br><span class="line">    $c = <span class="string">'new'</span>; <span class="comment">// 发生变量分离</span></span><br><span class="line">    xdebug_debug_zval(<span class="string">'a'</span>); <span class="comment">// a: (refcount=2, is_ref=1)='new'</span></span><br><span class="line">    xdebug_debug_zval(<span class="string">'b'</span>); <span class="comment">// b: (refcount=2, is_ref=0)=array ()</span></span><br><span class="line">    xdebug_debug_zval(<span class="string">'c'</span>); <span class="comment">// c: (refcount=2, is_ref=1)='new'</span></span><br></pre></td></tr></table></figure></p>
+<p>在前面的代码中一并演示了Cow，写时复制，变量复制时，PHP解释器并不会真的复制内存，而是当变量的值实际发生变化时才真正复制内存，从而减少内存消耗，提高性能</p>
+<p>但引用类型的加入导致CoW有一点疑惑，<strong>在PHP5中由于只有zval，所以即便变量没有修改值，但由于&amp;操作变为引用类型，则会导致一次隐性的变量分离，潜在内存溢出风险，不易排查。不过PHP7中由于zval分离，zend_value没有变化时，便不会发生CoW，算是修复了这个缺陷</strong></p>
+<p>最后看一个引用类型导致的诡异现象<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $foo[<span class="string">'love'</span>] = <span class="number">1</span>;</span><br><span class="line">    $bar = &amp;$foo[<span class="string">'love'</span>];</span><br><span class="line">    $tipi = $foo;</span><br><span class="line">    $tipi[<span class="string">'love'</span>] = <span class="string">'2'</span>;</span><br><span class="line">    <span class="keyword">echo</span> $foo[<span class="string">'love'</span>]; <span class="comment">// 1 or 2?</span></span><br></pre></td></tr></table></figure></p>
+<p>延伸</p>
+<ul>
+<li><a href="http://www.php-internals.com/book/?p=chapt06/06-06-copy-on-write" target="_blank" rel="external">PHP5的写时复制（Copy On Write）</a></li>
+<li><a href="http://www.laruence.com/2018/04/08/3179.html" target="_blank" rel="external">深入理解PHP7内核之Reference</a></li>
+<li><a href="http://www.laruence.com/2018/04/08/3170.html" target="_blank" rel="external">深入理解PHP7内核之Zval</a></li>
+</ul>
+<h3 id="Hash-Table"><a href="#Hash-Table" class="headerlink" title="Hash Table"></a>Hash Table</h3><p>HashTable，散列表，PHP的杀手锏array便使用的该数据结构，既可以O(1)读，也可以按序遍历数据，其大致结构如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/006QGE4bly1ga5yf37krrj30lk0ba0tq.jpg" alt="hashtable.jpg"></p>
+<p>插入一个新key，先经过散列函数映射到中间映射表里，其中记录着元素数组的位置，中间映射表与元素数组为内存中连续空间。当直接访问key值时与插入步骤一样，当遍历数组时则直接依次读元素数组</p>
+<h3 id="gc回收"><a href="#gc回收" class="headerlink" title="gc回收"></a>gc回收</h3><p>PHP提供了自动内存管理功能，zend_value中记录了变量值的引用次数，当我们使用unset时便会减少引用次数，当引用次数减少为0时便会触发内存回收</p>
+<p>但 <strong>循环引用</strong> 无法使用该方法回收，比如某个数组中元素又引用了数组本身。针对这种情况，PHP会在引用计数减少时收集可能的垃圾变量，然后定期对收集的变量进行深度遍历，在遍历中引用次数依次减一，若存在循环引用则最终引用计数将变为0，变量回收</p>
+<p>延伸<br><a href="http://www.php20.cn/article/230" target="_blank" rel="external">PHP垃圾回收机制</a></p>
+<h3 id="JIT"><a href="#JIT" class="headerlink" title="JIT"></a>JIT</h3><p>JIT，just in time，即时编译，是解释型语言的一种性能优化手段。虽然编译型语言与解释型语言都有编译阶段，但不同的是编译型语言是直接将源码编译为机器码，而解释型语言则是编译为字节码供虚拟机执行，导致运行性能折损。而JIT技术，则是实时在程序运行期间，将热点代码直接编译为机器码，从而提高性能。PHP已经确定将在PHP8中引入JIT技术，将PHP的运行性能提高到一个新的台阶</p>
+<p><strong>那为什么不直接编译为机器码运行呢？</strong> 直接编译运行称为事前编译AOT（ahead of time），php也是支持这种做法的，但这样做有几个缺点，首先背离php坚持的一贯简单原则，项目的发布上线需要提前编译，对研发者也不够友好，而且JIT由于可以收集大量运行时信息，编译的优化效果更好，综合来说，JIT更适合一些</p>
+<p><strong>JIT也并非没有缺点</strong> 首先是JIT是需要额外消耗性能的，如果程序中无明显热点代码，或者运行周期比较短，则JIT反而会导致性能下降</p>
+<p>php引入JIT后的性能变化<br><img src="http://ww1.sinaimg.cn/large/006QGE4bly1gdq1dxxw39j31oq0kotg8.jpg" alt="jit.png"></p>
+<h2 id="社区"><a href="#社区" class="headerlink" title="社区"></a>社区</h2><h3 id="FIG-amp-PSR"><a href="#FIG-amp-PSR" class="headerlink" title="FIG &amp; PSR"></a>FIG &amp; PSR</h3><p>PHP令人诟病的问题之一是框架太多，ThinkPHP、CI、Yii、Zend、Laravel……，虽然有各自的适合场景，但由于风格设计不统一，一些公共组件如日志、缓存、http请求无法公用，反复造轮子，浪费精力。<strong>PHP-FIG PHP Framework Interop Group</strong> 目标便是解决这个问题，<strong>它从代码规范、接口标准、自动加载几个角度持续推荐了一批规范</strong> 这些推荐标准便是 <strong>PSR PHP Standards Recommendation</strong>，并不强制，各框架开发者自行决定是否支持，任何人都可以向FIG反馈意见</p>
+<p>目前已经初见成效，目前最流行的Laravel框架便大量使用了公共组件，提高开发效率</p>
+<p>延伸</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/b33155c15343" target="_blank" rel="external">PSR规范简介</a></li>
+<li><a href="https://www.php-fig.org/psr/" target="_blank" rel="external">PSR实时信息</a></li>
+</ul>
+<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><h3 id="PHP7比较常用的变化"><a href="#PHP7比较常用的变化" class="headerlink" title="PHP7比较常用的变化"></a>PHP7比较常用的变化</h3><p>PHP7发布后除了性能上的巨大变化外，在语言的规范、语法糖和许多细节地方都做了许多改进，这里只记录一些我认为经常涉及的改动<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 新增??三元操作符，类似?:</span></span><br><span class="line">$foo = $a ?? <span class="string">'nothing'</span>;</span><br><span class="line">$foo = <span class="keyword">isset</span>($a) ? $a : <span class="string">'nothing'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 常量数组</span></span><br><span class="line">define(<span class="string">'OPTION'</span>, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>,]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// json_encode支持unicode不转码</span></span><br><span class="line">json_encode([<span class="string">'一'</span>, <span class="string">'二'</span>,], JSON_UNESCAPED_UNICODE);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数组解包</span></span><br><span class="line">$a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">$b = [<span class="number">1</span>, <span class="number">2</span>, ...$a, <span class="number">3</span>,]; <span class="comment">// $b为[1, 2, 1, 2, 3, 3,]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 箭头函数，一个语法糖</span></span><br><span class="line">$factor = <span class="number">10</span>;</span><br><span class="line">$nums = array_map(fn($n)=&gt;$n * $factor,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]); <span class="comment">// [10,20,30]</span></span><br><span class="line"><span class="comment">// 之前的写法</span></span><br><span class="line">$nums = array_map(<span class="function"><span class="keyword">function</span><span class="params">($num)</span><span class="title">use</span><span class="params">($factor)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> $num * $factor;</span><br><span class="line">&#125;,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// group use</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">app</span>\<span class="title">model</span>\<span class="title">service</span>\&#123;<span class="title">User</span>, <span class="title">Task</span>, <span class="title">Log</span>&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h3><p>正则能够替代大部分字符串相关工作，而且非常高效方便，只是性能问题不适合密集计算场景。PHP7中废弃了ereg<em>*，保留preg</em>*。此处记录使用正则过程中的经验<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 常用的三个为</span></span><br><span class="line">preg_replace($pattern, $replace, $subject);</span><br><span class="line">preg_match($pattern, $subject, &amp;$match); <span class="comment">// 只匹配第一个</span></span><br><span class="line">preg_match_all($pattern, $subject, &amp;$match); <span class="comment">// 可匹配多个</span></span><br></pre></td></tr></table></figure></p>
+<p>常见的正则网上一堆，这里只积累一些易错的地方：</p>
+<ul>
+<li>[家|(春秋)] 与 [家|春秋]有区别吗？有的，中括号中’|’就是匹配竖线，并非‘或’的意思，所以第一个意思为：匹配包含家或竖线或春秋；第二个意思为：匹配包含家或竖线或春或秋</li>
+<li>处理Unicode时别忘了加u，/pattern/u</li>
+</ul>
+<p>延伸</p>
+<ul>
+<li><a href="http://deerchao.net/tutorials/regex/regex.htm" target="_blank" rel="external">三十分钟正则入门</a></li>
+</ul>
+<h3 id="输入-输出过滤、转义"><a href="#输入-输出过滤、转义" class="headerlink" title="输入/输出过滤、转义"></a>输入/输出过滤、转义</h3><p>一般场景使用urlencode（url中特殊字符转义，如汉字、空格），http_build_query（urlencode的封装），htmlspecialchars和html_entity_decode是对html实体转义（如&lt; &gt;）</p>
+<p>如果应对复杂安全性要求更高的场景，建议学习并使用htmlpurifier</p>
+<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><p>常用的文件读写为feof fread fwrite fgets fget file_get_contents file_put_contents fgetcsv fputcsv</p>
+<p>延伸</p>
+<ul>
+<li>建议学习并使用Symfony中<a href="https://symfony.com/doc/current/components/finder.html#reading-contents-of-returned-files" target="_blank" rel="external">Finder类库</a></li>
+</ul>
+<h3 id="执行外部命令"><a href="#执行外部命令" class="headerlink" title="执行外部命令"></a>执行外部命令</h3><p>PHP执行外部命令并不友好，提供了多种方式，令人迷惑，自己目前并不清楚底层差别，只是从函数行为角度加以区分<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// exec最常用</span></span><br><span class="line">$last_line = exec(string $cmd, <span class="keyword">array</span> &amp;$out, int &amp;$retval);</span><br><span class="line"></span><br><span class="line"><span class="comment">// system会在方法中输出命令内容</span></span><br><span class="line">$last_line = system(string $cmd, int &amp;$retval);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回值为cmd执行结果的字符串</span></span><br><span class="line">$out = shell_exec(string $cmd, int &amp;$retval);</span><br><span class="line">$out = `$cmd`;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 命令与system的最大区别是，直接将执行结果输出到浏览器，支持二进制</span></span><br><span class="line">passthru($cmd, int &amp;$retval);</span><br></pre></td></tr></table></figure></p>
+<p>延伸</p>
+<ul>
+<li><a href="https://www.cnblogs.com/hf8051/p/4505804.html" target="_blank" rel="external">PHP执行外部命令</a></li>
+<li>建议学习并使用Symfony中<a href="https://symfony.com/doc/current/components/process.html" target="_blank" rel="external">Process类库</a></li>
+</ul>
+<h3 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h3><p>PHP提供了很多方便的字符串函数，常用的有：</p>
+<ul>
+<li><p><code>strstr ( string $haystack , mixed $needle [, bool $before_needle = false ] )</code>。返回 haystack 字符串从 needle 第一次出现的位置开始到 haystack 结尾的字符串。若为before_needle为 TRUE，strstr() 将返回 needle 在 haystack 中的位置之前的部分。</p>
+</li>
+<li><p><code>substr( string $string , int $start [, int $length ] )</code>。返回字符串 string 由 start 和 length 参数指定的子字符串。</p>
+</li>
+<li><p><code>substr_replace ( mixed $string , mixed $replacement , mixed $start [, mixed $length ] )</code>。substr_replace() 在字符串 string 的副本中将由 start 和可选的 length 参数限定的子字符串使用 replacement 进行替换。</p>
+</li>
+<li><p><code>strrev ( string $string )</code>。返回 string 反转后的字符串。</p>
+</li>
+<li><p><code>str_replace ( mixed $search , mixed $replace , mixed $subject [, int &amp;$count ] )</code>。该函数返回一个字符串或者数组。该字符串或数组是将 subject 中全部的 search 都被 replace 替换之后的结果。subject为执行替换的数组或者字符串。也就是 haystack。如果 subject 是一个数组，替换操作将遍历整个 subject，返回值也将是一个数组。如果count被指定，它的值将被设置为替换发生的次数。</p>
+</li>
+<li><p><code>strpos ( string $haystack , mixed $needle [, int $offset = 0 ] )</code>。返回 needle 在 haystack 中首次出现的数字位置；如果提供了offset参数，搜索会从字符串该字符数的起始位置开始统计。 如果是负数，搜索会从字符串结尾指定字符数开始。</p>
+</li>
+<li><p><code>ltrim()</code>、<code>rtrim()</code>、<code>trim()</code>。这仨都是删除字符串中的空白符。<code>ltrim()</code>删除字符串开头的空白字符;<code>rtrim()</code>删除字符串末端的空白字符；<code>trim()</code>去除字符串首尾处的空白字符。</p>
+</li>
+</ul>
+<h3 id="数组操作"><a href="#数组操作" class="headerlink" title="数组操作"></a>数组操作</h3><p>这篇文章总结的非常好，不做赘述。<a href="https://learnku.com/articles/14159/the-way-to-use-the-php-array" target="_blank" rel="external">PHP数组使用之道</a></p>
+<h3 id="非阻塞与并行操作"><a href="#非阻塞与并行操作" class="headerlink" title="非阻塞与并行操作"></a>非阻塞与并行操作</h3><p>在遇到慢速操作导致fpm进程积压时，可以使用<code>fastcgi_finish_request()</code>方法触发请求结束，但fpm进程继续执行慢速操作</p>
+<p>另一个有用的场景是批量网络请求或io，若不使用非阻塞方法，则需要依次进行，效率极其低下，可以使用curl<em>muti</em>*和非阻塞socket，详见<a href="http://booksfriends.sinaapp.com/php%25E7%259A%2584%25E9%259D%259E%25E9%2598%25BB%25E5%25A1%259E%25E5%25AE%259E%25E7%258E%25B0%25E6%2596%25B9%25E5%25BC%258F/" target="_blank" rel="external">PHP的非阻塞或并行请求实现方式</a></p>
+<p>除此之外其他常用的办法可以直接借助系统命令<code>nohup</code>，或者使用多进程编程</p>
+<h3 id="多进程编程"><a href="#多进程编程" class="headerlink" title="多进程编程"></a>多进程编程</h3><p>PHP多进程编程中几点心得</p>
+<p><strong>fork子进程和父进程的分道扬镳</strong></p>
+<p>以前总是好奇那种if pid&gt;0写分支的方式是否足矣支持复杂编程，“没有什么计算机问题是一层抽象解决不了，如果不能解决，就再抽象一层”，确实通过简单抽象，再结合exit()便能很清晰的控制逻辑边界</p>
+<p><strong>子进程会继承父进程打开的资源（文件描述符）</strong></p>
+<p>以前对这句话理解不深，这次数据库连接的子进程关闭算是结实的上了一课，也学到了php运行模式在多进程方面的一个缺陷（进程结束后释放所有资源）。为了避免混乱，资源的申请若不需要共享，一定要控制好申请的时机。</p>
+<p>另外一个关于该点的坑是，标准输入、输出、错误，也是父进程打开的资源，同样会被继承（导致exec不能退出）</p>
+<p><strong>进程守护化</strong></p>
+<p>实现进程的守护化需要进行以下几个步骤：</p>
+<ol>
+<li>fork一次，父进程退出，子进程认1作父，自成一个进程组组长</li>
+<li>setsid，重新创建一个会话，成为一个会话组（包含多个进程组）的组长</li>
+<li>改变工作目录为/，与当前启动目录解耦</li>
+<li>关闭标准输入、输出，重新定向到文件或者/dev/null，避免资源泄露</li>
+<li>umask(0)，避免父进程继承权限掩码</li>
+</ol>
+<h3 id="令人迷惑"><a href="#令人迷惑" class="headerlink" title="令人迷惑"></a>令人迷惑</h3><p>PHP由于初期的野蛮生长，即便进入PHP7时代，语言中依然保留了大量令人迷惑的地方：</p>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000013075134" target="_blank" rel="external">php://output和php://stdout的区别</a></li>
+<li><a href="https://learnku.com/laravel/t/3021/isset-is-not-right-after-upgrading-php7" target="_blank" rel="external">升PHP7后isset不太对了</a></li>
+<li><a href="https://www.laruence.com/2009/12/09/1180.html" target="_blank" rel="external">isset和is_null区别</a></li>
+<li><a href="https://www.laruence.com/2013/03/26/2884.html" target="_blank" rel="external">0.58 * 100 == 57?</a></li>
+</ul>
+<h3 id="面试常见"><a href="#面试常见" class="headerlink" title="面试常见"></a>面试常见</h3><p>有些知识在实际开发中很少遇到，或者遇到就要把始作俑者叉出去，但在面试中却喜闻乐见：</p>
+<ul>
+<li><a href="https://learnku.com/laravel/t/7712/is-your-phplaravel-site-safe-enough-phper-must-know-the-laravel-security-knowledge#reply11" target="_blank" rel="external">web安全隐患一瞥</a></li>
+</ul>
+<h3 id="实用代码片段"><a href="#实用代码片段" class="headerlink" title="实用代码片段"></a>实用代码片段</h3><p><strong>php管理</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># 查看配置文件位置</span><br><span class="line">php --ini</span><br><span class="line"># 指定加载php.ini的绝对路径</span><br><span class="line">php -c another.ini</span><br><span class="line"></span><br><span class="line"># 查看phpinfo</span><br><span class="line">php -i</span><br><span class="line"></span><br><span class="line"># 查看扩展目录</span><br><span class="line">php-config --extension-dir</span><br><span class="line"># 查看扩展模块，注意扩展模块是可以通过修改ini不启用的，内置的不行</span><br><span class="line">php -m</span><br><span class="line"># 查看摸个扩展的信息</span><br><span class="line">php --ri swoole</span><br><span class="line"># 查看某个扩展提供了哪些类和函数</span><br><span class="line">php --re swoole</span><br><span class="line"></span><br><span class="line"># 启动一个内置的Web服务器，用于开发环境内进行程序的调试</span><br><span class="line">php -S 0.0.0.0:9000 [-t /data/webroot/]</span><br><span class="line"></span><br><span class="line"># 检测一个php代码文件是否有语法错误</span><br><span class="line">php -l file</span><br><span class="line"></span><br><span class="line"># 执行一段php代码</span><br><span class="line">php -r &quot;echo &apos;hello world&apos;;&quot;</span><br></pre></td></tr></table></figure></p>
+<p><strong>php-fpm管理</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># php在5.3.3之前fpm是需要自己打补丁的</span><br><span class="line"># 然后在管理时</span><br><span class="line">php-fpm [start|stop|reload]</span><br><span class="line"></span><br><span class="line"># 5.3.3之后则已加入源码中，只需要编译中开启即可</span><br><span class="line"># 关于php-fpm的编译参数有</span><br><span class="line">–enable-fpm –with-fpm-user=www –with-fpm-group=www –with-libevent-dir=libevent_path</span><br><span class="line"></span><br><span class="line"># 还有个变化是，必须通过信号管理fpm</span><br><span class="line"># SIGINT, SIGTERM 立刻终止</span><br><span class="line"># SIGQUIT 平滑终止</span><br><span class="line"># SIGUSR1 重新打开日志文件</span><br><span class="line"># SIGUSR2 平滑重载所有worker进程并重新载入配置和二进制模块</span><br><span class="line">kill -SIGINT `cat fpm.pid`</span><br></pre></td></tr></table></figure></p>
+<p><strong>配置修改</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ini_set(<span class="string">'memory_limit'</span>, <span class="string">'200M'</span>);</span><br></pre></td></tr></table></figure></p>
+<p><strong>数组去重</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 正常方法</span></span><br><span class="line">$array = array_unique($array);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 快速方法，key与val连续翻转</span></span><br><span class="line">$array = array_flip($array);</span><br><span class="line">$array = array_flip($array);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 但这样还有个问题就是，若是索引数组，则索引乱序，可以直接使用array_keys</span></span><br><span class="line">$array = array_flip($array);</span><br><span class="line">$array = array_keys($array);</span><br></pre></td></tr></table></figure></p>
+<p><strong>输出所有已定义的常量</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print_r(get_defined_constants());</span><br></pre></td></tr></table></figure></p>
+<p><strong>curl</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以前我们通过 PHP 的 cURL 上传文件是，是使用“@+文件全路径”的来实现的：</span></span><br><span class="line">curl_setopt(ch, CURLOPT_POSTFIELDS, <span class="keyword">array</span>(</span><br><span class="line">	<span class="string">'file'</span> =&gt; <span class="string">'@'</span>.realpath(<span class="string">'image.png'</span>),</span><br><span class="line">));</span><br><span class="line"></span><br><span class="line"><span class="comment"># PHP 从 5.5 开始引入了新的 CURLFile 类用来指向文件，CURLFile 类也可以详细定义 MIME 类型、文件名等可能出现在multipart/form-data 数据中的附加信息，PHP 推荐使用 CURLFile 替代旧的@语法</span></span><br><span class="line"><span class="comment"># 而PHP 5.6 直接只支持 CURLFile 方法</span></span><br><span class="line">curl_setopt(ch, CURLOPT_POSTFIELDS, [</span><br><span class="line">	<span class="string">'file'</span> =&gt; <span class="keyword">new</span> CURLFile(realpath(<span class="string">'image.png'</span>)),</span><br><span class="line">]);</span><br></pre></td></tr></table></figure></p>
+<p><strong>时间处理</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取上个月第一天及最后一天，下个月同理</span></span><br><span class="line">date(<span class="string">'Y-m-01'</span>, strtotime(<span class="string">'-1 month'</span>));</span><br><span class="line">date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'-1 month'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取当月第一天及最后一天.</span></span><br><span class="line">date(<span class="string">'Y-m-01'</span>, time());</span><br><span class="line">date(<span class="string">'Y-m-t'</span>, time());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当前年份</span></span><br><span class="line">date(<span class="string">'Y'</span>);</span><br><span class="line"><span class="comment">// 当前月份</span></span><br><span class="line">date(<span class="string">'m'</span>);</span><br><span class="line"><span class="comment">// 当前几号</span></span><br><span class="line">date(<span class="string">'d'</span>);</span><br><span class="line"><span class="comment">// 本月天数，因为t为最后一天的号</span></span><br><span class="line">date(<span class="string">"t"</span>);</span><br></pre></td></tr></table></figure></p>
+<p><strong>文件操作</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 遍历文件夹，加载文件</span></span><br><span class="line"><span class="keyword">foreach</span> ($arrRequireDir <span class="keyword">as</span> $requireDir) &#123;</span><br><span class="line">  $objDir = dir($requireDir);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> ($file = $objDir-&gt;read()) &#123;</span><br><span class="line">      $filePath = $requireDir . $file;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (is_file($filePath) &amp;&amp; ($filePath != <span class="keyword">__FILE__</span>)) &#123;</span><br><span class="line">          var_dump($filePath);</span><br><span class="line">          <span class="keyword">include_once</span>($filePath);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>编码转换</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// utf8转big5，ignore跳过无法编码</span></span><br><span class="line">$T = iconv(<span class="string">"utf8"</span>,<span class="string">"big5//ignore"</span>, $T);</span><br><span class="line">$T = mb_convert_encoding($T, <span class="string">"big5"</span>, <span class="string">"utf8"</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="学习资料"><a href="#学习资料" class="headerlink" title="学习资料"></a>学习资料</h2><ul>
+<li><a href="https://github.com/ar414-com/php-source-lib" target="_blank" rel="external">最全最新的PHP学习资源</a></li>
+<li><a href="http://laravel-china.github.io/php-the-right-way/?f=tt&amp;hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="external">PHP the right way</a></li>
+<li><a href="https://phpbestpractices.org/" target="_blank" rel="external">PHP最佳实践</a></li>
+<li><a href="https://www.awaimai.com/php" target="_blank" rel="external">PHP启示录</a></li>
+<li><a href="https://github.com/ThinkDevelopers/PHPConChina" target="_blank" rel="external">PHPCON历届PPT</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>觉得有帮助的话, 请我喝杯茶吧</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wepay.jpg" alt="Liufxlucky365 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Liufxlucky365 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/03/2018年家庭工作报告/" rel="next" title="2018年家庭工作报告">
+                <i class="fa fa-chevron-left"></i> 2018年家庭工作报告
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDE5Mi8yMDcyNQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/default_avatar.png"
+                alt="Liufxlucky365" />
+            
+              <p class="site-author-name" itemprop="name">Liufxlucky365</p>
+              <p class="site-description motion-element" itemprop="description">程序猿 IT php mysql 生活 秀恩爱</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#欢迎阅读"><span class="nav-text">欢迎阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装配置-amp-环境搭建"><span class="nav-text">安装配置 & 环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译安装"><span class="nav-text">编译安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Homestead"><span class="nav-text">Homestead</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac安装"><span class="nav-text">Mac安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows安装"><span class="nav-text">Windows安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本特性"><span class="nav-text">基本特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#日期时间"><span class="nav-text">日期时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库"><span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#define-VS-const"><span class="nav-text">define VS const</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OOP特性"><span class="nav-text">OOP特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#错误与异常"><span class="nav-text">错误与异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#延迟静态绑定"><span class="nav-text">延迟静态绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反射"><span class="nav-text">反射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trait"><span class="nav-text">trait</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高级特性"><span class="nav-text">高级特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命名空间"><span class="nav-text">命名空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yield"><span class="nav-text">yield</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#session"><span class="nav-text">session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取值范围"><span class="nav-text">取值范围</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试"><span class="nav-text">调试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#xdebug"><span class="nav-text">xdebug</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xhprof"><span class="nav-text">xhprof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单元测试"><span class="nav-text">单元测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gdb"><span class="nav-text">gdb</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全"><span class="nav-text">安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加密"><span class="nav-text">加密</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件-amp-扩展-amp-工具"><span class="nav-text">组件 & 扩展 & 工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自动加载"><span class="nav-text">自动加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#composer"><span class="nav-text">composer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#底层原理"><span class="nav-text">底层原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生命周期"><span class="nav-text">生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zval-zend-value-zend-reference-和-CoW"><span class="nav-text">zval zend_value zend_reference 和 CoW</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hash-Table"><span class="nav-text">Hash Table</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gc回收"><span class="nav-text">gc回收</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JIT"><span class="nav-text">JIT</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#社区"><span class="nav-text">社区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FIG-amp-PSR"><span class="nav-text">FIG & PSR</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构"><span class="nav-text">架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实践"><span class="nav-text">实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP7比较常用的变化"><span class="nav-text">PHP7比较常用的变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则"><span class="nav-text">正则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入-输出过滤、转义"><span class="nav-text">输入/输出过滤、转义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件操作"><span class="nav-text">文件操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行外部命令"><span class="nav-text">执行外部命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串操作"><span class="nav-text">字符串操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组操作"><span class="nav-text">数组操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非阻塞与并行操作"><span class="nav-text">非阻塞与并行操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多进程编程"><span class="nav-text">多进程编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#令人迷惑"><span class="nav-text">令人迷惑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面试常见"><span class="nav-text">面试常见</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实用代码片段"><span class="nav-text">实用代码片段</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习资料"><span class="nav-text">学习资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liufxlucky365</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    访问量 <span id="busuanzi_value_site_pv"></span>
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    <span id="busuanzi_value_site_uv"></span>人看过
+</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
