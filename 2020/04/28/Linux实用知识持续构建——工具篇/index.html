@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="欢迎阅读本文主要是从Linux入手，对常用的操作系统知识进行梳理。长篇大论令人生厌，所以本文的一个原则就是聚焦关键点，浅尝辄止，以免误人子弟，同时也会尽量附上各种详尽的资料以备感兴趣的同学深入了解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux不权威总结">
+<meta property="og:url" content="http://yoursite.com/2020/04/28/Linux实用知识持续构建——工具篇/index.html">
+<meta property="og:site_name" content="Liufxlucky365">
+<meta property="og:description" content="欢迎阅读本文主要是从Linux入手，对常用的操作系统知识进行梳理。长篇大论令人生厌，所以本文的一个原则就是聚焦关键点，浅尝辄止，以免误人子弟，同时也会尽量附上各种详尽的资料以备感兴趣的同学深入了解">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1fx32ob2sv9j30c308fmxr.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1fx363xvqo6j30an0a0dk4.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1gdugyb28nrj30bj046wej.jpg">
+<meta property="og:updated_time" content="2020-05-24T11:19:52.169Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux不权威总结">
+<meta name="twitter:description" content="欢迎阅读本文主要是从Linux入手，对常用的操作系统知识进行梳理。长篇大论令人生厌，所以本文的一个原则就是聚焦关键点，浅尝辄止，以免误人子弟，同时也会尽量附上各种详尽的资料以备感兴趣的同学深入了解">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1fx32ob2sv9j30c308fmxr.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/28/Linux实用知识持续构建——工具篇/"/>
+
+
+
+
+
+  <title>Linux不权威总结 | Liufxlucky365</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liufxlucky365</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">211&835</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/28/Linux实用知识持续构建——工具篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liufxlucky365">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/default_avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liufxlucky365">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux不权威总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-28T00:00:00+08:00">
+                2020-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="欢迎阅读"><a href="#欢迎阅读" class="headerlink" title="欢迎阅读"></a>欢迎阅读</h2><p>本文主要是从Linux入手，对常用的操作系统知识进行梳理。长篇大论令人生厌，所以本文的一个原则就是聚焦关键点，浅尝辄止，以免误人子弟，同时也会尽量附上各种详尽的资料以备感兴趣的同学深入了解</p>
+<a id="more"></a>
+<h2 id="Linux简史"><a href="#Linux简史" class="headerlink" title="Linux简史"></a>Linux简史</h2><p><strong>计算机的发明</strong></p>
+<ul>
+<li>各大厂家各自制造机器,市场充斥着各种大型机(IBM GE HP)和小型机(Intex).</li>
+<li>各个厂家从硬件到软件（主要是操作系统）维护自己的产品.</li>
+</ul>
+<p><strong>Unix诞生</strong></p>
+<ul>
+<li>最早的大型机只能服务数十人,于是Bell实验室跟GE MIT合作启动<code>MULTICS计划</code>,旨在开发一个能够服务上百人的多用户,多任务,多层级操作系统,卒，但该项目培养了大批优秀的计算机人才</li>
+<li>Ken Thompson为了玩一款&lt;星际旅行&gt;的游戏,反MULTICS其道而行,力求简洁实用,诞生了<code>Unix</code></li>
+<li>后续Thompson被汇编语言折腾受不了,发明了<code>c语言</code>,重写了Unix内核(1970)</li>
+<li>由于全新的Unix易于开发移植（得益于c语言）,同时功能强大,所以迅速发展,各大厂商也开始<code>兼容Unix</code>,并诞生了<code>POSIX</code>,规范OS提供的编程接口</li>
+<li>AT&amp;T禁止Unix传播,Unix开始内战,互不兼容,各自为战,一发不可收拾的出现各种<code>变种</code></li>
+<li>此时Intel为各个中小计算机公司生产通用CPU，然后微软为该体系架构生产通用的操作系统，自此，<code>win-tel</code>体系建立，在Unix内乱之际疯狂生长</li>
+<li>Berkeley发布FreeBSD</li>
+</ul>
+<p><strong>GNU (GNU’s not Unix)</strong></p>
+<ul>
+<li>Unix的封闭之路使多数人深恶痛绝，Stallman发起<code>自由软件计划</code></li>
+<li><code>GPL授权</code>诞生,确定了开源软件服务化的商业空间</li>
+<li>GNU计划开发兼容Unix的操作系统,但是为了先易后难,从应用软件下手</li>
+<li>从免费的编译器，编辑器，公共库，脚本工具着手，于是gcc emacs glibc bash…等一大批优秀的开源软件诞生</li>
+</ul>
+<p><strong>Linux诞生</strong></p>
+<ul>
+<li><code>Linus Torvalds</code>(芬兰大学生)在一个教授开发的Unix简易教学版minix上学习,但由于教授不愿意继续开发,他便酝酿自己的操作系统</li>
+<li>Linus发布了自己写的”小玩意儿”,吸引了大量<code>黑客</code>的兴趣</li>
+<li>为了效率Linus主要开发内核,而将源码免费开放,所有人<code>协同开发</code>,统一整合</li>
+<li>开源,分布式开发,虚拟团队,快速迭代…这些令人兴奋的事件都拉开了序幕</li>
+<li>Linux正式确定,同时支持移植386小型家用机</li>
+<li>厂商开始支持Linux,由于Linux使用gcc,bash等很多GNU计划的工具,GNU也顺理成章的采用Linux,填补了开源内核这一空白，Stallman认为Linux其实应该是<code>GNU/Linux</code></li>
+</ul>
+<p><strong>内核版本 &amp; 发布版本</strong><br>linux的内核版本号形如<code>2.6.18-92.e15</code>，依次为主版本.次版本.发布版本-修改版本。主、次版本号为奇数的话为内核开发版本，一般是用来测试新功能，内核工程师开发使用的；主、次版本号为偶数则为稳定版本</p>
+<p>发布版本distributions，是指各个linux开发商发布的版本，比如CentOS、RedHat。这些开发商都是基于相同的linux内核，不同的是他们会基于此提供不同的服务、工具，比如包安装、系统管理等</p>
+<p><strong>换行和回车</strong></p>
+<ol>
+<li>在早期输出设备是一种叫做电传打字机的设备，该设备能够0.1s打一个字</li>
+<li>但当需要换行的时候，该设备需要0.2秒，两个动作，换行，同时返回行首</li>
+<li>正好是两个字符的时间，所有当时为了省事，直接在行尾设置了两个特殊字符，给设备换行的时间CR 回车 LF 换行</li>
+<li>后来使用电子屏后，一些系统为了节省字符(unix linux)就只有一个LF(\n)，mac则只有一个CR(\r)，win则两个都做了保留</li>
+<li>所以如果把win的文件在linux下打开，则会在每行多看见一个^M字符(win的回车)，可以使用<code>unix2dos或者dos2unix</code>进行转换</li>
+</ol>
+<h2 id="计算机硬件组成"><a href="#计算机硬件组成" class="headerlink" title="计算机硬件组成"></a>计算机硬件组成</h2><h3 id="硬件基本架构"><a href="#硬件基本架构" class="headerlink" title="硬件基本架构"></a>硬件基本架构</h3><p>现代计算机基本都是冯·诺依曼结构，即由核心运算器、程序控制器、内存、输入设备、输出设备组成。</p>
+<p><img src="http://ww1.sinaimg.cn/large/006QGE4bly1fx32ob2sv9j30c308fmxr.jpg" alt=""></p>
+<p>CPU包括核心运算器（ALU）和程序控制器（PC），通过其提供的一系列<code>cpu指令</code>来提供包括数学运算、数据读取、数据写入，以及应该运行哪条指令等服务，是计算机的‘心脏’</p>
+<p>主存储器，也就是内存，服务CPU的数据读取和写入，与I/O设备数据加载</p>
+<p>I/O设备，则各种各种，常见如鼠标、键盘、显示器、USB、磁盘、网卡等，负责从真实世界读取数据和以各种形式数据数据</p>
+<p>这些设备通过<code>总线（PCI）</code>通信，总线同一时间只能广播一条指令</p>
+<h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><p>中央处理单元，可以说是人类智慧的集中体现。它的模型被抽象的很简单，读取一条cpu指令，翻译指令，然后执行（可能为数学运算、读取数据、写入数据或者指定下一条指令），循环往复，直到关机</p>
+<p><strong>CPU指令</strong><br>cpu指令很简单就是一系列的0、1序列，cpu从寄存器中读取到这些0、1序列后，执行相应的操作。我们编写的程序最终都要翻译成cpu指令。不同的机器cpu实现不同，其指令集也会有所不同，所以编译好的可执行程序一般不能直接在不同的机器上运行</p>
+<p><em>cpu的指令历史上有两条路线，<code>精简指令集（CISC）</code>和<code>复杂指令集（RISC）</code>，他们的主要区别是CISC认为cpu常用的指令并不多，不需要因为少数不常用的操作来增加cpu的复杂度，只需要一个少量的简单指令集合即可，既可以降低cpu的复杂度，也方便对指令进行优化；RISC则是提供功能强大，但是更耗cpu周期的指令来方便cpu的使用。目前两者已经逐渐融合</em></p>
+<p><strong>CPU型号</strong><br>不同厂家生产的CPU具有不同构造和指令集，最初计算机的CPU是需要各个公司自己设计生产的。后来Intel公司设计生产了通用cpu，逐渐成为市场标准</p>
+<p>由于Intel生产的cpu最初型号是8086、80286、i386、i486等，人们习惯称Intel系列cpu为x86，根据cpu支持的位数不同，又分为x86-32和x86-64。此外还有IBM处理器和arm处理器</p>
+<p><strong>CPU数量</strong><br>服务器的物理CPU是可以多核的，所以 <code>逻辑cpu数 = 物理cpu * 核数</code>。可以通过uptime top 等工具查看系统的平均负载，了解服务器的运行情况</p>
+<p><em>如果有4个逻辑cpu，top显示负载在4及以下，则说明系统相对正常，如果长期在4以上则说明服务器压力过大（负载值同一时间段内运行的进程数，所以是会比cpu数大的）</em></p>
+<h2 id="Linux文件系统"><a href="#Linux文件系统" class="headerlink" title="Linux文件系统"></a>Linux文件系统</h2><p><strong>一切皆文件</strong><br>linux一个非常优雅的设计便是将所有I/O对象抽象为文件，本质上文件只是一个字节序列，这个字节序列可能存储在磁盘上，也可能来自网卡，也可能来自键盘输入，也可能来自其他程序输出，等等等等。这样做的好处是linux只需要提供少数简单一致的api接口来实现输入和输出，比如read write</p>
+<p><strong>主要目录</strong></p>
+<ul>
+<li><code>/</code> 根目录,存放着系统核心程序</li>
+<li><code>/usr</code> unix software resource的缩写,存放unix厂商(可能是改版的发行者)开发的软件资源</li>
+<li><code>/usr/local</code> 存放用户安装的软件资源</li>
+<li><code>/opt</code> option(选装),存放第三方厂商开发的软件资源</li>
+<li><code>/lost+found</code> 标准ext2/ext3文件系统才会有该目录,主要是在文件系统异常时暂存碎片,日后恢复</li>
+<li><code>/boot</code> 系统启动所需程序</li>
+<li><code>/home</code> 系统用户主文件夹</li>
+<li><code>/mnt</code> 临时设备挂载点</li>
+<li><code>/log</code> <code>非日志目录</code>，而是与用户登录相关</li>
+<li><code>/var</code> 主要存放一些经常变化的文件,和系统运行过程中产生的文件<ul>
+<li><code>/var/run</code> 一般是各个进程用于存放运行时的信息,如nginx.id</li>
+<li><code>/var/lock</code> 进程控制资源的锁</li>
+<li><code>/var/cache</code> 进程运行中的一些缓存</li>
+</ul>
+</li>
+<li><code>/proc</code> 这个目录比较特殊,是一个虚拟文件系统,保存着系统内核,进程,外设,网络等的状态,数据全在内存中,本身不占用任何硬盘空间,比较重要的目录有/proc/cpuinfo, /proc/ioports, /proc/net/*</li>
+</ul>
+<p>此外还有一些目录经常成套出现在以上个别目录中,意义是差不多的</p>
+<ul>
+<li><code>/bin</code> 二进制可执行文件,在 / 中为与系统运行相关</li>
+<li><code>/sbin</code> 二进制可执行文件,主要是系统维护相关</li>
+<li><code>/include</code> c/c++常用头文件,我们在以源码包方式编译安装软件时,会使用</li>
+<li><code>/lib</code> 应用软件的函数库,目标文件</li>
+<li><code>/etc</code> 配置文件</li>
+<li><code>/src</code> 源码</li>
+<li><code>/tmp</code> 临时文件夹</li>
+</ul>
+<p><em>注意linux中文件的目录结构只是逻辑结构, 真正的物理结构还要看实际挂载位置。比如/home挂载在硬盘1，/home/liufuxin可能挂载在硬盘2</em></p>
+<h3 id="inode"><a href="#inode" class="headerlink" title="inode"></a>inode</h3><p>inode可以理解为文件的元信息，linux中每个文件都会对应一个inode，inode中包含文件的权限、字节、存储位置、链接数、最近访问信息等，理解inode有助于理解文件的权限和链接</p>
+<ul>
+<li>普通文件，包含一个文件名和inode号，读取文件其实是三步：读取文件的inode号、获取inode信息、读取数据</li>
+<li>目录文件，内容为目录包含的文件和文件的inode号，有目录的r权限，则可以看文件名，但如果没有x权限，则因为无法解析inode则不能获取大小、权限、最近访问等信息，更不能读取文件内容和写文件</li>
+</ul>
+<p>相关命令</p>
+<ul>
+<li><code>ls -i</code> 查看文件inode号</li>
+<li><code>stat file</code> 查看文件inode信息</li>
+</ul>
+<h3 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h3><p>linux中每个文件(目录本质也是文件),都会有一组以下权限串<code>rwxrwxrwx</code></p>
+<ul>
+<li>r 代表读权限</li>
+<li>w 代表写权限</li>
+<li>x 代表执行权限</li>
+</ul>
+<p>而三组rwx则依次代表了文件创建者,文件用户组,其他人的权限。通常也会用三个八进制数来表示权限,比如<code>rwxrwxrwx</code>会用<code>777</code>表示,<code>r-x-wx---</code>用<code>530</code>表示</p>
+<p><strong>注意rwx对于文件和目录的意义有着一些差别</strong></p>
+<p>对于file</p>
+<ul>
+<li>r 是否可以读取文件内容</li>
+<li>w 是否可以更改文件内容</li>
+<li>x 是否可以执行文件</li>
+</ul>
+<p>对于dir</p>
+<ul>
+<li>r 是否可以读取到目录中文件</li>
+<li>w 是否可以在目录中新建,删除,重命名</li>
+<li>x<ul>
+<li>是否可以cd进入目录;</li>
+<li>是否可以解析包含文件的inode信息,这就导致<code>x其实是rw的前提</code>(即便有r权限,可以知道文件名但因为无法读取inode,不能获取文件类型大小等);</li>
+<li><code>x权限是会影响子目录的,rw不会</code>,即无父目录的rw,也不影响子的rw权限;</li>
+</ul>
+</li>
+</ul>
+<p><strong>权限修改</strong><br>文件权限修改有两种办法</p>
+<ul>
+<li><code>chmod 777 file</code></li>
+<li><code>chmod [a|u|g|o]+r-w file</code> u为拥有者,g为用户组,o为其他,a为全部,+为添加,-为去掉,比迁一种要容易记一些</li>
+</ul>
+<p>相关命令</p>
+<ul>
+<li><code>chgrp</code> 修改文件用户组, chgrp [-R] users file, 改变file文件的用户组为users,-R为递归修改</li>
+<li><code>chown</code> 修改文件拥有者, chown [-R] user[:group] file, 除了改变文件拥有者,还可以修改文件用户组</li>
+</ul>
+<p><strong>默认权限</strong><br>umask控制,类似子网掩码. 创建文件时,系统会去掉umask标记的权限,比如umask为111则创建的文件权限为666<br>但要注意,无论umask如何设置<code>新建的文件都不会具有x权限</code>，这也是经常出错的地方，为了安全起见, 一般umask为022</p>
+<ul>
+<li><code>umask</code> 查看umask值</li>
+<li><code>umask 022</code> 设置umask</li>
+</ul>
+<p><strong>SetUID (SUID)</strong><br>想想这样的场景, /etc/shadow文件中保存着所有用户的密码信息,只有管理员能查看。/usr/bin/passwd为修改密码程序，所有用户都有执行该程序的权限, 但是我们进程的权限与启动用户一致的, 那非管理员启动的passwd进程是如何修改密码呢?</p>
+<p>特殊权限SetUID就是处理该场景, 当<code>文件拥有者</code>的权限中<code>执行位为s</code>时, 其他用户执行该文件期间可以具有拥有者的权限，仅对二进制文件有效，所以只需要为passwd二进制文件添加该权限即可让普通用户执行该程序时拥有管理员权限，同时只能按照程序提供的操作执行。类似的还有SetGID(SGID), 表明执行期间拥有文件所在用户组的权限</p>
+<p><strong>Sticky Bit (SBIT)</strong><br>想想这样的场景, 团队公共目录 ~/work, 所有人都拥有该目录的x权限, 若再具有w权限则能够进行删减和重命名, 如何避免误操作?<br>只需要为目录设置SBIT权限即可, SBIT只对目录有效, 设置后仅有root或拥有者可以删减对应文件</p>
+<p>SUID SGID SBIT权限修改。第一种是在原来三位权限前再添加一位</p>
+<ul>
+<li>4 SUID</li>
+<li>2 SGID</li>
+<li>1 SBIT</li>
+</ul>
+<p>比如<code>chmod 4666 file</code>，或者使用符号, <code>chmod u+s|g+s|o+t file</code>，注意当看到S或者T时, 说明无效, 比如不具备目录w权限, t就无效</p>
+<h3 id="软-硬链接"><a href="#软-硬链接" class="headerlink" title="软/硬链接"></a>软/硬链接</h3><p>linux中有软硬链接文件, 可以方便用户管理和使用文件系统</p>
+<p><strong>硬链接</strong><br>并未创建新的inode节点, 只是新建了一个文件, 并指向源inode, 通过<code>ls -i</code>可以看到文件的链接数+1。当删除源文件时, 不会影响链接文件，删除硬链接文件则会导致源文件inode链接数-1，为0时inode也会被删除。创建硬链接<code>ln source target</code></p>
+<p>因为是公用inode所以就决定, 硬链接不能跨文件系统, 不能远程。而且由于硬连接指向了inode，所以当源文件被删除时，真正的inode不会被删除，硬连接依旧正常使用。软连接则不行；同时目前硬链接不支持目标文件为目录</p>
+<p><strong>软链接</strong><br>新建了一个链接文件, 然后这个文件的内容是链接文件的路径，注意这是两个文件、两个inode, 类似windows的快捷方式, 创建方式<code>ln -s source target</code>。删除软链接文件不会影响源文件，删除源文件则会导致软链接无法正常使用</p>
+<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>计算机中的所有数据本质上都是01序列，只特定的上下文中，赋予了01序列实际意义</p>
+<p><strong>数据表示</strong></p>
+<ul>
+<li>一个0、1为1个bit，即一位</li>
+<li>8个bit为一个byte，即一个字节</li>
+<li>2个byte为一个word，即一个字</li>
+<li>一般使用4个byte表示int，1个byte表示char</li>
+</ul>
+<p><strong>ASCII UTF-8 Unicode</strong></p>
+<ul>
+<li>unicode是对全世界所有字符的一种编码，用<code>4个byte</code>来标记一个字符，称为<code>统一字符集</code></li>
+<li>ascii则是计算机早期的一种字符编码，用<code>1个byte</code>来表示一个字符，主要用来表示英文字母、常用符号</li>
+<li>utf-8，unicode trans format，unicode传输格式，是一种为了节约空间对Unicode<code>字符集</code>的一种<code>编码方式</code>，将常用的字符如英文字符使用1个byte表示，用3个byte来表示中文字符</li>
+<li>gb2312是汉字最早的编码格式，gbk是其扩展，收录了更多汉字（不含繁体）和少数民族文字</li>
+</ul>
+<p><strong>大端、小端</strong><br>比如整数255的字节表示为01 00，01被称为最高有效字节，00称为最低有效字节，所以</p>
+<ul>
+<li>大端模式是指计算机在存储数据时，最高有效字节在前，最低在后，即 01 00</li>
+<li>小端模式是指计算机在存储数据时，最低有效字节在前，即00 01</li>
+</ul>
+<p><code>需要注意的是为了数据在网络中交换，规定网络数据一律使用大端模式</code></p>
+<p>延伸<br><a href="http://www.qianxingzhem.com/post-1499.html" target="_blank" rel="external">网页编码那点事</a></p>
+<h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><p>系统会为每个程序都默认打开3个标准文件标示符，0标准输1，1标准输出，2标准错误输出，程序可以通过与文件标识符交互（read、write）完成读取输入和输出结果</p>
+<p>重定向程序输出时，> 覆盖式写，>&gt; 追加式写，&amp;的作用是获取其后文件标示符表示的设备</p>
+<p><strong>/bin/sh script 1&gt; out 2&gt; err</strong>，注意&gt;前无空格，否则1、2就变成‘参数’了</p>
+<p><strong>/bin/sh script 1&gt;out 2&gt;&amp;1</strong>，标准输出到out，然后标准错误输出重定向到标准输出，注意顺序和无空格</p>
+<p><strong>/bin/sh script &amp;&gt; out</strong>，将标准输出和错误都输出到out</p>
+<p><em>注意<code>/bin/sh script 1&gt;list 2&gt;list</code>是错误写法，这样写会导致两个输出混在一起</em></p>
+<h3 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h3><p>一台计算机的存储设备一般包括寄存器、主存（内存）、硬盘，现在考虑这些问题：</p>
+<ol>
+<li>cpu只能直接与寄存器进行交互，而且只能直接读写内存中的数据，那么如何高效的将数据从硬盘中载入寄存器供cpu使用？</li>
+<li>系统中有成百上千的进程在同时运行，每个进程的执行命令、处理数据、输出结果都依赖内存，如何管理内存？</li>
+</ol>
+<p>虚拟内存便是操作系统用来维护计算机存储设备的机制。其基本模型是将内存、硬盘都划分为以页为基本元素的大的数组。</p>
+<p>基于这个模型，使用“文件”这个概念来维护硬盘中的数据，文件记录了其所代表的数据在磁盘的所有页的位置</p>
+<p>进程申请内存便是为其在内存中分配页槽位，释放内存便是释放这些槽位，read文件数据便是将文件的页从磁盘读入到内存的页槽中。操作系统维护着内存中每个页槽属于哪个进程，来保证进程内存之间的隔离，同时给每个进程造成一种在“独占”内存的假象（在进程看来，自己的内存空间是连续的）</p>
+<p>就是这么一个简单的模型，保证了数据有序的在硬盘、内存、寄存器之间有序维护</p>
+<p><strong>缓存</strong><br>寄存器的读取速度为1个单位的话，那么内存的读取速度就是10个单位，而硬盘的读取速度则是100000个单位，如果每次从文件读取数据都要由硬盘重新读取的话，那么cpu资源将极大浪费</p>
+<p>操作系统使用缓存来解决不同存储设备读取速度巨大差距的问题。当进程申请将一页从硬盘读入进程的页槽中时，操作系统会先把页加载到内核进程的页槽中，再copy到进程的页槽中，之后的一定时间内当其他进程再申请同一个页时，便可以直接在内存中copy</p>
+<p>而且由于当前硬盘的构造，读取时间基本消耗在寻址阶段，当找到页后，顺序读取时，其实只需要大约10个单位的时间，所以操作系统在加载页时，也会顺便把该页前后的页也顺带加载，根据程序的<code>局部性原理</code>这些页大概率会在接下来的时间内被申请</p>
+<blockquote>
+<p>  程序的局部性原理，是指时间的维度看同一份数据大概率会在短时间内被程序反复使用，或者从空间的维度看一份数据一旦被程序使用，那么它相邻的数据也大概率会被程序使用</p>
+<p>  正是局部性原理，保证了可以进行缓存。试想如果一个程序天上一脚、地下一脚的读取数据，那么操作系统就只能反复从硬盘中加载数据，这也是一些程序性能差的原因之一</p>
+</blockquote>
+<p><strong>延迟写</strong><br>另一项操作系统提供性能的策略是延迟写，当进程修改页中的数据时，操作系统不会立刻刷会硬盘中，因为进程可能会短时间内频繁操作，而且刷回硬盘需要大量时间。被修改的页（称为脏页）会在内核空间中停留一段时间后，根据不同的策略再刷回硬盘</p>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>进程简单来说，就是操作系统一个可执行程序的实例，是对计算机计算能力（cpu）+ 存储能力（主存）+ 交互能力（I/O设备）的抽象</p>
+<p>通过进程，你可以对三者完全无感知的情况下来控制计算机。比如我们写程序从文件读入一个字符串，并不需要知道文件数据如何存储在硬盘，处理整个字符串也并不需要知道执行哪些cpu指令，把他打印出来也不需要知道外设如何使用</p>
+<p><em>类似地，文件是操作系统对I/O设备的抽象。虚拟内存是对I/O设备+主存的抽象</em></p>
+<p>我们来利用计算机工作，就必须执行具体的程序，生成进程来完成</p>
+<p><strong>进程基本知识点</strong></p>
+<ul>
+<li>进程必有pid，与线程的共用一个计数，所以有可能不连续</li>
+<li>进程必有ppid，父进程，1号进程除外</li>
+<li>进程必有名称</li>
+<li>进程必有退出码，0~255</li>
+</ul>
+<p><strong>进程的内存结构</strong></p>
+<p>进程会给程序一种假象，他是在独占地使用计算机的计算、存储资源。这样不仅可以最大程度发挥计算机硬件性能，而且降低程序的开发难度，进程互相之间不需要操心彼此影响（高级编程除外）。而要实现这一点，进程的内存就必须互相隔离，操作系统利用虚拟内存机制来实现这一点。下面是进程的典型内存结构</p>
+<p><img src="http://ww1.sinaimg.cn/large/006QGE4bly1fx363xvqo6j30an0a0dk4.jpg" alt=""></p>
+<p>依旧把进程的内存空间想象为一个很长的页槽数组</p>
+<ul>
+<li>所有进程的0x004000000位开始是进程的指令序列，即<code>text段</code>，是在进程启动前完成加载的（这就是为什么更改已经运行的程序源码不会影响进程）</li>
+<li>text段之上是<code>static段</code>包含由编译器所分配的变量，包括全局变量，和使用static声明的局部变量；</li>
+<li>再往上是<code>heap段</code>进程运行过程中间的内存扩展部分；</li>
+<li>再之上是共享库的内存空间；</li>
+<li>最顶部对用户进程隐藏的是内核的虚拟内存；往下是进程运行过程中的栈空间<code>stack段</code>（用来执行函数、线程等）；</li>
+</ul>
+<p>所以，一个程序（也就是进程）运行时，是先把运行代码加载到text段，编译期间的静态变量、全局变量等都加载在static段。运行过程中需要读取的文件内容等存放在heap段，申请内存也加塞在这。需要执行公共库的代码、数据则在公共空间；系统调用所需的代码、数据则在最顶部。本地的函数创建调用则在用户栈里完成，调用时入栈、完成时出栈。</p>
+<p>而且得益于虚拟内存，那些公共的部分看似进程独有，其实是进程间共享的，并没有浪费内存空间，还保证了进程内存空间的简单性</p>
+<p><strong>用户模式 &amp; 内核模式</strong></p>
+<p>进程运行模式机制主要是为了防止恶意进程非法访问其他进程的数据，或者进行破坏，进程在正常运行是在用户模式下，当需要进行一些‘高难度’操作比如读取文件、使用显示器显示数据等，则需要通过操作系统提供的<code>系统调用</code>来进行，此时进程的运行模式为内核模式，进程执行的指令跳转到内存的顶层内核指令空间，等待系统再次指定进入进程自己的指令空间</p>
+<h3 id="程序编译"><a href="#程序编译" class="headerlink" title="程序编译"></a>程序编译</h3><p>进程是可执行程序的实例，那么可执行程序又是如何来的？</p>
+<p>以c语言为例。我们在写好程序之后，编译器（如gcc）会把这些程序文本编译为汇编代码，然后再通过汇编器生成目标文件（不同的机器因为cpu指令集合可能不同，需要不同的汇编器），最终目标文件链接起来就是0、1组成的可执行文件了</p>
+<p><strong>链接</strong><br>为什么不直接汇编生成可执行代码，还要经过一次链接？</p>
+<p>最初的程序确实是这样，经过汇编之后产生的就是可执行文件，但实践证明这种模式并不高效，比如打印字符到显示器这样的功能代码段，大部分程序都需要，我们就必须在所有程序里重复实现，很傻是不是？所以就有了链接，把这些常用的程序提前汇编为目标代码，执行前链接一下就好。这样的的另一个好处就是减少编译时间，比如我就修改了一个目标文件的源码，只需要重新编译该目标文件即可，难道我要把整个项目都编译一遍吗？</p>
+<p><strong>动态库 &amp; 静态库</strong><br>跟链接的情况类似，还是打印字符到显示器这样的指令集合，难道要在每个进程的内存空间都加载一模一样的代码吗？</p>
+<p>进程内存空间中共享内存便是这个作用，将常用的库在进程之间共享，这就是静态库。而动态库是指有些指令集合也是标准的，但使用频率很低，而且可以在操作系统执行期间动态加入，既不能也没必要提前加载，进程会在实际需要运行的时候，动态将指令空间加载进内存空间</p>
+<p><em>为了避免从硬盘中加载代码进主存，操作系统会提前把动态库的代码加载进主存，所以当更新了动态库后，需要执行ldconfig来重新加载。lld可以查看一个可执行程序所依赖的动态库</em></p>
+<h3 id="进程状态"><a href="#进程状态" class="headerlink" title="进程状态"></a>进程状态</h3><p>当进程被创建时，操作系统会为进程分配包含进程信息的数据结构，称为“进程控制块”（PCB），PCB跟踪进程的状态，主要包括：</p>
+<ul>
+<li>运行（Running），如果进程正在运行于某个核心上</li>
+<li>就绪（Ready），如果进程可以但没有运行，通常由于就绪进程数量大于内核的数量</li>
+<li>阻塞（Blocked），如果进程由于正在等待未来的事件，例如网络通信或磁盘读取，而不能运行</li>
+<li>终止（Done）：如果进程运行完毕，但是带有没有读取的退出状态信息</li>
+</ul>
+<h3 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a>文件描述符</h3><p>进程有一个<code>描述符表</code>用正整数来表示进程已经打开的文件。操作系统会在进程创建时预先为其打开文件，并提前打开3个标准文件，0标准输出，1标准输入，2标准错误输出</p>
+<p>同时操作系统会全局维护一个<code>文件表</code>记录所有被进程打开的文件，以及他们被引用的次数，文件被删除时，只有当引用数为0时才会真正从系统删除，所以进程要及时关闭不使用的文件</p>
+<h3 id="进程的并发"><a href="#进程的并发" class="headerlink" title="进程的并发"></a>进程的并发</h3><p>最初的计算机都是单任务的，同一时间只能做一件事，这样如果一个任务包含长时间的IO等操作，所有任务都得阻塞。为了解决这个问题，操作系统加入了进程概念，可以同时运行多个进程，从而实现多任务</p>
+<p><strong>并发 &amp; 并行</strong><br><code>并发</code>是指同一个<code>时间段</code>内有多个进程在运行。<code>并行</code>是并发的真子集，意思同一个<code>时间点</code>有多个进程在运行，需要多cpu支持</p>
+<p><strong>上下文切换</strong><br>操作系统实现进程并发的模型很简单，就是cpu不断在多个进程之间进行切换运行，由于cpu的周期非常短，所以多个进程看似是在同时运行，不过如果进程数不多于cpu核数的话，进程则确实是在同时运行，不过多数情况是进程数要多于cpu核数，进程需要交替运行</p>
+<p>进程让出cpu的使用权叫做<code>上下文切换</code>，内核不仅需要保存出让cpu使用权进程的各种信息，同时还要载入将运行的进程信息，这些信息被称为上下文，包括通用寄存器、浮点寄存器、程序计数器、用户栈、状态寄存器、内核栈和各种内核数据结构，比如描述地址空间的页表、包含当前有关进程信息的进程表，以及包含进程已打开文件的文件表</p>
+<p>上下文切换的代价还是挺大的，<code>大约是几千个周期或几毫秒</code>，甚至可能是操作系统cpu周期耗费的主要地方，所以<code>多进程并不一定比单进程快</code>，在计算密集的场景下，频繁的进程切换反而会效率更差</p>
+<p><strong>异常</strong><br>最初的进程切换是进程互相协调的，但很快发现这种模式容易导致恶意进程抢占运行资源，所以目前主流操作系统都使用竞争式进程抢占，由操作系统来负责进程之间的切换，这个机制便是异常</p>
+<p>当触发异常时，比如读取文件、读取网络数据，或者其他硬件触发的中断，进程会从运行状态，转变为挂起、或者终止（由异常是否可以恢复决定），进程会在等待条件满足时，再次进入就绪态，等待下一次调度</p>
+<h3 id="fork-amp-exec"><a href="#fork-amp-exec" class="headerlink" title="fork &amp; exec"></a>fork &amp; exec</h3><p>进程可以fork一个子进程，子进程会复制父进程的内存空间，包括父进程的文件表，即子进程会默认打开父进程已打开的所有文件，这个要特别注意，而且操作系统为了提高性能，实现了<code>写时复制</code>机制，即只有子进程的内存发生写入时才会触发内存复制</p>
+<p>exec则是在当前进程的上下文环境中启动一个新进程来代替当前进程，在该进程执行结束之后再恢复之前的进程</p>
+<h3 id="守护进程"><a href="#守护进程" class="headerlink" title="守护进程"></a>守护进程</h3><p>守护进程（daemon）就是一直运行的进程</p>
+<p>web服务器就是一个守护进程，你登录服务器打开的对话窗口也是个守护进程，你写一个死循环的程序执行后也是守护进程（虽然是个垃圾）。所以守护进程最主要的特征是一直运行（直到被主动关闭）。排除掉进程出错导致退出的原因，导致进程退出的原因有：</p>
+<ul>
+<li>进程出错，异常退出</li>
+<li>进程收到非预期的SIGHUP信号，退出</li>
+</ul>
+<p><strong>后台任务</strong></p>
+<p>守护进程基本都在后台执行，这样不会占用命令行窗口。所以守护化的第一步便是让进程后台执行</p>
+<ul>
+<li><code>test.sh &amp;</code>，添加<code>&amp;</code>便可以让进程直接后台执行</li>
+<li>对于已经前台执行的进程，需要先挂起<code>ctrl + z</code>然后再执行<code>bg</code>（让最近一个挂起的任务后台继续执行，<code>fg</code>恢复）</li>
+</ul>
+<p>后台任务与前台任务的主要区别是，不再继承session的标准输入，所以除非后台进程标准输入被重定向，否则无法读取输入，而且会导致阻塞。但后台任务继承了seesion的标准输出和标准错误，所以进程的输出信息依旧会打印在会话窗口</p>
+<p><strong>守护化进程</strong></p>
+<ol>
+<li>关闭huponexit（默认即为关闭），则session进程退出后便不会向后台任务发送SIGHUP信号，后台任务就可以一直运行下去了</li>
+<li>当huponexit为开启时，便需要disown命名，作用是既可以让后台任务忽略SIGHUP信号，也可以直接从会话组中踢出后台任务（交给1号进程），常使用的命令为<ul>
+<li>disown，移出最近一个正在执行的后台任务</li>
+<li>disown -r，移出所有正在执行的后台任务</li>
+<li>disown -a，移出所有后台任务</li>
+<li>disown -h，不移出后台任务，但是让它们不会收到SIGHUP信号</li>
+<li>disown -h %2，根据jobId，移出指定的后台任务<br><code>需要注意的事，进程继承了session的标准I/O，一旦发生读写，会因为session已经退出而报错。所以需要事前重定向要守护化的进程的标准I/O</code></li>
+</ul>
+</li>
+<li>比disown更方便的是直接使用nohup，作用为<ul>
+<li>该进程忽略SIGHUP信号</li>
+<li>关闭标准输入，该进程不再能够接受任何输入</li>
+<li>重定向标准输出和标准错误到文件nohup.out<br><code>需要注意的是nohup并不会把进程变为后台任务，需要主动加上&amp;</code></li>
+</ul>
+</li>
+</ol>
+<p>以上是将一个普通进程守护化，如果想在程序中直接实现以上功能，思路也一样，但需要使用编程语言来操作诸如后台执行（利用fork）、脱离进程组、重定向IO、忽略SIGHUP信号、改变工作目录、清理掩码。更为可靠则是父进程只负责在子进程退出后重新拉起，具体的程序逻辑则在子进程中执行</p>
+<p><strong>僵尸进程、孤儿进程</strong></p>
+<p>孤儿进程指父进程退出，仍在运行的进程，这些进程被移交给1号进程，比如前面的disown操作。孤儿进程基本没什么危害，等待其正常结束或者直接kill即可</p>
+<p>僵尸进程则是该进程已经结束，但父进程未执行wait操作，导致内核依旧保留其退出信息，如果大量产生的话会导致内核资源耗尽，危害很大。解决办法是kill掉父进程，子进程便都移交1号进程回收</p>
+<p>延伸<br><a href="http://www.ruanyifeng.com/blog/2016/02/linux-daemon.html" target="_blank" rel="external">Linux 守护进程的启动方法</a></p>
+<h3 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h3><h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>线程是cpu调度的基本单位，其实每个进程至少要包含一个线程</p>
+<p>同一个进程中的线程互相之间共享进程的内存空间</p>
+<p>线程的切换成本主要是寄存器、计数器等，要远低于进程切换成本</p>
+<p><strong>线程安全</strong></p>
+<p>线程安全是指一个函数在多个线程同时调用的场景下，输出结果保持一致，反之则为线程不安全</p>
+<p>线程不安全的函数可能是依赖了静态变量、全局变量，或者线程之间共享的进程变量没有加锁维护一致性</p>
+<h2 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h2><p>简单小结一下</p>
+<ul>
+<li>协程并非操作系统概念，内核无此概念</li>
+<li>协程为用户级线程，线程自己负责协程的调度</li>
+<li>适合I/O密集型场景</li>
+<li>windows下叫纤程</li>
+</ul>
+<h2 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h2><p>由于一切皆文件的抽象，网络编程其实就是利用网卡这个特殊的文件进行编程，这个‘文件’字节流的交换是由多种网络协议与以太网来实现的</p>
+<h3 id="port端口"><a href="#port端口" class="headerlink" title="port端口"></a>port端口</h3><p>端口是操作系统对外提供服务的进程的抽象，每个提供服务的端口背后都对应一个进程</p>
+<p>端口由一个整数表示，从0到65535，其中0-1023为<code>著名端口</code>，这些端口会由一些基础服务占用；1024-49151为<code>注册端口</code>，这些端口是建议给用户进程服务使用的；49152-65535则是<code>动态端口</code>一般是临时分配的</p>
+<h3 id="socket套接字"><a href="#socket套接字" class="headerlink" title="socket套接字"></a>socket套接字</h3><p>网卡是用来进行网络数据交换的设备，维护着本地进程与外界大量的网络连接，socket套接字则是这些连接的抽象。socket由四个字段确定：本机ip、服务端口、连接ip、连接的端口，socket本质也是一个文件，记录了其缓冲区，排队进程队列</p>
+<p>当本地进程是提供服务的进程时，端口号是固定的由进程申请bind。当本地进程是发起外界建立连接时，本地的端口是随机分配的</p>
+<p><em>在实际编程中socket在不同语境下意思有所不同，系统调用socket返回的是“监听socket描述字”，他只有服务端ip+port；而accept函数返回的是“已连接的socket描述字”，包含服务端ip+port和客户端ip+port，定义了一个tcp连接</em></p>
+<h2 id="I-O多路复用"><a href="#I-O多路复用" class="headerlink" title="I/O多路复用"></a>I/O多路复用</h2><p>很多资料讲到这部分都是直接开怼socket、同步异步、阻塞非阻塞、select、poll，显得高深莫测。其实多路复用要解决的是这种场景：监听多个I/O设备，比如你需要监听多个文件的修改、实现一个网络服务器、监听多个socket文件，我们一步步开始</p>
+<ol>
+<li>创建一个socket监听，bind了9000，轮询accept，建立连接、读取并处理数据。优点是简单，缺点是不断轮询也造成了cpu资源浪费</li>
+<li>多路复用要登场了，把多个socket传给select系统调用，设置阻塞，这样当有socket活跃（新连接建立或已有连接数据进入）时select才会返回，此时再轮询即可。优点是不再需要定期轮询，缺点是<ol>
+<li>select最大支持1024个socket</li>
+<li>每次select被唤醒，都需要进行遍历才能获取活跃socket</li>
+<li>因为select是系统调用，所以每次都要把所有socket参数复制进内核空间</li>
+<li>select的底层实现性能并不高，需要反复将进程加入/删除socket的就绪队列</li>
+</ol>
+</li>
+<li>用poll替换select，最大连接数不再受限</li>
+<li>使用epoll。简单说就是把要监听的socket都丢到事件池中，然后注册事件触发时的回调函数，这样每当有socket活跃时，就会自动执行回调函数，非常高效，优点包括<ol>
+<li>连接数没有限制，理论上只受进程打开文件最大数限制</li>
+<li>事件池可以避免socket的反复移除进入</li>
+<li>epoll维护了就绪列表，记录了就绪的socket，无需遍历</li>
+<li>epoll的底层实现避免了反复操作socket等待队列<br>其实epoll的出现大大降低了连接的维持成本，使得单台服务器可以很容易就解决C10K问题</li>
+</ol>
+</li>
+</ol>
+<p>至此，我们一步步的解决了大量连接I/O的复用问题，服务器可以保持大量的连接。但是，仍然有一个致命问题<code>连接的处理是一个进程</code>，处理期间，其他连接只能等待，效率非常差。我们需要继续解决连接的处理性能问题</p>
+<p><strong>服务器模型</strong></p>
+<ol>
+<li>最简单的，来一个请求我就fork一个子进程进行处理。优点是简单，缺点是频繁的进程创建和销毁非常消耗系统资源。其实这就是最初的fork-execute模型</li>
+<li>要避免进程频繁创建销毁，我们可设计一个master进程维护一个worker进程池，处理完任务后不退出。这就是leader-follower模型</li>
+<li>服务器其实要解决的就两个问题，大量连接的维护问题和活跃连接的处理问题。使用epoll可以解决大量连接的维护问题，使用leader-follower可以解决请求处理问题，合起来就是reactor模型</li>
+</ol>
+<p>真实研发中根据实际情况的不同，会使用线程、协程替代进程。可能有多个reactor或者多个master。编程语言可以自己维护服务器连接模型、请求处理模型，也可以由通用服务器如apache nginx维护</p>
+<p><strong>同步、异步 &amp; 阻塞、非阻塞</strong><br>在上面的总结中可以绕过了同步异步、阻塞非阻塞的概念。因为这几个概念就我查的资料来看，比较混乱。究其原因，我认为主要是大家预设的场景不同</p>
+<p>同步、异步，比如前面说的网络模型，select我们认为是同步的，因为发起IO后，必须等待或者轮询，就绪后才能继续处理；epoll我们认为是异步的，因为我们提前注册了回调方法，发起IO就绪后系统会自动调用回调方法。但如果放在IO的场景，无论select还是epoll都是同步的，因为他们的区别只是识别活跃socket的性能不同，处理活跃socket仍然是需要同步阻塞进行recv的。除非使用AIO<br><img src="http://ww1.sinaimg.cn/large/006QGE4bly1gdugyb28nrj30bj046wej.jpg" alt="同步阻塞.jpg"></p>
+<p>阻塞、非阻塞，则比较好理解，就是发起调用后进程的状态，是否进入Blocked状态</p>
+<p><em>综上，其实一直要解决的问题是如何降低活跃连接的发现成本（利用epoll减少数据移动、减少文件遍历），和如何降低请求处理的调度成本（复用进程减少创建成本、使用线程协程降低上下文切换成本），尽可能将机器资源用于请求处理，提高并发</em></p>
+<p>延伸<br><a href="https://www.6aiq.com/article/1564634702930" target="_blank" rel="external">如果这篇文章说不清 epoll 的本质，那就过来掐死我吧</a><br><a href="https://my.oschina.net/zyqjustin/blog/714356" target="_blank" rel="external">高性能IO模型浅析</a><br><a href="https://segmentfault.com/a/1190000003063859?utm_source=Weibo&amp;utm_medium=shareLink&amp;utm_campaign=socialShare&amp;from=timeline&amp;isappinstalled=0#articleHeader20" target="_blank" rel="external">Linux IO模式及 select、poll、epoll详解</a></p>
+<h2 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h2><p>使用linux中必不可免的要进行文本操作，你有很多选择，但建议使用vim，因为linux默认安装，同时功能强大，这里总结一些常用操作</p>
+<p><strong>行内移动</strong></p>
+<ul>
+<li>0 移动到行首</li>
+<li>^ 移动到行首第一个非空字符</li>
+<li>$ 移动到行尾</li>
+<li>g_ 移动到行尾最后一个非空字符</li>
+<li>w 移动到下一单词开头，e 移动到下一单词结尾，默认上来说，一个单词由字母，数字和下划线组成（陈皓注：程序变量）</li>
+<li>如果你认为单词是由blank字符分隔符，那么你需要使用大写的E和W。（陈皓注：程序语句）</li>
+<li>% 括号匹配移动</li>
+<li>*、# 当前单词匹配移动，下一个/上一个</li>
+</ul>
+<p><strong>复制粘贴</strong></p>
+<ul>
+<li>v 视图模式</li>
+<li>V 视图行模式</li>
+<li>y 复制选中部分</li>
+<li>yy 复制当前行</li>
+<li>p 粘贴至下一行</li>
+<li>P 粘贴至上一行</li>
+</ul>
+<p><strong>文件操作</strong></p>
+<ul>
+<li>:e /file/path 打开文件</li>
+<li>:bn :bp 打开下/上一文件</li>
+<li>:saveas /file/save/as/path 另存为</li>
+</ul>
+<p><strong>编辑</strong></p>
+<ul>
+<li>dd 删除当前行，并把删除的行存到剪贴板里</li>
+<li>10ia [ESC] 会插入10个a</li>
+<li>. 重复最近一次编辑</li>
+<li>3. 重复3次最近一次编辑</li>
+<li>ctrl+a 自增</li>
+</ul>
+<p><strong>块操作</strong></p>
+<ul>
+<li>c-v 选择块区域，c-d向下移动，或者hjkl，或者%</li>
+<li>I 批量插入，按[ESC]生效</li>
+<li>J 将所选的行变为一行</li>
+<li>> &lt;  缩进</li>
+<li>= 自动缩进</li>
+<li>gu gU 改变大小写</li>
+</ul>
+<p><strong>提示</strong><br>插入模式下，c-n c-p 自动提示</p>
+<p><strong>分屏</strong></p>
+<ul>
+<li>:split :vsplit 水平、垂直分屏</li>
+<li>c-w dir 方向，屏间切换</li>
+<li>c-w+/- 放大缩小屏</li>
+<li>c-w > &lt; 改变宽度</li>
+<li>c-w|/_ 最大化垂直屏活水平屏</li>
+</ul>
+<p><strong>范围操作模式</strong><br>操作 + 范围<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">y3j    # 复制之后3行</span><br><span class="line">d3j    # 删除之后3行</span><br><span class="line">gU3j    # 之后3行转大写</span><br></pre></td></tr></table></figure></p>
+<p><strong>常用配置</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">set enc=utf-8</span><br><span class="line">set nowrap</span><br><span class="line">set ts=4</span><br><span class="line">set mouse=a</span><br><span class="line">set nu</span><br><span class="line">set relativenumber</span><br><span class="line">set nobackup</span><br><span class="line">syntax enable</span><br><span class="line">:suspend 挂起</span><br><span class="line">set paste 粘贴的时候不会错位</span><br><span class="line">set nobomb|bomb|bomb? 删除bomb、添加、查看</span><br></pre></td></tr></table></figure></p>
+<p><strong>范围操作</strong></p>
+<ul>
+<li>cw 删除当前所在位置到word结束，并进入insert</li>
+<li>caw 删除当前所在位置的word头到尾，并insert</li>
+<li>ci” 删除” 里面的东西</li>
+<li>ca” 删除”里的东西，包括”</li>
+<li>yi”</li>
+<li>ya” ya(</li>
+</ul>
+<h2 id="常用工具与脚本"><a href="#常用工具与脚本" class="headerlink" title="常用工具与脚本"></a>常用工具与脚本</h2><p><strong>cat</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 不要忘了cat是可以同时显示多个文件的</span><br><span class="line">cat file1 file2 ...</span><br><span class="line"></span><br><span class="line"># 压缩空白行</span><br><span class="line">cat -s file1</span><br><span class="line"></span><br><span class="line"># 显示行号，针对所有行，-b则只针对非空白行</span><br><span class="line">cat -n file1</span><br></pre></td></tr></table></figure></p>
+<p><strong>find</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"># 未指明搜索条件，则列出dir目录及其子目录的所有文件</span><br><span class="line">find dir</span><br><span class="line"></span><br><span class="line"># 文件名称搜索，*为通配符，匹配任意多的字符，例子即为以Target开头的文件 -iname为忽略大小写</span><br><span class="line">find dir -name &quot;Target*&quot;</span><br><span class="line"></span><br><span class="line"># 文件类型搜索，f为文件，d为目录，l为符号链接，s为套接字，p为管道，b为块文件</span><br><span class="line">find dir -type [fdlspb]</span><br><span class="line"></span><br><span class="line"># 多个搜索条件，-o为&apos;或&apos; -a为&apos;与&apos;</span><br><span class="line">find dir -name traget -[oa] -type d</span><br><span class="line"></span><br><span class="line"># 指定搜索的最大|小深度，据不可靠消息，深度应该放在搜索条件的第一个，否则系统将搜索出来全部后再过滤层次</span><br><span class="line">find dir -[maxdepth|mindepth] 2 -name &apos;Target&apos;</span><br><span class="line"></span><br><span class="line"># 使用正则表达式搜索，注意匹配的是find的输出结果，而不是如-name那样只匹配文件名</span><br><span class="line">find dir -regex &quot;.*\.jpg&quot;</span><br><span class="line"></span><br><span class="line"># 文件大小搜索，&apos;+&apos;为&apos;大于&apos;，&apos;-&apos;为&apos;小于&apos;，不写为等于；</span><br><span class="line"># &apos;b&apos;    for 512-byte blocks (this is the default if no suffix is used)</span><br><span class="line"># &apos;c&apos;    for bytes</span><br><span class="line"># &apos;w&apos;    for two-byte words</span><br><span class="line"># &apos;k&apos;    for Kilobytes (units of 1024 bytes)</span><br><span class="line"># &apos;M&apos;    for Megabytes (units of 1048576 bytes)</span><br><span class="line"># &apos;G&apos;    for Gigabytes (units of 1073741824 bytes)</span><br><span class="line">find dir -size [±]2[bcwkMG]</span><br><span class="line"></span><br><span class="line"># 按照时间搜索，首先明白Linux文件系统每个文件都有三个时间戳</span><br><span class="line"># 搜索的单位是天，-n指n天以内，+n指n天以前，无是等于，另外amin|mmin|cmin类似，但单位是分钟</span><br><span class="line"># 访问时间(-atime): 用户最后一次访问文件时间</span><br><span class="line"># 修改时间(-mtime): 文件内容最后一次修改时间</span><br><span class="line"># 变化时间(-ctime): 文件元数据(权限或所有权，即inode)最后一次修改时间</span><br><span class="line">find dir -atime|-mtime|-ctime [±]2</span><br><span class="line"></span><br><span class="line"># 按照文件所有者搜索</span><br><span class="line">find dir -user UNAME</span><br><span class="line"></span><br><span class="line"># 按照文件权限搜索</span><br><span class="line">find dir -perm 665</span><br></pre></td></tr></table></figure></p>
+<p><strong>xargs</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 将标准输入转化为命令行参数，比如现在有这样的一个样本</span><br><span class="line">cat args</span><br><span class="line">1</span><br><span class="line">2 2 2</span><br><span class="line">3 3</span><br><span class="line">4</span><br><span class="line"></span><br><span class="line"># -I指定占位符</span><br><span class="line">cat args | xargs -n 1 | xargs -I&#123;&#125; mv &#123;&#125; dir</span><br></pre></td></tr></table></figure></p>
+<p><strong>sort</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># sort是非稳定的，即除了排序的key外，每次排序的执行结果顺序可能不同</span><br><span class="line"># 依次排序各个文件</span><br><span class="line">sort file1 file2 ...</span><br><span class="line"></span><br><span class="line"># 按照数字序对文件内容进行排序</span><br><span class="line">sort -n file1</span><br><span class="line"></span><br><span class="line"># 逆序</span><br><span class="line">sort -r file2</span><br><span class="line"></span><br><span class="line"># 假如file2中数据存在多列，-k指定使用第二列进行排序</span><br><span class="line">sort -k 2 file1</span><br><span class="line"></span><br><span class="line"># 以第二列中的第一个字符到末尾进行排序</span><br><span class="line">sort -k 2.1 file1</span><br><span class="line"></span><br><span class="line"># 以第二列中的第一个字符到第二个字符进行排序</span><br><span class="line">sort -k 2.1,2.2 file1</span><br></pre></td></tr></table></figure></p>
+<p><strong>uniq</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 将标准输入中的连续多行只输出一行，“连续多行”就决定了uniq处理的标准输入一般是排过序的，否则无意义</span><br><span class="line">sort unsorted | uniq</span><br><span class="line"></span><br><span class="line"># 只显示唯一的行</span><br><span class="line">sort unsorted | uniq -u</span><br><span class="line"></span><br><span class="line"># 同时输出行的重复次数</span><br><span class="line">sort unsorted | uniq -c</span><br></pre></td></tr></table></figure></p>
+<p><strong>split</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 以大小切分文件生成诸如`xaa xab xac ...`</span><br><span class="line">split -b 10[c|k|m|g] Bigfile</span><br><span class="line"></span><br><span class="line"># 同上，但是以行数切分</span><br><span class="line">split -l 100 Bigfile</span><br><span class="line"></span><br><span class="line"># -d选项表示使用数字作为生成文件的名字，如`x001 x002 x003 ...`</span><br><span class="line">split -d -l 100 Bigfile</span><br><span class="line"></span><br><span class="line"># 最后一个参数定义切分文件的前缀，如`mypre-001 mypre-002 ...`</span><br><span class="line">split -d -l 100 Bigfile mypre-</span><br><span class="line"></span><br><span class="line"># 合并切分文件的方法</span><br><span class="line">cat mypre* &gt; merge</span><br></pre></td></tr></table></figure></p>
+<p><strong>dd</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># if为输入文件，/dev/zero为linux特殊设备，会不断产生\0</span><br><span class="line"># of为输出文件</span><br><span class="line"># bs为块大小</span><br><span class="line"># count为块数，即文件最终大小为 bs*count</span><br><span class="line">dd if=/dev/zero of=junk.data bs=1[c|k|m|g] count=1</span><br></pre></td></tr></table></figure></p>
+<p><strong>mkdir</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 用以创建长路径</span><br><span class="line">mkdir -p /this/is/a/long/long/path</span><br></pre></td></tr></table></figure></p>
+<p><strong>ln</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 为~目录创建一个名为home的软链接，可以通过`ls -l`查看，也可以使用`readlink`查看</span><br><span class="line">ln -s ~ ./home</span><br><span class="line"></span><br><span class="line"># 硬链接</span><br><span class="line">ln ~ ./home</span><br></pre></td></tr></table></figure></p>
+<p><strong>head &amp; tail</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 显示前5行</span><br><span class="line">head -n 5 file</span><br><span class="line"></span><br><span class="line"># 显示后5行</span><br><span class="line">tail -n 5 file</span><br><span class="line"></span><br><span class="line"># 动态跟踪file变化，此外`-F`选项甚至可以在文件被重命名后依然跟踪</span><br><span class="line">tail -f file</span><br></pre></td></tr></table></figure></p>
+<p><strong>ls</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 列出详细信息</span><br><span class="line">ls -l</span><br><span class="line"></span><br><span class="line"># 隐藏文件</span><br><span class="line">ls -a</span><br><span class="line"></span><br><span class="line"># 显示目录本身的信息，而不是目录里的内容</span><br><span class="line">ls -d Dir</span><br></pre></td></tr></table></figure></p>
+<p><strong>wc</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 计算file的字节数、单词数、行数</span><br><span class="line">wc -c|w|l file</span><br></pre></td></tr></table></figure></p>
+<p><strong>chmod</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 直接修改</span><br><span class="line">chmod 751 file</span><br><span class="line"></span><br><span class="line"># 直接修改，但更加便于理解，a=all u=user g=group o=other w=write r=read x=execute</span><br><span class="line">chmod u=wr,go=x file</span><br><span class="line"></span><br><span class="line"># 在原基础上对权限进行修改</span><br><span class="line">chmod u+w,g-r file</span><br></pre></td></tr></table></figure></p>
+<p><strong>chown chgrp</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 修改文件的用户组为teachers</span><br><span class="line">chgrp teachers file</span><br><span class="line"></span><br><span class="line"># 修改文件的所有者为me，同时用户组修改为teachers</span><br><span class="line">chown me:teachers file</span><br></pre></td></tr></table></figure></p>
+<p><strong>grep</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># 基本用法</span><br><span class="line">grep &apos;php&apos; file</span><br><span class="line">grep &quot;^a-z&quot; file</span><br><span class="line"></span><br><span class="line"># 使用拓展正则模式，此时无需转义</span><br><span class="line">grep -E &quot;^[0-9]&#123;1,3&#125;&quot; file</span><br><span class="line"></span><br><span class="line"># 一般用法，高亮显示</span><br><span class="line">STDIN | grep MATCHPATTERN --color=auto</span><br><span class="line"></span><br><span class="line"># 反向匹配</span><br><span class="line">STDIN | grep -v MATCHPATTERN --color=auto</span><br><span class="line"></span><br><span class="line"># 忽略大小写</span><br><span class="line">STDIN | grep -i MATCHPATTERN</span><br><span class="line"></span><br><span class="line"># 静默,常用于验证</span><br><span class="line">STDIN | grep -q MATCHPATTERN</span><br><span class="line"></span><br><span class="line"># 找出&apos;test&apos;在哪个文件中，`-L`则恰好相反</span><br><span class="line">grep -l &apos;test&apos; file1 file2 file3...</span><br><span class="line"></span><br><span class="line"># 输出匹配行的上下文，A为After，B为Before，C为前后各</span><br><span class="line">STDIN | grep test -A|B|C 3</span><br><span class="line"></span><br><span class="line"># 以文件的每一行为模式进行匹配</span><br><span class="line">grep -f patternfile file</span><br></pre></td></tr></table></figure></p>
+<p><strong>cut</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 显示file的第一列，关于列的指定</span><br><span class="line">cut -f 1 file</span><br><span class="line"></span><br><span class="line"># 1,3,4 显示1、3、4列</span><br><span class="line"># 1-4 显示1到4列</span><br><span class="line"># 2- 显示第2列，直到最后</span><br><span class="line"></span><br><span class="line"># -d选项指定分隔符</span><br><span class="line">cut -f 1 -d &apos;,&apos; file</span><br><span class="line"></span><br><span class="line"># -s选项用以去掉不含分隔符的列，比如文件中的注释、说明性文字</span><br><span class="line">cut -f 1 -s file</span><br><span class="line"></span><br><span class="line"># 显示file的前10个字符，类似的还有-b，显示的字节</span><br><span class="line">cut -c 10 file</span><br></pre></td></tr></table></figure></p>
+<p><strong>wget</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 最基本的用法，从网络中下载文件</span><br><span class="line">wget url1 url2 url3</span><br><span class="line"></span><br><span class="line"># -O选项指定输出结果的保存文件，-o选项指定wget执行过程中日志存储文件</span><br><span class="line">wget url1 -O savefile -o logfile</span><br><span class="line"></span><br><span class="line"># --limit-rate 限制下载速度，--quota(-Q)控制下载文件的大小</span><br><span class="line">wget --limit-rate 20[k|m|g] url1 --quota 100m</span><br><span class="line"></span><br><span class="line"># 需要http或ftp认证</span><br><span class="line">wget --user username --password pass URL</span><br></pre></td></tr></table></figure></p>
+<p><strong>curl</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># curl是比wget更高级的http工具</span><br><span class="line"></span><br><span class="line"># curl的基本用法，下载url，--slient表示静默，--progress显示进度条</span><br><span class="line">curl [--slient|--progress] URL</span><br><span class="line"></span><br><span class="line"># curl默认将下载的内容输出标准输出，-O则控制curl输出到文件，文件名则自动识别，比如 DOMAIN/index.html则下载至index.html；-o选项则指定文件名，此处也可以看出linux各个命令直接选项的混乱</span><br><span class="line">curl URL [-O|-o newfile]</span><br><span class="line"></span><br><span class="line"># 指定(多个)header</span><br><span class="line">curl -H &quot;Host: www.baidu.com&quot; -H &quot;Accept-language: en&quot;</span><br><span class="line"></span><br><span class="line"># 只显示响应报文中的头文件</span><br><span class="line">curl -l|head URL</span><br><span class="line"></span><br><span class="line"># 设置http中refer</span><br><span class="line">curl --refer http://www.baidu.com URL</span><br><span class="line"></span><br><span class="line"># 设置cookie，当使用cookie文件时`curl URL --cookie-jar cookiefile`</span><br><span class="line">curl URL --cookie &quot;user=liufuxin; pass=hack&quot;</span><br><span class="line"></span><br><span class="line"># 指定用户代理</span><br><span class="line">curl URL --user-agent &quot;Mozilla/5.0&quot;</span><br><span class="line"></span><br><span class="line"># 安全验证</span><br><span class="line">curl -u user:pass URL</span><br></pre></td></tr></table></figure></p>
+<p><strong>tar</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 打包文件，-f参数必须为参数组的最后一项，其后必须紧跟打包文件名</span><br><span class="line">tar -cf demo.tar file1 dir1 dir2</span><br><span class="line"></span><br><span class="line"># 提取打包文件，也可以指定提取的文件</span><br><span class="line">tar -xvf demo.tar [file1|dir1|dir2]</span><br><span class="line"></span><br><span class="line"># 排除通配符文件</span><br><span class="line">tar --exclude &apos;*.svn&apos; -cvf demo.tar *</span><br><span class="line"></span><br><span class="line"># 打包的同时压缩</span><br><span class="line">tar -cv[j|z]f demo.[gz|bz2].tar *</span><br></pre></td></tr></table></figure></p>
+<p><strong>gzip、bzip</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 只能对一个文件进行压缩，所以经常和打包命令配合，两者使用方法类似，bzip效率更好一些，解压缩命令为gunzip bunzip</span><br><span class="line"># 生成text.gz同时保留原文件</span><br><span class="line">gzip -c test &gt; test.gz</span><br><span class="line"></span><br><span class="line"># 列出压缩信息，包括压缩前后文件大小、压缩比率</span><br><span class="line">gzip -l test.gz</span><br><span class="line"></span><br><span class="line"># 压缩比，1最快(--fast) 9最好(--best)</span><br><span class="line">gzip -[1-9|--fast|--best] test</span><br><span class="line"></span><br><span class="line"># 列出压缩文件</span><br><span class="line">gzcat test.gz</span><br></pre></td></tr></table></figure></p>
+<p><strong>base64</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 编码test，输出到标准输出</span><br><span class="line">base64 test</span><br><span class="line"></span><br><span class="line"># 解码</span><br><span class="line">base64 -d test</span><br></pre></td></tr></table></figure></p>
+<p><strong>ping</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># ping 10次</span><br><span class="line">ping www.baidu.com -c 10</span><br></pre></td></tr></table></figure></p>
+<p><strong>scp</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 远程递归复制文件夹至本地，反过来即复制到远程</span><br><span class="line">scp -r user@host:/home/path/dir ./</span><br></pre></td></tr></table></figure></p>
+<p><strong>lsof</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"># list open files，列出被打开的文件，因为Linux中‘一切皆文件’，所以该命令也可以查看打开的网络连接和端口</span><br><span class="line"># 查看file文件被哪些进程占用</span><br><span class="line">lsof file</span><br><span class="line"></span><br><span class="line"># -r选项为一直执行losf</span><br><span class="line">lsof -r file</span><br><span class="line"></span><br><span class="line"># 显示abc进程打开的文件</span><br><span class="line">lsof -c abc</span><br><span class="line"></span><br><span class="line"># 显示PID 123打开的文件</span><br><span class="line">lsof -p 123</span><br><span class="line"></span><br><span class="line"># 显示文件描述符(fd)为4的文件被哪些进程打开</span><br><span class="line">lsof -d 4</span><br><span class="line"></span><br><span class="line"># 查看用户username的进程打开的文件</span><br><span class="line">lsof -u username</span><br><span class="line"></span><br><span class="line"># 46        IPv4 or IPv6</span><br><span class="line"># protocol  TCP or UDP</span><br><span class="line"># hostname  Internet host name</span><br><span class="line"># hostaddr  IPv4地址</span><br><span class="line"># service   /etc/service中的 service name (可以不止一个)</span><br><span class="line"># port      端口号 (可以不止一个)</span><br><span class="line">lsof -i[4|6] [protocol][@hostname|hostaddr][:service|port]</span><br><span class="line"></span><br><span class="line">lsof -i tcp@ohaha.ks.edu.cn:ftp</span><br><span class="line">lsof -i :3306</span><br></pre></td></tr></table></figure></p>
+<p><strong>netstat</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 用于显示各种网络相关信息</span><br><span class="line"># 列出所有端口</span><br><span class="line">netstat -a</span><br><span class="line"></span><br><span class="line"># 列出所有tcp端口，-u为udp</span><br><span class="line">netstat -at</span><br><span class="line"></span><br><span class="line"># 只显示监听端口</span><br><span class="line">netstat -l</span><br><span class="line"></span><br><span class="line"># 在输出中显示PID和进程名</span><br><span class="line">netstat -p</span><br><span class="line"></span><br><span class="line"># 不显示主机、端口和用户名，而用数字代替，可以加速输出</span><br><span class="line">netstat -n</span><br><span class="line"></span><br><span class="line"># 每隔一秒输出一次</span><br><span class="line">netstat -c</span><br></pre></td></tr></table></figure></p>
+<p><strong>du</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># disk used，磁盘使用情况</span><br><span class="line"># 基本用法，列出文件、目录的大小，单位字节，目录默认只显示其子目录，且显示一层</span><br><span class="line">du file dir1 file2 dir2</span><br><span class="line"></span><br><span class="line"># 递归显示所有</span><br><span class="line">du -a dir</span><br><span class="line"></span><br><span class="line"># 以可读单位显示，`-b -k -m`字节、kb、mb</span><br><span class="line">du -h dir</span><br><span class="line"></span><br><span class="line"># 只显示目录的总计，而不是子目录</span><br><span class="line">du -s dir</span><br></pre></td></tr></table></figure></p>
+<p><strong>df</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 列出磁盘空闲情况</span><br><span class="line">df -h</span><br></pre></td></tr></table></figure></p>
+<p><strong>time</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 列出命令执行时间</span><br><span class="line"># real 开始执行到结束的时间</span><br><span class="line"># user 进程在用户模式的时间，唯一真正用于执行进程所花费的时间（不包括阻塞、挂起）</span><br><span class="line"># sys  花费在内核模式的时间，唯一真正使用CPU的时间</span><br><span class="line">time COMMOND</span><br></pre></td></tr></table></figure></p>
+<p><strong>watch</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 固定时间间隔监控命令输出</span><br><span class="line"># 默认2秒执行一次，-n指定为5秒</span><br><span class="line">watch -n 5 COMMOND</span><br><span class="line"></span><br><span class="line"># 高亮显示区别</span><br><span class="line">watch -d COMMOND</span><br></pre></td></tr></table></figure></p>
+<p><strong>ps</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 列出所有进程信息，默认值显示当前终端进程，`-ax`效果类似</span><br><span class="line">ps -e</span><br><span class="line"></span><br><span class="line"># 显示更多信息</span><br><span class="line">ps -e[f|l]</span><br><span class="line"></span><br><span class="line"># 指定要显示哪些列，常用的有</span><br><span class="line"># pid</span><br><span class="line"># ppid</span><br><span class="line"># pcpu cpu占用率</span><br><span class="line"># pmem 内存使用率</span><br><span class="line"># comm 可执行文件名</span><br><span class="line"># user 启动用户</span><br><span class="line"># stat 进程状态</span><br><span class="line"># time 累计cpu时间</span><br><span class="line"># 排序，-降序，+升序</span><br><span class="line">ps -ef -o [TargetCol]</span><br><span class="line">ps -ef --sort -pcpu,+time</span><br><span class="line"></span><br><span class="line"># -L选项列出线程信息</span><br><span class="line">ps -efL</span><br></pre></td></tr></table></figure></p>
+<p><strong>kill</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 列出所有可用信号</span><br><span class="line">kill -l</span><br><span class="line"></span><br><span class="line"># 终止一个进程，默认发送的是SIGTERM信号（15），常用</span><br><span class="line"># SIGHUP 1 挂起</span><br><span class="line"># SIGINT 2 中断，ctrl+c</span><br><span class="line"># SIGKILL 9 强制杀死</span><br><span class="line"># SIGTERM 15 默认的终止进程</span><br><span class="line"># SIGTSTP 20 ctrl+z</span><br><span class="line">kill 13113</span><br><span class="line"></span><br><span class="line"># 杀死进程名的所有实例，类似有`pkill`默认使用进程名</span><br><span class="line">killall processname</span><br></pre></td></tr></table></figure></p>
+<p><strong>which、whereis</strong><br>查询工具，区别是which是按照PATH变量中的目录逐个查找<br>而whereis则是在Linux自己维护的文件数据库中查找，所以范围更大。缺点是非实时，数据库是每天自动更新，你也可以手动更新，updatedb</p>
+<p><strong>uptime</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 系统使用时间统计，包括最近1分钟、5分钟、15分钟的系统负载</span><br><span class="line">uptime</span><br></pre></td></tr></table></figure></p>
+<p><strong>uname</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 主机名，`hostname`</span><br><span class="line">uname -n</span><br><span class="line"></span><br><span class="line"># 打印内核、硬件架构等详细信息</span><br><span class="line">uname -a</span><br><span class="line"></span><br><span class="line"># 内核版本</span><br><span class="line">uname -r</span><br><span class="line"></span><br><span class="line"># 主机类型</span><br><span class="line">uname -m</span><br></pre></td></tr></table></figure></p>
+<p><strong>crontab</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 指定用户,root使用</span><br><span class="line">crontab -u liufuxin -e</span><br><span class="line"></span><br><span class="line"># */5 1,2 5-9 7 * COMMOND</span><br><span class="line"># 每5分 每天的1,2点 每5-9日 每7月 执行任务</span><br><span class="line"># 注意，周跟日月不能同时出现,同时出现不是&apos;与&apos;关系,而是&apos;或&apos;关系</span><br><span class="line"># 注意，Commond的输出未指定的话会发送邮件</span><br></pre></td></tr></table></figure></p>
+<p><strong>tee</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># tee会将标准输入传送给某个设备的同时将其输出到标准输出</span><br><span class="line">ls | tee lsresult | cat</span><br></pre></td></tr></table></figure></p>
+<p><strong>umask</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 权限掩码，用于计算文件的默认权限</span><br><span class="line"># 查看</span><br><span class="line">umask</span><br><span class="line"></span><br><span class="line"># 编辑</span><br><span class="line">umask 022</span><br><span class="line"></span><br><span class="line"># 作用</span><br><span class="line">从777中拿走umask指定的位</span><br><span class="line"></span><br><span class="line"># 注意</span><br><span class="line">文件默认不允许添加执行权限，即即使设定umask为000，新建的文件权限也是666，执行权限必须chmod添加；文件没此限制</span><br></pre></td></tr></table></figure></p>
+<p><strong>查看cpu</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 总核数 = 物理CPU个数 X 每颗物理CPU的核数</span><br><span class="line"># 总逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数</span><br><span class="line"></span><br><span class="line"># cpu基本信息</span><br><span class="line">cat /proc/cpuinfo</span><br><span class="line"></span><br><span class="line"># 查看物理CPU个数</span><br><span class="line">cat /proc/cpuinfo| grep &quot;physical id&quot;| sort| uniq| wc -l</span><br><span class="line"></span><br><span class="line"># 查看每个物理CPU中core的个数(即核数)</span><br><span class="line">cat /proc/cpuinfo| grep &quot;cpu cores&quot;| uniq</span><br><span class="line"></span><br><span class="line"># 查看逻辑CPU的个数</span><br><span class="line">cat /proc/cpuinfo| grep &quot;processor&quot;| wc -l</span><br></pre></td></tr></table></figure></p>
+<p><strong>top</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 实时监控系统cpu、进程、内存状态</span><br><span class="line"># top命令之后</span><br><span class="line">P 为cpu使用占比排序</span><br><span class="line">M 为内存使用占比排序</span><br><span class="line">i 使top不显示任何闲置或者僵死进程</span><br><span class="line"></span><br><span class="line"># 进程状态</span><br><span class="line">S 可打断阻塞，比如等待IO就绪</span><br><span class="line">D 不可打断阻塞，比如正在读取文件</span><br><span class="line">Z 僵尸进程</span><br><span class="line">R 正在运行</span><br><span class="line">T 处在被跟踪状态，如gbd调试</span><br><span class="line"></span><br><span class="line"># top第三行显示当前系统的，其中有两个值很关键:</span><br><span class="line">%id：空闲CPU时间百分比，如果这个值过低，表明系统CPU存在瓶颈；</span><br><span class="line">%wa：等待I/O的CPU时间百分比，如果这个值过高，表明IO存在瓶颈；</span><br></pre></td></tr></table></figure></p>
+<p><strong>环境变量</strong><br>bashrc与profile都用于保存用户的环境信息，bashrc用于交互式non-loginshell，而profile用于交互式login shell。<br>/etc/profile，/etc/bashrc 是系统全局环境变量设定~/.profile，~/.bashrc用户目录下的私有环境变量设定<br>当登入系统获得一个shell进程时，其读取环境设置脚本分为三步:</p>
+<ol>
+<li>首先读入的是全局环境变量设置文件/etc/profile，然后根据其内容读取额外的文档，如/etc/profile.d和/etc/inputrc</li>
+<li>读取当前登录用户Home目录下的文件~/.bash_profile，其次读取~/.bash_login，最后读取~/.profile，这三个文档设定基本上是一样的，读取有优先关系</li>
+<li>读取~/.bashrc</li>
+</ol>
+<p>/.profile与~/.bashrc的区别:</p>
+<ol>
+<li>这两者都具有个性化定制功能</li>
+<li>~/.profile可以设定本用户专有的路径，环境变量，等，它只能登入的时候执行一次</li>
+<li>~/.bashrc也是某用户专有设定文档，可以设定路径，命令别名，每次shell script的执行都会使用它一次</li>
+</ol>
+<p><strong>用户管理</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 添加用户，同时添加home目录</span><br><span class="line">useradd -m liufuxin</span><br><span class="line"></span><br><span class="line"># 设置密码</span><br><span class="line">paswd liufuxin</span><br><span class="line"></span><br><span class="line"># 删除用户 -r同时删除home目录</span><br><span class="line">userdel -r liufuxin</span><br></pre></td></tr></table></figure></p>
+<p><strong>awk</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 基本格式，BEGIN、END必须大写，可以省略</span><br><span class="line">awk ’BEGIN &#123;awk-commands&#125; /pattern/ &#123;awk-commands&#125; END &#123;awk-commands&#125;‘ targt.file</span><br><span class="line"></span><br><span class="line"># 打印所有行</span><br><span class="line">awk &apos;&#123;print $0&#125;&apos; file</span><br><span class="line"></span><br><span class="line"># 统计匹配的行数</span><br><span class="line">awk &apos;/a/&#123;++cnt&#125; END &#123;print &quot;Count = &quot;, cnt&#125;&apos; marks.txt</span><br><span class="line">Count =  4</span><br></pre></td></tr></table></figure></p>
+<p>延伸<br><a href="https://segmentfault.com/a/1190000007338373?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io#articleHeader2" target="_blank" rel="external">三十分钟入门AWK</a></p>
+<p><strong>sed</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 首处替换,替换每一行的第一处匹配的text</span><br><span class="line">sed &apos;s/text/replace_text/&apos; file</span><br><span class="line"></span><br><span class="line"># 全局替换</span><br><span class="line">sed &apos;s/text/replace_text/g&apos; file</span><br><span class="line"></span><br><span class="line"># 移除空白行</span><br><span class="line">sed &apos;/^$/d&apos; file</span><br><span class="line"></span><br><span class="line">#变量转换,已匹配的字符串通过标记&amp;来引用.</span><br><span class="line">echo this is en example | sed &apos;s/\w+/[&amp;]/g&apos;</span><br><span class="line">$&gt;[this] [is] [en] [example]</span><br><span class="line"></span><br><span class="line"># 子串匹配标记,第一个匹配的括号内容使用标记 1 来引用</span><br><span class="line">sed &apos;s/hello\([0-9]\)/\1/&apos;</span><br></pre></td></tr></table></figure></p>
+<p>延伸<br><a href="https://zhuanlan.zhihu.com/p/39893236" target="_blank" rel="external">Linux 系统性能分析的 60,000 毫秒</a><br><a href="https://juejin.im/post/5ce550026fb9a07edf271b3e" target="_blank" rel="external">记一次PHP并发性能调优实战</a></p>
+<h2 id="学习资料"><a href="#学习资料" class="headerlink" title="学习资料"></a>学习资料</h2><p><a href="https://juejin.im/post/5e58905f6fb9a07caa270bb0" target="_blank" rel="external">写给大忙人看的操作系统</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>觉得有帮助的话, 请我喝杯茶吧</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wepay.jpg" alt="Liufxlucky365 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Liufxlucky365 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/28/Git不权威总结/" rel="next" title="Git不权威总结">
+                <i class="fa fa-chevron-left"></i> Git不权威总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/11/MySQL不权威总结/" rel="prev" title="MySQL不权威总结">
+                MySQL不权威总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDE5Mi8yMDcyNQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/default_avatar.png"
+                alt="Liufxlucky365" />
+            
+              <p class="site-author-name" itemprop="name">Liufxlucky365</p>
+              <p class="site-description motion-element" itemprop="description">程序猿 IT php mysql 生活 秀恩爱</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#欢迎阅读"><span class="nav-text">欢迎阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux简史"><span class="nav-text">Linux简史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机硬件组成"><span class="nav-text">计算机硬件组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#硬件基本架构"><span class="nav-text">硬件基本架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU"><span class="nav-text">CPU</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux文件系统"><span class="nav-text">Linux文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#inode"><span class="nav-text">inode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件权限"><span class="nav-text">文件权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软-硬链接"><span class="nav-text">软/硬链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编码"><span class="nav-text">编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重定向"><span class="nav-text">重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟内存"><span class="nav-text">虚拟内存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程"><span class="nav-text">进程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序编译"><span class="nav-text">程序编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程状态"><span class="nav-text">进程状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件描述符"><span class="nav-text">文件描述符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程的并发"><span class="nav-text">进程的并发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fork-amp-exec"><span class="nav-text">fork & exec</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#守护进程"><span class="nav-text">守护进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程间通信"><span class="nav-text">进程间通信</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-text">线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协程"><span class="nav-text">协程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络编程"><span class="nav-text">网络编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#port端口"><span class="nav-text">port端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#socket套接字"><span class="nav-text">socket套接字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-O多路复用"><span class="nav-text">I/O多路复用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vim"><span class="nav-text">Vim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用工具与脚本"><span class="nav-text">常用工具与脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习资料"><span class="nav-text">学习资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liufxlucky365</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    访问量 <span id="busuanzi_value_site_pv"></span>
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    <span id="busuanzi_value_site_uv"></span>人看过
+</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

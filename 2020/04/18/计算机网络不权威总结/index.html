@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="欢迎阅读对于程序员，网络方面的知识是必不可少的，本文为大家梳理计算机网络方面的主要知识体系，浅尝辄止，可以作为一个知识的索引，有需要的同学可以通过附上的文章更深入学习。必有疏漏错误的地方，欢迎大家指出分享">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络不权威总结">
+<meta property="og:url" content="http://yoursite.com/2020/04/18/计算机网络不权威总结/index.html">
+<meta property="og:site_name" content="Liufxlucky365">
+<meta property="og:description" content="欢迎阅读对于程序员，网络方面的知识是必不可少的，本文为大家梳理计算机网络方面的主要知识体系，浅尝辄止，可以作为一个知识的索引，有需要的同学可以通过附上的文章更深入学习。必有疏漏错误的地方，欢迎大家指出分享">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1500839-022d70b82504c9c9.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/586/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1500839-8456574c12e5aca9.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/676/format/webp">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1ge44a1hb98j30ed08g3ys.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1ge44a1gfotj30e308zglw.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1ge46i8im98j30ou08374z.jpg">
+<meta property="og:updated_time" content="2020-05-24T11:18:32.912Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机网络不权威总结">
+<meta name="twitter:description" content="欢迎阅读对于程序员，网络方面的知识是必不可少的，本文为大家梳理计算机网络方面的主要知识体系，浅尝辄止，可以作为一个知识的索引，有需要的同学可以通过附上的文章更深入学习。必有疏漏错误的地方，欢迎大家指出分享">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1500839-022d70b82504c9c9.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/586/format/webp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/18/计算机网络不权威总结/"/>
+
+
+
+
+
+  <title>计算机网络不权威总结 | Liufxlucky365</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liufxlucky365</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">211&835</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/18/计算机网络不权威总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liufxlucky365">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/default_avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liufxlucky365">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机网络不权威总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-18T00:00:00+08:00">
+                2020-04-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络/" itemprop="url" rel="index">
+                    <span itemprop="name">网络</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="欢迎阅读"><a href="#欢迎阅读" class="headerlink" title="欢迎阅读"></a>欢迎阅读</h2><p>对于程序员，网络方面的知识是必不可少的，本文为大家梳理计算机网络方面的主要知识体系，浅尝辄止，可以作为一个知识的索引，有需要的同学可以通过附上的文章更深入学习。必有疏漏错误的地方，欢迎大家指出分享</p>
+<a id="more"></a>
+<h2 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h2><p>可以说整个计算机网络都是围绕以下这个五层模型进行构建的</p>
+<ol>
+<li>应用层，HTTP、SMTP、FTP、DNS，应用之间数据交换，报文</li>
+<li>传输层，TCP、UDP，在不稳定的网络基础上实现可控（稳定）网络传输，报文段</li>
+<li>网络层，IP、DHCP、NAT，划分、定位网络，实现数据跨网络传输；构建路由表，转发数据报，数据报</li>
+<li>链路层，ARP、RARP、RIP，信道调度，帧</li>
+<li>物理层，利用各种介质（双绞铜线、光纤、电磁波）实现0、1数据的真实传输，位</li>
+</ol>
+<p>始终不要忘记，网络的目的是为了实现<code>远程终端之间应用的信息共享</code>，也就是应用层的目的。由此出发，自上而下来分析，这个模型就很合情合理了，甚至可以理解为当时的最优可行解</p>
+<p>这样的层级划分，可以让每一层需要实现的功能都简单直接。首先对网络模型有个总体的了解，至于各层的细节，比如终端中包含了很多应用，如何区分？IP地址即将耗尽，如何最大效率的分配？一些企业的私有网络又是如何和因特网对接的？将会在之后陆续进行总结</p>
+<p><strong>网络接入</strong><br>说了这么多，好像所有都是免费的啊，除了自己买根网线。那我们的网费都交给谁了？</p>
+<p>我们的网费都交给各级网络提供商了（ISP）。各大洲之间会有海底光缆进行互联，然后各个国家又有自己的主网络节点，然后各个地区都有ISP的节点，这些节点将散落在各个社区的住户接入了互联网</p>
+<p>另外值得一提的是谷歌由于财大气粗和出于安全考虑，自己完成了网络的接入，在各个国家建立了自己的节点，俨然一个小型ISP</p>
+<p><strong>网络安全</strong><br>深入了解网络模型后，你会发现这里面有很多地方都是基于相信各个终端是不会作恶的（这主要是由于网络最初的建立便是基于“一群相互信任的用户连接到一个透明的网络上”），但现实中这几乎是不可能的，所以网络攻击手段层出不穷</p>
+<p>比如<code>网络嗅探</code>，本来一些终端是应该忽略掉不是发给他的信息的，就比如学校传达室里的信件，谁都能够接触到，但应该又收信人查看，网络嗅探就是在窥伺别人的隐私</p>
+<p>又比如<code>IP哄骗</code>，快递员把邮件送到了你们的合租房，本来是你室友的东西，但你冒充了他，哄骗了快递员，将数据交付给了你</p>
+<p>另一个臭名昭著的是<code>拒绝服务攻击（DoS）</code>，不断的对网络服务发起请求，直到其瘫痪为止，后来又演变为<code>分布式的拒绝服务攻击（DDoS）</code>，消耗服务器资源的方式也层出不穷，最简单即暴力请求，复杂点的如利用TCP协议的一些特性，发送一些特制的报文，延长服务器的处理时间，消耗有限资源</p>
+<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><p><code>网络应用是计算机网络存在的的理由</code>，所以上至TCP/IP协议栈，下至双绞铜线和光纤，都是为实现网络应用提供各种服务</p>
+<p>但是由于良好的分层模型，应用层协议已经高度抽象，程序员只需要关注应用之间的数据交互，其他的基本是透明的，大大降低了软件开发复杂度</p>
+<p><strong>网络应用常见的体系机构有两种</strong></p>
+<ul>
+<li>Client/Server，即客户机/服务器体系结构，该体系结构包含一个始终运行着提供服务的<code>服务器</code>，以及分布在各个用户那里的<code>客户机</code></li>
+<li>P2P，该体系结构很少依赖服务器，主要利用网络中互相平等的主机提供服务，著名的Skype、BT均便是该体系结构</li>
+</ul>
+<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><p>超文本传输协议（HyperText Transfer Protocol），它是web的核心。使用TCP作为它的支撑运输层协议。是一个<code>无状态</code>协议</p>
+<p><strong>HTTP请求报文格式</strong></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1500839-022d70b82504c9c9.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/586/format/webp" alt="请求报文格式"></p>
+<p>请求报文第一行是请求行（request line），后续为首部行（header line）<br>请求行中请求方法一般为POST、GET、PUT、DELETE，协议版本类似<code>HTTP/1.1</code></p>
+<p><strong>HTTP响应报文格式</strong></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1500839-8456574c12e5aca9.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/676/format/webp" alt="响应报文格式"></p>
+<p>一些常见的响应码</p>
+<ul>
+<li>200 ok 请求成功</li>
+<li>301 moved permanently 请求的对象已经被永久转移了</li>
+<li>400 bad request 一个通用差错代码，该请求服务器无法理解</li>
+<li>404 not found 被请求的文档不在服务器</li>
+<li>500 server error 服务器错误</li>
+<li>505 http version is not supported 当前http版本不被支持</li>
+</ul>
+<p><strong>Header</strong><br>请求报文和响应报文中都包含一些头部说明标识，用以对交互附加说明，比如</p>
+<ul>
+<li>Data，报文的构建时间，通用，如Thu 03 Jan 2019 12:23</li>
+<li>Accept，客户端接收的数据类型，请求报文，如text/html application/xml</li>
+<li>Content-Type，报文body部分的数据类型，通用，如text/plain; charset=utf-8</li>
+</ul>
+<p><strong>Cookie</strong><br>cookie是存储在客户端的一个小文件，是对Http无状态的补充，方便在不同请求之间同步数据。Http协议在响应报文中声明要设置的cookie的名称、值与过期时间。客户端在每次请求时都会自动带上该请求同域名的cookie</p>
+<p>由于cookie存储在客户端且有大小限制，不适合存储敏感信息，只可以用了存储一些短暂的会话id或者默认账号等</p>
+<p><strong>缓存</strong><br>Http协议包含缓存机制，可以将一些不常变的资源设置缓存时间或简单策略。但由于缓存机制比较简单，而且目前web 2.0，http交互大部分都是业务请求，缓存基本由服务端处理</p>
+<p><strong>keep-alive</strong><br>Http协议是无状态的，并且大部分都是短请求，所以需要频繁建立断开tcp连接，既消耗资源也浪费时间。客户端和服务端任何一方都可以在http交互中添加keep-alive标记，这样底层的tcp连接便不会断开，一个连接中可以完成多次http请求</p>
+<p>延伸<br><a href="https://www.jianshu.com/p/2880800cb895" target="_blank" rel="external">从数据传输层深度解密HTTP</a></p>
+<h3 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h3><p>由于HTTP协议是明文传输，所以经常发生数据泄露、劫持、篡改，HTTPS便是在HTTP协议基础上实现了加密，大致原理为：</p>
+<ol>
+<li>客户端访问服务端，获取其证书，浏览器解析证书中包含的服务端公钥</li>
+<li>客户端使用服务端的公钥加密自己的公钥，然后发送给服务端</li>
+<li>服务端用私钥解密后，拿到客户端的公钥，然后使用其对数据进行加密，至此完成信道的加密</li>
+<li>客户端收到数据后用自己的私钥解密</li>
+</ol>
+<p><strong>公钥 私钥</strong><br>非对称可逆加密，即加密的数据可进行解密，而且加密和解密使用的key不同。对外暴露的key叫做公钥，自己保留的是私钥</p>
+<p><strong>证书</strong><br>证书服务端向第三方机构申请的，记录了其公钥。如何防止证书造假：</p>
+<ol>
+<li>证书是使用该机构的私钥加密的，只有该机构的公钥才能正确解密，获取证书内容</li>
+<li>而主要浏览器都会内置知名第三方机构的公钥，如果发现不认识的证书会发出警告</li>
+</ol>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p>客户端请求服务时需要通过ip地址定位服务器所在，但106.75.17.181这样的ip实在难以记忆，最初的方案很简单，就是在操作系统中维护一个hosts文件，记录了域名和ip的对应关系，但是随着互联网越来越大，hosts文件已经不能满足需求</p>
+<p>DNS（domain name system）域名系统便是为了解决这一问题。基于UDP协议（运行在53端口），在全世界各地部署了大量DNS服务器用于提供域名与ip对应关系解析服务。这里简单举一个例子，比如我们要访问www.liufuxin.cn.org</p>
+<ol>
+<li>首先会请求操作系统默认的dns服务器，这个也可以修改我们信任的权威服务器，如谷歌的8.8.8.8</li>
+<li>如果本地dns服务器没有记录，则请求根域名服务器，根域名服务器告诉你org顶级域名应该访问另外一个服务器</li>
+<li>org的顶级域名服务器，告诉了我cn域名的服务器</li>
+<li>cn域名服务器告诉了该域名的ip地址</li>
+<li>本地dns服务器会缓存这个结果</li>
+</ol>
+<p>DNS同时也可以提供负载均衡服务，即同一个域名，依据策略返回不同的ip地址均衡负载</p>
+<p>延伸<br><a href="https://www.jianshu.com/p/766bef2f6470" target="_blank" rel="external">全方位深入理解DNS</a></p>
+<p><strong>P2P</strong><br>P2P是除了服务器-客户端之外另一种重要的网络体系，是在网络中互相对等的两个终端之间进行通信，常见的应用为<code>文件分发</code>，即著名的BitTorrent协议；另一种是在对等方中组织并搜索信息；第三种是Skype，一个成功的P2P因特网电话应用。</p>
+<p><strong>BitTorrent</strong><br>BT下载的主要原理是充分利用加入分发的各终端的网络上载流量，因为一般情况下，终端的下载流量会远远大于上载。简单来说，就是各终端均匀的下载文件的各个部分，然后再在临近的终端之间互相交换数据，既减轻服务器下载压力，又能提供终端的下载速度，实现了下载的人越多，下载速度越快的“变态”下载</p>
+<h2 id="运输层"><a href="#运输层" class="headerlink" title="运输层"></a>运输层</h2><p>运输层将网络层在两个端系统之间的交付服务，扩展到运行在两个不同端系统上的应用层进程之间的交付服务，同时提供了额外的<code>逻辑通信</code>服务，</p>
+<h3 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h3><p>UDP其实很简单，只是在网络层的数据报基础上增加了部分多路复用和分解的报头。也就是说UDP如同网络层一样，只提供<code>尽力的交付服务</code>，不保证完整、有序，那我们选择UDP的场景有哪些呢？</p>
+<ul>
+<li><code>可以忍受一定的数据丢失，但要求强实时性</code> 因为不要建立连接，同时没有拥塞控制，所以UDP的网络时延小</li>
+<li><code>性能更好</code> 因为不需要维护连接，所以UDP的性能要更好，可以支持更多的活跃客户机</li>
+<li><code>网络开销小</code> 因为功能简单所以UDP的报文头短小，所以报文整体要比TCP小</li>
+</ul>
+<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>TCP提供的一个重要服务便是<code>可靠传输，即保证数据完整、有序，且在合理的时间范围内</code>。我们知道传输层所依赖的网络层并不是可靠的，那TCP是如何在此基础上实现了可靠传输协议呢？在本小节中，我们会在一个不断接近真实的网络模型上逐步建立一个可靠传输协议。希望能够帮助大家更加深入的理解TCP的各个功能的意义</p>
+<h4 id="手撕可靠传输协议"><a href="#手撕可靠传输协议" class="headerlink" title="手撕可靠传输协议"></a>手撕可靠传输协议</h4><p><strong>完全可靠的信道</strong><br>假设网络是完全可靠的，不会丢失数据、不会拥塞。那么我们该如何构建该协议呢？</p>
+<p>很简单，发送方发送数据，然后接收方收到数据后发送一个反馈，发送方接收到反馈后继续发送，甚至当我们可以约定两者的速度匹配，则不需要接收方发送反馈，这样我们完成了可靠传输协议<code>rdt1.0</code></p>
+<p><strong>会出现比特差错的信道</strong><br>再增加一点真实性，即信道中传输的数据会出现比特差错（即0、1跳变），现在该怎么办呢？也很简单，只需要在rdt1.0的基础上增加</p>
+<ul>
+<li><code>差错检测</code> 检测报文数据完整性有很多办法，常用的包括奇偶校验位、摘要等</li>
+<li><code>反馈接收</code> 即发送方获取接收方正确收到数据后的反馈</li>
+<li><code>重发</code> 当接收方发送的反馈是数据错误时则重发数据</li>
+</ul>
+<p>增加这几个功能后我们便可以解决比特差错的问题了</p>
+<p>等等，<code>反馈本身要是也出错了怎么办？</code>所以，还差一点，那就是当反馈本身也出错时（即发送方收到了‘含糊不清’的反馈）则也默认重发数据，但这又会有个问题，接收方万一之前正确接收了，现在又发送，他又接收了怎么办？解决办法就是在发送报文中添加<code>重传标记</code>，标明数据为重发</p>
+<p>至此，我们就有了更加健壮的rdt2.0了</p>
+<p><strong>会出现丢包、比特差错的信道</strong><br>道高一尺，魔高一丈。真实的网络环境中不仅数据会跳变，还会丢包。即发送方和接收方发送的任何报文段都可能丢失。解决这个问题其实很简单，只需要在发送方增加<code>倒数计时器</code>即可。当发送方发送数据后便开始计时，若超时未得到响应，则重发数据。至于这个超时如何确定，一般会设置为报文段的一次往返时间。</p>
+<p>rdt3.0完成。截止目前，我们已经有了一个基本可以在真实网络环境中工作的简易TCP了</p>
+<p><strong>以流水线方式实现</strong><br>rdt3.0其实已经能够真实运行了，但还存在一个很大的缺陷，那就是性能很差。因为发送方和接收方之间的每一步基本都是“停等”的。我们可以通过流水线的方式来加速数据传输，但一旦使用流水线，那么发送和接收的模型都会更加复杂，他们必须得做到以下几点</p>
+<ol>
+<li><code>增加编号</code> 即每个分组要增加一个唯一的序号，方便流水线管理分组</li>
+<li><code>增加缓存</code> 即发送方和接收方都要增加一个缓冲区，用来缓存双方尚未确认的分组</li>
+<li><code>解决差错</code> 流水线方式的话，因为是批量发送数据，出现错误后处理难度会较之刚才更大，TCP使用<code>回退N步</code>和<code>选择重传</code>两种策略解决这个问题<ul>
+<li>回退N步<br>发送模型大概是发送方不断的发送数据，直至一个阈值（这也叫做发送窗口），然后向前滑动并等待确认反馈或超时重传。这里有个约定就是接收方接收窗口为1，即<code>只有序确定数据分组，并且只会反馈正确收到的最大分组序号</code>。所以假如发送方发送了1-100号分组，可能只收到了55、70的反馈，以及71失败或者超时，此时窗口回退到71重新发送</li>
+<li>选择重传<br>选择重传是对回退N步策略的一种改进，发送方和接收方都会缓存一些数据，允许乱序确认。即发送方当收到2号出错时，窗口并不回退，而是单独处理2号，同时接收方在收到乱序到达的分组后不会丢失不连续的，而是暂存起来。这样虽然增加了实现难度，但却大大提高了效率</li>
+</ul>
+</li>
+</ol>
+<p>到这里，TCP是如何在不可靠的网络上实现可靠传输的方法应该有一个感性的认识了吧</p>
+<h4 id="TCP连接管理"><a href="#TCP连接管理" class="headerlink" title="TCP连接管理"></a>TCP连接管理</h4><p>TCP是面向连接的，直观来说就是面向一个可靠有序的字节流，那么TCP是如何建立并管理这个连接呢？</p>
+<p><strong>建立连接 三次握手</strong></p>
+<ol>
+<li>客户端发送SYN分组、随机序列号J，请求建立连接，状态变为SYNC_SENT。完成第一次握手</li>
+<li>服务端初始状态为LISTEN，收到SYN后，开辟所需的变量和缓冲区，返回确认分组ACK、ack=J+1、seq=K，状态变为SYN_RCVD，完成第二次握手</li>
+<li>客户端收到确认分组，准备变量和缓冲区，返回确认ACK分组，ack=K+1，状态变为ESTABLISHED，完成第三次握手</li>
+<li>服务端收到确认请求，状态变为ESTABLISHED</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/006QGE4bly1ge44a1hb98j30ed08g3ys.jpg" alt="三次握手.png"></p>
+<p><strong>关闭连接 四次挥手</strong></p>
+<ol>
+<li>客户端发送FIN分组、随机序列号M，状态变为WAIT_FIN_1，表示不再发送数据，请求关闭连接，一次挥手</li>
+<li>服务端开始清理变量、缓冲区，返回确认分组ACK，ack=M+1，随机序列号N，状态变为CLOSE_WAIT，二次挥手</li>
+<li>服务端清理完毕，发送FIN分组、随机序列号N，状态变为LAST_ACK，表示不再发送数据，允许关闭连接，三次挥手</li>
+<li>客户端返回确认分组ACK、ack=N+1，状态变为TIME_WAIT，四次挥手</li>
+<li>服务端收到确认请求，状态变为CLOSED</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/006QGE4bly1ge44a1gfotj30e308zglw.jpg" alt="四次挥手.png"></p>
+<p><strong>为什么建立连接要三次握手，关闭要四次挥手？</strong><br>这里首先要明白，TCP是全双工，即服务端与客户端都可以发送与接收数据，所以连接的建立和关闭其实都是围绕双方互相确认对方具有发送与接收能力进行的</p>
+<p>建立连接时，第一次握手服务端确认了客户端的发送能力，第二次握手客户端确认了服务端的接收和发送能力，第三次握手服务端确认了客户端的接收能力。确认完毕，连接便建立。这里要注意，“能力”不仅指硬件设备正常，还有一层意思是假如客户端的某一个SYN分组因为网络延迟过了很久才到服务端，虽然客户端此时硬件没问题，但可能已经完成了数据交互，不再需要建立连接，此时第三次握手的作用便能保证服务端不会白白等待</p>
+<p>连接关闭时道理一样。第一次挥手服务端确认客户端不再发送，第二次挥手客户端确认服务端不再接收，第三次挥手客户端确认服务端不再发送，第四次挥手服务端确认客户端不再接收</p>
+<p><strong>半连接队列</strong><br>服务端收到SYN分组后便准备建立连接，此时的socket数据半连接，操作系统维护了一个半连接队列，半连接队列如果积压的话服务端便无法建立新连接。这其实也是<code>SYN洪泛攻击</code>的原理</p>
+<p><strong>三次握手期间能不能顺便带数据？</strong><br>不能。如果允许握手同时带数据，则服务端要提前开辟缓冲区预先存储数据，这样就非常容易受到攻击。不过第三次握手时因为连接已经确认建立，是可以同时发送数据的</p>
+<p><strong>TIME_WAIT如何产生？什么危害？怎么解决？</strong><br>主动发起连接断开的一方才会出现TIME_WAIT，它的作用是确保第四次挥手的分组被正确接收到，一般会等待2MST时间确认是否会再收到FIN分组，默认为数分组。如果短时间内大量短连接的断开会导致出现大量TIME_WAIT，而处于TIME_WAIT的连接依然占用端口（防止其他连接占用该端口导致数据混乱），这样就会导致端口耗尽为无法建立新连接</p>
+<p>快速的解决办法是手动清理这些连接，也可以减小2MST时间，治本的办法是找到短时间内产生大量连接的原因</p>
+<h4 id="TCP拥塞控制"><a href="#TCP拥塞控制" class="headerlink" title="TCP拥塞控制"></a>TCP拥塞控制</h4><p>TCP的拥塞控制主要是面向整个互联网的，因为它的主要作用便是根据当前网络环境遏制自己的发送速度。这里我们只需要了解几个简单的概念即可。注意拥塞控制和流量控制不同，后者主要是为了匹配接收方与发送方处理速度，减少丢包，主要通过控制窗口滑动速度实现。拥塞控制则主要是通过调整窗口大小实现</p>
+<p><strong>慢启动</strong><br>即发送方在发送数据时首先发送1个分组进行试探，成功后继续发送2个，然后依次类推。当然不会这么一直翻倍下去，而是当达到某个阈值后，变化为线性速度增加</p>
+<p><strong>加性增，乘性减</strong><br>在线性增加过程中，若遇到拥塞，窗口大小按照几何倍率减小，重新开始慢启动过程</p>
+<p><strong>快重传</strong><br>快重传算法规定，发送方只要一连收到三个重传确认就应当立即重传对方尚未收到的报文段，而不必继续等待重传计时器到。由于发送方尽早重传未被确认的报文段，因此采用快重传后可以使整个网络吞吐量提高约20%</p>
+<p><strong>快恢复</strong><br>与快重传配合使用的还有快恢复算法。当在慢启动阶段收到多个重传确认时，会触发快恢复事件，发送窗口重新进入加性增阶段，避免翻倍导致网络更加拥塞</p>
+<p><img src="http://ww1.sinaimg.cn/large/006QGE4bly1ge46i8im98j30ou08374z.jpg" alt="拥塞控制.webp"></p>
+<h3 id="TCP、UDP的比较"><a href="#TCP、UDP的比较" class="headerlink" title="TCP、UDP的比较"></a>TCP、UDP的比较</h3><ol>
+<li>连接方式。TCP是面向连接的，在通信之前需要双方建立连接，初始化资源和同步序列号；UDP是面向数据报，只需要将数据根据ip发送出去即可</li>
+<li>可靠性。TCP是可靠、有序，保证数据不错、不丢、不乱；UDP则是不可靠、不保证有序</li>
+<li>发送方式。TCP是面向字节流；UDP是面向数据报</li>
+<li>大小限制。TCP因为面向连接字节流，所以无大小限制；UDP因为面向数据报，单次发送受到这些限制：UDP协议最长单次65536字节、网络最大传输单元MTU（Internet是576字节）、socket缓冲区大小。<code>由于发送数据超过单次大小限制，需要分包，会提高丢包率，所以一般保证单次发送数据在一个包内</code>，MTU - UDP包头 - IP包头</li>
+<li>使用场景。TCP适合通讯质量有要求的场景，如邮件、文件下载；UDP主要适用于实时性要求高、可靠性要求低的场景如视频、语音，以及多点通信场景</li>
+<li>性能。TCP虽然要维持连接，但由于经过大量优化，在网络环境比较好的情况下，性能并不输于UDP。不过由于TCP设计过于冗余复杂，很难再进行优化；而UDP由于设计简单，不少公司将UDP改造为可靠的协议，如谷歌的GUIC，网络传输冗余少、速度快，且数据可靠。在整体网络环境不断改善的情况下，UDP丢包率已经低于5%，已经在越来越多的场景如语音、视频、游戏领域取代TCP</li>
+</ol>
+<h2 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h2><p>之所以有网络层，是因为最初的互联网还只是一个局域网，只有若干个网卡互相连接，通过mac地址就能完成数据交换。但后来由于局域网不断扩大，确定mac地址的成本越来越高，直到上亿个局域网构成互联网时，mac地址来完成定位已经无法实现，必须先有一个网络层，来完成局域网的确定</p>
+<h3 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h3><p>IP协议的作用便是完成局域网的确定，和局域网内mac的确定。大致的原理如下：</p>
+<ol>
+<li>IP地址中包含网络位和地址位，网络位用来确认子网地址，地址位用来确认mac</li>
+<li>IP转发的时候先确认是否为本地局域网，如果不是再转发网关，网关根据路由表继续转发，直到找到目标网络</li>
+<li>找到目标网络后，再讲IP地址映射到mac地址，将数据发送给指定mac</li>
+</ol>
+<p><strong>IPv4</strong><br>目前使用最广泛的是ipv4地址，由32个bit组成，可以表示2^32个地址（约40亿个），为了方便书写，一般记为4个0~255的十进制数，点号分开</p>
+<p><strong>子网</strong><br>IP地址中的网络位和地址位是通过<code>子网掩码</code>实现的，用IP地址和子网掩码进行与运算则可以计算出子网号。之所以划分子网是因为这样可以实现地址聚合（或者路由聚合），能够将相同子网的ip使用一个路由映射，减少路由表的大小，提高路由效率</p>
+<p>子网划分为A、B、C、D、E五类，分别具有不同比特的前缀，这样做的好处是规范子网号，实现ip复用。比如一家大公司或者一个城市可以看做一个局域网，他们可以在自己的局域网内使用相同的A类地址，这些地址不会在公网中出现，对外可以只有少量公网ip</p>
+<p><strong>TTL</strong><br>最大转发次数。网络层的主要作用是<code>转发</code>和<code>路由</code>。TTL控制了最大的转发次数，8位组成，理论上最大256次，但一般设置为32或64次</p>
+<p><strong>MAC</strong><br>每一个网卡的唯一硬件标识符，由厂商写在网卡的BIOS里。一般采用6字节，48位，用12个十六进制数表示，每两个之间使用:隔开，如08:00:20:0A:8C:6D</p>
+<p><strong>ARP、RARP</strong><br>在一个局域网内通过ARP广播协议，可以完成IP映射mac地址，同时也会使用高速缓存缓存ip与mac映射。RARP实现mac与ip地址的映射</p>
+<p><strong>IP地址与mac可否互相取代？</strong><br>前面说了在已经mac地址的情况下，为什么还要发明IP地址概念（主要是mac地址无法体现网络）。那么已经了有IP地址的概念是否可以替代mac呢？</p>
+<p>我理解很难，因为ip是设备接入互联网后分配的虚拟地址，此时是需要一个唯一id的（也就是mac）。假如我们给每台设备生产时就写死一个ip地址，那么就又回到最初的难题，设备可能不断的更换网络，这个写死的ip就无法体现子网这个概念，路由表也因为无法划分子网而异常庞大。除非哪天技术可以实现两个设备id的唯一直连，这时候其实只有mac就够了</p>
+<p><strong>ICMP</strong><br>IP协议是最大努力交付，之所以TCP可以实现可靠交付，主要还是依靠ICMP协议，可以反馈IP数据报是否发送成功。Ping工具是其著名应用</p>
+<p><strong>traceroute</strong><br>这是一个工具，可以看到一个路由到一个ip地址的中间各个环节。实现也非常巧妙，通过将TTL从1不断调大，从而实现一步步的路由跳转</p>
+<h3 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h3><p>接入网络要具有一个IP地址，但我们经常在各个时候、各个地点都需要接入网络，难道要不断的设置IP地址吗（包括子网掩码、网关、DNS服务器）？</p>
+<p>不需要的，DHCP协议可以给我们自动分配临时IP地址，过程大概是这样</p>
+<ol>
+<li>DHCP服务器发现</li>
+<li>DHCP提供可用IP，以及租用期</li>
+<li>发送DHCP请求</li>
+<li>DHCP服务器发送响应</li>
+</ol>
+<h3 id="NAT"><a href="#NAT" class="headerlink" title="NAT"></a>NAT</h3><p>考虑这个需求，你们公司拥有上百台机器，但是只有一个对外IP，同时因为预算和集群机器经常进进出出（包括手机等移动设备）那么如何解决这些设备的IP地址问题呢？</p>
+<p>一种流行的技术方案是<code>NAT（地址转换协议）</code>，主要原理是这些设备在公司的内网具有一个内网IP地址，然后在对外网关那里利用端口来映射内网机器和端口，这样内网的各个机器可以公用这个唯一IP的机器对外通信</p>
+<p>这也会导致一个问题，即从内网可以与外部IP建立连接，但反过来，外部IP想访问内部机器却没有办法，这主要是因为从内网往外访问时NAT转换表中有记录如何转发数据报，而直接从外往内时却无法察觉内部机器</p>
+<p>解决这个问题有个专用术语，<code>NAT穿越</code>。原理大致是利用一台额外的主机，内网机器先与此机器建立连接，然后该主机代理内网机器对外接受连接，然后转发给内网机器。国内的花生壳网就提供类似服务</p>
+<h3 id="RIP"><a href="#RIP" class="headerlink" title="RIP"></a>RIP</h3><p>RIP，Routing Information Protocol，路由信息协议，即网络系统如何构建并维护路由表的</p>
+<p>大致说一下原理便是，相邻的路由器之间每个一段时间就会将自己所知道的网络信息与相邻的设备进行交换，经过一定时间的交换后，某个IP便在网络中“发布”了，然后当路由器收到数据报后，根据数据报的IP信息和自身路由表的信息决定如何转发数据报</p>
+<p>一般一个数据报会在15跳内到达目的地，所以超过15跳会被设置为无效数据报</p>
+<h2 id="链路层"><a href="#链路层" class="headerlink" title="链路层"></a>链路层</h2><p>我们把沿着通信路径连接相邻节点的通信信道称为<code>链路</code>。链路层的主体在网络适配器中实现（即网卡），主要作用是将数据以帧为单位从一块网卡发送给另一个网卡</p>
+<p>但是可能有多个网卡同时向一个网卡发送数据，就有可能出现<code>碰撞</code>，当出现数据碰撞时，碰撞的数据便损坏了（0、1混在一起了），所以链路层另一个重要作用是控制流量，划分信道</p>
+<h3 id="多路访问协议"><a href="#多路访问协议" class="headerlink" title="多路访问协议"></a>多路访问协议</h3><p>调度多个网卡向一块网卡发送数据帧的协议叫做多路访问协议，一共有几十种，常见的几种如下</p>
+<p><strong>时分多路复用 TDM</strong><br>即将信道的使用时间划分为若干时间片，然后分配给各个终端，每个终端依据所持有的时间片独享信道</p>
+<p><strong>频分多路复用 FDM</strong><br>即将信道按照频率划分为多个子信道，然后分配给各个终端，每个终端可以在独自的子信道中传输数据</p>
+<p><strong>时隙ALOHA</strong><br>简单来说，就是发送数据前先进行<code>载波侦听</code>，若发现其他终端使用信道则继续等待；同时，如果在两个终端同时使用信道，即发生了碰撞，则均停止发送，各自顺延一个随机时间</p>
+<p><strong>令牌传递</strong><br>之前的几种协议都有可能造成信道的浪费，令牌传递是指信道对应一个唯一的虚拟令牌，拿到令牌的终端才能使用信道，令牌在各个终端之间传递，当某个终端空闲时可以将令牌直接传给下个终端，这样信道就不需要空闲</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>觉得有帮助的话, 请我喝杯茶吧</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wepay.jpg" alt="Liufxlucky365 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Liufxlucky365 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/11/PHP不权威总结/" rel="next" title="PHP不权威总结">
+                <i class="fa fa-chevron-left"></i> PHP不权威总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/28/Git不权威总结/" rel="prev" title="Git不权威总结">
+                Git不权威总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDE5Mi8yMDcyNQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/default_avatar.png"
+                alt="Liufxlucky365" />
+            
+              <p class="site-author-name" itemprop="name">Liufxlucky365</p>
+              <p class="site-description motion-element" itemprop="description">程序猿 IT php mysql 生活 秀恩爱</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#欢迎阅读"><span class="nav-text">欢迎阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络模型"><span class="nav-text">网络模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用层"><span class="nav-text">应用层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP"><span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPS"><span class="nav-text">HTTPS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS"><span class="nav-text">DNS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运输层"><span class="nav-text">运输层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP"><span class="nav-text">UDP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP"><span class="nav-text">TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#手撕可靠传输协议"><span class="nav-text">手撕可靠传输协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP连接管理"><span class="nav-text">TCP连接管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP拥塞控制"><span class="nav-text">TCP拥塞控制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP、UDP的比较"><span class="nav-text">TCP、UDP的比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络层"><span class="nav-text">网络层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IP"><span class="nav-text">IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DHCP"><span class="nav-text">DHCP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NAT"><span class="nav-text">NAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RIP"><span class="nav-text">RIP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链路层"><span class="nav-text">链路层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多路访问协议"><span class="nav-text">多路访问协议</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liufxlucky365</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    访问量 <span id="busuanzi_value_site_pv"></span>
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    <span id="busuanzi_value_site_uv"></span>人看过
+</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
