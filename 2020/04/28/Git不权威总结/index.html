@@ -77,22 +77,19 @@
 
 
 
-<meta name="description" content="欢迎阅读本文仅总结使用git最基本的概念，点到为止的原理，和最常用的操作，更深入的学习可以参考我附上的延伸资料
-基本知识历史背景git是一款版本管理工具。在还没有互联网的时代，单机上就已经出现了版本管理工具（如VCS），但开发者互相之间难以协同。后来有了集中式版本管理工具（如SVN），由一个集中的服务器来维护版本，其他人不断向其提交修改，这样做的不方便之处在于一旦在没有网络的环境，便无法提交代码；">
+<meta name="description" content="欢迎阅读本文仅总结使用git最基本的概念，点到为止的原理，和最常用的操作，更深入的学习可以参考我附上的延伸资料">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git不权威总结">
 <meta property="og:url" content="http://yoursite.com/2020/04/28/Git不权威总结/index.html">
 <meta property="og:site_name" content="Liufxlucky365">
-<meta property="og:description" content="欢迎阅读本文仅总结使用git最基本的概念，点到为止的原理，和最常用的操作，更深入的学习可以参考我附上的延伸资料
-基本知识历史背景git是一款版本管理工具。在还没有互联网的时代，单机上就已经出现了版本管理工具（如VCS），但开发者互相之间难以协同。后来有了集中式版本管理工具（如SVN），由一个集中的服务器来维护版本，其他人不断向其提交修改，这样做的不方便之处在于一旦在没有网络的环境，便无法提交代码；">
+<meta property="og:description" content="欢迎阅读本文仅总结使用git最基本的概念，点到为止的原理，和最常用的操作，更深入的学习可以参考我附上的延伸资料">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1gdxy4bvqynj30k90bomy2.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1gdy1jmg90zj30m40d60ty.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1gdy1rblvb1j30fx09mt8v.jpg">
-<meta property="og:updated_time" content="2020-05-24T11:23:59.806Z">
+<meta property="og:updated_time" content="2020-05-24T11:28:11.855Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git不权威总结">
-<meta name="twitter:description" content="欢迎阅读本文仅总结使用git最基本的概念，点到为止的原理，和最常用的操作，更深入的学习可以参考我附上的延伸资料
-基本知识历史背景git是一款版本管理工具。在还没有互联网的时代，单机上就已经出现了版本管理工具（如VCS），但开发者互相之间难以协同。后来有了集中式版本管理工具（如SVN），由一个集中的服务器来维护版本，其他人不断向其提交修改，这样做的不方便之处在于一旦在没有网络的环境，便无法提交代码；">
+<meta name="twitter:description" content="欢迎阅读本文仅总结使用git最基本的概念，点到为止的原理，和最常用的操作，更深入的学习可以参考我附上的延伸资料">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006QGE4bly1gdxy4bvqynj30k90bomy2.jpg">
 
 
@@ -331,6 +328,7 @@
 
       
         <h2 id="欢迎阅读"><a href="#欢迎阅读" class="headerlink" title="欢迎阅读"></a>欢迎阅读</h2><p>本文仅总结使用git最基本的概念，点到为止的原理，和最常用的操作，更深入的学习可以参考我附上的延伸资料</p>
+<a id="more"></a>
 <h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><h3 id="历史背景"><a href="#历史背景" class="headerlink" title="历史背景"></a>历史背景</h3><p>git是一款版本管理工具。在还没有互联网的时代，单机上就已经出现了版本管理工具（如VCS），但开发者互相之间难以协同。后来有了集中式版本管理工具（如SVN），由一个集中的服务器来维护版本，其他人不断向其提交修改，这样做的不方便之处在于一旦在没有网络的环境，便无法提交代码；另外单节点的集中服务器一旦出故障，后果不堪设想；而且在开源运动发展和互联网更加普及的时代背景下，越来越多的项目需要遍布在全球各地的开发者的协同，很难维护一个稳定的超级服务器，所以分布式版本管理工具git便应运而生</p>
 <p>git的作者是大名鼎鼎linus，在设计之初linus就为git提出了几个目标</p>
 <ul>
@@ -434,8 +432,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/18/计算机网络不权威总结/" rel="next" title="计算机网络不权威总结">
-                <i class="fa fa-chevron-left"></i> 计算机网络不权威总结
+              <a href="/2020/04/28/Linux实用知识持续构建——工具篇/" rel="next" title="Linux不权威总结">
+                <i class="fa fa-chevron-left"></i> Linux不权威总结
               </a>
             
           </div>
@@ -444,8 +442,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/04/28/Linux实用知识持续构建——工具篇/" rel="prev" title="Linux不权威总结">
-                Linux不权威总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/05/11/MySQL不权威总结/" rel="prev" title="MySQL不权威总结">
+                MySQL不权威总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
